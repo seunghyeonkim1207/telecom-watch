@@ -1,235 +1,161 @@
 {
-  "updated": "2026-06-15T13:20:45.017047+09:00",
+  "updated": "2026-06-15T08:00:00.000000+09:00",
   "articles": [
     {
-      "id": "a1b2c3d4e5f6",
-      "title": "SKT, AI 기반 최적요금제 자동 추천 서비스 '내게 맞는 요금제' 출시",
-      "summary": "6개월간 통화·데이터·부가서비스 사용 패턴을 분석해 고객별 최적 요금제를 자동으로 추천하는 서비스 도입. 추천 수락 시 요금제 즉시 변경 가능하며, 평균 월 8,700원 절감 효과 예상. AI 추천 정확도는 내부 검증 기준 91.3%로, 연내 KT·LG U+ 유사 서비스 출시 예정으로 요금제 경쟁 심화 전망.",
-      "tags": [
-        "요금제",
-        "최적요금제"
-      ],
+      "id": "lgu01unified",
+      "title": "LG유플러스, 5G·LTE 통합요금제 6월 출시 — 53종→18종 대폭 단순화",
+      "summary": "LG유플러스가 통신3사 중 최초로 5G·LTE 구분 없는 통합요금제 18종을 6월 1일 출시했다. 기존 53종을 데이터 용량 기반 단순 구조로 개편했으며, 전 요금제에 데이터 소진 후 최대 400kbps 속도 제공(QoS)을 기본 적용했다. 요금제 개편에 따라 결합·번호이동 조건 재점검이 필요하며, SKT·KT 통합요금제 출시(7월 예정)에 앞서 경쟁 우위 선점 전략으로 분석된다.",
+      "tags": ["요금제"],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "LG U+",
+      "importance": 5,
+      "date": "2026-06-01",
+      "source_url": "https://v.daum.net/v/20260529095401445",
+      "source_name": "다음뉴스"
+    },
+    {
+      "id": "skt02unified",
+      "title": "SKT, 5G·LTE 통합요금제 '베스트·라이트' 7월 2일 출시 — 기존 67종 신규가입 중단",
+      "summary": "SK텔레콤이 7월 2일 5G·LTE 통합요금제 '베스트·라이트' 16종을 출시한다고 발표했다. 무제한 '베스트' 5종(월 8만9000원~12만9000원)과 6~250GB '라이트' 11종(월 3만9000원~7만9000원)으로 구성되며, 기존 요금제 67종 신규가입은 중단된다. 7월 1일부터 전 LTE 요금제에도 '안심 데이터(400kbps 무제한)' 무료 적용되며, 리텐션 전략으로서 기존 가입자 유지 방안 검토가 필요하다.",
+      "tags": ["요금제"],
       "region": "domestic",
       "country": "domestic",
       "carrier": "SKT",
       "importance": 5,
-      "date": "2026-06-15",
+      "date": "2026-05-29",
       "source_url": "https://news.sktelecom.com/225487",
       "source_name": "SK텔레콤 뉴스룸"
     },
     {
-      "id": "f7a2b3c4d5e6",
-      "title": "EU 통신 이용약관 표준화 규정(TERA) 발효 — 해지 조건·위약금 명시 의무화",
-      "summary": "EU 전체 회원국에 적용되는 통신 이용약관 표준화 규정(Telecom End-user Rights Act)이 발효됐다. 계약 종료·해지 조건, 위약금 산정 기준을 표준 양식으로 의무 명시해야 하며, 약관 변경 시 30일 전 개별 고객 통보가 의무화됐다. 국내 약관 개정 방향 참고가 필요하다.",
-      "tags": [
-        "이용약관",
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "eu",
-      "carrier": "",
-      "importance": 5,
-      "date": "2026-06-15",
-      "source_url": "https://ec.europa.eu/digital-single-market/en/european-electronic-communications-code",
-      "source_name": "European Commission"
-    },
-    {
-      "id": "b2c3d4e5f6a1",
-      "title": "과기정통부, '통신 이용약관 개정안' 입법예고 — 위약금 상한 규정 신설",
-      "summary": "단말기 약정과 연계된 이용약관 위약금 상한을 계약금액의 15%로 제한하는 내용을 담은 개정안이 입법예고됐다. 현행 통신3사 위약금 구조 전면 재검토가 필요하며, 시행 예정일은 2026년 10월 1일이다. 의견 수렴 기간은 7월 15일까지로, 리텐션 상품 설계 시 위약금 구조 변경 영향 검토가 요망된다.",
-      "tags": [
-        "이용약관"
-      ],
+      "id": "kt03unified",
+      "title": "KT, 5G·LTE 통합요금제 7월 1일 출시 — 105종 접고 '초이스·베이직' 18종 개편",
+      "summary": "KT가 7월 1일 기존 5G·LTE 요금제 105종을 폐지하고 완전 무제한 '초이스'와 데이터 구간별 '베이직' 총 18종으로 재편한다. 단말 종류·네트워크 세대 구분 없이 요금제 선택이 가능해지며, 기존 가입 고객은 현 요금제를 그대로 유지할 수 있다. 3사 통합요금제 경쟁 구도 속에서 기존 고객 이탈 방지를 위한 리텐션 혜택 설계가 시급하다.",
+      "tags": ["요금제"],
       "region": "domestic",
       "country": "domestic",
-      "carrier": "과기정통부",
+      "carrier": "KT",
       "importance": 5,
-      "date": "2026-06-14",
-      "source_url": "https://www.msit.go.kr/bbs/list.do?sCode=user&mPid=74&mId=75",
-      "source_name": "과학기술정보통신부"
+      "date": "2026-05-29",
+      "source_url": "https://inside.kt.com/html/notice/notice_detail.html?bno=13163",
+      "source_name": "KT 공식"
     },
     {
-      "id": "a2b3c4d5e6f7",
-      "title": "T-Mobile, 'Price Lock' 장기고객 요금 동결 보장 프로그램 전 요금제 확대",
-      "summary": "기존 프리미엄 요금제 한정이던 Price Lock 프로그램이 엔트리급 포함 전 요금제로 확대됐다. 5년 이상 유지 고객을 대상으로 하며, 적용 후 해지율 12% 감소와 순증 고객 수 18% 증가 효과가 보고됐다. 국내 리텐션 설계 시 장기 약정 인센티브 강화 벤치마크 대상으로 주목된다.",
-      "tags": [
-        "리텐션"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "T-Mobile",
+      "id": "galaxy26sub",
+      "title": "갤럭시S26 '공짜폰' 등장 — 단통법 폐지 후 이통3사 보조금 경쟁 재점화",
+      "summary": "단말기유통법 폐지 이후 LGU+(최대 70만원), KT(60만원), SKT(58만원) 순으로 갤럭시S26 공통지원금을 올리며 일부 유통채널에서 실질 0원 단말이 등장했다. 단통법 폐지 이후 최대 규모의 지원금 경쟁으로 번호이동 유인이 높아지고 있다. 공짜폰에는 고가 요금제 의무 약정·위약금 조건이 걸려 있어, 리텐션 관점에서 약정 구조와 해지 방어 전략 재점검이 필요하다.",
+      "tags": ["요금제", "리텐션"],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
       "importance": 4,
-      "date": "2026-06-14",
-      "source_url": "https://www.t-mobile.com/cell-phone-plans/price-lock-faqs",
-      "source_name": "T-Mobile"
+      "date": "2026-05-15",
+      "source_url": "https://www.hankyung.com/article/2026051581827",
+      "source_name": "한국경제"
     },
     {
-      "id": "c3d4e5f6a1b2",
-      "title": "KT '가족 패키지 프리미엄' 리뉴얼 — OTT 3종 무료 제공 추가",
-      "summary": "기존 가족결합 상품에 넷플릭스·웨이브·시즌 3종 OTT 무료 이용권을 번들로 추가했다. 4인 가족 기준 월 22,000원 추가 혜택이 제공되며, 결합 회선 수에 따른 할인 폭이 2회선 5%, 4회선 이상 12%로 확대됐다. 경쟁사 대비 OTT 결합 차별화 전략으로 해석된다.",
-      "tags": [
-        "결합상품"
-      ],
+      "id": "skt04security",
+      "title": "SKT, 유심 해킹 사태 이후 CISO 대표이사 직속 격상 — 보안 조직 전면 혁신",
+      "summary": "SKT는 지난해 유심 해킹 사태 이후 정보보호최고책임자(CISO)를 대표이사 직속 조직으로 격상하고 IT·네트워크 보안 기능을 통합했다. 사고 직후 약 7일간 경쟁사로 26만 명 이상 번호이동이 발생한 것을 계기로 전면적인 보안 체계 재정비가 단행됐다. 유심 교체 무료 제공 등 사후 대응이 리텐션 이탈 방어에 일부 효과를 보였으나, 보안 사고가 리텐션에 미치는 리스크 관리 체계 수립이 업계 과제로 부상했다.",
+      "tags": ["이용약관", "리텐션"],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-04-20",
+      "source_url": "https://www.ajunews.com/view/20260420143257750",
+      "source_name": "아주경제"
+    },
+    {
+      "id": "kt05hack",
+      "title": "KT, 소액결제 해킹 피해자에 위약금 면제 및 100GB·15만원 상당 보상",
+      "summary": "KT는 무단 소액결제 침해 사고 피해 고객을 대상으로 위약금 면제와 함께 5개월간 100GB 무료 데이터, 15만원 상당 통신비·단말 교체 할인, 피싱·사기 피해 보험 2년 무료 제공 등 보상 패키지를 발표했다. 피해 고객 이탈을 방어하기 위한 종합 리텐션 대책으로, 보안 사고 시 약관상 위약금 면제 범위와 보상 설계 기준을 선례로 참고할 만하다. 이용약관 개정 없이 개별 보상 결정 방식을 취한 점도 규제 대응 측면에서 주목된다.",
+      "tags": ["이용약관", "리텐션"],
       "region": "domestic",
       "country": "domestic",
       "carrier": "KT",
       "importance": 4,
-      "date": "2026-06-13",
-      "source_url": "https://product.kt.com/wDic/productDetail.do?ItemCode=977",
-      "source_name": "KT닷컴"
+      "date": "2026-06-10",
+      "source_url": "https://m.boannews.com/html/detail.html?idx=139871",
+      "source_name": "보안뉴스"
     },
     {
-      "id": "d5e6f7a2b3c4",
-      "title": "NTT Docomo, 안면인증 기반 통신 요금 결제·포인트 통합 서비스 전국 확대",
-      "summary": "편의점·슈퍼 등 제휴 매장에서 얼굴 인식으로 d포인트 적립 및 요금 결제를 동시 처리하는 서비스가 전국 2만 8천여 개소로 확대됐다. 사기 거래가 98.7% 감소했으며, 고령층 디지털 접근성 향상 효과가 확인됐다. 국내 안면인증 결제 연계 서비스 설계 시 참고할 만하다.",
-      "tags": [
-        "안면인증"
-      ],
-      "region": "overseas",
-      "country": "jp",
-      "carrier": "NTT Docomo",
-      "importance": 4,
-      "date": "2026-06-13",
-      "source_url": "https://www.nttdocomo.co.jp/english/info/media_center/",
-      "source_name": "NTT Docomo"
-    },
-    {
-      "id": "d4e5f6a1b2c3",
-      "title": "LG U+, 안면인증 비대면 가입·명의변경 서비스 전국 확대",
-      "summary": "기존 수도권 시범 운영에서 전국 대리점 및 온라인 채널로 안면인증 본인확인 서비스가 확대됐다. 신분증 OCR과 안면인식 이중 검증으로 비대면 본인 확인이 가능하며, 가입 소요 시간이 기존 대비 40% 단축됐다. 행안부 전자서명법 개정 이후 상용화가 가속화될 전망이다.",
-      "tags": [
-        "안면인증"
-      ],
+      "id": "isp01retention",
+      "title": "이통3사, 장기고객 대상 체험형 프로모션 확대 — SKT 숲캉스·LGU+ 레고랜드·KT 야구장",
+      "summary": "SK텔레콤, KT, LG유플러스가 요금제 개편 시기에 맞춰 장기 가입 고객 대상 오프라인 체험 이벤트를 동시 강화했다. 단순 요금 할인을 넘어 감성적 경험 제공으로 리텐션 프로그램 차별화를 꾀하는 전략으로, 통합요금제 전환에 따른 고객 이탈 방어를 위한 선제적 조치로 풀이된다. 리텐션 프로그램 설계 시 단기 혜택 외 장기 충성 경험 요소의 중요성이 부각되고 있는 시점이다.",
+      "tags": ["리텐션"],
       "region": "domestic",
       "country": "domestic",
-      "carrier": "LG U+",
-      "importance": 4,
-      "date": "2026-06-12",
-      "source_url": "https://www.lguplus.com/support/notice",
-      "source_name": "LG U+ 공식"
+      "carrier": "SKT",
+      "importance": 3,
+      "date": "2026-05-21",
+      "source_url": "https://www.g-enews.com/article/ICT/2026/05/2026052111390274823d7a510102_1",
+      "source_name": "글로벌이코노믹"
     },
     {
-      "id": "b3c4d5e6f7a2",
-      "title": "AT&T, Max·DirecTV 번들 패키지 전략 강화 — 인터넷 결합 시 OTT 무료",
-      "summary": "광대역 인터넷과 무선 요금제 결합 고객 대상으로 Max(구 HBO Max) 및 DirecTV 스트리밍 무료 제공이 확대됐다. 결합 고객 ARPU가 월 $14 증가했으며, 콘텐츠-통신 수직결합 전략이 가속화되고 있다. 국내 유무선 결합 상품과 OTT 연계 전략 검토 참고 사례다.",
-      "tags": [
-        "결합상품"
-      ],
+      "id": "attmvz01jv",
+      "title": "AT&T·T-Mobile·Verizon, 위성 직접통신 합작법인 설립 추진 — 음영 지역 해소 목표",
+      "summary": "미국 통신3사가 2026년 5월 14일 위성 직접 연결(Direct-to-Device) 기술을 활용해 음영 지역 해소를 목표로 하는 합작법인(JV) 설립에 합의했다. 스타링크·AST SpaceMobile과의 기존 개별 위성 협약은 유지하면서 공동 인프라를 구축하는 방식으로, 경쟁사 간 협력 모델이 국내 농어촌 커버리지 확대 전략에도 시사점을 준다. 규제 당국 최종 승인 절차가 남아 있으며, 국내 통신사 위성 서비스 동향과 함께 모니터링이 필요하다.",
+      "tags": ["규제·정책"],
       "region": "overseas",
       "country": "us",
       "carrier": "AT&T",
       "importance": 4,
-      "date": "2026-06-12",
-      "source_url": "https://www.att.com/internet/fiber/",
+      "date": "2026-05-14",
+      "source_url": "https://about.att.com/story/2026/new-joint-venture.html",
       "source_name": "AT&T"
     },
     {
-      "id": "e5f6a1b2c3d4",
-      "title": "5G 무제한 요금제 가격 인상 검토 — SKT·KT·LG U+ 동시 추진설",
-      "summary": "통신3사가 5G 무제한 요금제를 현행 대비 3,000~5,000원 인상하는 방안을 내부 검토 중인 것으로 알려졌다. 물가 상승 및 네트워크 투자비 회수가 명목으로 거론되며, 인상 시 리텐션 프로그램 강화가 불가피할 전망이다. 규제기관 사전 협의 여부는 미확인이다.",
-      "tags": [
-        "요금제",
-        "리텐션"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "SKT",
-      "importance": 5,
-      "date": "2026-06-11",
-      "source_url": "https://zdnet.co.kr/view/?no=20260529164631",
-      "source_name": "ZDNet Korea"
-    },
-    {
-      "id": "a3b4c5d6e7f8",
-      "title": "Vodafone, AI 요금 자동 최적화 'Smart Plan' 영국·독일 출시",
-      "summary": "매월 사용량 분석 후 가장 저렴한 요금제로 자동 전환하는 Smart Plan 서비스가 영국·독일에서 동시 출시됐다. 고객이 별도 신청 없이도 최적 요금 혜택을 수령하며, 평균 연간 £87이 절감된다. 요금 인하 위험을 ARPU 감소가 아닌 고객 만족도로 상쇄하는 전략으로, 국내 최적요금제 자동 추천과 방향이 유사하다.",
-      "tags": [
-        "최적요금제",
-        "요금제"
-      ],
+      "id": "eu01dna",
+      "title": "EU, 디지털네트워크법(DNA) 제안 — 스펙트럼 통합·구리망 전환 의무화 포함",
+      "summary": "유럽위원회가 2026년 1월 EU 통신 규제 체계를 전면 재편하는 디지털네트워크법(Digital Networks Act) 초안을 발표했다. 주파수(스펙트럼) 관리 통합, 구리망 철거 공조 의무화, 5G·광케이블 투자 인센티브 확대가 핵심이며, EU 전역 단일 통신 시장 조성을 목표로 한다. 국내 주파수 재할당 및 구리망 회선 전환 정책 방향 수립 시 EU 규제 트렌드를 참조할 필요가 있다.",
+      "tags": ["규제·정책"],
       "region": "overseas",
       "country": "eu",
-      "carrier": "Vodafone",
-      "importance": 4,
-      "date": "2026-06-11",
-      "source_url": "https://www.vodafone.co.uk/network/why-vodafone",
-      "source_name": "Vodafone UK"
-    },
-    {
-      "id": "c4d5e6f7a2b3",
-      "title": "Verizon 'myPlan' 모듈형 요금제 구조 개편 — 페르크 선택 방식 단순화",
-      "summary": "기존 복잡한 페르크(Perk) 선택 구조가 3단계로 단순화됐다. 기본 요금에 엔터테인먼트·보안·클라우드 중 선택 추가 방식으로 개편됐으며, 요금제 선택 전환율이 22% 향상됐다. 고객 요금 이해도 개선에 따른 이탈 감소 효과가 확인됐다.",
-      "tags": [
-        "요금제"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
+      "carrier": "",
       "importance": 3,
-      "date": "2026-06-10",
-      "source_url": "https://www.fierce-network.com/wireless/verizon-launches-new-myplan-customizable-options",
-      "source_name": "Fierce Network"
+      "date": "2026-01-21",
+      "source_url": "https://techblog.comsoc.org/2026/01/14/european-commissions-digital-networks-act-to-restructure-european-telecom-spectrum-regulation/",
+      "source_name": "IEEE ComSoc"
     },
     {
-      "id": "c5d6e7f8a3b4",
-      "title": "China Mobile, 안면인증 전용 요금제 전환 채널 전국 30개 성 확대 완료",
-      "summary": "안면인증으로만 접근 가능한 전용 할인 요금제 전환 채널이 전국 전 지역으로 확대됐다. 안면인증 가입자는 일반 채널 대비 최대 18% 추가 할인이 제공되며, 연간 신규 가입자의 62%가 안면인증 채널을 이용한다. 인증 방식을 요금 혜택과 연계하는 전략이 주목된다.",
-      "tags": [
-        "안면인증",
-        "요금제"
-      ],
-      "region": "overseas",
-      "country": "cn",
-      "carrier": "China Mobile",
-      "importance": 3,
-      "date": "2026-06-10",
-      "source_url": "https://www.chinamobileltd.com/en/media/pressrelease.php",
-      "source_name": "China Mobile"
-    },
-    {
-      "id": "f6a1b2c3d4e5",
-      "title": "방통위, 알뜰폰 최적요금제 비교 공시 의무화 추진",
-      "summary": "알뜰통신(MVNO) 사업자에 대해 주요 3사 대비 요금 절감률을 공시 화면에 의무 표기하도록 하는 고시 개정이 추진된다. 소비자 가격 비교 편의 제고가 목적이며, 시행 시 요금 경쟁 촉진 효과가 기대된다.",
-      "tags": [
-        "최적요금제"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "방통위",
-      "importance": 3,
-      "date": "2026-06-09",
-      "source_url": "https://www.kcc.go.kr/user.do?boardId=1113&page=1&dc=K00000001",
-      "source_name": "방송통신위원회"
-    },
-    {
-      "id": "e6f7a2b3c4d5",
-      "title": "SoftBank, 'Platinum Status' 장기 이용 등급제 리텐션 프로그램 출시",
-      "summary": "이용 기간·데이터 사용량·결합 상품 수에 따라 브론즈~플래티넘 4단계 등급이 부여된다. 등급별 요금 할인(최대 15%), 단말기 교체 우선권, 전담 CS 배정 혜택이 제공된다. 출시 3개월 내 대상 고객 해지율이 9% 감소하는 효과가 확인됐다.",
-      "tags": [
-        "리텐션"
-      ],
+      "id": "docomo01sat",
+      "title": "NTT Docomo, 2026 회계연도 상반기 내 위성-스마트폰 직접 연결 서비스 출시",
+      "summary": "NTT Docomo가 별도 위성 단말 없이 일반 스마트폰으로 위성 신호를 직접 수신하는 서비스를 2026 회계연도 상반기(2026년 4~9월) 내 출시한다. KDDI가 2025년 4월 'au Starlink Direct' 서비스를 먼저 선보인 데 이어 Docomo·SoftBank·Rakuten도 위성 직접 서비스 진입을 예고하며 음영 지역 커버리지 경쟁이 본격화됐다. 국내 통신사의 위성 연동 커버리지 전략 및 요금 구조 설계에 참조할 선행 사례다.",
+      "tags": ["규제·정책"],
       "region": "overseas",
       "country": "jp",
-      "carrier": "SoftBank",
+      "carrier": "NTT Docomo",
       "importance": 3,
-      "date": "2026-06-08",
-      "source_url": "https://www.softbank.jp/en/corp/news/press/sbkk/",
-      "source_name": "SoftBank"
+      "date": "2026-05-20",
+      "source_url": "https://www.telecomreviewasia.com/news/network-news/28362-ntt-docomo-to-launch-direct-satellite-to-smartphone-service-in-early-fy2026/",
+      "source_name": "Telecom Review Asia"
     },
     {
-      "id": "b4c5d6e7f8a3",
-      "title": "Deutsche Telekom 'MagentaEINS' 결합 브랜드 개편 — 스마트홈 서비스 통합",
-      "summary": "유무선 결합 브랜드 MagentaEINS에 스마트홈(보안·에너지 관리) 서비스가 추가돼 4종 통합 결합 상품으로 재편됐다. 결합 상품 가입 고객의 ARPU가 월 €23 증가했으며, 생태계 락인 전략이 강화됐다. IoT-통신 결합 상품 설계 벤치마크로 주목된다.",
-      "tags": [
-        "결합상품"
-      ],
+      "id": "jp01disaster",
+      "title": "NTT·KDDI·SoftBank·Rakuten Mobile, 재해 대비 이동형 전력 협력 협정 체결",
+      "summary": "일본 4대 통신사가 2026년 6월 1일 대규모 재해 시 대피소에 이동식 배터리 전원을 공동 공급하는 협력 협정을 발표했다. 평상시 경쟁사 간 인프라 협력 모델을 통해 사회 안전망 역할을 강화하는 사례로, 국내 재해·장애 상황 대응 통신망 복원력(Resilience) 가이드라인 수립에 참고가 된다.",
+      "tags": ["규제·정책"],
+      "region": "overseas",
+      "country": "jp",
+      "carrier": "NTT Docomo",
+      "importance": 2,
+      "date": "2026-06-01",
+      "source_url": "https://www.thefastmode.com/technology-solutions/48565-ntt-kddi-softbank-rakuten-mobile-launch-disaster-power-supply-partnership",
+      "source_name": "The Fast Mode"
+    },
+    {
+      "id": "eu02mwcedge",
+      "title": "유럽 5개 통신사, MWC 2026서 팬유럽 엣지 컨티뉴엄 첫 실증 — 통신사 간 엣지 연동 실현",
+      "summary": "Deutsche Telekom·Orange·Telefónica·TIM·Vodafone 등 유럽 5개 통신사가 MWC 2026에서 국경 없는 멀티 오퍼레이터 엣지 컴퓨팅 플랫폼을 최초 시연했다. 단일 사업자 범위를 넘는 저지연 엣지 서비스 제공이 가능해져 B2B 기업 고객 대상 결합 서비스 영역이 크게 확대될 전망이다. 국내 통신사 엣지 클라우드 전략 및 기업 결합상품 설계 시 유럽 협력 모델을 벤치마크할 수 있다.",
+      "tags": ["결합상품", "규제·정책"],
       "region": "overseas",
       "country": "eu",
       "carrier": "Deutsche Telekom",
-      "importance": 3,
-      "date": "2026-06-07",
-      "source_url": "https://www.telekom.de/optionsuebersicht/mobilfunk/magentaeins-vorteil",
-      "source_name": "Deutsche Telekom"
+      "importance": 2,
+      "date": "2026-03-03",
+      "source_url": "https://www.vodafone.com/news/newsroom/technology/pan-european-federated-edge-continuum",
+      "source_name": "Vodafone"
     }
   ]
 }
