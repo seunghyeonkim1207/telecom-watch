@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통신산업 동향 모니터 — Telecom Watch</title>
+<style>
+  :root {
+    --purple-900: #1A1145;
+    --purple-800: #26215C;
+    --purple-700: #3C3489;
+    --purple-600: #534AB7;
+    --purple-500: #7F77DD;
+    --purple-300: #AFA9EC;
+    --purple-200: #CECBF6;
+    --purple-100: #EEEDFE;
+    --blue-600: #185FA5;
+    --blue-100: #E6F1FB;
+    --gray-50: #F7F6F5;
+    --gray-100: #EFEFED;
+    --gray-200: #D3D1C7;
+    --text-primary: #1A1A18;
+    --text-secondary: #5F5E5A;
+    --text-tertiary: #888780;
+    --border: rgba(0,0,0,0.1);
+    --border-light: rgba(0,0,0,0.06);
+    --bg: #F4F3F1;
+    --surface: #FFFFFF;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif; background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.7; }
+
+  /* ── HEADER ── */
+  .site-header { background: var(--purple-700); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 100; }
+  .site-logo { display: flex; align-items: center; gap: 10px; }
+  .site-logo-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; }
+  .site-logo-icon svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2; }
+  .site-logo-text { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
+  .site-logo-sub { color: var(--purple-300); font-size: 11px; letter-spacing: 0.05em; }
+  .header-nav { display: flex; align-items: center; gap: 4px; }
+  .nav-btn { background: transparent; border: none; color: rgba(255,255,255,0.7); font-size: 13px; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-family: inherit; transition: background 0.15s, color 0.15s; }
+  .nav-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .nav-btn.active { background: rgba(255,255,255,0.18); color: #fff; }
+  .summary-toggle { background: var(--purple-300); color: var(--purple-800); font-size: 12px; padding: 5px 14px; border-radius: 20px; cursor: pointer; border: none; font-family: inherit; font-weight: 500; transition: background 0.15s; }
+  .summary-toggle:hover { background: var(--purple-200); }
+  .summary-toggle.on { background: #fff; color: var(--purple-700); }
+
+  /* ── MAIN 3-COLUMN LAYOUT ── */
+  .main-wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+    display: grid;
+    grid-template-columns: 168px 1fr 256px;
+    grid-template-rows: auto auto 1fr;
+    gap: 0 16px;
+  }
+
+  /* ── LEFT NAV SIDEBAR ── */
+  .left-nav {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    padding-top: 4px;
+  }
+  .left-nav-inner {
+    position: sticky;
+    top: 68px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 10px 10px 4px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+  }
+  .nav-item:hover { background: rgba(83,74,183,0.07); color: var(--purple-700); }
+  .nav-item.active { background: var(--purple-100); color: var(--purple-700); font-weight: 500; border-left: 3px solid var(--purple-600); padding-left: 7px; }
+  .nav-item-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .nav-divider { height: 0.5px; background: var(--border); margin: 4px 0; }
+  .nav-count { margin-left: auto; font-size: 11px; color: var(--text-tertiary); font-weight: 400; }
+
+  /* ── CENTER COLUMN ── */
+  .center-col {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  /* ── TODAY BANNER ── */
+  .today-banner { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 14px 18px; border-left: 4px solid var(--purple-600); }
+  .banner-label { font-size: 10px; color: var(--purple-600); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
+  .banner-headline { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.65; }
+  .banner-date { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .search-box { flex: 0 0 200px; display: flex; align-items: center; gap: 7px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px; padding: 6px 13px; }
+  .search-box svg { width: 13px; height: 13px; stroke: var(--text-tertiary); flex-shrink: 0; fill: none; }
+  .search-box input { border: none; outline: none; font-size: 12px; color: var(--text-primary); background: transparent; font-family: inherit; width: 100%; }
+  .search-box input::placeholder { color: var(--text-tertiary); }
+  .filter-chip { background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px; color: var(--text-secondary); cursor: pointer; transition: all 0.12s; white-space: nowrap; font-family: inherit; }
+  .filter-chip:hover { border-color: var(--purple-500); color: var(--purple-600); }
+  .filter-chip.active { background: var(--purple-100); border-color: var(--purple-500); color: var(--purple-700); font-weight: 500; }
+  .filter-sep { width: 0.5px; height: 16px; background: var(--border); margin: 0 2px; }
+
+  /* ── ARTICLE FEED ── */
+  .feed { display: flex; flex-direction: column; gap: 10px; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-head { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .section-head-line { flex: 1; height: 0.5px; background: var(--border); }
+  .section-head-label { font-size: 10px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.09em; text-transform: uppercase; white-space: nowrap; }
+
+  /* ── ARTICLE CARD ── */
+  .article-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-md); padding: 14px 16px 10px; transition: border-color 0.15s; }
+  .article-card:hover { border-color: #7F77DD; }
+  .card-meta { display: flex; align-items: center; gap: 5px; margin-bottom: 7px; flex-wrap: wrap; }
+  .tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
+  .tag-topic { background: var(--purple-100); color: var(--purple-700); }
+  .tag-domestic { background: #F0FDF4; color: #166534; }
+  .tag-us { background: #EFF6FF; color: #1D4ED8; }
+  .tag-jp { background: #FFF7ED; color: #9A3412; }
+  .tag-eu { background: #F0F4FF; color: #3730A3; }
+  .tag-cn { background: #FEF2F2; color: #991B1B; }
+  .importance { display: flex; gap: 1px; margin-left: auto; }
+  .star.filled { color: var(--purple-500); font-size: 11px; }
+  .star.empty { color: var(--gray-200); font-size: 11px; }
+  .card-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 5px; line-height: 1.55; }
+  .card-summary { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 9px; }
+  .card-date { font-size: 11px; color: var(--text-tertiary); }
+
+  /* ── SHARE BUTTONS ── */
+  .share-btns { display: flex; gap: 5px; align-items: center; }
+  .share-btn {
+    display: flex; align-items: center; gap: 4px;
+    padding: 3px 9px; border-radius: 12px;
+    font-size: 11px; font-family: inherit;
+    cursor: pointer; border: 0.5px solid var(--border);
+    background: transparent; transition: all 0.12s;
+    color: var(--text-tertiary);
+  }
+  .share-btn:hover { background: var(--gray-100); color: var(--text-secondary); }
+  .share-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .share-btn.kakao:hover { background: #FEE500; color: #3A1D1D; border-color: #E6CF00; }
+  .share-btn.telegram:hover { background: #E8F4FD; color: #0088CC; border-color: #9ECFEC; }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--purple-800); color: #fff; font-size: 12px;
+    padding: 9px 18px; border-radius: 20px; z-index: 999;
+    opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none; white-space: nowrap;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── RIGHT SIDEBAR ── */
+  .sidebar {
+    grid-column: 3;
+    grid-row: 1 / 4;
+    padding-top: 4px;
+  }
+  .sidebar-inner {
+    position: sticky;
+    top: 68px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .side-panel { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-md); padding: 14px; }
+  .side-panel-title { font-size: 10px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 10px; }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 0.5px solid var(--border-light); font-size: 12px; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+  .stat-count { font-weight: 500; color: var(--purple-700); }
+  .carrier-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 12px; border-bottom: 0.5px solid var(--border-light); }
+  .carrier-item:last-child { border-bottom: none; }
+  .carrier-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple-500); flex-shrink: 0; }
+  .carrier-country { color: var(--text-tertiary); margin-left: auto; font-size: 11px; }
+  .archive-dates { display: flex; flex-wrap: wrap; gap: 5px; }
+  .date-chip { background: var(--gray-100); border-radius: var(--radius-sm); padding: 4px 9px; font-size: 11px; color: var(--text-secondary); cursor: pointer; border: 0.5px solid transparent; transition: all 0.12s; font-family: inherit; }
+  .date-chip:hover { border-color: var(--purple-400, #7F77DD); color: var(--purple-700); }
+  .date-chip.active { background: var(--purple-100); color: var(--purple-700); border-color: var(--purple-300); font-weight: 500; }
+
+  /* ── SUMMARY MODE ── */
+  body.summary-mode .card-summary { display: none; }
+  body.summary-mode .article-card { padding-bottom: 10px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .main-wrap { grid-template-columns: 1fr 220px; }
+    .left-nav { display: none; }
+    .center-col { grid-column: 1; }
+    .sidebar { grid-column: 2; }
+  }
+  @media (max-width: 600px) {
+    .main-wrap { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .center-col { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<header class="site-header">
+  <div class="site-logo">
+    <div class="site-logo-icon">
+      <svg viewBox="0 0 16 16"><polyline points="1,11 4,7 7,9 10,5 13,7 15,4"/></svg>
+    </div>
+    <div>
+      <div class="site-logo-text">Telecom Watch</div>
+      <div class="site-logo-sub">통신산업 동향 모니터</div>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <button class="nav-btn active" onclick="setRegionTab('all', this)">전체</button>
+    <button class="nav-btn" onclick="setRegionTab('domestic', this)">국내</button>
+    <button class="nav-btn" onclick="setRegionTab('overseas', this)">해외</button>
+    <button class="nav-btn" onclick="setRegionTab('archive', this)">아카이브</button>
+    <button class="summary-toggle" onclick="toggleSummary(this)">요약 모드</button>
+  </nav>
+</header>
+
+<main class="main-wrap">
+
+  <!-- ── LEFT NAV ── -->
+  <nav class="left-nav" aria-label="주제 및 국가 필터">
+    <div class="left-nav-inner">
+      <div class="nav-section-label">주제</div>
+      <button class="nav-item active" onclick="setTopic('all', this)">
+        <span class="nav-item-dot" style="background:var(--purple-400,#7F77DD);"></span>
+        전체
+        <span class="nav-count">14</span>
+      </button>
+      <button class="nav-item" onclick="setTopic('요금·요금제', this)">
+        <span class="nav-item-dot" style="background:#534AB7;"></span>
+        요금 · 요금제
+        <span class="nav-count">4</span>
+      </button>
+      <button class="nav-item" onclick="setTopic('최적요금제', this)">
+        <span class="nav-item-dot" style="background:#7F77DD;"></span>
+        최적요금제
+        <span class="nav-count">3</span>
+      </button>
+      <button class="nav-item" onclick="setTopic('리텐션', this)">
+        <span class="nav-item-dot" style="background:#AFA9EC;"></span>
+        리텐션
+        <span class="nav-count">3</span>
+      </button>
+      <button class="nav-item" onclick="setTopic('결합상품', this)">
+        <span class="nav-item-dot" style="background:#185FA5;"></span>
+        결합상품
+        <span class="nav-count">3</span>
+      </button>
+      <button class="nav-item" onclick="setTopic('이용약관', this)">
+        <span class="nav-item-dot" style="background:#3730A3;"></span>
+        이용약관
+        <span class="nav-count">2</span>
+      </button>
+      <button class="nav-item" onclick="setTopic('안면인증', this)">
+        <span class="nav-item-dot" style="background:#9A3412;"></span>
+        안면인증
+        <span class="nav-count">3</span>
+      </button>
+
+      <div class="nav-divider"></div>
+      <div class="nav-section-label">국가</div>
+      <button class="nav-item" onclick="setCountry('all', this)" id="countryAll" style="font-weight:500; color:var(--text-primary);">
+        전체
+      </button>
+      <button class="nav-item" onclick="setCountry('domestic', this)">
+        🇰🇷 국내
+        <span class="nav-count">6</span>
+      </button>
+      <button class="nav-item" onclick="setCountry('us', this)">
+        🇺🇸 미국
+        <span class="nav-count">3</span>
+      </button>
+      <button class="nav-item" onclick="setCountry('jp', this)">
+        🇯🇵 일본
+        <span class="nav-count">2</span>
+      </button>
+      <button class="nav-item" onclick="setCountry('eu', this)">
+        🇪🇺 유럽
+        <span class="nav-count">3</span>
+      </button>
+      <button class="nav-item" onclick="setCountry('cn', this)">
+        🇨🇳 중국
+        <span class="nav-count">1</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── CENTER COLUMN ── -->
+  <div class="center-col">
+
+    <!-- TODAY BANNER -->
+    <div class="today-banner">
+      <div class="banner-label">오늘의 주요 이슈 — 2026년 6월 15일</div>
+      <div class="banner-headline">
+        SKT, AI 기반 최적요금제 자동 추천 서비스 출시 &nbsp;·&nbsp;
+        과기정통부, 이용약관 개정안 입법예고 &nbsp;·&nbsp;
+        T-Mobile Price Lock 전 요금제 확대 &nbsp;·&nbsp;
+        EU 통신 이용약관 표준화 규정 발효
+      </div>
+      <div class="banner-date">수집 시각 08:12 AM &nbsp;|&nbsp; 오늘 총 14건 수집 &nbsp;|&nbsp; 국내 6건 · 해외 8건</div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <svg viewBox="0 0 16 16" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg>
+        <input type="text" placeholder="키워드 검색..." id="searchInput" oninput="filterCards()">
+      </div>
+      <div class="filter-sep"></div>
+      <button class="filter-chip active" onclick="setChipFilter('all', this)">전체</button>
+      <button class="filter-chip" onclick="setChipFilter('요금제', this)"># 요금제</button>
+      <button class="filter-chip" onclick="setChipFilter('최적요금제', this)"># 최적요금제</button>
+      <button class="filter-chip" onclick="setChipFilter('리텐션', this)"># 리텐션</button>
+      <button class="filter-chip" onclick="setChipFilter('결합상품', this)"># 결합상품</button>
+      <button class="filter-chip" onclick="setChipFilter('이용약관', this)"># 이용약관</button>
+      <button class="filter-chip" onclick="setChipFilter('안면인증', this)"># 안면인증</button>
+    </div>
+
+    <!-- FEED -->
+    <div class="feed" id="mainFeed">
+
+      <!-- 국내 -->
+      <div class="section-head" data-section="domestic">
+        <span class="section-head-label">국내</span>
+        <div class="section-head-line"></div>
+      </div>
+
+      <div class="article-card" data-tags="요금제,최적요금제" data-region="domestic" data-country="domestic" data-date="2026-06-15">
+        <div class="card-meta">
+          <span class="tag tag-topic">요금제</span>
+          <span class="tag tag-topic">최적요금제</span>
+          <span class="tag tag-domestic">국내 · SKT</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
+        </div>
+        <div class="card-title">SKT, AI 기반 최적요금제 자동 추천 서비스 '내게 맞는 요금제' 출시</div>
+        <div class="card-summary">6개월간 통화·데이터·부가서비스 사용 패턴을 분석해 고객별 최적 요금제를 자동으로 추천하는 서비스 도입. 추천 수락 시 요금제 즉시 변경 가능하며, 평균 월 8,700원 절감 효과 예상. AI 추천 정확도는 내부 검증 기준 91.3%. 연내 KT·LG U+ 유사 서비스 출시 예정으로 요금제 경쟁 심화 전망.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-15</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)" title="카카오톡으로 공유">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>
+              카카오톡
+            </button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)" title="텔레그램으로 공유">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>
+              텔레그램
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="이용약관" data-region="domestic" data-country="domestic" data-date="2026-06-14">
+        <div class="card-meta">
+          <span class="tag tag-topic">이용약관</span>
+          <span class="tag tag-domestic">국내 · 과기정통부</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
+        </div>
+        <div class="card-title">과기정통부, '통신 이용약관 개정안' 입법예고 — 위약금 상한 규정 신설</div>
+        <div class="card-summary">단말기 약정과 연계된 이용약관 위약금 상한을 계약금액의 15%로 제한하는 내용을 담은 개정안이 입법예고. 현행 통신3사 위약금 구조 전면 재검토 필요. 시행 예정일은 2026년 10월 1일이며, 의견 수렴 기간은 7월 15일까지. 리텐션 상품 설계 시 위약금 구조 변경 영향 검토 요망.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-14</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)" title="카카오톡으로 공유">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>
+              카카오톡
+            </button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)" title="텔레그램으로 공유">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>
+              텔레그램
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="결합상품" data-region="domestic" data-country="domestic" data-date="2026-06-13">
+        <div class="card-meta">
+          <span class="tag tag-topic">결합상품</span>
+          <span class="tag tag-domestic">국내 · KT</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">KT '가족 패키지 프리미엄' 리뉴얼 — OTT 3종 무료 제공 추가</div>
+        <div class="card-summary">기존 가족결합 상품에 넷플릭스·웨이브·시즌 3종 OTT 무료 이용권을 번들로 추가. 4인 가족 기준 월 22,000원 추가 혜택. 결합 회선 수에 따른 할인 폭 확대(2회선 5%, 4회선 이상 12%). 경쟁사 대비 OTT 결합 차별화 전략으로 해석.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-13</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="안면인증" data-region="domestic" data-country="domestic" data-date="2026-06-12">
+        <div class="card-meta">
+          <span class="tag tag-topic">안면인증</span>
+          <span class="tag tag-domestic">국내 · LG U+</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">LG U+, 안면인증 비대면 가입·명의변경 서비스 전국 확대</div>
+        <div class="card-summary">기존 수도권 시범 운영에서 전국 대리점 및 온라인 채널로 안면인증 본인확인 서비스 확대. 신분증 OCR + 안면인식 이중 검증으로 비대면 본인 확인 완료. 가입 소요 시간 기존 대비 40% 단축. 행안부 전자서명법 개정 이후 상용화 가속화 전망.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-12</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="요금제,리텐션" data-region="domestic" data-country="domestic" data-date="2026-06-11">
+        <div class="card-meta">
+          <span class="tag tag-topic">요금제</span>
+          <span class="tag tag-topic">리텐션</span>
+          <span class="tag tag-domestic">국내 · 통신3사</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
+        </div>
+        <div class="card-title">5G 무제한 요금제 가격 인상 검토 — SKT·KT·LG U+ 동시 추진설</div>
+        <div class="card-summary">통신3사가 5G 무제한 요금제를 현행 대비 3,000~5,000원 인상하는 방안을 내부 검토 중인 것으로 알려짐. 물가 상승 및 네트워크 투자비 회수 명목. 인상 시 리텐션 프로그램 강화 불가피 전망. 규제기관 사전 협의 여부 미확인.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-11</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="최적요금제" data-region="domestic" data-country="domestic" data-date="2026-06-09">
+        <div class="card-meta">
+          <span class="tag tag-topic">최적요금제</span>
+          <span class="tag tag-domestic">국내 · 방통위</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">방통위, 알뜰폰 최적요금제 비교 공시 의무화 추진</div>
+        <div class="card-summary">알뜰통신(MVNO) 사업자에 대해 주요 3사 대비 요금 절감률을 공시 화면에 의무 표기하도록 하는 고시 개정을 추진. 소비자 가격 비교 편의 제고 목적. 시행 시 요금 경쟁 촉진 효과 기대.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-09</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 해외 -->
+      <div class="section-head" data-section="overseas" style="margin-top:6px;">
+        <span class="section-head-label">해외</span>
+        <div class="section-head-line"></div>
+      </div>
+
+      <div class="section-head" data-section="overseas">
+        <span class="section-head-label" style="color:#1D4ED8; font-size:10px;">🇺🇸 미국</span>
+        <div class="section-head-line" style="background:var(--blue-100);"></div>
+      </div>
+
+      <div class="article-card" data-tags="리텐션" data-region="overseas" data-country="us" data-date="2026-06-14">
+        <div class="card-meta">
+          <span class="tag tag-topic">리텐션</span>
+          <span class="tag tag-us">미국 · T-Mobile</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">T-Mobile, 'Price Lock' 장기고객 요금 동결 보장 프로그램 전 요금제 확대</div>
+        <div class="card-summary">기존 프리미엄 요금제 한정이던 Price Lock(요금 동결 보장) 프로그램을 엔트리급 포함 전 요금제로 확대. 5년 이상 유지 고객 대상. 적용 후 해지율 12% 감소, 순증 고객 수 18% 증가. 국내 리텐션 설계 시 장기 약정 인센티브 강화 벤치마크 대상.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-14</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="결합상품" data-region="overseas" data-country="us" data-date="2026-06-12">
+        <div class="card-meta">
+          <span class="tag tag-topic">결합상품</span>
+          <span class="tag tag-us">미국 · AT&amp;T</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">AT&amp;T, Max·DirecTV 번들 패키지 전략 강화 — 인터넷 결합 시 OTT 무료</div>
+        <div class="card-summary">광대역 인터넷과 무선 요금제 결합 고객 대상으로 Max(구 HBO Max) 및 DirecTV 스트리밍 무료 제공 확대. 결합 고객 ARPU 월 $14 증가. 콘텐츠-통신 수직결합 전략 가속화. 국내 유무선 결합 상품과 OTT 연계 전략 검토 참고.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-12</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="요금제" data-region="overseas" data-country="us" data-date="2026-06-10">
+        <div class="card-meta">
+          <span class="tag tag-topic">요금제</span>
+          <span class="tag tag-us">미국 · Verizon</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">Verizon 'myPlan' 모듈형 요금제 구조 개편 — 페르크 선택 방식 단순화</div>
+        <div class="card-summary">기존 복잡한 페르크(Perk) 선택 구조를 3단계로 단순화. 기본 요금에 엔터테인먼트·보안·클라우드 중 선택 추가. 요금제 선택 전환율 22% 향상. 고객 요금 이해도 개선에 따른 이탈 감소 효과.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-10</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head" data-section="overseas">
+        <span class="section-head-label" style="color:#9A3412; font-size:10px;">🇯🇵 일본</span>
+        <div class="section-head-line" style="background:#FFF7ED;"></div>
+      </div>
+
+      <div class="article-card" data-tags="안면인증" data-region="overseas" data-country="jp" data-date="2026-06-13">
+        <div class="card-meta">
+          <span class="tag tag-topic">안면인증</span>
+          <span class="tag tag-jp">일본 · NTT Docomo</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">NTT Docomo, 안면인증 기반 통신 요금 결제·포인트 통합 서비스 전국 확대</div>
+        <div class="card-summary">편의점·슈퍼 등 제휴 매장에서 얼굴 인식으로 d포인트 적립 및 요금 결제 동시 처리 서비스를 전국 2만 8천여 개소로 확대. 사기 거래 98.7% 감소. 고령층 디지털 접근성 향상 효과. 국내 안면인증 결제 연계 서비스 설계 시 참고.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-13</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="리텐션" data-region="overseas" data-country="jp" data-date="2026-06-08">
+        <div class="card-meta">
+          <span class="tag tag-topic">리텐션</span>
+          <span class="tag tag-jp">일본 · SoftBank</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">SoftBank, 'Platinum Status' 장기 이용 등급제 리텐션 프로그램 출시</div>
+        <div class="card-summary">이용 기간·데이터 사용량·결합 상품 수에 따라 브론즈~플래티넘 4단계 등급 부여. 등급별 요금 할인(최대 15%), 단말기 교체 우선권, 전담 CS 배정. 출시 3개월 내 대상 고객 해지율 9% 감소. 등급제 리텐션 모델 벤치마크 참고.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-08</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head" data-section="overseas">
+        <span class="section-head-label" style="color:#3730A3; font-size:10px;">🇪🇺 유럽</span>
+        <div class="section-head-line" style="background:#F0F4FF;"></div>
+      </div>
+
+      <div class="article-card" data-tags="이용약관" data-region="overseas" data-country="eu" data-date="2026-06-15">
+        <div class="card-meta">
+          <span class="tag tag-topic">이용약관</span>
+          <span class="tag tag-eu">유럽 · EU 집행위</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
+        </div>
+        <div class="card-title">EU 통신 이용약관 표준화 규정(TERA) 발효 — 해지 조건·위약금 명시 의무화</div>
+        <div class="card-summary">EU 전체 회원국에 적용되는 통신 이용약관 표준화 규정(Telecom End-user Rights Act) 발효. 계약 종료·해지 조건, 위약금 산정 기준을 표준 양식으로 의무 명시. 약관 변경 시 30일 전 개별 고객 통보 의무. 국내 약관 개정 방향 참고 필요.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-15</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="최적요금제,요금제" data-region="overseas" data-country="eu" data-date="2026-06-11">
+        <div class="card-meta">
+          <span class="tag tag-topic">최적요금제</span>
+          <span class="tag tag-eu">유럽 · Vodafone</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">Vodafone, AI 요금 자동 최적화 'Smart Plan' 영국·독일 출시</div>
+        <div class="card-summary">매월 사용량 분석 후 가장 저렴한 요금제로 자동 전환하는 Smart Plan 서비스 영국·독일 동시 출시. 고객이 별도 신청 없이도 최적 요금 혜택 수령. 평균 연간 £87 절감. 요금 인하 위험을 ARPU 감소가 아닌 고객 만족도로 상쇄하는 전략. 국내 최적요금제 자동 추천과 방향 유사.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-11</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-tags="결합상품" data-region="overseas" data-country="eu" data-date="2026-06-07">
+        <div class="card-meta">
+          <span class="tag tag-topic">결합상품</span>
+          <span class="tag tag-eu">유럽 · Deutsche Telekom</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">Deutsche Telekom 'MagentaEINS' 결합 브랜드 개편 — 스마트홈 서비스 통합</div>
+        <div class="card-summary">유무선 결합 브랜드 MagentaEINS에 스마트홈(보안·에너지 관리) 서비스를 추가하여 4종 통합 결합 상품으로 재편. 결합 상품 가입 고객의 ARPU 월 €23 증가. 생태계 락인 전략 강화. IoT-통신 결합 상품 설계 벤치마크.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-07</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head" data-section="overseas">
+        <span class="section-head-label" style="color:#991B1B; font-size:10px;">🇨🇳 중국</span>
+        <div class="section-head-line" style="background:#FEF2F2;"></div>
+      </div>
+
+      <div class="article-card" data-tags="안면인증,요금제" data-region="overseas" data-country="cn" data-date="2026-06-10">
+        <div class="card-meta">
+          <span class="tag tag-topic">안면인증</span>
+          <span class="tag tag-topic">요금제</span>
+          <span class="tag tag-cn">중국 · China Mobile</span>
+          <div class="importance"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span></div>
+        </div>
+        <div class="card-title">China Mobile, 안면인증 전용 요금제 전환 채널 전국 30개 성 확대 완료</div>
+        <div class="card-summary">안면인증으로만 접근 가능한 전용 할인 요금제 전환 채널을 전국 전 지역으로 확대. 안면인증 가입자는 일반 채널 대비 최대 18% 추가 할인 제공. 연간 신규 가입자의 62%가 안면인증 채널 이용. 인증 방식을 요금 혜택과 연계하는 전략 참고.</div>
+        <div class="card-footer">
+          <span class="card-date">2026-06-10</span>
+          <div class="share-btns">
+            <button class="share-btn kakao" onclick="shareKakao(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.82 1.7 5.3 4.27 6.8L5.2 21l4.26-2.22C10.26 19.05 11.12 19.1 12 19.1c5.52 0 10-3.58 10-8.05S17.52 3 12 3z"/></svg>카카오톡</button>
+            <button class="share-btn telegram" onclick="shareTelegram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.44l-2.58-1.9-1.25 1.2c-.14.14-.26.26-.53.26l.19-2.64 4.82-4.36c.21-.19-.04-.3-.32-.11L7.54 14.6 5 13.8c-.56-.17-.57-.56.12-.83l8.97-3.46c.47-.17.88.11.72.83z"/></svg>텔레그램</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /feed -->
+  </div><!-- /center-col -->
+
+  <!-- ── RIGHT SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="side-panel">
+        <div class="side-panel-title">오늘 수집 현황</div>
+        <div class="stat-row"><span class="stat-label">🇰🇷 국내</span><span class="stat-count">6건</span></div>
+        <div class="stat-row"><span class="stat-label">🇺🇸 미국</span><span class="stat-count">3건</span></div>
+        <div class="stat-row"><span class="stat-label">🇯🇵 일본</span><span class="stat-count">2건</span></div>
+        <div class="stat-row"><span class="stat-label">🇪🇺 유럽</span><span class="stat-count">3건</span></div>
+        <div class="stat-row"><span class="stat-label">🇨🇳 중국</span><span class="stat-count">1건</span></div>
+        <div class="stat-row" style="margin-top:6px; padding-top:8px; border-top:0.5px solid var(--border);">
+          <span class="stat-label" style="font-weight:500;">총 수집</span>
+          <span class="stat-count" style="font-size:15px;">14건</span>
+        </div>
+      </div>
+
+      <div class="side-panel">
+        <div class="side-panel-title">주제별 현황</div>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div><div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary); margin-bottom:3px;"><span>요금제</span><span style="color:var(--text-tertiary);">4</span></div><div style="background:var(--gray-100); border-radius:2px; height:4px;"><div style="width:80%; height:4px; background:var(--purple-600); border-radius:2px;"></div></div></div>
+          <div><div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary); margin-bottom:3px;"><span>리텐션</span><span style="color:var(--text-tertiary);">3</span></div><div style="background:var(--gray-100); border-radius:2px; height:4px;"><div style="width:60%; height:4px; background:var(--purple-600); border-radius:2px;"></div></div></div>
+          <div><div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary); margin-bottom:3px;"><span>결합상품</span><span style="color:var(--text-tertiary);">3</span></div><div style="background:var(--gray-100); border-radius:2px; height:4px;"><div style="width:60%; height:4px; background:var(--purple-500); border-radius:2px;"></div></div></div>
+          <div><div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary); margin-bottom:3px;"><span>안면인증</span><span style="color:var(--text-tertiary);">3</span></div><div style="background:var(--gray-100); border-radius:2px; height:4px;"><div style="width:60%; height:4px; background:var(--purple-300); border-radius:2px;"></div></div></div>
+          <div><div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary); margin-bottom:3px;"><span>최적요금제</span><span style="color:var(--text-tertiary);">3</span></div><div style="background:var(--gray-100); border-radius:2px; height:4px;"><div style="width:60%; height:4px; background:var(--purple-300); border-radius:2px;"></div></div></div>
+          <div><div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary); margin-bottom:3px;"><span>이용약관</span><span style="color:var(--text-tertiary);">2</span></div><div style="background:var(--gray-100); border-radius:2px; height:4px;"><div style="width:40%; height:4px; background:var(--gray-200); border-radius:2px;"></div></div></div>
+        </div>
+      </div>
+
+      <div class="side-panel">
+        <div class="side-panel-title">통신사별</div>
+        <div class="carrier-item"><span class="carrier-dot"></span><span>SKT</span><span class="carrier-country">국내</span></div>
+        <div class="carrier-item"><span class="carrier-dot"></span><span>KT</span><span class="carrier-country">국내</span></div>
+        <div class="carrier-item"><span class="carrier-dot"></span><span>LG U+</span><span class="carrier-country">국내</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#1D4ED8;"></span><span>T-Mobile</span><span class="carrier-country">미국</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#1D4ED8;"></span><span>AT&amp;T</span><span class="carrier-country">미국</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#1D4ED8;"></span><span>Verizon</span><span class="carrier-country">미국</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#9A3412;"></span><span>NTT Docomo</span><span class="carrier-country">일본</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#9A3412;"></span><span>SoftBank</span><span class="carrier-country">일본</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#3730A3;"></span><span>Vodafone</span><span class="carrier-country">유럽</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#3730A3;"></span><span>Deutsche Telekom</span><span class="carrier-country">유럽</span></div>
+        <div class="carrier-item"><span class="carrier-dot" style="background:#991B1B;"></span><span>China Mobile</span><span class="carrier-country">중국</span></div>
+      </div>
+
+      <div class="side-panel">
+        <div class="side-panel-title">6월 아카이브</div>
+        <div class="archive-dates">
+          <button class="date-chip active" onclick="setDate('all', this)">전체</button>
+          <button class="date-chip" onclick="setDate('2026-06-15', this)">06/15</button>
+          <button class="date-chip" onclick="setDate('2026-06-14', this)">06/14</button>
+          <button class="date-chip" onclick="setDate('2026-06-13', this)">06/13</button>
+          <button class="date-chip" onclick="setDate('2026-06-12', this)">06/12</button>
+          <button class="date-chip" onclick="setDate('2026-06-11', this)">06/11</button>
+          <button class="date-chip" onclick="setDate('2026-06-10', this)">06/10</button>
+          <button class="date-chip" onclick="setDate('2026-06-09', this)">06/09</button>
+          <button class="date-chip" onclick="setDate('2026-06-08', this)">06/08</button>
+          <button class="date-chip" onclick="setDate('2026-06-07', this)">06/07</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</main>
+
+<script>
+var state = { region: 'all', topic: 'all', country: 'all', chip: 'all', date: 'all' };
+
+/* ── TOPIC MAP: 주제 버튼 → data-tags 매칭 ── */
+var topicMap = {
+  '요금·요금제': ['요금제'],
+  '최적요금제':  ['최적요금제'],
+  '리텐션':      ['리텐션'],
+  '결합상품':    ['결합상품'],
+  '이용약관':    ['이용약관'],
+  '안면인증':    ['안면인증']
+};
+
+function setRegionTab(val, btn) {
+  state.region = val;
+  document.querySelectorAll('.header-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+function setTopic(val, btn) {
+  state.topic = val;
+  document.querySelectorAll('.left-nav .nav-item').forEach(b => {
+    if (b.onclick && b.onclick.toString().includes('setTopic')) b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  filterCards();
+}
+
+function setCountry(val, btn) {
+  state.country = val;
+  document.querySelectorAll('.left-nav .nav-item').forEach(b => {
+    if (b.onclick && b.onclick.toString().includes('setCountry')) b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  filterCards();
+}
+
+function setChipFilter(val, btn) {
+  state.chip = val;
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+function setDate(val, btn) {
+  state.date = val;
+  document.querySelectorAll('.date-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+function filterCards() {
+  var search = document.getElementById('searchInput').value.toLowerCase().trim();
+  document.querySelectorAll('.article-card').forEach(function(card) {
+    var tags    = card.getAttribute('data-tags') || '';
+    var region  = card.getAttribute('data-region') || '';
+    var country = card.getAttribute('data-country') || '';
+    var date    = card.getAttribute('data-date') || '';
+    var text    = card.textContent.toLowerCase();
+
+    /* region tab */
+    var regionOk = state.region === 'all' || state.region === 'archive' || region === state.region;
+    /* topic left-nav */
+    var topicOk = state.topic === 'all';
+    if (!topicOk && topicMap[state.topic]) {
+      topicOk = topicMap[state.topic].some(t => tags.indexOf(t) !== -1);
+    }
+    /* country left-nav */
+    var countryOk = state.country === 'all' || country === state.country ||
+                    (state.country === 'domestic' && region === 'domestic');
+    /* chip filter (top bar) */
+    var chipOk = state.chip === 'all' || tags.indexOf(state.chip) !== -1;
+    /* date */
+    var dateOk = state.date === 'all' || date === state.date;
+    /* search */
+    var searchOk = !search || text.indexOf(search) !== -1;
+
+    card.style.display = (regionOk && topicOk && countryOk && chipOk && dateOk && searchOk) ? '' : 'none';
+  });
+
+  /* hide/show section dividers */
+  document.querySelectorAll('.section-head').forEach(function(h) {
+    var sec = h.getAttribute('data-section');
+    if (!sec) return;
+    var regionOk = state.region === 'all' || state.region === 'archive' || sec === state.region;
+    h.style.display = regionOk ? '' : 'none';
+  });
+}
+
+/* ── SHARE: 카드에서 제목·요약 추출 ── */
+function getCardInfo(btn) {
+  var card = btn.closest('.article-card');
+  var title   = card.querySelector('.card-title').textContent.trim();
+  var summary = card.querySelector('.card-summary') ? card.querySelector('.card-summary').textContent.trim() : '';
+  var date    = card.querySelector('.card-date') ? card.querySelector('.card-date').textContent.trim() : '';
+  return { title: title, summary: summary, date: date };
+}
+
+/* ── KAKAO: 클립보드 복사 후 토스트 ── */
+function shareKakao(btn) {
+  var info = getCardInfo(btn);
+  var text = '[Telecom Watch] ' + info.title + '\n\n' + info.summary + '\n\n(' + info.date + ')';
+
+  if (navigator.share) {
+    navigator.share({ title: info.title, text: text }).catch(function(){});
+  } else {
+    navigator.clipboard.writeText(text).then(function() {
+      showToast('클립보드에 복사했어요. 카카오톡에 붙여넣기 해주세요.');
+    }).catch(function() {
+      showToast('복사 실패 — 직접 선택 후 복사해 주세요.');
+    });
+  }
+}
+
+/* ── TELEGRAM ── */
+function shareTelegram(btn) {
+  var info = getCardInfo(btn);
+  var text = '[Telecom Watch] ' + info.title + '\n' + info.summary;
+  var url  = 'https://t.me/share/url?url=' + encodeURIComponent(window.location.href) +
+             '&text=' + encodeURIComponent(text);
+  window.open(url, '_blank', 'noopener,width=600,height=500');
+}
+
+/* ── TOAST ── */
+var toastTimer;
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3000);
+}
+
+/* ── SUMMARY MODE ── */
+function toggleSummary(btn) {
+  document.body.classList.toggle('summary-mode');
+  btn.classList.toggle('on');
+  btn.textContent = document.body.classList.contains('summary-mode') ? '전체 보기' : '요약 모드';
+}
+</script>
+</body>
+</html>
