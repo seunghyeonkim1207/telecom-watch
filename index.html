@@ -103,22 +103,46 @@
   /* ── MODAL ── */
   #modal { display: none; position: fixed; inset: 0; z-index: 500; align-items: center; justify-content: center; padding: 20px; }
   #modal.open { display: flex; }
-  .modal-bg { position: absolute; inset: 0; background: rgba(8,6,28,0.52); backdrop-filter: blur(3px); }
-  .modal-box { position: relative; background: var(--surface); border-radius: 14px; padding: 28px; max-width: 580px; width: 100%; max-height: 88vh; overflow-y: auto; z-index: 1; }
-  .modal-close { position: absolute; top: 14px; right: 14px; background: var(--bg); border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; color: var(--text-2); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-bg { position: absolute; inset: 0; background: rgba(8,6,28,0.55); backdrop-filter: blur(3px); }
+  .modal-box { position: relative; background: var(--surface); border-radius: 16px; max-width: 660px; width: 100%; max-height: 90vh; overflow-y: auto; z-index: 1; }
+  .modal-close { position: absolute; top: 16px; right: 16px; background: var(--bg); border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; color: var(--text-2); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
   .modal-close:hover { background: var(--border); }
-  .modal-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
-  .modal-title { font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.45; margin-bottom: 8px; }
-  .modal-imp { display: flex; align-items: center; gap: 7px; margin-bottom: 14px; font-size: 11px; color: var(--text-3); }
-  .modal-summary { font-size: 14px; color: var(--text-2); line-height: 1.8; margin-bottom: 20px; }
-  .modal-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 0.5px solid var(--border); gap: 8px; flex-wrap: wrap; }
-  .modal-meta-txt { font-size: 11px; color: var(--text-3); }
-  .modal-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* 헤더 영역 */
+  .modal-head { background: var(--blue); border-radius: 16px 16px 0 0; padding: 24px 28px 20px; }
+  .modal-head-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+  .modal-head-tag { display: inline-block; font-size: 9px; padding: 2px 8px; border-radius: 10px; font-weight: 500; background: rgba(255,255,255,0.18); color: #fff; }
+  .modal-head-tag.country { background: rgba(255,255,255,0.25); }
+  .modal-head-title { font-size: 18px; font-weight: 600; color: #fff; line-height: 1.45; margin-bottom: 14px; }
+  .modal-head-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .modal-head-source { font-size: 11px; color: rgba(255,255,255,0.6); }
+  .modal-head-imp { display: flex; gap: 2px; }
+  .modal-head-star { font-size: 12px; }
+
+  /* 본문 */
+  .modal-body { padding: 24px 28px; }
+  .modal-body-label { font-size: 9px; font-weight: 600; color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .modal-body-label::after { content: ''; flex: 1; height: 0.5px; background: var(--blue-lite); }
+  .modal-para { font-size: 14px; color: var(--text-2); line-height: 1.85; padding: 10px 0; border-bottom: 0.5px solid var(--border); }
+  .modal-para:last-of-type { border-bottom: none; }
+  .modal-para::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); margin-right: 10px; vertical-align: middle; flex-shrink: 0; }
+
+  /* 원문 영역 */
+  .modal-source-box { margin: 16px 0 0; padding: 14px 16px; background: var(--bg); border-radius: 10px; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .modal-source-info { font-size: 12px; color: var(--text-3); line-height: 1.5; }
+  .modal-source-info strong { color: var(--text-2); font-weight: 500; display: block; margin-bottom: 1px; }
+  .modal-source-link { display: inline-flex; align-items: center; gap: 5px; padding: 7px 16px; background: var(--blue); color: #fff; border-radius: 10px; font-size: 12px; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background 0.12s; border: none; cursor: pointer; font-family: inherit; }
+  .modal-source-link:hover { background: var(--blue-dark); }
+  .modal-source-link svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2; }
+  .modal-source-nolink { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; background: var(--border); color: var(--text-3); border-radius: 10px; font-size: 12px; white-space: nowrap; }
+
+  /* 하단 액션 */
+  .modal-actions-row { padding: 0 28px 20px; display: flex; gap: 6px; flex-wrap: wrap; }
   .m-btn { display: flex; align-items: center; gap: 4px; padding: 6px 13px; border-radius: 12px; font-size: 12px; font-family: inherit; cursor: pointer; border: 0.5px solid var(--border); background: transparent; color: var(--text-2); transition: all 0.12s; text-decoration: none; }
   .m-btn:hover { background: var(--bg); }
-  .m-btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
-  .m-btn.primary:hover { background: var(--blue-dark); }
   .m-btn.bm { color: var(--blue); background: var(--blue-lite); border-color: var(--blue-mid); }
+  .m-btn.kakao:hover { background: #FEE500; color: #3A1D1D; border-color: #E6CF00; }
+  .m-btn.telegram:hover { background: #E8F4FD; color: #0088CC; border-color: #9ECFEC; }
 
   /* ── SETTINGS PANEL ── */
   #settingsBg { display: none; position: fixed; inset: 0; z-index: 399; }
@@ -188,14 +212,20 @@
   <div class="modal-bg" onclick="closeModal()"></div>
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-tags" id="mTags"></div>
-    <div class="modal-title" id="mTitle"></div>
-    <div class="modal-imp" id="mImp"></div>
-    <div class="modal-summary" id="mSummary"></div>
-    <div class="modal-footer">
-      <span class="modal-meta-txt" id="mMeta"></span>
-      <div class="modal-actions" id="mActions"></div>
+    <div class="modal-head">
+      <div class="modal-head-tags" id="mTags"></div>
+      <div class="modal-head-title" id="mTitle"></div>
+      <div class="modal-head-meta">
+        <span class="modal-head-source" id="mMeta"></span>
+        <div class="modal-head-imp" id="mImp"></div>
+      </div>
     </div>
+    <div class="modal-body">
+      <div class="modal-body-label">✦ AI 요약</div>
+      <div id="mParas"></div>
+      <div class="modal-source-box" id="mSourceBox"></div>
+    </div>
+    <div class="modal-actions-row" id="mActions"></div>
   </div>
 </div>
 
@@ -402,20 +432,51 @@ function openModal(id){
   MA=a;
   var cm=CM[a.country]||CM.domestic;
   var saved=BM.indexOf(id)!==-1;
-  var stars='';for(var i=1;i<=5;i++)stars+='<span style="color:'+(i<=a.importance?'#2B1EDE':'#D8D8D8')+'">★</span>';
-  var tH=(a.tags||[]).map(function(t){return '<span class="tag t-topic">'+e(t)+'</span>';}).join('');
-  tH+='<span class="tag '+cm.cls+'">'+cm.flag+' '+cm.label+(a.carrier?' · '+e(a.carrier):'')+' </span>';
-  tH+='<span class="tag t-ai">✦ AI 요약</span>';
+
+  /* 헤더 태그 */
+  var tH=(a.tags||[]).map(function(t){return '<span class="modal-head-tag">'+e(t)+'</span>';}).join('');
+  tH+='<span class="modal-head-tag country">'+cm.flag+' '+cm.label+(a.carrier?' · '+e(a.carrier):'')+'</span>';
   document.getElementById('mTags').innerHTML=tH;
   document.getElementById('mTitle').textContent=a.title||'';
-  document.getElementById('mImp').innerHTML='<span>중요도</span>'+stars;
-  document.getElementById('mSummary').textContent=a.summary||'';
   document.getElementById('mMeta').textContent=a.date+(a.source_name?' · '+a.source_name:'');
+
+  /* 중요도 별 */
+  var imp=a.importance||3;
+  var stars='';
+  for(var i=1;i<=5;i++) stars+='<span class="modal-head-star" style="color:'+(i<=imp?'rgba(255,255,255,0.9)':'rgba(255,255,255,0.25)')+'">★</span>';
+  document.getElementById('mImp').innerHTML=stars;
+
+  /* 요약 → 문장 분리해서 단락으로 */
+  var summary=a.summary||'';
+  var paras=summary.split(/(?<=\.) (?=[가-힣A-Z])/);
+  if(paras.length===1) paras=summary.split('. ').filter(function(s){return s.trim();});
+  var parasHtml=paras.map(function(p){
+    var t=p.trim(); if(!t) return '';
+    if(!t.endsWith('.')) t+='.';
+    return '<div class="modal-para">'+e(t)+'</div>';
+  }).join('');
+  document.getElementById('mParas').innerHTML=parasHtml||'<div class="modal-para">'+e(summary)+'</div>';
+
+  /* 원문 소스 박스 */
+  var srcHtml='<div class="modal-source-info"><strong>출처</strong>'
+    +(a.source_name?e(a.source_name):'알 수 없음')
+    +(a.date?' &nbsp;·&nbsp; '+a.date:'')
+    +'</div>';
+  if(a.source_url){
+    srcHtml+='<a class="modal-source-link" href="'+e(a.source_url)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'
+      +'<svg viewBox="0 0 14 14"><path d="M6 2H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V8M8 1h5v5M13 1l-6 6"/></svg>'
+      +'원문 보기</a>';
+  } else {
+    srcHtml+='<span class="modal-source-nolink">원문 링크 없음</span>';
+  }
+  document.getElementById('mSourceBox').innerHTML=srcHtml;
+
+  /* 하단 액션 버튼 */
   var ac='<button class="m-btn'+(saved?' bm':'')+'" id="mBmBtn" onclick="toggleBM(\''+a.id+'\',event)">'+(saved?'★ 저장됨':'☆ 북마크')+'</button>';
-  ac+='<button class="m-btn" onclick="shareKakao(MA,event)">카카오 공유</button>';
-  ac+='<button class="m-btn" onclick="shareTelegram(MA,event)">텔레그램 공유</button>';
-  if(a.source_url)ac+='<a class="m-btn primary" href="'+e(a.source_url)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">원문 보기 →</a>';
+  ac+='<button class="m-btn kakao" onclick="shareKakao(MA,event)">카카오 공유</button>';
+  ac+='<button class="m-btn telegram" onclick="shareTelegram(MA,event)">텔레그램 공유</button>';
   document.getElementById('mActions').innerHTML=ac;
+
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
