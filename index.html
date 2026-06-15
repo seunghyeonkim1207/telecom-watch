@@ -1022,35 +1022,36 @@ var INTL_TAB = 'all';
 
 var INTL_DATA = [
   {
-    id:'oecd-comm', org:'OECD', cat:'oecd', color:'#1B4FD8',
-    name:'OECD Communications Outlook',
-    cycle:'격년 발표', latest:'2023년판',
-    url:'https://www.oecd.org/en/publications/oecd-communications-outlook-2023_b5e2d033-en.html',
-    result:'한국, 소용량(1GB 이하) 구간 주요국 중 중위권. 대용량(무제한) 구간은 일본·독일 대비 저렴 평가. 2023년판 기준 모바일 바구니 종합 15위 수준.',
+    id:'oecd-digital', org:'OECD', cat:'oecd', color:'#1B4FD8',
+    name:'OECD Digital Economy Outlook 2024',
+    cycle:'격년 발표', latest:'2024년판 (Vol.1·2)',
+    url:'https://www.oecd.org/en/publications/2024/05/oecd-digital-economy-outlook-2024-volume-1_d30a04c9.html',
+    result:'한국 광대역·모바일 인프라 경쟁력 상위권 평가. 요금 바구니보다 커버리지·속도·경쟁구조 복합 지표 위주.',
+    method:[
+      '요금 바구니 외 속도·커버리지·경쟁사업자 수 등 복합 지표 활용',
+      'OECD Broadband Portal 데이터 기반. 유선+무선 통합 평가',
+      '국가 간 디지털 격차(Digital Divide) 지표 포함',
+      '※ OECD Communications Outlook은 2013년 이후 미발간. 요금 바구니 비교는 별도 데이터셋(OECD Broadband Statistics) 참조',
+    ]
+  },
+  {
+    id:'oecd-broadband', org:'OECD', cat:'oecd', color:'#1B4FD8',
+    name:'OECD Broadband Statistics (요금 바구니)',
+    cycle:'연 2회 업데이트', latest:'2024년 하반기',
+    url:'https://www.oecd.org/en/publications/oecd-communications-outlook_19991460.html',
+    result:'한국, 소용량(1GB 이하) 구간 주요국 중 중위권. 대용량(무제한) 구간은 일본·독일 대비 저렴 평가.',
     method:[
       '바구니 비교법(Basket Approach): 0.5GB / 1GB / 5GB / 15GB / 무제한 5구간 기준 월정액 비교',
       '통화·SMS 포함 복합 바구니. PPP(구매력평가) 기준 USD 환산',
       '실제 판매 중인 요금제 기준. 프로모션 제외 원칙',
-      '차기 발표: 2025년 예정',
-    ]
-  },
-  {
-    id:'oecd-digital', org:'OECD', cat:'oecd', color:'#1B4FD8',
-    name:'OECD Digital Economy Outlook',
-    cycle:'격년 발표', latest:'2024년판',
-    url:'https://www.oecd.org/en/publications/oecd-digital-economy-outlook-2024-volume-1_562da4f4-en.html',
-    result:'한국 광대역·모바일 인프라 경쟁력 상위권 평가. 요금 바구니보다 커버리지·속도·경쟁구조 지표 위주 평가.',
-    method:[
-      '요금 바구니 외 속도·커버리지·경쟁사업자 수 등 복합 지표 활용',
-      'Broadband Portal 데이터 기반. 유선+무선 통합 평가',
-      '국가 간 디지털 격차(Digital Divide) 지표 포함',
+      'OECD.Stat 포털에서 국가별 원시 데이터 다운로드 가능',
     ]
   },
   {
     id:'miac-jp', org:'일본 총무성', cat:'jp', color:'#9A3412',
     name:'電気通信サービスに係る内外価格差調査',
-    cycle:'연 1회 (매년 11~12월)', latest:'2024년 조사 (令和6年度)',
-    url:'https://www.soumu.go.jp/main_content/000972761.pdf',
+    cycle:'연 1회 (매년 5~6월 공표)', latest:'令和6年度 (2024년도) 결과',
+    url:'https://www.soumu.go.jp/menu_news/s-news/01kiban03_02000990.html',
     result:'도쿄·뉴욕·런던·파리·뒤셀도르프·서울 6개 도시 비교. 2024년 기준 한국 20GB 구간이 조사 도시 중 최저가 수준으로 평가.',
     method:[
       '실제 판매 중인 요금제 중 각 용량 구간별 최저가 기준 비교',
@@ -1061,22 +1062,22 @@ var INTL_DATA = [
   },
   {
     id:'itu-price', org:'ITU', cat:'itu', color:'#3730A3',
-    name:'ITU ICT Price Basket (IPB)',
-    cycle:'연 1회', latest:'2023년판',
-    url:'https://www.itu.int/en/ITU-D/Statistics/Pages/ICTpricebasket.aspx',
-    result:'한국 모바일 브로드밴드 가격지수 상위권(저렴). GNI 대비 통신비 비율 기준 — 저소득국 포함 전 세계 비교.',
+    name:'ITU ICT Price Basket / Affordability Report',
+    cycle:'연 1회', latest:'2024년판',
+    url:'https://www.itu.int/itu-d/reports/statistics/affordability2024/',
+    result:'한국 모바일 브로드밴드 가격지수 상위권(저렴). 2024년 모바일 바구니 중위값 GNI 대비 1.1% — 전년 대비 하락.',
     method:[
-      'GNI(국민총소득) 대비 월정액 비율로 국가 간 비교 (절대가격 아닌 상대적 부담)',
-      '5GB 모바일 데이터 단일 바구니 기준',
+      'GNI(국민총소득) 대비 월정액 비율로 국가 간 비교 (절대가격이 아닌 상대적 부담)',
+      '2GB 이상 모바일 데이터 바구니 단일 기준 (2024년 기준)',
       '고정형 브로드밴드·음성통화 바구니 별도 산출',
-      '개발도상국 포함 180개국 이상 비교 → 선진국 내 순위와 전체 순위 구별 필요',
+      '개발도상국 포함 208개국 비교 → 선진국 내 순위와 전체 순위 구별 필요',
     ]
   },
   {
     id:'kisdi-kindex', org:'KISDI / 과기정통부', cat:'kr', color:'#0B5E2E',
     name:'K-INDEX (통신서비스 물가지수)',
     cycle:'분기 발표', latest:'2025년 1분기',
-    url:'https://www.kisdi.re.kr/statistics/selectStatisticsList.do',
+    url:'https://www.kisdi.re.kr/bbs/list.do?key=m2102234521801',
     result:'이동통신서비스 소비자물가지수 대비 통신비 변화 추적. 통합요금제 전환 이후 일부 구간 요금 인상 효과 모니터링 중.',
     method:[
       '가계통신비 지출 비중을 CPI(소비자물가지수) 대비로 추적',
@@ -1086,21 +1087,21 @@ var INTL_DATA = [
   },
   {
     id:'kcc-competitive', org:'방통위', cat:'kr', color:'#0B5E2E',
-    name:'통신시장 경쟁상황 평가',
-    cycle:'연 1회 (하반기 공표)', latest:'2024년 평가 (2025년 공표 예정)',
-    url:'https://www.kcc.go.kr/user.do?boardId=1113&page=A05030000&dc=K00000001&boardSeq=57817&mode=view',
-    result:'이동통신·초고속인터넷·IPTV 시장별 HHI 산출. SKT 점유율 40%대 지속으로 경쟁 집중도 고수준 유지 평가.',
+    name:'방송시장 경쟁상황 평가',
+    cycle:'연 1회 (하반기 공표)', latest:'2024년 평가 (2025년 3월 공표)',
+    url:'https://kcc.go.kr/user.do?boardId=1113&boardSeq=65916&dc=K00000200&mode=view&page=A05030000',
+    result:'유료방송·방송채널·방송광고 시장별 HHI 산출. 통신+방송 결합상품 집중도 지속 모니터링.',
     method:[
       'HHI(허핀달-허시만 지수): 각 사업자 점유율²의 합. 1,500~2,500 = 집중 / 2,500↑ = 고집중',
       '가입자 수·매출액 기준 별도 산출',
-      '결합상품·알뜰폰(MVNO) 별도 섹션 포함',
+      '결합상품·MVNO 별도 섹션 포함',
     ]
   },
   {
     id:'msit-price', org:'과기정통부', cat:'kr', color:'#0B5E2E',
     name:'이동통신서비스 요금수준 비교 조사',
     cycle:'연 1회 (상반기)', latest:'2025년 상반기 (예정)',
-    url:'https://www.msit.go.kr/bbs/list.do?sCode=user&mId=113&mPid=112&bbsSeqNo=94',
+    url:'https://www.msit.go.kr/bbs/list.do?mPid=74&mId=99',
     result:'국내 이통3사 + 알뜰폰 요금제 전수 조사. OECD 바구니 기준 국내가격을 독자 산출 — 공식 OECD 발표 전 선행 검토 자료로 활용.',
     method:[
       'OECD 방법론 준용: 5구간 바구니 (0.5/1/5/15GB/무제한)',
