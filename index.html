@@ -272,11 +272,58 @@ body.dark #toast { background: #333; }
 .page-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
 .page-desc { font-size: 13px; color: var(--text-3); margin-bottom: 24px; line-height: 1.6; }
 
-/* ── RATES TABLE ── */
-.page-rates-hdr { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
-.rates-toggle { display: flex; background: var(--border); border-radius: 8px; overflow: hidden; }
-.rates-toggle button { padding: 6px 16px; font-family: inherit; font-size: 12px; cursor: pointer; border: none; background: transparent; color: var(--text-2); transition: all 0.12s; }
-.rates-toggle button.active { background: var(--blue); color: #fff; }
+/* ── MAP ── */
+.map-container { position: relative; width:100%; background:#0D1B3E; border-radius:12px; overflow:hidden; }
+.map-tooltip {
+  position: absolute;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  width: 340px;
+  max-height: 420px;
+  overflow-y: auto;
+  z-index: 50;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* ── IR BTN ── */
+.ir-btn {
+  display: inline-block;
+  padding: 3px 9px;
+  background: var(--blue-lite);
+  color: var(--blue);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ir-btn:hover { background: var(--blue); color: #fff; }
+
+/* ── CALENDAR GRID ── */
+.cal-nav { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+.cal-nav-btn { background:none; border:0.5px solid var(--border); border-radius:6px; width:30px; height:30px; cursor:pointer; font-size:16px; color:var(--text-2); display:flex;align-items:center;justify-content:center; }
+.cal-nav-btn:hover { background:var(--blue-lite); color:var(--blue); }
+.cal-nav-title { font-size:15px; font-weight:600; color:var(--text); min-width:120px; text-align:center; }
+.cal-legend { display:flex; gap:14px; margin-bottom:14px; font-size:11px; color:var(--text-2); }
+.cal-legend span { display:flex; align-items:center; gap:4px; }
+.cal-grid-wrap { background:var(--surface); border:0.5px solid var(--border); border-radius:10px; overflow:hidden; }
+.cal-grid-header { display:grid; grid-template-columns:repeat(7,1fr); background:var(--bg); }
+.cal-grid-header div { padding:8px 0; text-align:center; font-size:11px; font-weight:600; color:var(--text-3); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); }
+.cal-cell { min-height:72px; padding:5px; border-right:0.5px solid var(--border); border-bottom:0.5px solid var(--border); cursor:pointer; transition:background 0.1s; position:relative; }
+.cal-cell:hover { background:var(--blue-lite); }
+.cal-cell.today { background:rgba(43,30,222,0.05); }
+.cal-cell.other-month .cal-cell-day { color:var(--text-3); opacity:0.4; }
+.cal-cell-day { font-size:12px; font-weight:500; color:var(--text); margin-bottom:2px; }
+.cal-cell.today .cal-cell-day { color:var(--blue); font-weight:700; }
+.cal-event-pip { font-size:9px; color:var(--text-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:1px 4px; border-radius:3px; margin-bottom:1px; }
+.cal-day-panel { margin-top:16px; background:var(--surface); border:0.5px solid var(--border); border-radius:10px; padding:16px; }
+.cal-day-panel-title { font-size:13px; font-weight:600; color:var(--text); margin-bottom:12px; }
+.cal-day-event-item { display:flex; align-items:flex-start; gap:10px; padding:8px 0; border-bottom:0.5px solid var(--border); }
+.cal-day-event-item:last-child { border-bottom:none; }
 .tbl-wrap { overflow-x: auto; border-radius: 12px; border: 0.5px solid var(--border); }
 table.data-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 table.data-tbl th { background: var(--bg); color: var(--text-3); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 12px; text-align: left; border-bottom: 0.5px solid var(--border); white-space: nowrap; }
@@ -601,35 +648,26 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
     <!-- ── PAGE: RATES ── -->
     <div id="page-rates" class="page" hidden>
       <div class="page-inner">
-        <div class="page-rates-hdr">
-          <div>
-            <div class="page-title">국가별 무제한 요금제 비교</div>
-            <div class="page-desc">주요국 통신사 무제한 요금제 실제 가격. 직접 수정 가능 — 저장은 브라우저에 유지됩니다.</div>
-          </div>
-          <div class="rates-toggle">
-            <button class="active" id="ratesKrwBtn" onclick="ratesSetCurrency('KRW')">KRW</button>
-            <button id="ratesUsdBtn" onclick="ratesSetCurrency('USD')">USD</button>
-          </div>
-        </div>
-        <div class="tbl-wrap">
-          <table class="data-tbl" id="ratesTable">
-            <thead>
-              <tr>
-                <th>국가</th>
-                <th>통신사</th>
-                <th>요금제명</th>
-                <th id="ratesPriceHdr">월 요금</th>
-                <th>데이터</th>
-                <th>번들혜택</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="ratesTbody"></tbody>
-          </table>
-        </div>
-        <div class="tbl-actions">
-          <button class="btn-outline" onclick="ratesAddRow()">+ 행 추가</button>
-          <button class="btn-outline" onclick="ratesExportCSV()">CSV 내보내기</button>
+        <div class="page-title">국가별 요금 비교</div>
+        <div class="page-desc">주요국 통신사 상위 요금제. 국가 마커에 마우스를 올리면 정보가 표시됩니다.</div>
+        <div class="map-container">
+          <svg id="worldMap" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" onmousemove="mapMoveTooltip(event)">
+            <!-- 북미 -->
+            <path d="M95,80 L180,70 L210,90 L230,140 L210,180 L190,210 L165,230 L140,220 L120,200 L100,170 L80,140 Z" fill="#1a3a6b" stroke="#2B5FA5" stroke-width="0.8"/>
+            <!-- 남미 -->
+            <path d="M160,250 L210,240 L230,260 L225,310 L215,360 L200,400 L180,420 L160,410 L145,380 L140,340 L150,300 Z" fill="#1a3a6b" stroke="#2B5FA5" stroke-width="0.8"/>
+            <!-- 유럽 -->
+            <path d="M420,60 L480,55 L510,70 L520,95 L500,115 L475,120 L450,115 L430,100 L415,85 Z" fill="#1a3a6b" stroke="#2B5FA5" stroke-width="0.8"/>
+            <!-- 아프리카 -->
+            <path d="M440,130 L500,125 L530,145 L545,180 L540,230 L525,270 L505,300 L480,310 L455,295 L440,260 L430,215 L435,170 Z" fill="#1a3a6b" stroke="#2B5FA5" stroke-width="0.8"/>
+            <!-- 아시아 (큰 덩어리) -->
+            <path d="M520,50 L650,40 L760,55 L810,80 L820,120 L790,155 L750,160 L700,155 L660,170 L620,165 L580,145 L545,120 L520,95 Z" fill="#1a3a6b" stroke="#2B5FA5" stroke-width="0.8"/>
+            <!-- 동남아/인도 반도 -->
+            <path d="M640,165 L680,160 L710,175 L720,210 L700,230 L670,225 L645,205 L635,185 Z" fill="#1a3a6b" stroke="#2B5FA5" stroke-width="0.8"/>
+            <!-- 오세아니아 -->
+            <path d="M760,290 L830,280 L870,300 L875,340 L845,360 L800,355 L770,335 L755,310 Z" fill="#1a3a6b" stroke="#2B5FA5" stroke-width="0.8"/>
+          </svg>
+          <div id="mapTooltip" class="map-tooltip" style="display:none;"></div>
         </div>
       </div>
     </div><!-- /page-rates -->
@@ -654,6 +692,7 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
                 <th>해지율(%)</th>
                 <th>5G 비중(%)</th>
                 <th>분기</th>
+                <th>IR 자료</th>
                 <th></th>
               </tr>
             </thead>
@@ -673,7 +712,35 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
           <div class="page-title">규제 일정 캘린더</div>
           <button class="btn-primary" onclick="calToggleForm()">+ 일정 추가</button>
         </div>
-        <div class="page-desc">규제·정책 주요 일정. D-Day 기준일: 2026-06-15</div>
+        <div class="page-desc">규제·정책 주요 일정. 날짜를 클릭하면 상세 일정을 확인합니다.</div>
+
+        <!-- 월 이동 네비게이션 -->
+        <div class="cal-nav">
+          <button class="cal-nav-btn" onclick="calPrevMonth()">‹</button>
+          <span class="cal-nav-title" id="calNavTitle"></span>
+          <button class="cal-nav-btn" onclick="calNextMonth()">›</button>
+        </div>
+
+        <!-- 범례 -->
+        <div class="cal-legend">
+          <span><span class="cal-dot" style="background:#EF4444;display:inline-block;"></span> 높음</span>
+          <span><span class="cal-dot" style="background:#F59E0B;display:inline-block;"></span> 보통</span>
+          <span><span class="cal-dot" style="background:#6B7280;display:inline-block;"></span> 낮음</span>
+        </div>
+
+        <!-- 캘린더 그리드 -->
+        <div class="cal-grid-wrap">
+          <div class="cal-grid-header">
+            <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+
+        <!-- 선택된 날짜 이벤트 패널 -->
+        <div class="cal-day-panel" id="calDayPanel" style="display:none;">
+          <div class="cal-day-panel-title" id="calDayTitle"></div>
+          <div id="calDayEvents"></div>
+        </div>
 
         <div class="cal-add-form" id="calAddForm">
           <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px;">새 일정 추가</div>
@@ -693,8 +760,6 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
             <button class="btn-primary" onclick="calAddEvent()">저장</button>
           </div>
         </div>
-
-        <div id="calList"></div>
       </div>
     </div><!-- /page-calendar -->
 
@@ -844,7 +909,7 @@ function navTo(page,triggerEl){
   // page-specific init
   if(page==='saved') renderSaved();
   if(page==='report') renderReport();
-  if(page==='rates') ratesRender();
+  if(page==='rates') initMap();
   if(page==='benchmark') benchRender();
   if(page==='calendar') calRender();
 
@@ -1063,116 +1128,280 @@ fetch('data/articles.json')
   .catch(function(){document.getElementById('feedList').innerHTML='<div style="padding:40px 0;text-align:center;font-size:13px;color:var(--text-3);">데이터를 불러올 수 없습니다.</div>';});
 
 /* ════════════════════════════════════
-   PAGE: RATES
+   PAGE: RATES — WORLD MAP
 ════════════════════════════════════ */
-var RATES_CURRENCY='KRW';
-var FX={USD:1350,JPY:0.0067,EUR:1.08,GBP:1.27};
-
-var RATES_DEFAULT=[
-  {country:'🇰🇷 국내',carrier:'SKT',plan:'베스트 5G',price:89000,data:'무제한',bundle:'OTT 선택'},
-  {country:'🇰🇷 국내',carrier:'KT',plan:'초이스',price:89000,data:'무제한',bundle:'OTT 선택'},
-  {country:'🇰🇷 국내',carrier:'LG U+',plan:'유레카 S',price:82000,data:'무제한',bundle:'유튜브 무제한'},
-  {country:'🇺🇸 미국',carrier:'T-Mobile',plan:'Experience Beyond',price:115750,data:'무제한',bundle:'Netflix+Hulu'},
-  {country:'🇺🇸 미국',carrier:'Verizon',plan:'Unlimited Ultimate',price:129600,data:'무제한',bundle:'Disney+'},
-  {country:'🇺🇸 미국',carrier:'AT&T',plan:'Premium 2.0',price:122850,data:'무제한',bundle:'Max'},
-  {country:'🇯🇵 일본',carrier:'NTT Docomo',plan:'eximo',price:103000,data:'무제한',bundle:'dTV'},
-  {country:'🇯🇵 일본',carrier:'SoftBank',plan:'メリハリ無制限+',price:95000,data:'무제한',bundle:'Yahoo!'},
-  {country:'🇪🇺 유럽',carrier:'Vodafone DE',plan:'Red L',price:58320,data:'무제한',bundle:'-'},
-  {country:'🇪🇺 유럽',carrier:'Deutsche Telekom',plan:'MagentaMobil L',price:60750,data:'무제한',bundle:'MagentaTV'},
-  {country:'🇬🇧 영국',carrier:'Vodafone UK',plan:'Unlimited Max',price:38100,data:'무제한',bundle:'-'},
+var MAP_COUNTRIES = [
+  { id:'kr', name:'한국', flag:'🇰🇷', cx:790, cy:120 },
+  { id:'jp', name:'일본', flag:'🇯🇵', cx:830, cy:115 },
+  { id:'cn', name:'중국', flag:'🇨🇳', cx:750, cy:115 },
+  { id:'us', name:'미국', flag:'🇺🇸', cx:155, cy:145 },
+  { id:'de', name:'독일', flag:'🇩🇪', cx:462, cy:80 },
+  { id:'gb', name:'영국', flag:'🇬🇧', cx:440, cy:72 },
+  { id:'fr', name:'프랑스', flag:'🇫🇷', cx:450, cy:85 },
+  { id:'au', name:'호주', flag:'🇦🇺', cx:815, cy:335 },
+  { id:'in', name:'인도', flag:'🇮🇳', cx:660, cy:185 },
+  { id:'sg', name:'싱가포르', flag:'🇸🇬', cx:725, cy:215 },
+  { id:'br', name:'브라질', flag:'🇧🇷', cx:195, cy:310 },
 ];
 
-function ratesLoad(){
-  try{ return JSON.parse(localStorage.getItem('tw_rates'))||RATES_DEFAULT; }
-  catch(err){ return RATES_DEFAULT; }
-}
-function ratesSave(data){ localStorage.setItem('tw_rates',JSON.stringify(data)); }
+var MAP_DATA = {
+  kr: { carriers: [
+    { name:'SKT', plans:[
+      { name:'베스트 5G', price:'월 89,000원', data:'완전무제한', share:'약 43%' },
+      { name:'라이트 110', price:'월 62,000원', data:'110GB+QoS', share:'약 28%' },
+      { name:'5G Y 슬림', price:'월 45,000원', data:'20GB+QoS', share:'약 12%' },
+    ]},
+    { name:'KT', plans:[
+      { name:'초이스 레귤러', price:'월 89,000원', data:'완전무제한', share:'약 41%' },
+      { name:'베이직 110', price:'월 60,000원', data:'110GB+QoS', share:'약 27%' },
+      { name:'실버 레귤러', price:'월 38,500원', data:'10GB+QoS', share:'약 14%' },
+    ]},
+    { name:'LG U+', plans:[
+      { name:'유레카 S', price:'월 82,000원', data:'완전무제한', share:'약 38%' },
+      { name:'너겟 110', price:'월 58,000원', data:'110GB+QoS', share:'약 29%' },
+      { name:'5G 슬림+', price:'월 42,000원', data:'20GB+QoS', share:'약 16%' },
+    ]},
+  ]},
+  jp: { carriers: [
+    { name:'NTT Docomo', plans:[
+      { name:'eximo', price:'월 ¥7,315', data:'완전무제한', share:'약 45%' },
+      { name:'irumo 15GB', price:'월 ¥2,167', data:'15GB', share:'약 22%' },
+      { name:'ahamo', price:'월 ¥2,970', data:'30GB', share:'약 18%' },
+    ]},
+    { name:'SoftBank', plans:[
+      { name:'メリハリ無制限+', price:'월 ¥6,490', data:'완전무제한', share:'약 42%' },
+      { name:'LINEMO 20GB', price:'월 ¥2,090', data:'20GB', share:'약 23%' },
+      { name:'みんなのプラン', price:'월 ¥3,278', data:'40GB', share:'약 17%' },
+    ]},
+    { name:'KDDI (au)', plans:[
+      { name:'使い放題MAX 5G', price:'월 ¥7,238', data:'완전무제한', share:'약 44%' },
+      { name:'povo2.0 (베이스)', price:'월 ¥0+토핑', data:'토핑 선택', share:'약 19%' },
+      { name:'UQ mobile 15GB', price:'월 ¥2,365', data:'15GB', share:'약 20%' },
+    ]},
+  ]},
+  cn: { carriers: [
+    { name:'China Mobile', plans:[
+      { name:'畅享套餐 100G', price:'월 ¥98', data:'100GB', share:'약 38%' },
+      { name:'全球通 200G', price:'월 ¥158', data:'200GB+로밍', share:'약 29%' },
+      { name:'飞享套餐 30G', price:'월 ¥58', data:'30GB', share:'약 22%' },
+    ]},
+    { name:'China Unicom', plans:[
+      { name:'沃无限宝 100G', price:'월 ¥89', data:'100GB', share:'약 36%' },
+      { name:'冰激凌套餐 200G', price:'월 ¥139', data:'200GB', share:'약 27%' },
+      { name:'精彩生活 30G', price:'월 ¥49', data:'30GB', share:'약 23%' },
+    ]},
+    { name:'China Telecom', plans:[
+      { name:'天翼畅享 100G', price:'월 ¥99', data:'100GB', share:'약 35%' },
+      { name:'铂金卡 200G', price:'월 ¥159', data:'200GB', share:'약 26%' },
+      { name:'明星卡 30G', price:'월 ¥59', data:'30GB', share:'약 24%' },
+    ]},
+  ]},
+  us: { carriers: [
+    { name:'T-Mobile', plans:[
+      { name:'Experience More', price:'월 $100', data:'완전무제한+핫스팟', share:'약 41%' },
+      { name:'Experience Beyond', price:'월 $85', data:'완전무제한', share:'약 31%' },
+      { name:'Essentials Saver', price:'월 $55', data:'완전무제한(저속)', share:'약 18%' },
+    ]},
+    { name:'Verizon', plans:[
+      { name:'myPlan Unlimited Ultimate', price:'월 $95', data:'완전무제한+60GB 핫스팟', share:'약 39%' },
+      { name:'myPlan Unlimited Plus', price:'월 $80', data:'완전무제한+30GB 핫스팟', share:'약 33%' },
+      { name:'myPlan Unlimited Welcome', price:'월 $65', data:'완전무제한(기본)', share:'약 20%' },
+    ]},
+    { name:'AT&T', plans:[
+      { name:'Unlimited Premium 2.0', price:'월 $90', data:'완전무제한+100GB 핫스팟', share:'약 37%' },
+      { name:'Unlimited Extra 2.0', price:'월 $75', data:'완전무제한+50GB 핫스팟', share:'약 34%' },
+      { name:'Unlimited Value 2.0', price:'월 $50', data:'완전무제한(기본)', share:'약 22%' },
+    ]},
+  ]},
+  de: { carriers: [
+    { name:'Deutsche Telekom', plans:[
+      { name:'MagentaMobil L', price:'월 €60', data:'완전무제한', share:'약 38%' },
+      { name:'MagentaMobil M', price:'월 €40', data:'20GB', share:'약 31%' },
+      { name:'MagentaMobil S', price:'월 €22', data:'5GB', share:'약 19%' },
+    ]},
+    { name:'Vodafone DE', plans:[
+      { name:'Red XL', price:'월 €55', data:'완전무제한', share:'약 36%' },
+      { name:'Red L', price:'월 €40', data:'25GB', share:'약 30%' },
+      { name:'Red M', price:'월 €30', data:'10GB', share:'약 21%' },
+    ]},
+    { name:'O2/Telefónica', plans:[
+      { name:'Blue All-in L', price:'월 €50', data:'완전무제한', share:'약 34%' },
+      { name:'Blue All-in M', price:'월 €35', data:'20GB', share:'약 28%' },
+      { name:'Blue All-in S', price:'월 €20', data:'8GB', share:'약 22%' },
+    ]},
+  ]},
+  gb: { carriers: [
+    { name:'EE (BT)', plans:[
+      { name:'Unlimited Max', price:'월 £65', data:'완전무제한', share:'약 40%' },
+      { name:'Unlimited Plus', price:'월 £45', data:'완전무제한(기본)', share:'약 32%' },
+      { name:'500MB Plan', price:'월 £12', data:'500MB', share:'약 14%' },
+    ]},
+    { name:'Vodafone UK', plans:[
+      { name:'Unlimited Max', price:'월 £30', data:'완전무제한', share:'약 38%' },
+      { name:'Unlimited Lite', price:'월 £18', data:'무제한(저속)', share:'약 27%' },
+      { name:'15GB Plan', price:'월 £13', data:'15GB', share:'약 20%' },
+    ]},
+    { name:'O2 UK', plans:[
+      { name:'Unlimited Max', price:'월 £29', data:'완전무제한', share:'약 37%' },
+      { name:'Big Bundle 30GB', price:'월 £22', data:'30GB', share:'약 29%' },
+      { name:'Essential 10GB', price:'월 £14', data:'10GB', share:'약 21%' },
+    ]},
+  ]},
+  fr: { carriers: [
+    { name:'Orange', plans:[
+      { name:'Open Jet 5G', price:'월 €32', data:'완전무제한', share:'약 39%' },
+      { name:'Open Play 5G', price:'월 €22', data:'130GB', share:'약 30%' },
+      { name:'Mobile Essentiel', price:'월 €14', data:'50GB', share:'약 19%' },
+    ]},
+    { name:'SFR', plans:[
+      { name:'Power 5G+', price:'월 €35', data:'완전무제한', share:'약 36%' },
+      { name:'Power 5G', price:'월 €25', data:'100GB', share:'약 29%' },
+      { name:'Starter 5G', price:'월 €15', data:'50GB', share:'약 22%' },
+    ]},
+    { name:'Bouygues', plans:[
+      { name:'Série Spéciale 200GB', price:'월 €25', data:'200GB', share:'약 38%' },
+      { name:'B&You Pure Fibre', price:'월 €15', data:'100GB', share:'약 31%' },
+      { name:'B&You 50GB', price:'월 €11', data:'50GB', share:'약 20%' },
+    ]},
+  ]},
+  au: { carriers: [
+    { name:'Telstra', plans:[
+      { name:'Ultimate', price:'월 A$89', data:'완전무제한', share:'약 42%' },
+      { name:'Large', price:'월 A$65', data:'180GB', share:'약 31%' },
+      { name:'Medium', price:'월 A$48', data:'80GB', share:'약 17%' },
+    ]},
+    { name:'Optus', plans:[
+      { name:'Optus Choice+', price:'월 A$75', data:'완전무제한', share:'약 37%' },
+      { name:'Medium 30GB', price:'월 A$42', data:'30GB', share:'약 29%' },
+      { name:'Small 15GB', price:'월 A$30', data:'15GB', share:'약 21%' },
+    ]},
+    { name:'Vodafone AU', plans:[
+      { name:'Unlimited', price:'월 A$65', data:'완전무제한', share:'약 35%' },
+      { name:'60GB', price:'월 A$45', data:'60GB', share:'약 28%' },
+      { name:'30GB', price:'월 A$35', data:'30GB', share:'약 23%' },
+    ]},
+  ]},
+  in: { carriers: [
+    { name:'Jio', plans:[
+      { name:'Jio Max (84일)', price:'₹3,599/84일', data:'2.5GB/일', share:'약 49%' },
+      { name:'Jio Smart (84일)', price:'₹1,899/84일', data:'1.5GB/일', share:'약 27%' },
+      { name:'Jio True 5G 30일', price:'₹999/30일', data:'2GB/일+5G', share:'약 14%' },
+    ]},
+    { name:'Airtel', plans:[
+      { name:'Airtel Premium (30일)', price:'₹599/30일', data:'완전무제한', share:'약 44%' },
+      { name:'Airtel Smart 28일', price:'₹299/28일', data:'2GB/일', share:'약 31%' },
+      { name:'Airtel Basic 28일', price:'₹179/28일', data:'2GB/일(2G)', share:'약 18%' },
+    ]},
+    { name:'Vi (Vodafone Idea)', plans:[
+      { name:'Vi Hero Unlimited', price:'₹479/28일', data:'1.5GB/일', share:'약 36%' },
+      { name:'Vi Work From Home', price:'₹299/28일', data:'1.5GB/일', share:'약 27%' },
+      { name:'Vi 2GB Daily', price:'₹219/28일', data:'2GB/일', share:'약 22%' },
+    ]},
+  ]},
+  sg: { carriers: [
+    { name:'Singtel', plans:[
+      { name:'5G Unlimited', price:'S$85/월', data:'완전무제한', share:'약 43%' },
+      { name:'5G 100GB', price:'S$55/월', data:'100GB', share:'약 28%' },
+      { name:'DataX 30GB', price:'S$35/월', data:'30GB', share:'약 17%' },
+    ]},
+    { name:'StarHub', plans:[
+      { name:'Unlimited Plus', price:'S$78/월', data:'완전무제한', share:'약 40%' },
+      { name:'80GB Plan', price:'S$52/월', data:'80GB', share:'약 30%' },
+      { name:'30GB Plan', price:'S$32/월', data:'30GB', share:'약 19%' },
+    ]},
+    { name:'M1', plans:[
+      { name:'Unlimited Plus 5G', price:'S$75/월', data:'완전무제한', share:'약 38%' },
+      { name:'Mega 60GB', price:'S$48/월', data:'60GB', share:'약 31%' },
+      { name:'ReadySIM 20GB', price:'S$28/월', data:'20GB', share:'약 20%' },
+    ]},
+  ]},
+  br: { carriers: [
+    { name:'Claro', plans:[
+      { name:'Plano Único 30GB', price:'R$89.99/월', data:'30GB', share:'약 40%' },
+      { name:'Controle Smart 18GB', price:'R$59.99/월', data:'18GB', share:'약 30%' },
+      { name:'Controle Básico 9GB', price:'R$39.99/월', data:'9GB', share:'약 18%' },
+    ]},
+    { name:'Vivo (Telefónica)', plans:[
+      { name:'Vivo Turbo 30GB', price:'R$99.99/월', data:'30GB', share:'약 38%' },
+      { name:'Vivo Meu 20GB', price:'R$69.99/월', data:'20GB', share:'약 29%' },
+      { name:'Vivo Controle 12GB', price:'R$44.99/월', data:'12GB', share:'약 21%' },
+    ]},
+    { name:'TIM', plans:[
+      { name:'TIM Black 5G', price:'R$119.99/월', data:'완전무제한', share:'약 35%' },
+      { name:'TIM Controle 25GB', price:'R$59.99/월', data:'25GB', share:'약 30%' },
+      { name:'TIM Pré Top 15GB', price:'R$34.99/월', data:'15GB', share:'약 23%' },
+    ]},
+  ]},
+};
 
-function ratesGetData(){
-  var rows=document.querySelectorAll('#ratesTbody tr');
-  var data=[];
-  rows.forEach(function(tr){
-    var cells=tr.querySelectorAll('td[contenteditable]');
-    data.push({
-      country:cells[0]?cells[0].textContent:'',
-      carrier:cells[1]?cells[1].textContent:'',
-      plan:cells[2]?cells[2].textContent:'',
-      price:parseInt((cells[3]?cells[3].textContent:'0').replace(/[^0-9]/g,''))||0,
-      data:cells[4]?cells[4].textContent:'',
-      bundle:cells[5]?cells[5].textContent:'',
+var _mapInited = false;
+function initMap(){
+  if(_mapInited) return;
+  _mapInited = true;
+  var svg = document.getElementById('worldMap');
+  MAP_COUNTRIES.forEach(function(c){
+    var g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.style.cursor = 'pointer';
+    var outer = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    outer.setAttribute('cx', c.cx); outer.setAttribute('cy', c.cy);
+    outer.setAttribute('r','7'); outer.setAttribute('fill','rgba(43,30,222,0.3)');
+    outer.setAttribute('stroke','#2B1EDE'); outer.setAttribute('stroke-width','1');
+    var inner = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    inner.setAttribute('cx', c.cx); inner.setAttribute('cy', c.cy);
+    inner.setAttribute('r','4'); inner.setAttribute('fill','#2B1EDE');
+    var txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x', c.cx); txt.setAttribute('y', c.cy - 10);
+    txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size','10');
+    txt.textContent = c.flag;
+    g.appendChild(outer); g.appendChild(inner); g.appendChild(txt);
+    g.addEventListener('mouseenter', function(evt){ showMapTooltip(c.id, evt); });
+    g.addEventListener('mouseleave', function(){ hideMapTooltip(); });
+    svg.appendChild(g);
+  });
+}
+
+function showMapTooltip(id, evt){
+  var d = MAP_DATA[id]; if(!d) return;
+  var c = MAP_COUNTRIES.filter(function(x){return x.id===id;})[0];
+  var html = '<div style="font-size:13px;font-weight:600;margin-bottom:10px;">'+c.flag+' '+c.name+'</div>';
+  d.carriers.forEach(function(carr){
+    html += '<div style="margin-bottom:12px;">';
+    html += '<div style="font-size:11px;font-weight:600;color:var(--blue);margin-bottom:5px;">'+e(carr.name)+'</div>';
+    carr.plans.forEach(function(p){
+      html += '<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid var(--border);">'
+        + '<div><div style="font-size:11px;font-weight:500;color:var(--text);">'+e(p.name)+'</div>'
+        + '<div style="font-size:10px;color:var(--text-3);">'+e(p.data)+' · 점유 '+e(p.share)+'</div></div>'
+        + '<div style="font-size:11px;color:var(--text-2);white-space:nowrap;padding-left:8px;">'+e(p.price)+'</div>'
+        + '</div>';
     });
+    html += '</div>';
   });
-  return data;
+  var tip = document.getElementById('mapTooltip');
+  tip.innerHTML = html;
+  tip.style.display = 'block';
+  var rect = tip.parentElement.getBoundingClientRect();
+  var x = evt.clientX - rect.left + 12;
+  var y = evt.clientY - rect.top + 12;
+  if(x + 350 > rect.width) x = x - 370;
+  if(y + 430 > rect.height) y = Math.max(0, y - 430);
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
 }
 
-function ratesRender(){
-  var data=ratesLoad();
-  var tbody=document.getElementById('ratesTbody');
-  tbody.innerHTML=data.map(function(r,i){return ratesRowHtml(r,i);}).join('');
-  updateRatesHdr();
+function hideMapTooltip(){
+  document.getElementById('mapTooltip').style.display = 'none';
 }
 
-function ratesRowHtml(r,i){
-  var displayPrice;
-  if(RATES_CURRENCY==='KRW'){
-    displayPrice=(r.price||0).toLocaleString()+'원';
-  } else {
-    displayPrice='$'+Math.round((r.price||0)/1350);
-  }
-  return '<tr id="rr'+i+'">'
-    +'<td contenteditable="true" onblur="ratesCellBlur()">'+e(r.country)+'</td>'
-    +'<td contenteditable="true" onblur="ratesCellBlur()">'+e(r.carrier)+'</td>'
-    +'<td contenteditable="true" onblur="ratesCellBlur()">'+e(r.plan)+'</td>'
-    +'<td contenteditable="true" onblur="ratesCellBlur()">'+e(displayPrice)+'</td>'
-    +'<td contenteditable="true" onblur="ratesCellBlur()">'+e(r.data)+'</td>'
-    +'<td contenteditable="true" onblur="ratesCellBlur()">'+e(r.bundle)+'</td>'
-    +'<td><button class="tbl-del" onclick="ratesDelRow(this)">삭제</button></td>'
-    +'</tr>';
-}
-
-function ratesCellBlur(){
-  var data=ratesGetData();
-  ratesSave(data);
-}
-
-function updateRatesHdr(){
-  document.getElementById('ratesPriceHdr').textContent='월 요금('+RATES_CURRENCY+')';
-  document.getElementById('ratesKrwBtn').classList.toggle('active',RATES_CURRENCY==='KRW');
-  document.getElementById('ratesUsdBtn').classList.toggle('active',RATES_CURRENCY==='USD');
-}
-
-function ratesSetCurrency(cur){
-  RATES_CURRENCY=cur;
-  ratesRender();
-}
-
-function ratesAddRow(){
-  var data=ratesLoad();
-  data.push({country:'',carrier:'',plan:'',price:0,data:'무제한',bundle:''});
-  ratesSave(data);
-  ratesRender();
-  // focus last row first cell
-  setTimeout(function(){
-    var rows=document.querySelectorAll('#ratesTbody tr');
-    if(rows.length){rows[rows.length-1].querySelector('td[contenteditable]').focus();}
-  },50);
-}
-
-function ratesDelRow(btn){
-  var tr=btn.closest('tr');
-  tr.parentNode.removeChild(tr);
-  ratesSave(ratesGetData());
-  toast('행을 삭제했어요.');
-}
-
-function ratesExportCSV(){
-  var data=ratesLoad();
-  var h=['국가','통신사','요금제명','월요금(원)','데이터','번들혜택'];
-  var rows=data.map(function(r){
-    return [r.country,r.carrier,r.plan,r.price,r.data,r.bundle].map(function(v){return '"'+String(v).replace(/"/g,'""')+'"';}).join(',');
-  });
-  dl('﻿'+h.join(',')+'\n'+rows.join('\n'),'rates-'+new Date().toISOString().slice(0,10)+'.csv','text/csv');
-  toast('CSV 다운로드했어요.');
+function mapMoveTooltip(evt){
+  var tip = document.getElementById('mapTooltip');
+  if(tip.style.display === 'none') return;
+  var rect = tip.parentElement.getBoundingClientRect();
+  var x = evt.clientX - rect.left + 16;
+  var y = evt.clientY - rect.top + 16;
+  if(x + 350 > rect.width) x = evt.clientX - rect.left - 360;
+  if(y + 430 > rect.height) y = Math.max(0, evt.clientY - rect.top - 440);
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
 }
 
 /* ════════════════════════════════════
@@ -1210,10 +1439,26 @@ function benchSetTab(tab,btn){
   benchRender();
 }
 
+var IR_LINKS = {
+  'SKT': 'https://www.sktelecom.com/index.html',
+  'KT': 'https://corp.kt.com/eng/kor/invest/main.do',
+  'LG U+': 'https://www.lguplus.com/ir/home',
+  'T-Mobile': 'https://investor.t-mobile.com/',
+  'Verizon': 'https://www.verizon.com/about/investors/',
+  'AT&T': 'https://investors.att.com/',
+  'NTT Docomo': 'https://www.nttdocomo.co.jp/english/corporate/ir/',
+  'SoftBank': 'https://www.softbank.jp/en/corp/ir/',
+  'KDDI (au)': 'https://www.kddi.com/english/corporate/ir/',
+};
+
 function benchRender(){
   var all=benchLoad();
   var data=all[BENCH_TAB]||[];
   var html=data.map(function(r,i){
+    var irUrl = IR_LINKS[r.carrier] || '';
+    var irBtn = irUrl
+      ? '<a class="ir-btn" href="'+irUrl+'" target="_blank" rel="noopener">IR →</a>'
+      : '<span style="font-size:11px;color:var(--text-3);">—</span>';
     return '<tr>'
       +'<td contenteditable="true" onblur="benchCellBlur()">'+e(r.carrier)+'</td>'
       +'<td contenteditable="true" onblur="benchCellBlur()">'+e(r.subs)+'</td>'
@@ -1221,6 +1466,7 @@ function benchRender(){
       +'<td contenteditable="true" onblur="benchCellBlur()">'+e(r.churn)+'</td>'
       +'<td contenteditable="true" onblur="benchCellBlur()">'+e(r.five)+'</td>'
       +'<td contenteditable="true" onblur="benchCellBlur()">'+e(r.quarter)+'</td>'
+      +'<td>'+irBtn+'</td>'
       +'<td><button class="tbl-del" onclick="benchDelRow(this)">삭제</button></td>'
       +'</tr>';
   }).join('');
@@ -1304,40 +1550,85 @@ function calDday(dateStr){
   return {label:'D-'+diff,cls:diff<=14?'soon':'future'};
 }
 
+var CAL_YEAR=2026, CAL_MONTH=6;
+
 function calRender(){
   var events=calLoad();
-  events.sort(function(a,b){return a.date.localeCompare(b.date);});
-  // group by month
-  var groups={};
-  var months=[];
+  var monthNames=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  document.getElementById('calNavTitle').textContent=CAL_YEAR+'년 '+monthNames[CAL_MONTH-1];
+  var firstDay=new Date(CAL_YEAR,CAL_MONTH-1,1);
+  var lastDay=new Date(CAL_YEAR,CAL_MONTH,0);
+  var startDow=firstDay.getDay();
+  var totalDays=lastDay.getDate();
+  var evMap={};
   events.forEach(function(ev){
-    var m=ev.date.slice(0,7);
-    if(!groups[m]){groups[m]=[];months.push(m);}
-    groups[m].push(ev);
+    if(!evMap[ev.date]) evMap[ev.date]=[];
+    evMap[ev.date].push(ev);
   });
-  var html='';
-  months.forEach(function(m){
-    var parts=m.split('-');
-    html+='<div class="cal-month-group"><div class="cal-month-label">'+parts[0]+'년 '+parseInt(parts[1])+'월</div>';
-    groups[m].forEach(function(ev,idx){
-      var d=new Date(ev.date);
-      var dow=DOW_KR[d.getDay()]||'';
+  var cells='';
+  var prevLast=new Date(CAL_YEAR,CAL_MONTH-1,0).getDate();
+  for(var i=0;i<startDow;i++){
+    var pd=prevLast-startDow+i+1;
+    cells+='<div class="cal-cell other-month"><div class="cal-cell-day">'+pd+'</div></div>';
+  }
+  for(var d=1;d<=totalDays;d++){
+    var dateStr=CAL_YEAR+'-'+(CAL_MONTH<10?'0':'')+CAL_MONTH+'-'+(d<10?'0':'')+d;
+    var isToday=dateStr===TODAY_STR;
+    var evs=evMap[dateStr]||[];
+    var pips=evs.slice(0,3).map(function(ev){
+      var col=IMP_COLORS[ev.imp]||'#6B7280';
+      return '<div class="cal-event-pip" style="background:'+col+'22;border-left:2px solid '+col+';">'+e(ev.title)+'</div>';
+    }).join('');
+    cells+='<div class="cal-cell'+(isToday?' today':'')+'" onclick="calSelectDay(\''+dateStr+'\')">'
+      +'<div class="cal-cell-day">'+d+'</div>'
+      +pips
+      +'</div>';
+  }
+  var totalCells=Math.ceil((startDow+totalDays)/7)*7;
+  var nextD=1;
+  for(var i=startDow+totalDays;i<totalCells;i++){
+    cells+='<div class="cal-cell other-month"><div class="cal-cell-day">'+nextD+'</div></div>';
+    nextD++;
+  }
+  document.getElementById('calGrid').innerHTML=cells;
+  document.getElementById('calDayPanel').style.display='none';
+}
+
+function calSelectDay(dateStr){
+  var events=calLoad();
+  var dayEvs=events.filter(function(ev){return ev.date===dateStr;});
+  var panel=document.getElementById('calDayPanel');
+  var d=new Date(dateStr);
+  var dow=['일','월','화','수','목','금','토'][d.getDay()];
+  document.getElementById('calDayTitle').textContent=dateStr.replace(/-/g,'.')+'('+dow+') 일정';
+  if(!dayEvs.length){
+    document.getElementById('calDayEvents').innerHTML='<div style="color:var(--text-3);font-size:12px;padding:8px 0;">이 날 일정이 없습니다.</div>';
+  } else {
+    document.getElementById('calDayEvents').innerHTML=dayEvs.map(function(ev){
       var dd=calDday(ev.date);
       var col=IMP_COLORS[ev.imp]||'#6B7280';
-      html+='<div class="cal-event">'
-        +'<div class="cal-date-col"><div class="cal-date-day">'+d.getDate()+'</div><div class="cal-date-dow">'+dow+'</div></div>'
-        +'<div class="cal-dot" style="background:'+col+';margin-top:8px;"></div>'
-        +'<div class="cal-body">'
-        +'<div class="cal-title">'+e(ev.title)+'<span class="cal-badge '+dd.cls+'">'+dd.label+'</span></div>'
-        +'<div class="cal-org">'+e(ev.org)+(ev.country?' · '+e(ev.country):'')+'</div>'
+      return '<div class="cal-day-event-item">'
+        +'<div class="cal-dot" style="background:'+col+';margin-top:4px;flex-shrink:0;"></div>'
+        +'<div style="flex:1;">'
+        +'<div style="font-size:12px;font-weight:500;color:var(--text);">'+e(ev.title)+'<span class="cal-badge '+dd.cls+'" style="margin-left:6px;">'+dd.label+'</span></div>'
+        +'<div style="font-size:11px;color:var(--text-3);margin-top:2px;">'+e(ev.org)+(ev.country?' · '+e(ev.country):'')+'</div>'
         +'</div>'
-        +'<button class="tbl-del" onclick="calDel(\''+ev.date+'\','+JSON.stringify(ev.title).replace(/</g,'\\u003c')+')" style="flex-shrink:0;align-self:center;">삭제</button>'
+        +'<button class="tbl-del" onclick="calDel(\''+ev.date+'\','+JSON.stringify(ev.title).replace(/</g,'\\u003c')+')" style="flex-shrink:0;">삭제</button>'
         +'</div>';
-    });
-    html+='</div>';
-  });
-  if(!html) html='<div style="padding:40px 0;text-align:center;color:var(--text-3);font-size:13px;">일정이 없습니다. 추가해보세요!</div>';
-  document.getElementById('calList').innerHTML=html;
+    }).join('');
+  }
+  panel.style.display='block';
+}
+
+function calPrevMonth(){
+  CAL_MONTH--;
+  if(CAL_MONTH<1){CAL_MONTH=12;CAL_YEAR--;}
+  calRender();
+}
+function calNextMonth(){
+  CAL_MONTH++;
+  if(CAL_MONTH>12){CAL_MONTH=1;CAL_YEAR++;}
+  calRender();
 }
 
 function calDel(date,title){
