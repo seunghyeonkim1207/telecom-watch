@@ -855,6 +855,7 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
             <button class="bills-filter-chip" onclick="billsSetFilter('가결',this)">가결</button>
             <button class="bills-filter-chip" onclick="billsSetFilter('폐기',this)">폐기·부결</button>
           </div>
+          <button id="billsShowHiddenBtn" onclick="billsToggleHidden()" style="display:none;font-size:11px;padding:4px 10px;background:none;border:0.5px solid var(--border);border-radius:6px;color:var(--text-3);cursor:pointer;font-family:inherit;"></button>
           <span id="billsSyncStatus" style="font-size:11px;color:var(--text-3);"></span>
         </div>
         <div id="billsList"></div>
@@ -1026,8 +1027,7 @@ function navTo(page,triggerEl){
   if(page==='report') renderReport();
   if(page==='calendar') calRender();
   if(page==='bills'){
-    // 기존 저장 데이터에서 공포완료 법안 즉시 제거
-    billsSave(billsLoad().filter(function(b){ return !b.PROM_DT; }));
+    billsPurgeOld(); // 2025년 이전 구법안 + 공포완료 정리
     billsRender();
     billsAutoSync(function(){ billsRender(); });
   }
@@ -1596,12 +1596,17 @@ function billsAutoSync(onDone){
         for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
       }catch(er){ console.warn('파싱 오류',er); }
       rows.forEach(function(b){
-        if(b.PROM_DT) return; // 이미 공포(완료)된 법안 제외
+        if(b.PROM_DT) return;
         var cls=billsProcClass(b.PROC_RESULT||'');
         if(cls!=='pending'&&cls!=='passed') return;
         var name=(b.BILL_NAME||'').toLowerCase();
         var relevant=BILL_TOPIC_KW.some(function(kw){return name.indexOf(kw.toLowerCase())>=0;});
         if(!relevant) return;
+        // 2025년 이후 발의이거나, 2025년 이후 소관위 이상 진행된 것만
+        var recentActivity=[b.CURR_COMMITTEE_DT,b.COMMITTEE_DT,b.LAW_PROC_DT,b.PROC_DT]
+          .some(function(d){return d&&d>='20250101';});
+        var recentPropose=b.PROPOSE_DT&&b.PROPOSE_DT>='20250101';
+        if(!recentPropose&&!recentActivity) return;
         allFetched.push(b);
       });
     }).catch(function(err){ syncError='네트워크 오류: '+err; console.warn('fetch 오류',err); }).then(function(){
@@ -1635,6 +1640,33 @@ function billsLoad(){
   catch(e){ return []; }
 }
 function billsSave(list){ localStorage.setItem('tw_tracked_bills',JSON.stringify(list)); }
+function billsLoadHidden(){
+  try{ return JSON.parse(localStorage.getItem('tw_hidden_bills'))||{}; }
+  catch(e){ return {}; }
+}
+function billsSaveHidden(h){ localStorage.setItem('tw_hidden_bills',JSON.stringify(h)); }
+var BILLS_SHOW_HIDDEN=false;
+function billsToggleHide(billId){
+  var h=billsLoadHidden();
+  if(h[billId]) delete h[billId]; else h[billId]=true;
+  billsSaveHidden(h);
+  billsRender();
+}
+function billsToggleHidden(){
+  BILLS_SHOW_HIDDEN=!BILLS_SHOW_HIDDEN;
+  billsRender();
+}
+function billsPurgeOld(){
+  // 2025년 이전 발의 + 소관위 이상 진행 없는 법안 자동 정리
+  var list=billsLoad().filter(function(b){
+    if(b.PROM_DT) return false;
+    var recentActivity=[b.CURR_COMMITTEE_DT,b.COMMITTEE_DT,b.LAW_PROC_DT,b.PROC_DT]
+      .some(function(d){return d&&d>='20250101';});
+    var recentPropose=b.PROPOSE_DT&&b.PROPOSE_DT>='20250101';
+    return recentPropose||recentActivity;
+  });
+  billsSave(list);
+}
 
 function billsFmtDate(s){
   if(!s||s.length<8) return '';
@@ -1672,8 +1704,19 @@ function billsRender(){
   if(kwBox) kwBox.style.display='block';
   billsRenderKeywords();
 
-  var list=billsLoad().filter(function(b){ return !b.PROM_DT; }); // 공포완료 제외
-  var filtered=list.filter(function(b){
+  var hidden=billsLoadHidden();
+  var list=billsLoad().filter(function(b){ return !b.PROM_DT; });
+  var hiddenList=list.filter(function(b){ return hidden[b.BILL_ID]; });
+  var visibleList=list.filter(function(b){ return !hidden[b.BILL_ID]; });
+  var showHiddenBtn=document.getElementById('billsShowHiddenBtn');
+  if(hiddenList.length){
+    showHiddenBtn.style.display='';
+    showHiddenBtn.textContent=(BILLS_SHOW_HIDDEN?'숨긴 법안 접기':'숨긴 법안 '+hiddenList.length+'건 보기');
+  } else {
+    showHiddenBtn.style.display='none';
+  }
+  var base=BILLS_SHOW_HIDDEN?list:visibleList;
+  var filtered=base.filter(function(b){
     if(BILLS_FILTER==='all') return true;
     if(BILLS_FILTER==='계류중') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='pending';
     if(BILLS_FILTER==='가결') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='passed';
@@ -1709,17 +1752,21 @@ function billsRender(){
     var billUrl='https://likms.assembly.go.kr/bill/billDetail.do?billId='+encodeURIComponent(b.BILL_ID||'');
     var age=b.AGE?b.AGE+'대':'';
 
-    return '<div class="bills-card" id="bc-'+e(b.BILL_ID||'')+'" style="cursor:pointer;" onclick="openBillDetail(\''+e(b.BILL_ID||'')+'\')">'
+    var isHidden=!!hidden[b.BILL_ID];
+    var cardStyle='cursor:pointer;'+(isHidden?'opacity:0.45;':'');
+    return '<div class="bills-card" id="bc-'+e(b.BILL_ID||'')+'" style="'+cardStyle+'" onclick="openBillDetail(\''+e(b.BILL_ID||'')+'\')">'
       +'<div class="bills-card-top">'
       +'<div style="flex:1;">'
       +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">'
       +(age?'<span class="bills-age">'+age+'</span>':'')
       +'<span class="bills-proc-chip '+procCls+'">'+e(procResult)+'</span>'
+      +(isHidden?'<span style="font-size:10px;color:var(--text-3);">숨김</span>':'')
       +'</div>'
       +'<div class="bills-card-title">'+e(b.BILL_NAME||'')+'</div>'
       +'<div class="bills-card-meta">'+e(b.PROPOSER||'')+(b.BILL_NO?' &nbsp;·&nbsp; 의안번호 '+e(b.BILL_NO):'')+'</div>'
       +'</div>'
       +'<div style="display:flex;gap:6px;flex-shrink:0;" onclick="event.stopPropagation()">'
+      +'<button class="btn-outline" style="font-size:11px;padding:5px 10px;" title="'+(isHidden?'숨김 해제':'숨기기')+'" onclick="billsToggleHide(\''+e(b.BILL_ID||'')+'\')">'+(isHidden?'↩':'−')+'</button>'
       +'<button class="btn-outline" style="font-size:11px;padding:5px 10px;" onclick="billsRefreshOne(\''+e(b.BILL_ID||'')+'\')">↻</button>'
       +'<button class="tbl-del" onclick="billsRemove(\''+e(b.BILL_ID||'')+'\')">삭제</button>'
       +'</div>'
