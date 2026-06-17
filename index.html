@@ -1591,6 +1591,7 @@ function billsAutoSync(onDone){
         for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
       }catch(er){ console.warn('파싱 오류',er); }
       rows.forEach(function(b){
+        if(b.PROM_DT) return; // 이미 공포(완료)된 법안 제외
         var cls=billsProcClass(b.PROC_RESULT||'');
         if(cls!=='pending'&&cls!=='passed') return;
         var name=(b.BILL_NAME||'').toLowerCase();
@@ -1664,7 +1665,7 @@ function billsRender(){
   if(kwBox) kwBox.style.display='block';
   billsRenderKeywords();
 
-  var list=billsLoad();
+  var list=billsLoad().filter(function(b){ return !b.PROM_DT; }); // 공포완료 제외
   var filtered=list.filter(function(b){
     if(BILLS_FILTER==='all') return true;
     if(BILLS_FILTER==='계류중') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='pending';
@@ -1892,13 +1893,17 @@ function openBillDetail(billId){
 
   // ── 하단 버튼 ──
   var bid=encodeURIComponent(b.BILL_ID||'');
+  // LINK_URL이 있으면 원문 직접 링크, 없으면 국회 의안정보 상세 페이지
+  var detailUrl=b.LINK_URL||('https://likms.assembly.go.kr/bill/billDetail.do?billId='+bid);
+  // 국회 열린의안정보 직접 검색 URL (법안명 기반)
+  var searchUrl='https://likms.assembly.go.kr/bill/BillSearchResult.do?billName='+encodeURIComponent(b.BILL_NAME||'')+'&billKind=B&billStatusStr=ALL&searchPageSize=10';
   document.getElementById('bdmFoot').innerHTML=
-    '<a class="bdm-btn bdm-btn-primary" href="https://likms.assembly.go.kr/bill/billDetail.do?billId='+bid+'" target="_blank" rel="noopener">'
+    '<a class="bdm-btn bdm-btn-primary" href="'+e(detailUrl)+'" target="_blank" rel="noopener">'
     +'<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h7l5 5v7H4z"/><path d="M11 4v5h5"/><path d="M7 13h6M7 10h3"/></svg>'
     +'발의 원문 보기</a>'
-    +'<a class="bdm-btn bdm-btn-secondary" href="https://likms.assembly.go.kr/bill/billPdfList.do?billId='+bid+'" target="_blank" rel="noopener">'
-    +'<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h10a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M7 7h6M7 10h6M7 13h4"/></svg>'
-    +'PDF 문서</a>';
+    +'<a class="bdm-btn bdm-btn-secondary" href="'+e(searchUrl)+'" target="_blank" rel="noopener">'
+    +'<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg>'
+    +'국회 검색</a>';
 
   document.getElementById('billDetailModal').classList.add('open');
   document.body.style.overflow='hidden';
