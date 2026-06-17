@@ -401,6 +401,58 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
 .bill-link-btn { font-size:11px; color: var(--blue); text-decoration:none; }
 .bill-key-prompt { padding: 14px 0; text-align:center; }
 
+/* ── BILLS PAGE ── */
+.bills-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:18px; }
+.bills-filter-row { display:flex; gap:6px; flex-wrap:wrap; }
+.bills-filter-chip { padding:5px 14px; border-radius:20px; font-size:12px; font-family:inherit; cursor:pointer; border:0.5px solid var(--border); background:var(--surface); color:var(--text-3); transition:all 0.12s; }
+.bills-filter-chip.active { background:var(--blue); color:#fff; border-color:var(--blue); font-weight:500; }
+.bills-empty { padding:48px 0; text-align:center; color:var(--text-3); font-size:13px; line-height:2; }
+.bills-card { background:var(--surface); border:0.5px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:12px; }
+.bills-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px; }
+.bills-card-title { font-size:14px; font-weight:600; color:var(--text); line-height:1.4; }
+.bills-card-meta { font-size:11px; color:var(--text-3); margin-top:4px; }
+.bills-proc-chip { display:inline-block; font-size:10px; font-weight:700; padding:3px 9px; border-radius:20px; white-space:nowrap; }
+.bills-proc-chip.pending { background:#EFF6FF; color:#2563EB; }
+.bills-proc-chip.passed { background:#ECFDF5; color:#059669; }
+.bills-proc-chip.rejected { background:#FEF2F2; color:#DC2626; }
+.bills-proc-chip.other { background:#F3F4F6; color:#6B7280; }
+body.dark .bills-proc-chip.pending { background:#1e3a5f; color:#93C5FD; }
+body.dark .bills-proc-chip.passed { background:#064e3b; color:#6EE7B7; }
+body.dark .bills-proc-chip.rejected { background:#4c1d1d; color:#FCA5A5; }
+body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
+.bills-pipeline { display:flex; gap:0; overflow-x:auto; padding-bottom:6px; scrollbar-width:none; }
+.bills-pipeline::-webkit-scrollbar { display:none; }
+.bills-stage { flex:1; min-width:80px; text-align:center; position:relative; }
+.bills-stage::before { content:''; position:absolute; top:6px; left:-50%; width:100%; height:2px; background:var(--border); z-index:0; }
+.bills-stage:first-child::before { display:none; }
+.bills-stage.done::before { background:var(--blue); }
+.bills-stage.current::before { background:var(--blue); }
+.bills-stage-dot { width:14px; height:14px; border-radius:50%; background:var(--border); margin:0 auto 7px; position:relative; z-index:1; border:2px solid var(--surface); transition:background 0.15s; }
+.bills-stage.done .bills-stage-dot { background:var(--blue); }
+.bills-stage.current .bills-stage-dot { background:var(--blue); box-shadow:0 0 0 3px rgba(43,30,222,0.18); }
+.bills-stage-name { font-size:10px; color:var(--text-3); line-height:1.3; }
+.bills-stage.done .bills-stage-name, .bills-stage.current .bills-stage-name { color:var(--text); font-weight:500; }
+.bills-stage-date { font-size:9px; color:var(--text-3); margin-top:2px; }
+.bills-card-footer { display:flex; align-items:center; gap:10px; margin-top:14px; flex-wrap:wrap; }
+.bills-link { font-size:11px; color:var(--blue); text-decoration:none; }
+.bills-link:hover { text-decoration:underline; }
+.bills-age { font-size:10px; color:var(--text-3); background:var(--border); padding:2px 7px; border-radius:4px; }
+
+/* Bills search modal */
+.bills-search-modal { display:none; position:fixed; inset:0; z-index:800; align-items:flex-start; justify-content:center; padding:60px 20px 20px; }
+.bills-search-modal.open { display:flex; }
+.bills-search-box { background:var(--surface); border:0.5px solid var(--border); border-radius:14px; width:100%; max-width:560px; box-shadow:0 20px 60px rgba(0,0,0,0.18); overflow:hidden; }
+.bills-search-hdr { display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:0.5px solid var(--border); }
+.bills-search-hdr input { flex:1; padding:8px 12px; border:0.5px solid var(--border); border-radius:8px; font-family:inherit; font-size:13px; background:var(--bg); color:var(--text); outline:none; }
+.bills-search-hdr input:focus { border-color:var(--blue); }
+.bills-search-results { max-height:380px; overflow-y:auto; }
+.bills-result-row { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:0.5px solid var(--border); gap:12px; }
+.bills-result-row:last-child { border-bottom:none; }
+.bills-result-name { font-size:12px; font-weight:500; color:var(--text); line-height:1.4; }
+.bills-result-meta { font-size:10px; color:var(--text-3); margin-top:3px; }
+.bills-search-empty { padding:32px; text-align:center; color:var(--text-3); font-size:12px; }
+.bills-nokey { padding:24px; text-align:center; }
+
 /* ── BOTTOM TABBAR (mobile) ── */
 .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 0.5px solid var(--border); z-index: 450; height: 56px; align-items: stretch; }
 .bottom-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; color: var(--text-3); font-size: 9px; border: none; background: none; font-family: inherit; transition: color 0.12s; }
@@ -463,6 +515,21 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
       <div class="modal-source-box" id="mSourceBox"></div>
     </div>
     <div class="modal-actions-row" id="mActions"></div>
+  </div>
+</div>
+
+<!-- ── BILLS SEARCH MODAL ── -->
+<div class="bills-search-modal" id="billsSearchModal">
+  <div class="modal-bg" onclick="billsCloseSearch()"></div>
+  <div class="bills-search-box">
+    <div class="bills-search-hdr">
+      <input type="text" id="billsSearchInput" placeholder="법안명 검색 (예: 전기통신사업법)" onkeydown="if(event.key==='Enter')billsDoSearch()">
+      <button class="btn-primary" onclick="billsDoSearch()">검색</button>
+      <button class="btn-outline" onclick="billsCloseSearch()">닫기</button>
+    </div>
+    <div id="billsSearchResults" class="bills-search-results">
+      <div class="bills-search-empty">검색어를 입력하고 검색 버튼을 누르세요.</div>
+    </div>
   </div>
 </div>
 
@@ -571,6 +638,10 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
         <svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="14" rx="2"/><line x1="6" y1="2" x2="6" y2="6"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="2" y1="9" x2="18" y2="9"/></svg>
         <span class="sb-label">규제 캘린더</span>
       </div>
+      <div class="sb-item" onclick="navTo('bills',this)" data-page="bills">
+        <svg viewBox="0 0 20 20"><path d="M4 2h9l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><polyline points="13,2 13,7 18,7"/><line x1="6" y1="11" x2="14" y2="11"/><line x1="6" y1="14" x2="10" y2="14"/><circle cx="15" cy="15" r="4"/><line x1="13" y1="17" x2="17" y2="13"/></svg>
+        <span class="sb-label">법안 모니터링</span>
+      </div>
       <div class="sb-item" onclick="navTo('intl',this)" data-page="intl">
         <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 2a14 14 0 0 1 0 16M10 2a14 14 0 0 0 0 16M2 10h16"/></svg>
         <span class="sb-label">국제비교 대응</span>
@@ -667,26 +738,9 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
         </div>
         <div class="page-desc">규제·정책 주요 일정을 날짜순으로 확인합니다.</div>
 
-        <div class="bill-tracker">
-          <div class="bill-tracker-hdr" onclick="billTrackerToggle()">
-            <div class="bill-tracker-hdr-title">📋 법안 입법절차 추적 (국회 Open API)</div>
-            <span class="bill-tracker-hdr-chev" id="billTrackerChev">▾</span>
-          </div>
-          <div class="bill-tracker-body" id="billTrackerBody">
-            <div id="billKeyPrompt" class="bill-key-prompt" style="display:none;">
-              <div style="font-size:12px;color:var(--text-3);margin-bottom:10px;">법안을 추적하려면 국회 Open API 키가 필요합니다.</div>
-              <button class="btn-primary" onclick="openAssemblyModal()">API 키 입력</button>
-            </div>
-            <div id="billSearchArea" style="display:none;">
-              <div class="bill-search-row">
-                <input class="bill-search-input" type="text" id="billSearchInput" placeholder="예: 전기통신사업법" onkeydown="if(event.key==='Enter')billSearch()">
-                <button class="btn-primary" onclick="billSearch()">검색</button>
-                <button class="btn-outline" onclick="openAssemblyModal()" title="API 키 변경">키 변경</button>
-              </div>
-              <div class="bill-search-results" id="billSearchResults"></div>
-              <div id="billTrackedList"></div>
-            </div>
-          </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:18px;">
+          <span style="font-size:12px;color:var(--text-2);">법안 입법절차 추적은 전용 탭에서 관리합니다.</span>
+          <button class="btn-outline" style="font-size:12px;" onclick="navTo('bills',document.querySelector('[data-page=bills]'))">법안 모니터링 →</button>
         </div>
 
         <div id="calList"></div>
@@ -710,6 +764,33 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
         </div>
       </div>
     </div><!-- /page-calendar -->
+
+    <!-- ── PAGE: BILLS MONITORING ── -->
+    <div id="page-bills" class="page" hidden>
+      <div class="page-inner">
+        <div class="bills-toolbar">
+          <div>
+            <div class="page-title">국회 법안 모니터링</div>
+            <div class="page-desc" style="margin-bottom:0;">전기통신사업법 등 주요 법안의 입법절차 단계를 실시간으로 확인합니다.</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0;">
+            <button class="btn-outline" id="billsRefreshBtn" onclick="billsRefreshAll()">↻ 동기화</button>
+            <button class="btn-primary" onclick="billsOpenSearch()">+ 법안 추가</button>
+          </div>
+        </div>
+        <div id="billsNoKey" style="display:none;background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:28px;text-align:center;margin-bottom:20px;">
+          <div style="font-size:13px;color:var(--text-2);margin-bottom:12px;">국회 Open API 키를 등록하면 실시간 법안 진행 현황을 확인할 수 있습니다.</div>
+          <button class="btn-primary" onclick="openAssemblyModal()">API 키 등록</button>
+        </div>
+        <div class="bills-filter-row" id="billsFilterRow" style="margin-bottom:16px;">
+          <button class="bills-filter-chip active" onclick="billsSetFilter('all',this)">전체</button>
+          <button class="bills-filter-chip" onclick="billsSetFilter('계류중',this)">계류중</button>
+          <button class="bills-filter-chip" onclick="billsSetFilter('가결',this)">가결</button>
+          <button class="bills-filter-chip" onclick="billsSetFilter('폐기',this)">폐기·부결</button>
+        </div>
+        <div id="billsList"></div>
+      </div>
+    </div><!-- /page-bills -->
 
     <!-- ── PAGE: INTL COMPARISON ── -->
     <div id="page-intl" class="page" hidden>
@@ -788,6 +869,10 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
 <button class="bottom-nav-item" onclick="navTo('calendar',this)" data-bn="calendar">
     <svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="14" rx="2"/><line x1="6" y1="2" x2="6" y2="6"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="2" y1="9" x2="18" y2="9"/></svg>
     캘린더
+  </button>
+  <button class="bottom-nav-item" onclick="navTo('bills',this)" data-bn="bills">
+    <svg viewBox="0 0 20 20"><path d="M4 2h9l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><polyline points="13,2 13,7 18,7"/><line x1="6" y1="11" x2="14" y2="11"/><line x1="6" y1="14" x2="10" y2="14"/></svg>
+    법안
   </button>
   <button class="bottom-nav-item" onclick="navTo('report',this)" data-bn="report">
     <svg viewBox="0 0 20 20"><path d="M5 2h8l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><polyline points="13,2 13,7 18,7"/></svg>
@@ -869,7 +954,8 @@ function navTo(page,triggerEl){
   // page-specific init
   if(page==='saved') renderSaved();
   if(page==='report') renderReport();
-  if(page==='calendar'){ calRender(); billTrackerInit(); }
+  if(page==='calendar') calRender();
+  if(page==='bills') billsRender();
   if(page==='intl') intlRender();
 
   window.scrollTo(0,0);
@@ -1320,126 +1406,243 @@ function calAddEvent(){
 }
 
 /* ════════════════════════════════════
-   BILL TRACKER (국회 Open API)
+   BILLS PAGE (국회 법안 모니터링)
 ════════════════════════════════════ */
 var ASSEMBLY_API_BASE='https://open.assembly.go.kr/portal/openapi/';
 var BILL_STAGES=[
-  {key:'PROPOSE_DT',label:'발의'},
-  {key:'CURR_COMMITTEE_DT',label:'소관위 회부'},
-  {key:'COMMITTEE_DT',label:'위원회 의결'},
-  {key:'LAW_PROC_DT',label:'법사위 체계자구'},
-  {key:'PROC_DT',label:'본회의 의결'},
-  {key:'PROM_DT',label:'공포'}
+  {key:'PROPOSE_DT',     label:'발의'},
+  {key:'CURR_COMMITTEE_DT', label:'소관위 회부'},
+  {key:'COMMITTEE_DT',  label:'위원회 의결'},
+  {key:'LAW_PROC_DT',   label:'법사위'},
+  {key:'PROC_DT',       label:'본회의 의결'},
+  {key:'PROM_DT',       label:'공포'}
 ];
+var BILLS_FILTER='all';
 
-function billTrackerToggle(){
-  document.getElementById('billTrackerBody').classList.toggle('open');
-  document.getElementById('billTrackerChev').classList.toggle('open');
-  billTrackerInit();
-}
-
-function billTrackerInit(){
-  var key=localStorage.getItem('tw_assembly_key')||'';
-  if(!key){
-    document.getElementById('billKeyPrompt').style.display='block';
-    document.getElementById('billSearchArea').style.display='none';
-    return;
-  }
-  document.getElementById('billKeyPrompt').style.display='none';
-  document.getElementById('billSearchArea').style.display='block';
-  billRenderTracked();
-}
-
-function billLoadTracked(){
+function billsLoad(){
   try{ return JSON.parse(localStorage.getItem('tw_tracked_bills'))||[]; }
-  catch(err){ return []; }
+  catch(e){ return []; }
 }
-function billSaveTracked(list){ localStorage.setItem('tw_tracked_bills',JSON.stringify(list)); }
+function billsSave(list){ localStorage.setItem('tw_tracked_bills',JSON.stringify(list)); }
 
-function billSearch(){
-  var key=localStorage.getItem('tw_assembly_key')||'';
-  var q=document.getElementById('billSearchInput').value.trim();
-  if(!key){ openAssemblyModal(); return; }
-  if(!q){ toast('검색할 법안명을 입력해주세요.'); return; }
-  var resBox=document.getElementById('billSearchResults');
-  resBox.innerHTML='<div style="font-size:12px;color:var(--text-3);padding:8px 0;">검색 중...</div>';
-  var url=ASSEMBLY_API_BASE+'BILLINFOLIST?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=15&BILL_NAME='+encodeURIComponent(q);
-  fetch(url).then(function(r){return r.json();}).then(function(data){
-    var rows=null;
-    try{
-      var sec=data['BILLINFOLIST'];
-      for(var i=0;i<sec.length;i++){ if(sec[i].row){ rows=sec[i].row; break; } }
-    }catch(err){}
-    if(!rows||!rows.length){
-      resBox.innerHTML='<div style="font-size:12px;color:var(--text-3);padding:8px 0;">검색 결과가 없습니다.</div>';
-      return;
-    }
-    resBox.innerHTML=rows.map(function(b){
-      return '<div class="bill-result-item">'
-        +'<div><div class="bill-result-name">'+e(b.BILL_NAME||'')+'</div>'
-        +'<div class="bill-result-meta">'+e(b.PROPOSER||'')+' · '+e(b.PROPOSE_DT||'')+'</div></div>'
-        +'<button class="btn-outline" onclick=\'billAddTracked('+JSON.stringify(b).replace(/'/g,"&#39;")+')\'>추적 추가</button>'
-        +'</div>';
-    }).join('');
-  }).catch(function(err){
-    resBox.innerHTML='<div style="font-size:12px;color:#EF4444;padding:8px 0;">조회 실패: API 키 또는 네트워크를 확인해주세요.</div>';
-  });
-}
-
-function billAddTracked(bill){
-  var list=billLoadTracked();
-  if(list.some(function(b){return b.BILL_ID===bill.BILL_ID;})){
-    toast('이미 추적 중인 법안입니다.');
-    return;
-  }
-  list.push(bill);
-  billSaveTracked(list);
-  billRenderTracked();
-  toast('법안을 추적 목록에 추가했어요.');
-}
-
-function billRemoveTracked(billId){
-  var list=billLoadTracked().filter(function(b){return b.BILL_ID!==billId;});
-  billSaveTracked(list);
-  billRenderTracked();
-}
-
-function billFmtDate(s){
-  if(!s||s.length!==8) return '';
+function billsFmtDate(s){
+  if(!s||s.length<8) return '';
   return s.slice(0,4)+'.'+s.slice(4,6)+'.'+s.slice(6,8);
 }
 
-function billRenderTracked(){
-  var list=billLoadTracked();
-  var box=document.getElementById('billTrackedList');
-  if(!list.length){ box.innerHTML=''; return; }
-  box.innerHTML=list.map(function(b){
-    var stagesHtml=BILL_STAGES.map(function(s){
+function billsProcClass(r){
+  if(!r) return 'pending';
+  if(r.indexOf('가결')>=0||r.indexOf('원안')>=0||r.indexOf('수정')>=0) return 'passed';
+  if(r.indexOf('부결')>=0||r.indexOf('폐기')>=0||r.indexOf('철회')>=0||r.indexOf('임기')>=0) return 'rejected';
+  if(r.indexOf('계류')>=0||r==='-') return 'pending';
+  return 'other';
+}
+
+function billsCurrentStage(b){
+  var last=0;
+  BILL_STAGES.forEach(function(s,i){ if(b[s.key]) last=i; });
+  return last;
+}
+
+function billsRender(){
+  var key=localStorage.getItem('tw_assembly_key')||'';
+  var noKeyEl=document.getElementById('billsNoKey');
+  var filterRow=document.getElementById('billsFilterRow');
+  if(!key){
+    noKeyEl.style.display='block';
+    filterRow.style.display='none';
+    document.getElementById('billsList').innerHTML='';
+    return;
+  }
+  noKeyEl.style.display='none';
+  filterRow.style.display='flex';
+
+  var list=billsLoad();
+  var filtered=list.filter(function(b){
+    if(BILLS_FILTER==='all') return true;
+    if(BILLS_FILTER==='계류중') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='pending';
+    if(BILLS_FILTER==='가결') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='passed';
+    if(BILLS_FILTER==='폐기') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='rejected';
+    return true;
+  });
+
+  var box=document.getElementById('billsList');
+  if(!list.length){
+    box.innerHTML='<div class="bills-empty">추적 중인 법안이 없습니다.<br><span style="font-size:12px;">+ 법안 추가 버튼으로 전기통신사업법 등을 검색해 추가하세요.</span></div>';
+    return;
+  }
+  if(!filtered.length){
+    box.innerHTML='<div class="bills-empty">해당 상태의 법안이 없습니다.</div>';
+    return;
+  }
+
+  box.innerHTML=filtered.map(function(b){
+    var cur=billsCurrentStage(b);
+    var procResult=b.PROC_RESULT||'-';
+    var procCls=billsProcClass(procResult);
+    var pipeline=BILL_STAGES.map(function(s,i){
       var v=b[s.key];
-      var done=!!v;
-      return '<div class="bill-stage'+(done?' done':'')+'">'
-        +'<div class="bill-stage-dot"></div>'
-        +'<div class="bill-stage-label">'+s.label+'</div>'
-        +'<div class="bill-stage-date">'+(done?billFmtDate(v):'-')+'</div>'
+      var cls=v?'done':'';
+      if(i===cur&&v) cls='done current';
+      return '<div class="bills-stage '+cls+'">'
+        +'<div class="bills-stage-dot"></div>'
+        +'<div class="bills-stage-name">'+s.label+'</div>'
+        +'<div class="bills-stage-date">'+(v?billsFmtDate(v):'')+'</div>'
         +'</div>';
     }).join('');
-    return '<div class="bill-card">'
-      +'<div class="bill-card-hdr">'
-      +'<div><div class="bill-name">'+e(b.BILL_NAME||'')+(b.PROC_RESULT?'<span class="bill-status">'+e(b.PROC_RESULT)+'</span>':'')+'</div>'
-      +'<div class="bill-meta">'+e(b.PROPOSER||'')+' · 의안번호 '+e(b.BILL_NO||'')+'</div></div>'
-      +'<button class="tbl-del" onclick="billRemoveTracked(\''+b.BILL_ID+'\')">삭제</button>'
+
+    var billUrl='https://likms.assembly.go.kr/bill/billDetail.do?billId='+encodeURIComponent(b.BILL_ID||'');
+    var age=b.AGE?b.AGE+'대':'';
+
+    return '<div class="bills-card" id="bc-'+e(b.BILL_ID||'')+'">'
+      +'<div class="bills-card-top">'
+      +'<div style="flex:1;">'
+      +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">'
+      +(age?'<span class="bills-age">'+age+'</span>':'')
+      +'<span class="bills-proc-chip '+procCls+'">'+e(procResult)+'</span>'
       +'</div>'
-      +'<div class="bill-stages">'+stagesHtml+'</div>'
-      +'<div class="bill-card-actions">'
-      +(b.LINK_URL?'<a class="bill-link-btn" href="'+e(b.LINK_URL)+'" target="_blank" rel="noopener">국회 의안정보시스템에서 보기 →</a>':'')
-      +'<button class="btn-outline" onclick="billPushToCalendar(\''+b.BILL_ID+'\')">캘린더에 일정 추가</button>'
+      +'<div class="bills-card-title">'+e(b.BILL_NAME||'')+'</div>'
+      +'<div class="bills-card-meta">'+e(b.PROPOSER||'')+(b.BILL_NO?' &nbsp;·&nbsp; 의안번호 '+e(b.BILL_NO):'')+'</div>'
+      +'</div>'
+      +'<div style="display:flex;gap:6px;flex-shrink:0;">'
+      +'<button class="btn-outline" style="font-size:11px;padding:5px 10px;" onclick="billsRefreshOne(\''+e(b.BILL_ID||'')+'\')">↻</button>'
+      +'<button class="tbl-del" onclick="billsRemove(\''+e(b.BILL_ID||'')+'\')">삭제</button>'
+      +'</div>'
+      +'</div>'
+      +'<div class="bills-pipeline">'+pipeline+'</div>'
+      +'<div class="bills-card-footer">'
+      +'<a class="bills-link" href="'+billUrl+'" target="_blank" rel="noopener">국회 의안정보시스템 →</a>'
+      +'<button class="btn-outline" style="font-size:11px;padding:5px 12px;" onclick="billsPushToCalendar(\''+e(b.BILL_ID||'')+'\')">캘린더에 추가</button>'
       +'</div>'
       +'</div>';
   }).join('');
 }
 
-function billPushToCalendar(billId){
-  var list=billLoadTracked();
+function billsSetFilter(f, el){
+  BILLS_FILTER=f;
+  document.querySelectorAll('.bills-filter-chip').forEach(function(c){c.classList.remove('active');});
+  el.classList.add('active');
+  billsRender();
+}
+
+function billsOpenSearch(){
+  var key=localStorage.getItem('tw_assembly_key')||'';
+  if(!key){ openAssemblyModal(); return; }
+  document.getElementById('billsSearchModal').classList.add('open');
+  document.getElementById('billsSearchInput').focus();
+}
+function billsCloseSearch(){
+  document.getElementById('billsSearchModal').classList.remove('open');
+  document.getElementById('billsSearchResults').innerHTML='<div class="bills-search-empty">검색어를 입력하고 검색 버튼을 누르세요.</div>';
+  document.getElementById('billsSearchInput').value='';
+}
+
+function billsDoSearch(){
+  var key=localStorage.getItem('tw_assembly_key')||'';
+  var q=document.getElementById('billsSearchInput').value.trim();
+  if(!q){ toast('검색할 법안명을 입력해주세요.'); return; }
+  var box=document.getElementById('billsSearchResults');
+  box.innerHTML='<div class="bills-search-empty">검색 중...</div>';
+  var url=ASSEMBLY_API_BASE+'BILLINFOLIST?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=20&BILL_NAME='+encodeURIComponent(q);
+  fetch(url).then(function(r){return r.json();}).then(function(data){
+    var rows=null;
+    try{
+      var sec=data['BILLINFOLIST'];
+      for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
+    }catch(err){}
+    if(!rows||!rows.length){
+      box.innerHTML='<div class="bills-search-empty">검색 결과가 없습니다.<br>법안명을 더 구체적으로 입력해보세요.</div>';
+      return;
+    }
+    var tracked=billsLoad();
+    var trackedIds=tracked.map(function(b){return b.BILL_ID;});
+    box.innerHTML=rows.map(function(b){
+      var isTracked=trackedIds.indexOf(b.BILL_ID)>=0;
+      var dt=b.PROPOSE_DT?b.PROPOSE_DT.slice(0,4)+'.'+b.PROPOSE_DT.slice(4,6)+'.'+b.PROPOSE_DT.slice(6,8):'';
+      var procCls=billsProcClass(b.PROC_RESULT||'');
+      return '<div class="bills-result-row">'
+        +'<div style="flex:1;">'
+        +'<div class="bills-result-name">'+e(b.BILL_NAME||'')
+        +(b.PROC_RESULT?'&nbsp;<span class="bills-proc-chip '+procCls+'" style="font-size:9px;">'+e(b.PROC_RESULT)+'</span>':'')
+        +'</div>'
+        +'<div class="bills-result-meta">'+e(b.PROPOSER||'')+(dt?' · 발의 '+dt:'')+(b.AGE?' · '+b.AGE+'대':'')+'</div>'
+        +'</div>'
+        +(isTracked
+          ?'<span style="font-size:11px;color:var(--text-3);">추적 중</span>'
+          :'<button class="btn-primary" style="font-size:11px;padding:5px 12px;white-space:nowrap;" onclick=\'billsAddFromSearch('+JSON.stringify(b).replace(/'/g,"&#39;")+')\'>추가</button>')
+        +'</div>';
+    }).join('');
+  }).catch(function(){
+    box.innerHTML='<div class="bills-search-empty" style="color:#EF4444;">API 오류가 발생했습니다.<br>API 키 또는 네트워크를 확인해주세요.</div>';
+  });
+}
+
+function billsAddFromSearch(bill){
+  var list=billsLoad();
+  if(list.some(function(b){return b.BILL_ID===bill.BILL_ID;})){
+    toast('이미 추적 중인 법안입니다.');
+    return;
+  }
+  list.unshift(bill);
+  billsSave(list);
+  billsRender();
+  billsCloseSearch();
+  toast('법안을 추가했어요.');
+}
+
+function billsRemove(billId){
+  billsSave(billsLoad().filter(function(b){return b.BILL_ID!==billId;}));
+  billsRender();
+}
+
+function billsRefreshOne(billId){
+  var key=localStorage.getItem('tw_assembly_key')||'';
+  var list=billsLoad();
+  var bill=list.filter(function(b){return b.BILL_ID===billId;})[0];
+  if(!bill||!key) return;
+  var card=document.getElementById('bc-'+billId);
+  if(card) card.style.opacity='0.5';
+  var url=ASSEMBLY_API_BASE+'BILLINFOLIST?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=10&BILL_NAME='+encodeURIComponent(bill.BILL_NAME||'');
+  fetch(url).then(function(r){return r.json();}).then(function(data){
+    var rows=null;
+    try{
+      var sec=data['BILLINFOLIST'];
+      for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
+    }catch(e){}
+    if(rows){
+      var fresh=rows.filter(function(r){return r.BILL_ID===billId;})[0]||rows[0];
+      if(fresh){
+        var idx=list.findIndex?list.findIndex(function(b){return b.BILL_ID===billId;}):
+          (function(){for(var i=0;i<list.length;i++){if(list[i].BILL_ID===billId)return i;}return -1;})();
+        if(idx>=0){ list[idx]=fresh; billsSave(list); }
+        toast('동기화 완료');
+      }
+    }
+    billsRender();
+  }).catch(function(){
+    if(card) card.style.opacity='1';
+    toast('동기화 실패 — 네트워크를 확인해주세요.');
+  });
+}
+
+function billsRefreshAll(){
+  var key=localStorage.getItem('tw_assembly_key')||'';
+  var list=billsLoad();
+  if(!key||!list.length){ toast('추적 중인 법안이 없습니다.'); return; }
+  var btn=document.getElementById('billsRefreshBtn');
+  if(btn){ btn.disabled=true; btn.textContent='동기화 중...'; }
+  var done=0;
+  list.forEach(function(bill){
+    setTimeout(function(){
+      billsRefreshOne(bill.BILL_ID);
+      done++;
+      if(done===list.length && btn){ btn.disabled=false; btn.textContent='↻ 동기화'; }
+    }, done*600);
+  });
+}
+
+function billsPushToCalendar(billId){
+  var list=billsLoad();
   var b=list.filter(function(x){return x.BILL_ID===billId;})[0];
   if(!b) return;
   var events=calLoad();
@@ -1448,17 +1651,18 @@ function billPushToCalendar(billId){
     var v=b[s.key];
     if(!v) return;
     var date=v.slice(0,4)+'-'+v.slice(4,6)+'-'+v.slice(6,8);
-    var title=(b.BILL_NAME||'')+' - '+s.label;
-    var exists=events.some(function(ev){return ev.date===date&&ev.title===title;});
-    if(!exists){
+    var title=(b.BILL_NAME||'')+' — '+s.label;
+    if(!events.some(function(ev){return ev.date===date&&ev.title===title;})){
       events.push({date:date,title:title,org:'국회',country:'국내',imp:'mid'});
       added++;
     }
   });
   calSave(events);
-  calRender();
-  toast(added?added+'건의 일정을 캘린더에 추가했어요.':'추가할 새 일정이 없어요 (이미 등록됨).');
+  toast(added?added+'건 캘린더에 추가했어요.':'추가할 새 일정이 없어요.');
 }
+
+/* ── calendar page init also calls billsRender for key check ── */
+function billTrackerInit(){ /* no-op: replaced by billsRender */ }
 
 /* ════════════════════════════════════
    PAGE: REPORT
