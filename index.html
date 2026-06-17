@@ -561,6 +561,23 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
   </div>
 </div>
 
+<!-- ── ADMIN AUTH OVERLAY ── -->
+<div id="adminAuthOverlay" style="position:fixed;inset:0;z-index:900;align-items:center;justify-content:center;padding:24px 20px;background:rgba(8,6,28,0.65);backdrop-filter:blur(6px);display:none;">
+  <div style="background:var(--surface);border-radius:20px;width:100%;max-width:360px;padding:32px 28px;box-shadow:0 32px 80px rgba(8,6,28,0.32);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="var(--blue)" stroke-width="1.8"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg>
+      <span style="font-size:16px;font-weight:700;color:var(--text);">관리자 인증</span>
+    </div>
+    <p style="font-size:12px;color:var(--text-3);margin-bottom:20px;">설정 패널은 운영자만 접근할 수 있습니다.</p>
+    <input id="adminPwInput" type="password" placeholder="비밀번호 입력" style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:0.5px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;margin-bottom:8px;">
+    <div id="adminPwError" style="display:none;font-size:11px;color:#DC2626;margin-bottom:10px;"></div>
+    <div style="display:flex;gap:8px;margin-top:4px;">
+      <button onclick="adminClose()" style="flex:1;padding:11px;border-radius:10px;border:0.5px solid var(--border);background:none;color:var(--text-2);font-size:13px;cursor:pointer;">취소</button>
+      <button onclick="adminSubmit()" style="flex:1;padding:11px;border-radius:10px;border:none;background:var(--blue);color:#fff;font-size:13px;font-weight:600;cursor:pointer;">확인</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── BILL DETAIL MODAL ── -->
 <div id="billDetailModal">
   <div style="position:fixed;inset:0;background:rgba(8,6,28,0.6);backdrop-filter:blur(4px);" onclick="closeBillDetail()"></div>
@@ -1061,7 +1078,15 @@ function openSearch(){document.getElementById('searchBar').classList.add('open')
 function closeSearch(){document.getElementById('searchBar').classList.remove('open');document.getElementById('searchInput').value='';render();}
 
 /* ─── SETTINGS ─── */
-function openSettings(){document.getElementById('settingsPanel').classList.add('open');document.getElementById('settingsBg').classList.add('open');renderMiniCal();}
+function openSettings(){
+  if(!adminIsAuthed()){
+    adminPrompt(function(){ openSettings(); });
+    return;
+  }
+  document.getElementById('settingsPanel').classList.add('open');
+  document.getElementById('settingsBg').classList.add('open');
+  renderMiniCal();
+}
 function closeSettings(){document.getElementById('settingsPanel').classList.remove('open');document.getElementById('settingsBg').classList.remove('open');}
 
 /* ─── REFRESH ─── */
@@ -2391,6 +2416,55 @@ function saveMemo(id,val){
 
 /* ─── initial nav state ─── */
 document.getElementById('homeRegionNav').style.display='flex';
+
+/* ─── ADMIN AUTH ─── */
+var ADMIN_HASH='b5216bb9d5a2d834b4ec9d8a8d89e3a8e2cae50e503b8f098a2b0347fa785c48';
+var ADMIN_TOKEN_KEY='tw_admin_token';
+
+function adminIsAuthed(){
+  var t=sessionStorage.getItem(ADMIN_TOKEN_KEY);
+  return t===ADMIN_HASH;
+}
+
+async function adminCheckPw(pw){
+  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+}
+
+function adminPrompt(onSuccess){
+  var overlay=document.getElementById('adminAuthOverlay');
+  overlay.style.display='flex';
+  document.getElementById('adminPwInput').value='';
+  document.getElementById('adminPwError').style.display='none';
+  setTimeout(function(){document.getElementById('adminPwInput').focus();},80);
+  window._adminOnSuccess=onSuccess;
+}
+
+function adminClose(){
+  document.getElementById('adminAuthOverlay').style.display='none';
+  window._adminOnSuccess=null;
+}
+
+function adminSubmit(){
+  var pw=document.getElementById('adminPwInput').value;
+  adminCheckPw(pw).then(function(hash){
+    if(hash===ADMIN_HASH){
+      sessionStorage.setItem(ADMIN_TOKEN_KEY,hash);
+      adminClose();
+      if(typeof window._adminOnSuccess==='function') window._adminOnSuccess();
+    } else {
+      var err=document.getElementById('adminPwError');
+      err.textContent='비밀번호가 맞지 않습니다.';
+      err.style.display='block';
+      document.getElementById('adminPwInput').value='';
+      document.getElementById('adminPwInput').focus();
+    }
+  });
+}
+
+document.getElementById('adminPwInput').addEventListener('keydown',function(e){
+  if(e.key==='Enter') adminSubmit();
+});
 </script>
 </body>
 </html>
