@@ -1847,12 +1847,16 @@ function billsSummaryCardHtml(bill){
 }
 
 function billsFmtDate(s){
-  if(!s||s.length<8) return '';
-  return s.slice(0,4)+'.'+s.slice(4,6)+'.'+s.slice(6,8);
+  if(!s) return '';
+  var c=s.replace(/-/g,'');
+  if(c.length<8) return '';
+  return c.slice(0,4)+'.'+c.slice(4,6)+'.'+c.slice(6,8);
 }
 function billsFmtDateShort(s){
-  if(!s||s.length<8) return '';
-  return s.slice(4,6)+'.'+s.slice(6,8);
+  if(!s) return '';
+  var c=s.replace(/-/g,'');
+  if(c.length<8) return '';
+  return c.slice(4,6)+'.'+c.slice(6,8);
 }
 
 function billsProcClass(r){
