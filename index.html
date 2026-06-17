@@ -782,11 +782,26 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
           <div style="font-size:13px;color:var(--text-2);margin-bottom:12px;">국회 Open API 키를 등록하면 실시간 법안 진행 현황을 확인할 수 있습니다.</div>
           <button class="btn-primary" onclick="openAssemblyModal()">API 키 등록</button>
         </div>
-        <div class="bills-filter-row" id="billsFilterRow" style="margin-bottom:16px;">
-          <button class="bills-filter-chip active" onclick="billsSetFilter('all',this)">전체</button>
-          <button class="bills-filter-chip" onclick="billsSetFilter('계류중',this)">계류중</button>
-          <button class="bills-filter-chip" onclick="billsSetFilter('가결',this)">가결</button>
-          <button class="bills-filter-chip" onclick="billsSetFilter('폐기',this)">폐기·부결</button>
+        <!-- 자동 추적 키워드 -->
+        <div id="billsKeywordBox" style="display:none;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:12px;font-weight:600;color:var(--text);">자동 추적 키워드</span>
+            <span style="font-size:11px;color:var(--text-3);">동기화 시 계류중·가결 법안 자동 반영</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;" id="billsKeywordList"></div>
+          <div style="display:flex;gap:6px;margin-top:8px;" id="billsKeywordAdd">
+            <input id="billsKwInput" class="bill-search-input" style="max-width:200px;" placeholder="키워드 추가 (예: 방송통신발전법)" onkeydown="if(event.key==='Enter')billsAddKeyword()">
+            <button class="btn-outline" style="font-size:11px;padding:5px 10px;" onclick="billsAddKeyword()">추가</button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+          <div class="bills-filter-row" id="billsFilterRow">
+            <button class="bills-filter-chip active" onclick="billsSetFilter('all',this)">전체</button>
+            <button class="bills-filter-chip" onclick="billsSetFilter('계류중',this)">계류중</button>
+            <button class="bills-filter-chip" onclick="billsSetFilter('가결',this)">가결</button>
+            <button class="bills-filter-chip" onclick="billsSetFilter('폐기',this)">폐기·부결</button>
+          </div>
+          <span id="billsSyncStatus" style="font-size:11px;color:var(--text-3);"></span>
         </div>
         <div id="billsList"></div>
       </div>
@@ -955,7 +970,7 @@ function navTo(page,triggerEl){
   if(page==='saved') renderSaved();
   if(page==='report') renderReport();
   if(page==='calendar') calRender();
-  if(page==='bills') billsRender();
+  if(page==='bills'){ billsRender(); billsAutoSync(function(){ billsRender(); }); }
   if(page==='intl') intlRender();
 
   window.scrollTo(0,0);
@@ -1418,6 +1433,90 @@ var BILL_STAGES=[
   {key:'PROM_DT',       label:'공포'}
 ];
 var BILLS_FILTER='all';
+var BILLS_KW_KEY='tw_bill_keywords';
+var BILLS_DEFAULT_KW=['전기통신사업법'];
+
+function billsLoadKw(){
+  try{ return JSON.parse(localStorage.getItem(BILLS_KW_KEY))||BILLS_DEFAULT_KW; }
+  catch(e){ return BILLS_DEFAULT_KW.slice(); }
+}
+function billsSaveKw(kw){ localStorage.setItem(BILLS_KW_KEY,JSON.stringify(kw)); }
+
+function billsRenderKeywords(){
+  var kw=billsLoadKw();
+  var box=document.getElementById('billsKeywordList');
+  if(!box) return;
+  box.innerHTML=kw.map(function(k){
+    return '<span style="display:inline-flex;align-items:center;gap:4px;background:var(--blue-lite);color:var(--blue);border-radius:20px;padding:3px 10px;font-size:12px;font-weight:500;">'
+      +e(k)
+      +'<button onclick="billsRemoveKeyword(\''+e(k)+'\')" style="background:none;border:none;cursor:pointer;color:var(--blue);font-size:13px;line-height:1;padding:0 0 0 2px;">×</button>'
+      +'</span>';
+  }).join('');
+}
+
+function billsAddKeyword(){
+  var inp=document.getElementById('billsKwInput');
+  var v=(inp.value||'').trim();
+  if(!v){ toast('키워드를 입력해주세요.'); return; }
+  var kw=billsLoadKw();
+  if(kw.indexOf(v)>=0){ toast('이미 추가된 키워드입니다.'); return; }
+  kw.push(v);
+  billsSaveKw(kw);
+  inp.value='';
+  billsRenderKeywords();
+  toast('"'+v+'" 키워드를 추가했어요. 동기화 버튼을 눌러 법안을 불러오세요.');
+}
+
+function billsRemoveKeyword(k){
+  var kw=billsLoadKw().filter(function(x){return x!==k;});
+  billsSaveKw(kw);
+  billsRenderKeywords();
+}
+
+function billsAutoSync(onDone){
+  var key=localStorage.getItem('tw_assembly_key')||'';
+  var kw=billsLoadKw();
+  if(!key||!kw.length){ if(onDone) onDone(); return; }
+  var status=document.getElementById('billsSyncStatus');
+  if(status) status.textContent='키워드 법안 조회 중…';
+
+  var pending=kw.length;
+  var allFetched=[];
+
+  kw.forEach(function(keyword){
+    var url=ASSEMBLY_API_BASE+'BILLINFOLIST?KEY='+encodeURIComponent(key)
+      +'&Type=json&pIndex=1&pSize=100&BILL_NAME='+encodeURIComponent(keyword);
+    fetch(url).then(function(r){return r.json();}).then(function(data){
+      var rows=[];
+      try{
+        var sec=data['BILLINFOLIST'];
+        for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
+      }catch(er){}
+      // 계류중(pending) + 가결(passed) 만 포함, 폐기·부결 제외
+      rows.forEach(function(b){
+        var cls=billsProcClass(b.PROC_RESULT||'');
+        if(cls==='pending'||cls==='passed') allFetched.push(b);
+      });
+    }).catch(function(){}).then(function(){
+      pending--;
+      if(pending===0){
+        // 기존 목록과 병합
+        var list=billsLoad();
+        var changed=0;
+        allFetched.forEach(function(b){
+          var idx=-1;
+          for(var i=0;i<list.length;i++){ if(list[i].BILL_ID===b.BILL_ID){idx=i;break;} }
+          if(idx>=0){ list[idx]=b; changed++; }
+          else{ list.unshift(b); changed++; }
+        });
+        billsSave(list);
+        var msg='총 '+list.length+'건 ('+allFetched.length+'건 자동 반영)';
+        if(status) status.textContent=msg;
+        if(onDone) onDone();
+      }
+    });
+  });
+}
 
 function billsLoad(){
   try{ return JSON.parse(localStorage.getItem('tw_tracked_bills'))||[]; }
@@ -1448,14 +1547,18 @@ function billsRender(){
   var key=localStorage.getItem('tw_assembly_key')||'';
   var noKeyEl=document.getElementById('billsNoKey');
   var filterRow=document.getElementById('billsFilterRow');
+  var kwBox=document.getElementById('billsKeywordBox');
   if(!key){
     noKeyEl.style.display='block';
-    filterRow.style.display='none';
+    if(filterRow) filterRow.style.display='none';
+    if(kwBox) kwBox.style.display='none';
     document.getElementById('billsList').innerHTML='';
     return;
   }
   noKeyEl.style.display='none';
-  filterRow.style.display='flex';
+  if(filterRow) filterRow.style.display='flex';
+  if(kwBox) kwBox.style.display='block';
+  billsRenderKeywords();
 
   var list=billsLoad();
   var filtered=list.filter(function(b){
@@ -1627,17 +1730,13 @@ function billsRefreshOne(billId){
 
 function billsRefreshAll(){
   var key=localStorage.getItem('tw_assembly_key')||'';
-  var list=billsLoad();
-  if(!key||!list.length){ toast('추적 중인 법안이 없습니다.'); return; }
+  if(!key){ openAssemblyModal(); return; }
   var btn=document.getElementById('billsRefreshBtn');
   if(btn){ btn.disabled=true; btn.textContent='동기화 중...'; }
-  var done=0;
-  list.forEach(function(bill){
-    setTimeout(function(){
-      billsRefreshOne(bill.BILL_ID);
-      done++;
-      if(done===list.length && btn){ btn.disabled=false; btn.textContent='↻ 동기화'; }
-    }, done*600);
+  billsAutoSync(function(){
+    billsRender();
+    if(btn){ btn.disabled=false; btn.textContent='↻ 동기화'; }
+    toast('동기화 완료');
   });
 }
 
