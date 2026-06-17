@@ -1523,7 +1523,7 @@ function billsAutoSync(onDone){
 
   kw.forEach(function(keyword){
     var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)
-      +'&Type=json&pIndex=1&pSize=100&BILL_NAME='+encodeURIComponent(keyword);
+      +'&Type=json&pIndex=1&pSize=100&AGE=22&BILL_NAME='+encodeURIComponent(keyword);
     fetch(url).then(function(r){return r.json();}).then(function(data){
       if(data && data.RESULT && data.RESULT.CODE && data.RESULT.CODE!=='INFO-000'){
         syncError=data.RESULT.CODE+': '+data.RESULT.MESSAGE;
@@ -1692,7 +1692,7 @@ function billsDoSearch(){
   if(!q){ toast('검색할 법안명을 입력해주세요.'); return; }
   var box=document.getElementById('billsSearchResults');
   box.innerHTML='<div class="bills-search-empty">검색 중...</div>';
-  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=20&BILL_NAME='+encodeURIComponent(q);
+  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=20&AGE=22&BILL_NAME='+encodeURIComponent(q);
   fetch(url).then(function(r){return r.json();}).then(function(data){
     if(data&&data.RESULT&&data.RESULT.CODE&&data.RESULT.CODE!=='INFO-000'){
       box.innerHTML='<div class="bills-search-empty" style="color:#EF4444;">API 오류 ('+data.RESULT.CODE+')<br>'+e(data.RESULT.MESSAGE||'')+'<br><br>🔑 키 변경 버튼으로 API 키를 확인해주세요.</div>';
@@ -1756,7 +1756,7 @@ function billsRefreshOne(billId){
   if(!bill||!key) return;
   var card=document.getElementById('bc-'+billId);
   if(card) card.style.opacity='0.5';
-  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=10&BILL_NAME='+encodeURIComponent(bill.BILL_NAME||'');
+  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=10&AGE=22&BILL_NAME='+encodeURIComponent(bill.BILL_NAME||'');
   fetch(url).then(function(r){return r.json();}).then(function(data){
     var rows=null;
     try{
