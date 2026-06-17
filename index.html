@@ -433,6 +433,14 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
 .bills-stage-name { font-size:10px; color:var(--text-3); line-height:1.3; }
 .bills-stage.done .bills-stage-name, .bills-stage.current .bills-stage-name { color:var(--text); font-weight:500; }
 .bills-stage-date { font-size:9px; color:var(--text-3); margin-top:2px; }
+.bills-card-summary { margin-top:12px; padding:11px 14px; background:var(--bg); border:0.5px solid var(--border); border-radius:10px; font-size:12px; color:var(--text-2); line-height:1.65; }
+.bills-card-summary-label { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:600; color:var(--blue); margin-bottom:5px; }
+.bills-card-summary-text { color:var(--text-2); }
+.bills-card-summary-loading { color:var(--text-3); font-size:11px; display:flex; align-items:center; gap:6px; }
+.bills-card-summary-loading::before { content:''; width:10px; height:10px; border:1.5px solid var(--border); border-top-color:var(--blue); border-radius:50%; animation:spin 0.8s linear infinite; display:inline-block; }
+.bills-card-summary-gen { display:inline-block; font-size:11px; color:var(--blue); background:none; border:0.5px solid var(--blue); border-radius:6px; padding:4px 10px; cursor:pointer; }
+.bills-card-summary-gen:hover { background:var(--blue-lite); }
+body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
 .bills-card-footer { display:flex; align-items:center; gap:10px; margin-top:14px; flex-wrap:wrap; }
 .bills-link { font-size:11px; color:var(--blue); text-decoration:none; }
 #billDetailModal { display:none; position:fixed; inset:0; z-index:650; align-items:center; justify-content:center; padding:24px 20px; }
@@ -566,6 +574,7 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
     <div class="bdm-body">
       <div id="bdmInfo"></div>
       <div id="bdmTimeline"></div>
+      <div id="bdmSummary"></div>
     </div>
     <div class="bdm-foot" id="bdmFoot"></div>
   </div>
@@ -1668,6 +1677,154 @@ function billsPurgeOld(){
   billsSave(list);
 }
 
+// ── 법안 요약 (AI) ──────────────────────────────────────────────────────────
+function billsSummaryLoad(){ try{return JSON.parse(localStorage.getItem('tw_bill_summaries'))||{};}catch(e){return{};} }
+function billsSummarySave(d){ localStorage.setItem('tw_bill_summaries',JSON.stringify(d)); }
+
+var BILLS_SUMMARY_QUEUE=[];
+var BILLS_SUMMARY_RUNNING=false;
+
+function billsSummaryQueueAll(list){
+  var cache=billsSummaryLoad();
+  var missing=list.filter(function(b){ return b.BILL_ID && !cache[b.BILL_ID]; });
+  missing.forEach(function(b){ if(BILLS_SUMMARY_QUEUE.indexOf(b.BILL_ID)<0) BILLS_SUMMARY_QUEUE.push(b.BILL_ID); });
+  if(!BILLS_SUMMARY_RUNNING && BILLS_SUMMARY_QUEUE.length) billsSummaryRunNext(list);
+}
+
+function billsSummaryRunNext(allBills){
+  if(!BILLS_SUMMARY_QUEUE.length){ BILLS_SUMMARY_RUNNING=false; return; }
+  BILLS_SUMMARY_RUNNING=true;
+  var id=BILLS_SUMMARY_QUEUE.shift();
+  var bill=(allBills||billsLoad()).filter(function(b){return b.BILL_ID===id;})[0];
+  if(!bill){ setTimeout(function(){billsSummaryRunNext(allBills);},200); return; }
+  billsSummaryFetch(bill).then(function(result){
+    if(result){
+      var cache=billsSummaryLoad();
+      cache[bill.BILL_ID]=result;
+      billsSummarySave(cache);
+      billsSummaryUpdateCard(bill.BILL_ID, result.text);
+    }
+    setTimeout(function(){billsSummaryRunNext(allBills);}, 800);
+  }).catch(function(){
+    setTimeout(function(){billsSummaryRunNext(allBills);}, 1200);
+  });
+}
+
+async function billsSummaryFetch(bill){
+  var apiKey=localStorage.getItem('tw_apikey')||'';
+  if(!apiKey) return null;
+
+  var rawText=null;
+  var billId=bill.BILL_ID||'';
+  var detailUrl=bill.LINK_URL||('https://likms.assembly.go.kr/bill/billDetail.do?billId='+encodeURIComponent(billId));
+  try{
+    var ctrl=new AbortController();
+    var tid=setTimeout(function(){ctrl.abort();},7000);
+    var proxyUrl='https://corsproxy.io/?'+encodeURIComponent(detailUrl);
+    var r=await fetch(proxyUrl,{signal:ctrl.signal});
+    clearTimeout(tid);
+    if(r.ok){
+      var html=await r.text();
+      var txt=html.replace(/<script[\s\S]*?<\/script>/gi,'')
+                  .replace(/<style[\s\S]*?<\/style>/gi,'')
+                  .replace(/<[^>]+>/g,' ')
+                  .replace(/&nbsp;/g,' ').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')
+                  .replace(/\s+/g,' ').trim();
+      var idx=txt.indexOf('제안이유');
+      if(idx>=0) rawText=txt.slice(idx,idx+2000);
+      else rawText=txt.slice(0,2000);
+    }
+  }catch(ex){ /* proxy 실패 — 법안명으로 요약 */ }
+
+  var prompt;
+  if(rawText && rawText.length>100){
+    prompt='다음은 국회 전기통신사업법 개정안 페이지의 텍스트입니다. 제안이유와 주요내용을 통신업계 실무자 관점에서 2~3문장으로 간결하게 요약하세요. 요약문만 출력하세요.\n\n'+rawText;
+  } else {
+    prompt='다음 국회 전기통신사업법 개정안의 제안이유와 주요내용을 추론하여 2~3문장으로 설명하세요. 요약문만 출력하세요.\n\n법안명: '+bill.BILL_NAME+'\n대표발의자: '+(bill.RST_PROPOSER||bill.PROPOSER||'')+'\n발의일: '+(bill.PROPOSE_DT||'')+'\n소관위: '+(bill.CURR_COMMITTEE||'');
+  }
+
+  var res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:220,messages:[{role:'user',content:prompt}]})
+  });
+  var data=await res.json();
+  var text=(data.content&&data.content[0]&&data.content[0].text)||'';
+  if(!text) return null;
+  return {text:text, fromRaw:!!rawText, ts:new Date().toISOString()};
+}
+
+function billsSummaryUpdateCard(billId, text){
+  var el=document.getElementById('bcs-'+billId);
+  if(!el) return;
+  el.innerHTML='<div class="bills-card-summary-label">✦ AI 요약</div>'
+    +'<div class="bills-card-summary-text">'+escapeHtml(text)+'</div>';
+}
+
+function billsSummaryRefresh(billId, event){
+  if(event) event.stopPropagation();
+  var apiKey=localStorage.getItem('tw_apikey')||'';
+  if(!apiKey){ alert('Claude API 키를 설정해야 요약을 생성할 수 있습니다.\n설정 > Claude API Key'); return; }
+  var bill=billsLoad().filter(function(b){return b.BILL_ID===billId;})[0];
+  if(!bill) return;
+  var el=document.getElementById('bcs-'+billId);
+  if(el) el.innerHTML='<div class="bills-card-summary-loading">요약 생성 중...</div>';
+  billsSummaryFetch(bill).then(function(result){
+    if(result){
+      var cache=billsSummaryLoad();
+      cache[bill.BILL_ID]=result;
+      billsSummarySave(cache);
+      billsSummaryUpdateCard(billId, result.text);
+    } else {
+      if(el) el.innerHTML='<span class="bills-card-summary-gen" onclick="billsSummaryRefresh(\''+billId+'\',event)">요약 생성</span>';
+    }
+  }).catch(function(){
+    if(el) el.innerHTML='<span class="bills-card-summary-gen" onclick="billsSummaryRefresh(\''+billId+'\',event)">요약 재시도</span>';
+  });
+}
+
+function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function billsSummaryRefreshModal(billId){
+  // billsSummaryFetch 완료 후 모달 내 bdmSummary 업데이트
+  var orig=billsSummaryRefresh;
+  var poll=setInterval(function(){
+    var cache=billsSummaryLoad();
+    if(cache[billId]){
+      clearInterval(poll);
+      var bdmSum=document.getElementById('bdmSummary');
+      if(!bdmSum) return;
+      bdmSum.innerHTML='<div style="padding:0 28px 20px;">'
+        +'<div style="background:var(--bg);border:0.5px solid var(--border);border-radius:12px;padding:16px 18px;">'
+        +'<div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">'
+        +'<span>✦ AI 요약</span>'
+        +'<button onclick="billsSummaryRefresh(\''+escapeHtml(billId)+'\',event);billsSummaryRefreshModal(\''+escapeHtml(billId)+'\')" style="font-size:10px;color:var(--text-3);background:none;border:none;cursor:pointer;padding:0;">새로고침</button>'
+        +'</div>'
+        +'<div style="font-size:12px;color:var(--text-2);line-height:1.7;">'+escapeHtml(cache[billId].text)+'</div>'
+        +'</div></div>';
+    }
+  },500);
+  setTimeout(function(){clearInterval(poll);},20000);
+}
+
+function billsSummaryCardHtml(bill){
+  var apiKey=localStorage.getItem('tw_apikey')||'';
+  var cache=billsSummaryLoad();
+  var cached=cache[bill.BILL_ID];
+  if(cached && cached.text){
+    return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
+      +'<div class="bills-card-summary-label">✦ AI 요약</div>'
+      +'<div class="bills-card-summary-text">'+escapeHtml(cached.text)+'</div>'
+      +'</div>';
+  }
+  if(!apiKey){
+    return ''; // API 키 없으면 표시 안 함
+  }
+  return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
+    +'<div class="bills-card-summary-loading">요약 생성 중...</div>'
+    +'</div>';
+}
+
 function billsFmtDate(s){
   if(!s||s.length<8) return '';
   return s.slice(0,4)+'.'+s.slice(4,6)+'.'+s.slice(6,8);
@@ -1734,6 +1891,9 @@ function billsRender(){
     return;
   }
 
+  BILLS_SUMMARY_QUEUE=[];
+  BILLS_SUMMARY_RUNNING=false;
+  setTimeout(function(){ billsSummaryQueueAll(filtered); }, 300);
   box.innerHTML=filtered.map(function(b){
     var cur=billsCurrentStage(b);
     var procResult=b.PROC_RESULT||'-';
@@ -1772,6 +1932,7 @@ function billsRender(){
       +'</div>'
       +'</div>'
       +'<div class="bills-pipeline">'+pipeline+'</div>'
+      +'<div onclick="event.stopPropagation()">'+billsSummaryCardHtml(b)+'</div>'
       +'<div class="bills-card-footer" onclick="event.stopPropagation()">'
       +'<a class="bills-link" href="'+billUrl+'" target="_blank" rel="noopener">국회 의안정보시스템 →</a>'
       +'<button class="btn-outline" style="font-size:11px;padding:5px 12px;" onclick="billsPushToCalendar(\''+e(b.BILL_ID||'')+'\')">캘린더에 추가</button>'
@@ -1944,6 +2105,32 @@ function openBillDetail(billId){
 
   document.getElementById('bdmInfo').innerHTML=gridHtml;
   document.getElementById('bdmTimeline').innerHTML=timelineHtml;
+
+  // ── AI 요약 ──
+  var bdmSum=document.getElementById('bdmSummary');
+  var sumCache=billsSummaryLoad();
+  var sumData=sumCache[b.BILL_ID];
+  if(sumData && sumData.text){
+    bdmSum.innerHTML='<div style="margin-top:4px;">'
+      +'<div style="background:var(--bg);border:0.5px solid var(--border);border-radius:12px;padding:16px 18px;">'
+      +'<div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">'
+      +'<span>✦ AI 요약</span>'
+      +'<button onclick="billsSummaryRefresh(\''+e(b.BILL_ID||'')+'\',event);billsSummaryRefreshModal(\''+e(b.BILL_ID||'')+'\')" style="font-size:10px;color:var(--text-3);background:none;border:none;cursor:pointer;padding:0;">새로고침</button>'
+      +'</div>'
+      +'<div style="font-size:12px;color:var(--text-2);line-height:1.7;">'+escapeHtml(sumData.text)+'</div>'
+      +'</div></div>';
+  } else {
+    var apiKey=localStorage.getItem('tw_apikey')||'';
+    if(apiKey){
+      bdmSum.innerHTML='<div style="margin-top:4px;">'
+        +'<div style="background:var(--bg);border:0.5px dashed var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;">'
+        +'<span style="font-size:12px;color:var(--text-3);">AI 요약이 아직 없습니다</span>'
+        +'<button class="bills-card-summary-gen" onclick="billsSummaryRefresh(\''+e(b.BILL_ID||'')+'\',event);billsSummaryRefreshModal(\''+e(b.BILL_ID||'')+'\')">요약 생성</button>'
+        +'</div></div>';
+    } else {
+      bdmSum.innerHTML='';
+    }
+  }
 
   // ── 하단 버튼 ──
   var bid=encodeURIComponent(b.BILL_ID||'');
