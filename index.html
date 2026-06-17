@@ -435,6 +435,15 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
 .bills-stage-date { font-size:9px; color:var(--text-3); margin-top:2px; }
 .bills-card-footer { display:flex; align-items:center; gap:10px; margin-top:14px; flex-wrap:wrap; }
 .bills-link { font-size:11px; color:var(--blue); text-decoration:none; }
+#billDetailModal { display:none; position:fixed; inset:0; z-index:650; align-items:flex-end; justify-content:center; }
+#billDetailModal.open { display:flex; }
+#billDetailSheet { position:relative; z-index:1; background:var(--surface); border-radius:20px 20px 0 0; width:100%; max-width:760px; max-height:88vh; overflow-y:auto; padding:28px 28px 48px; }
+.bdm-tag { display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap; }
+.bdm-row { display:flex; gap:6px; padding:11px 0; border-bottom:0.5px solid var(--border); font-size:13px; }
+.bdm-label { color:var(--text-3); min-width:90px; flex-shrink:0; }
+.bdm-val { color:var(--text); line-height:1.5; word-break:keep-all; }
+.bdm-doc-btn { display:inline-flex; align-items:center; gap:6px; padding:9px 18px; background:var(--blue); color:#fff; border-radius:10px; font-size:13px; font-weight:500; text-decoration:none; white-space:nowrap; border:none; cursor:pointer; font-family:inherit; }
+.bdm-doc-btn.secondary { background:transparent; border:1px solid var(--border); color:var(--text-2); }
 .bills-link:hover { text-decoration:underline; }
 .bills-age { font-size:10px; color:var(--text-3); background:var(--border); padding:2px 7px; border-radius:4px; }
 
@@ -515,6 +524,19 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
       <div class="modal-source-box" id="mSourceBox"></div>
     </div>
     <div class="modal-actions-row" id="mActions"></div>
+  </div>
+</div>
+
+<!-- ── BILL DETAIL MODAL ── -->
+<div id="billDetailModal">
+  <div style="position:fixed;inset:0;background:rgba(8,6,28,0.6);backdrop-filter:blur(3px);" onclick="closeBillDetail()"></div>
+  <div id="billDetailSheet">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;">
+      <div id="bdmHeader" style="flex:1;"></div>
+      <button onclick="closeBillDetail()" style="background:none;border:none;font-size:22px;color:var(--text-3);cursor:pointer;line-height:1;flex-shrink:0;padding:0;">×</button>
+    </div>
+    <div id="bdmBody"></div>
+    <div id="bdmDocs" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;"></div>
   </div>
 </div>
 
@@ -1461,6 +1483,7 @@ function calAddEvent(){
 ════════════════════════════════════ */
 var ASSEMBLY_API_BASE='https://open.assembly.go.kr/portal/openapi/';
 var ASSEMBLY_SVC='nzmimeepazxkubdpn'; // 의안정보 서비스명 (법률안 목록)
+var BILL_TOPIC_KW=['이동통신','통신요금','요금제','번호이동','데이터요금','MVNO','알뜰폰','로밍'];
 var BILL_STAGES=[
   {key:'PROPOSE_DT',     label:'발의'},
   {key:'CURR_COMMITTEE_DT', label:'소관위 회부'},
@@ -1538,7 +1561,11 @@ function billsAutoSync(onDone){
       }catch(er){ console.warn('파싱 오류',er); }
       rows.forEach(function(b){
         var cls=billsProcClass(b.PROC_RESULT||'');
-        if(cls==='pending'||cls==='passed') allFetched.push(b);
+        if(cls!=='pending'&&cls!=='passed') return;
+        var name=(b.BILL_NAME||'').toLowerCase();
+        var relevant=BILL_TOPIC_KW.some(function(kw){return name.indexOf(kw.toLowerCase())>=0;});
+        if(!relevant) return;
+        allFetched.push(b);
       });
     }).catch(function(err){ syncError='네트워크 오류: '+err; console.warn('fetch 오류',err); }).then(function(){
       pending--;
@@ -1643,7 +1670,7 @@ function billsRender(){
     var billUrl='https://likms.assembly.go.kr/bill/billDetail.do?billId='+encodeURIComponent(b.BILL_ID||'');
     var age=b.AGE?b.AGE+'대':'';
 
-    return '<div class="bills-card" id="bc-'+e(b.BILL_ID||'')+'">'
+    return '<div class="bills-card" id="bc-'+e(b.BILL_ID||'')+'" style="cursor:pointer;" onclick="openBillDetail(\''+e(b.BILL_ID||'')+'\')">'
       +'<div class="bills-card-top">'
       +'<div style="flex:1;">'
       +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">'
@@ -1653,13 +1680,13 @@ function billsRender(){
       +'<div class="bills-card-title">'+e(b.BILL_NAME||'')+'</div>'
       +'<div class="bills-card-meta">'+e(b.PROPOSER||'')+(b.BILL_NO?' &nbsp;·&nbsp; 의안번호 '+e(b.BILL_NO):'')+'</div>'
       +'</div>'
-      +'<div style="display:flex;gap:6px;flex-shrink:0;">'
+      +'<div style="display:flex;gap:6px;flex-shrink:0;" onclick="event.stopPropagation()">'
       +'<button class="btn-outline" style="font-size:11px;padding:5px 10px;" onclick="billsRefreshOne(\''+e(b.BILL_ID||'')+'\')">↻</button>'
       +'<button class="tbl-del" onclick="billsRemove(\''+e(b.BILL_ID||'')+'\')">삭제</button>'
       +'</div>'
       +'</div>'
       +'<div class="bills-pipeline">'+pipeline+'</div>'
-      +'<div class="bills-card-footer">'
+      +'<div class="bills-card-footer" onclick="event.stopPropagation()">'
       +'<a class="bills-link" href="'+billUrl+'" target="_blank" rel="noopener">국회 의안정보시스템 →</a>'
       +'<button class="btn-outline" style="font-size:11px;padding:5px 12px;" onclick="billsPushToCalendar(\''+e(b.BILL_ID||'')+'\')">캘린더에 추가</button>'
       +'</div>'
@@ -1747,6 +1774,60 @@ function billsAddFromSearch(bill){
 function billsRemove(billId){
   billsSave(billsLoad().filter(function(b){return b.BILL_ID!==billId;}));
   billsRender();
+}
+
+function openBillDetail(billId){
+  var list=billsLoad();
+  var b=list.filter(function(x){return x.BILL_ID===billId;})[0];
+  if(!b) return;
+
+  var procCls=billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD||'');
+  var chipColor={pending:'#2563EB',passed:'#059669',rejected:'#DC2626',other:'#6B7280'};
+  var chipBg={pending:'#EFF6FF',passed:'#ECFDF5',rejected:'#FEF2F2',other:'#F3F4F6'};
+  var procLabel=b.PROC_RESULT||'계류중';
+  var color=chipColor[procCls]||chipColor.other;
+  var bg=chipBg[procCls]||chipBg.other;
+
+  document.getElementById('bdmHeader').innerHTML=
+    '<div style="margin-bottom:10px;">'
+    +(b.AGE?'<span style="font-size:10px;font-weight:600;color:var(--text-3);background:var(--bg);border:0.5px solid var(--border);padding:2px 8px;border-radius:10px;margin-right:6px;">제'+b.AGE+'대</span>':'')
+    +'<span class="bdm-tag" style="background:'+bg+';color:'+color+';">'+e(procLabel)+'</span>'
+    +'</div>'
+    +'<div style="font-size:17px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:4px;">'+e(b.BILL_NAME||'')+'</div>'
+    +(b.BILL_NO?'<div style="font-size:12px;color:var(--text-3);">의안번호 '+e(b.BILL_NO)+'</div>':'');
+
+  var rows=[
+    {label:'대표발의자', val: b.RST_PROPOSER||b.PROPOSER||'—'},
+    {label:'발의자 전체', val: b.PROPOSER||'—'},
+    {label:'발의일', val: billsFmtDate(b.PROPOSE_DT)||'—'},
+    {label:'소관위원회', val: b.CURR_COMMITTEE||'—'},
+    {label:'소관위 회부', val: billsFmtDate(b.CURR_COMMITTEE_DT)||'—'},
+    {label:'위원회 의결', val: billsFmtDate(b.COMMITTEE_DT)||'—'},
+    {label:'법제사법위', val: billsFmtDate(b.LAW_PROC_DT)||'—'},
+    {label:'본회의 의결', val: billsFmtDate(b.PROC_DT)||'—'},
+    {label:'공포일', val: billsFmtDate(b.PROM_DT)||'—'},
+  ];
+
+  document.getElementById('bdmBody').innerHTML=rows.filter(function(r){
+    return r.val&&r.val!=='—'||['대표발의자','발의일','소관위원회'].indexOf(r.label)>=0;
+  }).map(function(r){
+    return '<div class="bdm-row"><span class="bdm-label">'+r.label+'</span><span class="bdm-val">'+e(r.val)+'</span></div>';
+  }).join('');
+
+  var billId2=encodeURIComponent(b.BILL_ID||'');
+  var detailUrl='https://likms.assembly.go.kr/bill/billDetail.do?billId='+billId2;
+  var pdfUrl='https://likms.assembly.go.kr/bill/billPdfList.do?billId='+billId2;
+  document.getElementById('bdmDocs').innerHTML=
+    '<a class="bdm-doc-btn" href="'+detailUrl+'" target="_blank" rel="noopener">📄 발의 원문 보기</a>'
+    +'<a class="bdm-doc-btn secondary" href="'+pdfUrl+'" target="_blank" rel="noopener">국회 의안정보 상세</a>';
+
+  document.getElementById('billDetailModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeBillDetail(){
+  document.getElementById('billDetailModal').classList.remove('open');
+  document.body.style.overflow='';
 }
 
 function billsRefreshOne(billId){
