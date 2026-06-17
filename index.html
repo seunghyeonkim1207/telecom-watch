@@ -1025,7 +1025,12 @@ function navTo(page,triggerEl){
   if(page==='saved') renderSaved();
   if(page==='report') renderReport();
   if(page==='calendar') calRender();
-  if(page==='bills'){ billsRender(); billsAutoSync(function(){ billsRender(); }); }
+  if(page==='bills'){
+    // 기존 저장 데이터에서 공포완료 법안 즉시 제거
+    billsSave(billsLoad().filter(function(b){ return !b.PROM_DT; }));
+    billsRender();
+    billsAutoSync(function(){ billsRender(); });
+  }
   if(page==='intl') intlRender();
 
   window.scrollTo(0,0);
@@ -1614,6 +1619,8 @@ function billsAutoSync(onDone){
           if(idx>=0){ list[idx]=b; }
           else{ list.unshift(b); }
         });
+        // 공포완료된 법안 저장 목록에서도 제거
+        list=list.filter(function(b){ return !b.PROM_DT; });
         billsSave(list);
         var msg='총 '+list.length+'건 ('+allFetched.length+'건 자동 반영)';
         if(status) status.textContent=msg;
