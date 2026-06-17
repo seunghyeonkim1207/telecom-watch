@@ -208,11 +208,6 @@ def collect():
     print(f'✅ data/articles.json 저장 완료 (총 {len(all_articles)}건)')
 
 
-if __name__ == '__main__':
-    collect()
-    bill_summary_collect()
-
-
 # ── 법안 요약 수집 ─────────────────────────────────────────────────────────────
 
 BILL_API_BASE = 'https://open.assembly.go.kr/portal/openapi/nzmimeepazxkubdpn'
@@ -328,3 +323,8 @@ def bill_summary_collect():
         print(f'✅ bill_summaries.json 저장 완료 ({updated}건 추가, 총 {len(existing)}건)')
     else:
         print(f'  변경 없음 (총 {len(existing)}건)')
+
+
+if __name__ == '__main__':
+    collect()
+    bill_summary_collect()
