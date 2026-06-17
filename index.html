@@ -1478,20 +1478,20 @@ function billsRemoveKeyword(k){
 function billsAutoSync(onDone){
   var key=localStorage.getItem('tw_assembly_key')||'';
   var kw=billsLoadKw();
-  if(!key||!kw.length){ if(onDone) onDone(); return; }
+  if(!key||!kw.length){ if(onDone) onDone(null); return; }
   var status=document.getElementById('billsSyncStatus');
   if(status) status.textContent='키워드 법안 조회 중…';
 
   var pending=kw.length;
   var allFetched=[];
+  var syncError=null;
 
   kw.forEach(function(keyword){
     var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)
       +'&Type=json&pIndex=1&pSize=100&BILL_NAME='+encodeURIComponent(keyword);
     fetch(url).then(function(r){return r.json();}).then(function(data){
-      // 오류 코드 체크
       if(data && data.RESULT && data.RESULT.CODE && data.RESULT.CODE!=='INFO-000'){
-        if(status) status.textContent='API 오류: '+data.RESULT.MESSAGE;
+        syncError=data.RESULT.CODE+': '+data.RESULT.MESSAGE;
         console.warn('Assembly API error:', data.RESULT);
         return;
       }
@@ -1505,22 +1505,25 @@ function billsAutoSync(onDone){
         var cls=billsProcClass(b.PROC_RESULT||'');
         if(cls==='pending'||cls==='passed') allFetched.push(b);
       });
-    }).catch(function(err){ console.warn('fetch 오류',err); }).then(function(){
+    }).catch(function(err){ syncError='네트워크 오류: '+err; console.warn('fetch 오류',err); }).then(function(){
       pending--;
       if(pending===0){
-        // 기존 목록과 병합
+        if(syncError){
+          if(status) status.textContent='오류: '+syncError;
+          if(onDone) onDone(syncError);
+          return;
+        }
         var list=billsLoad();
-        var changed=0;
         allFetched.forEach(function(b){
           var idx=-1;
           for(var i=0;i<list.length;i++){ if(list[i].BILL_ID===b.BILL_ID){idx=i;break;} }
-          if(idx>=0){ list[idx]=b; changed++; }
-          else{ list.unshift(b); changed++; }
+          if(idx>=0){ list[idx]=b; }
+          else{ list.unshift(b); }
         });
         billsSave(list);
         var msg='총 '+list.length+'건 ('+allFetched.length+'건 자동 반영)';
         if(status) status.textContent=msg;
-        if(onDone) onDone();
+        if(onDone) onDone(null);
       }
     });
   });
@@ -1746,10 +1749,18 @@ function billsRefreshAll(){
   if(!key){ openAssemblyModal(); return; }
   var btn=document.getElementById('billsRefreshBtn');
   if(btn){ btn.disabled=true; btn.textContent='동기화 중...'; }
-  billsAutoSync(function(){
+  billsAutoSync(function(err){
     billsRender();
     if(btn){ btn.disabled=false; btn.textContent='↻ 동기화'; }
-    toast('동기화 완료');
+    if(err){
+      if(err.indexOf('ERROR-290')>=0||err.indexOf('인증키')>=0){
+        toast('❌ API 키가 유효하지 않습니다. 🔑 키 변경으로 다시 입력해주세요.');
+      } else {
+        toast('❌ 동기화 실패: '+err.slice(0,60));
+      }
+    } else {
+      toast('동기화 완료');
+    }
   });
 }
 
