@@ -210,3 +210,121 @@ def collect():
 
 if __name__ == '__main__':
     collect()
+    bill_summary_collect()
+
+
+# ── 법안 요약 수집 ─────────────────────────────────────────────────────────────
+
+BILL_API_BASE = 'https://open.assembly.go.kr/portal/openapi/nzmimeepazxkubdpn'
+BILL_TOPIC_KW = ['이동통신', '통신요금', '요금제', '번호이동', '데이터요금', 'MVNO', '알뜰폰', '로밍']
+BILL_SUMMARY_FILE = 'data/bill_summaries.json'
+
+
+def is_bill_relevant(name: str) -> bool:
+    n = name.lower()
+    return any(kw.lower() in n for kw in BILL_TOPIC_KW)
+
+
+def fetch_bills(api_key: str) -> list:
+    import urllib.request, urllib.parse
+    params = urllib.parse.urlencode({'KEY': api_key, 'Type': 'json', 'pIndex': 1, 'pSize': 100, 'AGE': 22, 'BILL_NAME': '전기통신사업법'})
+    url = f'{BILL_API_BASE}?{params}'
+    try:
+        with urllib.request.urlopen(url, timeout=15) as r:
+            data = json.loads(r.read().decode('utf-8'))
+        svc_key = [k for k in data if k != 'RESULT'][0]
+        rows = None
+        for item in data[svc_key]:
+            if 'row' in item:
+                rows = item['row']
+                break
+        return rows or []
+    except Exception as e:
+        print(f'  ⚠️  법안 API 오류: {e}')
+        return []
+
+
+def summarize_bill(bill: dict) -> str | None:
+    name = bill.get('BILL_NAME', '')
+    proposer = bill.get('RST_PROPOSER') or bill.get('PROPOSER', '')
+    committee = bill.get('CURR_COMMITTEE', '')
+    propose_dt = bill.get('PROPOSE_DT', '')
+
+    prompt = f"""다음 국회 전기통신사업법 개정안의 제안이유와 주요내용을 통신업계 실무자 관점에서 2문장으로 간결하게 요약해줘. 요약문만 출력해.
+
+법안명: {name}
+대표발의자: {proposer}
+발의일: {propose_dt}
+소관위: {committee}"""
+
+    try:
+        msg = client.messages.create(
+            model='claude-haiku-4-5-20251001',
+            max_tokens=180,
+            messages=[{'role': 'user', 'content': prompt}]
+        )
+        return msg.content[0].text.strip()
+    except Exception as e:
+        print(f'  ⚠️  요약 오류: {e}')
+        return None
+
+
+def bill_summary_collect():
+    api_key = os.environ.get('ASSEMBLY_API_KEY', '')
+    if not api_key:
+        print('\n⏭  ASSEMBLY_API_KEY 없음 — 법안 요약 건너뜀')
+        return
+
+    print(f'\n📋 법안 요약 수집 시작')
+
+    # 기존 요약 로드
+    existing: dict = {}
+    if os.path.exists(BILL_SUMMARY_FILE):
+        try:
+            with open(BILL_SUMMARY_FILE, 'r', encoding='utf-8') as f:
+                existing = json.load(f)
+        except Exception:
+            existing = {}
+
+    rows = fetch_bills(api_key)
+    print(f'  → {len(rows)}건 수신')
+
+    updated = 0
+    for b in rows:
+        bill_id = b.get('BILL_ID', '')
+        if not bill_id:
+            continue
+        # 공포 완료 제외
+        if b.get('PROM_DT'):
+            continue
+        # 토픽 필터
+        if not is_bill_relevant(b.get('BILL_NAME', '')):
+            continue
+        # 2025년 이전 제외
+        propose_dt = b.get('PROPOSE_DT', '').replace('-', '')
+        activity_dates = [b.get('CURR_COMMITTEE_DT', ''), b.get('COMMITTEE_DT', ''), b.get('LAW_PROC_DT', ''), b.get('PROC_DT', '')]
+        recent_activity = any(d.replace('-', '') >= '20250101' for d in activity_dates if d)
+        recent_propose = propose_dt >= '20250101' if propose_dt else False
+        if not recent_propose and not recent_activity:
+            continue
+        # 이미 요약 있으면 건너뜀
+        if bill_id in existing:
+            continue
+
+        print(f'  ✅ 요약 생성: {b["BILL_NAME"][:40]}')
+        summary = summarize_bill(b)
+        if summary:
+            existing[bill_id] = {
+                'summary': summary,
+                'bill_name': b.get('BILL_NAME', ''),
+                'updated': TODAY,
+            }
+            updated += 1
+        time.sleep(0.5)
+
+    if updated > 0:
+        with open(BILL_SUMMARY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(existing, f, ensure_ascii=False, indent=2)
+        print(f'✅ bill_summaries.json 저장 완료 ({updated}건 추가, 총 {len(existing)}건)')
+    else:
+        print(f'  변경 없음 (총 {len(existing)}건)')

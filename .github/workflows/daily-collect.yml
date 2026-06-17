@@ -26,15 +26,16 @@ jobs:
       - name: 의존성 설치
         run: pip install -r requirements.txt
 
-      - name: 뉴스 수집 실행
+      - name: 뉴스 및 법안 수집 실행
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ASSEMBLY_API_KEY: ${{ secrets.ASSEMBLY_API_KEY }}
         run: python scripts/collect.py
 
       - name: 데이터 커밋 및 푸시
         run: |
           git config user.name  "Telecom Watch Bot"
           git config user.email "bot@telecom-watch.local"
-          git add data/articles.json
+          git add data/articles.json data/bill_summaries.json
           git diff --staged --quiet || git commit -m "data: daily update $(date +'%Y-%m-%d %H:%M KST' -d '+9 hours')"
           git push

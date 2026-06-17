@@ -1053,9 +1053,11 @@ function navTo(page,triggerEl){
   if(page==='report') renderReport();
   if(page==='calendar') calRender();
   if(page==='bills'){
-    billsPurgeOld(); // 2025년 이전 구법안 + 공포완료 정리
-    billsRender();
-    billsAutoSync(function(){ billsRender(); });
+    billsPurgeOld();
+    billsSummaryLoadServer(function(){
+      billsRender();
+      billsAutoSync(function(){ billsRender(); });
+    });
   }
   if(page==='intl') intlRender();
 
@@ -1699,8 +1701,25 @@ function billsPurgeOld(){
 }
 
 // ── 법안 요약 (AI) ──────────────────────────────────────────────────────────
+var BILLS_SERVER_SUMMARIES={};  // data/bill_summaries.json 에서 로드
+
 function billsSummaryLoad(){ try{return JSON.parse(localStorage.getItem('tw_bill_summaries'))||{};}catch(e){return{};} }
 function billsSummarySave(d){ localStorage.setItem('tw_bill_summaries',JSON.stringify(d)); }
+
+// 서버 생성 요약 파일 로드 (페이지 진입 시 1회)
+function billsSummaryLoadServer(onDone){
+  fetch('data/bill_summaries.json?_='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      BILLS_SERVER_SUMMARIES=data||{};
+      // 서버 요약을 로컬 캐시에도 병합 (클라이언트 캐시 우선)
+      var local=billsSummaryLoad();
+      var merged=Object.assign({},BILLS_SERVER_SUMMARIES,local);
+      billsSummarySave(merged);
+      if(onDone) onDone();
+    })
+    .catch(function(){ if(onDone) onDone(); });
+}
 
 var BILLS_SUMMARY_QUEUE=[];
 var BILLS_SUMMARY_RUNNING=false;
