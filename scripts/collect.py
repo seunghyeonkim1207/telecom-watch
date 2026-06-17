@@ -8,6 +8,8 @@ from datetime import datetime, timezone, timedelta
 import feedparser
 import anthropic
 
+feedparser.USER_AGENT = 'TelecomWatch/1.0 (news aggregator; +https://telecom-watch-chi.vercel.app)'
+
 KST = timezone(timedelta(hours=9))
 TODAY = datetime.now(KST).strftime('%Y-%m-%d')
 DATA_FILE = 'data/articles.json'
@@ -15,34 +17,42 @@ DATA_FILE = 'data/articles.json'
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 
 # ── 수집 소스 ──────────────────────────────────────────────────────────────────
+# Google 뉴스 RSS는 GitHub Actions IP를 차단 → 국내 전문지 직접 RSS 위주로 구성
 FEEDS = [
-    # 국내 — Google 뉴스 RSS (키워드 기반)
+    # ── 국내 전문지 직접 RSS (GitHub Actions에서 안정적으로 작동) ──────────────
+    {'url': 'https://rss.etnews.com/Section901.xml',          # 전자신문 IT
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://rss.etnews.com/Section902.xml',          # 전자신문 통신방송
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://www.sisajournal-e.com/rss/allArticle.xml', # 시사저널e
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://digitaltoday.co.kr/rss/allArticle.xml',  # 디지털투데이
+     'region': 'domestic', 'country': 'domestic'},
+    # ── 해외 — 통신 전문지 직접 RSS (CI에서 안정적) ─────────────────────────────
+    {'url': 'https://www.fiercewireless.com/rss/xml',  # 미국 통신 전문지
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://www.rcrwireless.com/feed',        # 미국 통신 전문지
+     'region': 'overseas', 'country': 'us'},
+]
+
+# Google 뉴스 RSS는 로컬 테스트 시 추가로 활용 (CI에서는 차단됨)
+GOOGLE_NEWS_FEEDS = [
     {'url': 'https://news.google.com/rss/search?q=통신+요금제+SKT+KT+LGU플러스&hl=ko&gl=KR&ceid=KR:ko',
      'region': 'domestic', 'country': 'domestic'},
     {'url': 'https://news.google.com/rss/search?q=이용약관+통신사+방통위+과기정통부&hl=ko&gl=KR&ceid=KR:ko',
      'region': 'domestic', 'country': 'domestic'},
     {'url': 'https://news.google.com/rss/search?q=통신+결합상품+리텐션+안면인증&hl=ko&gl=KR&ceid=KR:ko',
      'region': 'domestic', 'country': 'domestic'},
-    {'url': 'https://news.google.com/rss/search?q=최적요금제+알뜰폰+MVNO&hl=ko&gl=KR&ceid=KR:ko',
-     'region': 'domestic', 'country': 'domestic'},
-    # 국내 — 전문지 RSS
-    {'url': 'https://rss.etnews.com/Section901.xml',
-     'region': 'domestic', 'country': 'domestic'},
-    # 미국
-    {'url': 'https://news.google.com/rss/search?q=ATT+Verizon+TMobile+pricing+plan+2025&hl=en-US&gl=US&ceid=US:en',
+    {'url': 'https://news.google.com/rss/search?q=ATT+Verizon+TMobile+pricing+plan&hl=en-US&gl=US&ceid=US:en',
      'region': 'overseas', 'country': 'us'},
-    {'url': 'https://news.google.com/rss/search?q=mobile+carrier+retention+bundle+terms&hl=en-US&gl=US&ceid=US:en',
-     'region': 'overseas', 'country': 'us'},
-    # 일본
     {'url': 'https://news.google.com/rss/search?q=NTT+Docomo+SoftBank+KDDI+料金&hl=ja&gl=JP&ceid=JP:ja',
      'region': 'overseas', 'country': 'jp'},
-    # 유럽
-    {'url': 'https://news.google.com/rss/search?q=Deutsche+Telekom+Vodafone+Orange+pricing+regulation&hl=en-GB&gl=GB&ceid=GB:en',
-     'region': 'overseas', 'country': 'eu'},
-    # 중국
-    {'url': 'https://news.google.com/rss/search?q=China+Mobile+Unicom+Telecom+pricing+facial&hl=en-US&gl=US&ceid=US:en',
-     'region': 'overseas', 'country': 'cn'},
 ]
+
+# CI 환경 감지: GitHub Actions에서 실행 중이면 Google 뉴스 피드 제외
+import os as _os
+if not _os.environ.get('GITHUB_ACTIONS'):
+    FEEDS = FEEDS + GOOGLE_NEWS_FEEDS
 
 RELEVANCE_KEYWORDS = [
     # 한국어
