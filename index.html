@@ -774,6 +774,7 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
             <div class="page-desc" style="margin-bottom:0;">전기통신사업법 등 주요 법안의 입법절차 단계를 실시간으로 확인합니다.</div>
           </div>
           <div style="display:flex;gap:8px;flex-shrink:0;">
+            <button class="btn-outline" style="font-size:11px;" onclick="openAssemblyModal()" title="API 키 변경">🔑 키 변경</button>
             <button class="btn-outline" id="billsRefreshBtn" onclick="billsRefreshAll()">↻ 동기화</button>
             <button class="btn-primary" onclick="billsOpenSearch()">+ 법안 추가</button>
           </div>
@@ -1424,6 +1425,7 @@ function calAddEvent(){
    BILLS PAGE (국회 법안 모니터링)
 ════════════════════════════════════ */
 var ASSEMBLY_API_BASE='https://open.assembly.go.kr/portal/openapi/';
+var ASSEMBLY_SVC='nzmimeepazxkubdpn'; // 의안정보 서비스명 (법률안 목록)
 var BILL_STAGES=[
   {key:'PROPOSE_DT',     label:'발의'},
   {key:'CURR_COMMITTEE_DT', label:'소관위 회부'},
@@ -1484,20 +1486,26 @@ function billsAutoSync(onDone){
   var allFetched=[];
 
   kw.forEach(function(keyword){
-    var url=ASSEMBLY_API_BASE+'BILLINFOLIST?KEY='+encodeURIComponent(key)
+    var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)
       +'&Type=json&pIndex=1&pSize=100&BILL_NAME='+encodeURIComponent(keyword);
     fetch(url).then(function(r){return r.json();}).then(function(data){
+      // 오류 코드 체크
+      if(data && data.RESULT && data.RESULT.CODE && data.RESULT.CODE!=='INFO-000'){
+        if(status) status.textContent='API 오류: '+data.RESULT.MESSAGE;
+        console.warn('Assembly API error:', data.RESULT);
+        return;
+      }
       var rows=[];
       try{
-        var sec=data['BILLINFOLIST'];
+        var dataKeys=Object.keys(data).filter(function(k){return k!=='RESULT';});
+        var sec=data[ASSEMBLY_SVC]||data[dataKeys[0]];
         for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
-      }catch(er){}
-      // 계류중(pending) + 가결(passed) 만 포함, 폐기·부결 제외
+      }catch(er){ console.warn('파싱 오류',er); }
       rows.forEach(function(b){
         var cls=billsProcClass(b.PROC_RESULT||'');
         if(cls==='pending'||cls==='passed') allFetched.push(b);
       });
-    }).catch(function(){}).then(function(){
+    }).catch(function(err){ console.warn('fetch 오류',err); }).then(function(){
       pending--;
       if(pending===0){
         // 기존 목록과 병합
@@ -1646,11 +1654,16 @@ function billsDoSearch(){
   if(!q){ toast('검색할 법안명을 입력해주세요.'); return; }
   var box=document.getElementById('billsSearchResults');
   box.innerHTML='<div class="bills-search-empty">검색 중...</div>';
-  var url=ASSEMBLY_API_BASE+'BILLINFOLIST?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=20&BILL_NAME='+encodeURIComponent(q);
+  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=20&BILL_NAME='+encodeURIComponent(q);
   fetch(url).then(function(r){return r.json();}).then(function(data){
+    if(data&&data.RESULT&&data.RESULT.CODE&&data.RESULT.CODE!=='INFO-000'){
+      box.innerHTML='<div class="bills-search-empty" style="color:#EF4444;">API 오류 ('+data.RESULT.CODE+')<br>'+e(data.RESULT.MESSAGE||'')+'<br><br>🔑 키 변경 버튼으로 API 키를 확인해주세요.</div>';
+      return;
+    }
     var rows=null;
     try{
-      var sec=data['BILLINFOLIST'];
+      var dataKeys=Object.keys(data).filter(function(k){return k!=='RESULT';});
+      var sec=data[ASSEMBLY_SVC]||data[dataKeys[0]];
       for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
     }catch(err){}
     if(!rows||!rows.length){
@@ -1705,11 +1718,11 @@ function billsRefreshOne(billId){
   if(!bill||!key) return;
   var card=document.getElementById('bc-'+billId);
   if(card) card.style.opacity='0.5';
-  var url=ASSEMBLY_API_BASE+'BILLINFOLIST?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=10&BILL_NAME='+encodeURIComponent(bill.BILL_NAME||'');
+  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=10&BILL_NAME='+encodeURIComponent(bill.BILL_NAME||'');
   fetch(url).then(function(r){return r.json();}).then(function(data){
     var rows=null;
     try{
-      var sec=data['BILLINFOLIST'];
+      var sec=data[ASSEMBLY_SVC]||data['BILLINFOLIST']||data[Object.keys(data).filter(function(k){return k!=='RESULT';})[0]];
       for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
     }catch(e){}
     if(rows){
