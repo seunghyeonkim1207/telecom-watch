@@ -520,8 +520,8 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
 
 <!-- ── BILLS SEARCH MODAL ── -->
 <div class="bills-search-modal" id="billsSearchModal">
-  <div class="modal-bg" onclick="billsCloseSearch()"></div>
-  <div class="bills-search-box">
+  <div style="position:fixed;inset:0;background:rgba(8,6,28,0.55);backdrop-filter:blur(3px);" onclick="billsCloseSearch()"></div>
+  <div class="bills-search-box" style="position:relative;z-index:1;">
     <div class="bills-search-hdr">
       <input type="text" id="billsSearchInput" placeholder="법안명 검색 (예: 전기통신사업법)" onkeydown="if(event.key==='Enter')billsDoSearch()">
       <button class="btn-primary" onclick="billsDoSearch()">검색</button>
