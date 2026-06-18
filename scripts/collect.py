@@ -270,32 +270,35 @@ def collect():
 # ── 법안 요약 수집 ─────────────────────────────────────────────────────────────
 
 BILL_API_BASE = 'https://open.assembly.go.kr/portal/openapi/nzmimeepazxkubdpn'
-BILL_TOPIC_KW = ['이동통신', '통신요금', '요금제', '번호이동', '데이터요금', 'MVNO', '알뜰폰', '로밍']
 BILL_SUMMARY_FILE = 'data/bill_summaries.json'
+BILL_SEARCH_TERMS = ['전기통신사업법', '이동통신', '통신요금', '알뜰폰']
 
 
 def is_bill_relevant(name: str) -> bool:
-    n = name.lower()
-    return any(kw.lower() in n for kw in BILL_TOPIC_KW)
+    # fetch_bills 자체가 통신 관련 법안만 가져오므로 모두 통과
+    return bool(name)
 
 
 def fetch_bills(api_key: str) -> list:
     import urllib.request, urllib.parse
-    params = urllib.parse.urlencode({'KEY': api_key, 'Type': 'json', 'pIndex': 1, 'pSize': 100, 'AGE': 22, 'BILL_NAME': '전기통신사업법'})
-    url = f'{BILL_API_BASE}?{params}'
-    try:
-        with urllib.request.urlopen(url, timeout=15) as r:
-            data = json.loads(r.read().decode('utf-8'))
-        svc_key = [k for k in data if k != 'RESULT'][0]
-        rows = None
-        for item in data[svc_key]:
-            if 'row' in item:
-                rows = item['row']
-                break
-        return rows or []
-    except Exception as e:
-        print(f'  ⚠️  법안 API 오류: {e}')
-        return []
+    all_rows = {}
+    for term in BILL_SEARCH_TERMS:
+        params = urllib.parse.urlencode({'KEY': api_key, 'Type': 'json', 'pIndex': 1, 'pSize': 100, 'AGE': 22, 'BILL_NAME': term})
+        url = f'{BILL_API_BASE}?{params}'
+        try:
+            with urllib.request.urlopen(url, timeout=15) as r:
+                data = json.loads(r.read().decode('utf-8'))
+            svc_key = [k for k in data if k != 'RESULT'][0]
+            for item in data[svc_key]:
+                if 'row' in item:
+                    for b in item['row']:
+                        bid = b.get('BILL_ID', '')
+                        if bid:
+                            all_rows[bid] = b
+                    break
+        except Exception as e:
+            print(f'  ⚠️  법안 API 오류 ({term}): {e}')
+    return list(all_rows.values())
 
 
 def summarize_bill(bill: dict) -> str | None:
