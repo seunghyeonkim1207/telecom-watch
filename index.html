@@ -1780,6 +1780,7 @@ var BILLS_SUMMARY_QUEUE=[];
 var BILLS_SUMMARY_RUNNING=false;
 
 function billsSummaryQueueAll(list){
+  if(!localStorage.getItem('tw_apikey')) return; // API 키 없으면 자동 생성 안 함
   var cache=billsSummaryLoad();
   var missing=list.filter(function(b){ return b.BILL_ID && !cache[b.BILL_ID]; });
   missing.forEach(function(b){ if(BILLS_SUMMARY_QUEUE.indexOf(b.BILL_ID)<0) BILLS_SUMMARY_QUEUE.push(b.BILL_ID); });

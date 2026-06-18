@@ -326,7 +326,10 @@ def summarize_bill(bill: dict) -> str | None:
 def bill_summary_collect():
     api_key = os.environ.get('ASSEMBLY_API_KEY', '')
     if not api_key:
-        print('\n⏭  ASSEMBLY_API_KEY 없음 — 법안 요약 건너뜀')
+        print('\n⏭  ASSEMBLY_API_KEY 없음 — 법안 수집 건너뜀')
+        return
+    if not os.environ.get('ANTHROPIC_API_KEY', ''):
+        print('\n⏭  ANTHROPIC_API_KEY 없음 — 법안 요약 건너뜀')
         return
 
     print(f'\n📋 법안 요약 수집 시작')
