@@ -19,25 +19,46 @@ client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 # ── 수집 소스 ──────────────────────────────────────────────────────────────────
 # Google 뉴스 RSS는 GitHub Actions IP를 차단 → 국내 전문지 직접 RSS 위주로 구성
 FEEDS = [
-    # ── 국내 전문지 직접 RSS (GitHub Actions에서 안정적으로 작동) ──────────────
-    {'url': 'https://rss.etnews.com/Section901.xml',          # 전자신문 IT
+    # ── 국내 전문지 ───────────────────────────────────────────────────────────
+    {'url': 'https://rss.etnews.com/Section901.xml',           # 전자신문 IT
      'region': 'domestic', 'country': 'domestic'},
-    {'url': 'https://rss.etnews.com/Section902.xml',          # 전자신문 통신방송
+    {'url': 'https://rss.etnews.com/Section902.xml',           # 전자신문 통신방송
      'region': 'domestic', 'country': 'domestic'},
-    {'url': 'https://rss.etnews.com/Section903.xml',          # 전자신문 과학기술
+    {'url': 'https://rss.etnews.com/Section903.xml',           # 전자신문 과학기술
      'region': 'domestic', 'country': 'domestic'},
     {'url': 'https://www.sisajournal-e.com/rss/allArticle.xml', # 시사저널e
      'region': 'domestic', 'country': 'domestic'},
-    {'url': 'https://digitaltoday.co.kr/rss/allArticle.xml',  # 디지털투데이
+    {'url': 'https://digitaltoday.co.kr/rss/allArticle.xml',   # 디지털투데이
      'region': 'domestic', 'country': 'domestic'},
-    {'url': 'https://www.itbiznews.com/rss/allArticle.xml',   # IT비즈뉴스
+    {'url': 'https://www.itbiznews.com/rss/allArticle.xml',    # IT비즈뉴스
      'region': 'domestic', 'country': 'domestic'},
-    # ── 해외 — 통신 전문지 직접 RSS (CI에서 안정적) ─────────────────────────────
-    {'url': 'https://www.fiercewireless.com/rss/xml',  # 미국 통신 전문지
+    {'url': 'https://www.yna.co.kr/rss/economy.xml',           # 연합뉴스 경제
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://www.yna.co.kr/rss/industry.xml',          # 연합뉴스 산업
+     'region': 'domestic', 'country': 'domestic'},
+    # ── 해외 — 통신 전문지 ────────────────────────────────────────────────────
+    {'url': 'https://www.fiercewireless.com/rss/xml',          # Fierce Wireless (미국)
      'region': 'overseas', 'country': 'us'},
-    {'url': 'https://www.rcrwireless.com/feed',        # 미국 통신 전문지
+    {'url': 'https://www.fiercetelecom.com/rss/xml',           # Fierce Telecom (미국)
      'region': 'overseas', 'country': 'us'},
-    {'url': 'https://www.lightreading.com/rss.xml',    # 글로벌 통신 전문지
+    {'url': 'https://www.rcrwireless.com/feed',                # RCR Wireless (미국)
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://www.lightreading.com/rss.xml',            # Light Reading (글로벌)
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://www.gsma.com/newsroom/feed/',             # GSMA 공식 (글로벌)
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://www.totaltele.com/rss/',                  # Total Telecom (글로벌)
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://www.capacitymedia.com/rss/',              # Capacity Media (글로벌)
+     'region': 'overseas', 'country': 'us'},
+    # ── 해외 — 일반 IT·비즈니스 (통신 관련 기사 포함) ────────────────────────
+    {'url': 'https://feeds.arstechnica.com/arstechnica/tech-policy', # Ars Technica 정책
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://www.theverge.com/rss/index.xml',          # The Verge (미국)
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://feeds.bloomberg.com/technology/news.rss', # Bloomberg Tech
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://feeds.a.dj.com/rss/RSSWSJD.xml',         # WSJ Tech
      'region': 'overseas', 'country': 'us'},
 ]
 
@@ -66,11 +87,21 @@ RELEVANCE_KEYWORDS = [
     '방통위', '과기정통부', '알뜰폰', 'MVNO', '해지', '약정',
     # 한국어 — 통신사·업계 일반
     'SKT', 'KT', 'LG U+', 'LGU+', '이동통신', '통신사', '통신요금', '5G', 'LTE',
-    '번호이동', '단말기', '데이터', '무제한', '망내', '통신비', '가입자',
-    # 영어
+    '번호이동', '단말기', '데이터', '무제한', '통신비', '가입자', 'MNO', '알뜰통신',
+    # 한국어 — 요금·상품 정책
+    '선택약정', '공시지원금', '완전자급제', '단통법', '멤버십', '혜택 축소',
+    '약관 변경', '서비스 종료', '신규가입 중단', '개편', '고객 보호',
+    # 한국어 — 규제·제도
+    '전기통신사업법', '단말기유통법', '이용자 보호', '통신분쟁',
+    # 한국어 — 시장·경쟁
+    '점유율', '가입자 순증', '번호이동 순증',
+    # 영어 — 핵심
     'plan', 'pricing', 'tariff', 'retention', 'bundle', 'facial recognition',
     'churn', 'subscriber', 'ARPU', 'contract', 'terms of service',
+    # 영어 — 통신 업계
     'telecom', 'wireless', 'spectrum', 'roaming', 'unlimited',
+    '5G rollout', 'network slicing', 'eSIM', 'fixed wireless', 'spectrum auction',
+    'mobile network', 'carrier', 'operator', 'MVNO', 'MNO',
 ]
 
 VALID_TAGS = ['요금제', '최적요금제', '리텐션', '결합상품', '이용약관', '안면인증', '규제·정책']
