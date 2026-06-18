@@ -1847,22 +1847,43 @@ function billsSummaryRefreshModal(billId){
   setTimeout(function(){clearInterval(poll);},20000);
 }
 
+function billsExtractKeyword(name){
+  // 법안 이름 괄호 안 내용 추출: "전기통신사업법 일부개정법률안(번호이동 간소화)" → "번호이동 간소화"
+  var m=(name||'').match(/[（(]([^）)]+)[）)]/);
+  return m?m[1].trim():'';
+}
+
 function billsSummaryCardHtml(bill){
   var apiKey=localStorage.getItem('tw_apikey')||'';
   var cache=billsSummaryLoad();
   var cached=cache[bill.BILL_ID];
   var cachedText=cached&&(cached.text||cached.summary);
+
+  // AI 요약이 있으면 표시
   if(cachedText){
     return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
       +'<div class="bills-card-summary-label">✦ AI 요약</div>'
       +'<div class="bills-card-summary-text">'+escapeHtml(cachedText)+'</div>'
       +'</div>';
   }
-  if(!apiKey){
-    return ''; // API 키 없으면 표시 안 함
-  }
-  return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
-    +'<div class="bills-card-summary-loading">요약 생성 중...</div>'
+
+  // AI 요약 없어도 법안 이름에서 키워드 추출해서 즉시 표시
+  var kw=billsExtractKeyword(bill.BILL_NAME||'');
+  var committee=bill.CURR_COMMITTEE||'';
+  var proposer=bill.RST_PROPOSER||bill.PROPOSER||'';
+  var baseDesc='';
+  if(kw) baseDesc=kw+' 관련 전기통신사업법 개정안.';
+  if(committee) baseDesc+=(baseDesc?' ':'')+committee+' 심의 중.';
+  if(!baseDesc) baseDesc='전기통신사업법 일부개정법률안.';
+
+  var labelHtml=apiKey
+    ?'<div class="bills-card-summary-label" style="color:var(--text-3);">법안 개요</div>'
+    :'<div class="bills-card-summary-label" style="color:var(--text-3);">법안 개요</div>';
+
+  return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'" style="opacity:0.8;">'
+    +labelHtml
+    +'<div class="bills-card-summary-text" style="color:var(--text-3);">'+escapeHtml(baseDesc)+'</div>'
+    +(apiKey?'':'')
     +'</div>';
 }
 
@@ -2449,8 +2470,13 @@ var ADMIN_HASH='b5216bb9d5a2d834b4ec9d8a8d89e3a8e2cae50e503b8f098a2b0347fa785c48
 var ADMIN_TOKEN_KEY='tw_admin_token';
 
 function adminIsAuthed(){
-  var t=sessionStorage.getItem(ADMIN_TOKEN_KEY);
-  return t===ADMIN_HASH;
+  try{
+    var stored=JSON.parse(localStorage.getItem(ADMIN_TOKEN_KEY)||'null');
+    if(!stored) return false;
+    if(stored.hash!==ADMIN_HASH) return false;
+    if(Date.now()-stored.ts > 24*60*60*1000) return false; // 24시간 만료
+    return true;
+  }catch(e){ return false; }
 }
 
 async function adminCheckPw(pw){
@@ -2476,7 +2502,7 @@ function adminSubmit(){
   var pw=document.getElementById('adminPwInput').value;
   adminCheckPw(pw).then(function(hash){
     if(hash===ADMIN_HASH){
-      sessionStorage.setItem(ADMIN_TOKEN_KEY,hash);
+      localStorage.setItem(ADMIN_TOKEN_KEY,JSON.stringify({hash:hash,ts:Date.now()}));
       adminClose();
       if(typeof window._adminOnSuccess==='function') window._adminOnSuccess();
     } else {
