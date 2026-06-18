@@ -24,14 +24,20 @@ FEEDS = [
      'region': 'domestic', 'country': 'domestic'},
     {'url': 'https://rss.etnews.com/Section902.xml',          # 전자신문 통신방송
      'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://rss.etnews.com/Section903.xml',          # 전자신문 과학기술
+     'region': 'domestic', 'country': 'domestic'},
     {'url': 'https://www.sisajournal-e.com/rss/allArticle.xml', # 시사저널e
      'region': 'domestic', 'country': 'domestic'},
     {'url': 'https://digitaltoday.co.kr/rss/allArticle.xml',  # 디지털투데이
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://www.itbiznews.com/rss/allArticle.xml',   # IT비즈뉴스
      'region': 'domestic', 'country': 'domestic'},
     # ── 해외 — 통신 전문지 직접 RSS (CI에서 안정적) ─────────────────────────────
     {'url': 'https://www.fiercewireless.com/rss/xml',  # 미국 통신 전문지
      'region': 'overseas', 'country': 'us'},
     {'url': 'https://www.rcrwireless.com/feed',        # 미국 통신 전문지
+     'region': 'overseas', 'country': 'us'},
+    {'url': 'https://www.lightreading.com/rss.xml',    # 글로벌 통신 전문지
      'region': 'overseas', 'country': 'us'},
 ]
 
@@ -55,12 +61,16 @@ if not _os.environ.get('GITHUB_ACTIONS'):
     FEEDS = FEEDS + GOOGLE_NEWS_FEEDS
 
 RELEVANCE_KEYWORDS = [
-    # 한국어
+    # 한국어 — 핵심 키워드
     '요금', '요금제', '이용약관', '결합', '리텐션', '안면인증', '최적요금제', '번들',
     '방통위', '과기정통부', '알뜰폰', 'MVNO', '해지', '약정',
+    # 한국어 — 통신사·업계 일반
+    'SKT', 'KT', 'LG U+', 'LGU+', '이동통신', '통신사', '통신요금', '5G', 'LTE',
+    '번호이동', '단말기', '데이터', '무제한', '망내', '통신비', '가입자',
     # 영어
     'plan', 'pricing', 'tariff', 'retention', 'bundle', 'facial recognition',
     'churn', 'subscriber', 'ARPU', 'contract', 'terms of service',
+    'telecom', 'wireless', 'spectrum', 'roaming', 'unlimited',
 ]
 
 VALID_TAGS = ['요금제', '최적요금제', '리텐션', '결합상품', '이용약관', '안면인증', '규제·정책']
@@ -144,7 +154,7 @@ def collect():
         print(f'\n📡 {feed_info["url"][:70]}...')
         try:
             feed = feedparser.parse(feed_info['url'])
-            entries = feed.entries[:10]  # 소스당 최대 10개
+            entries = feed.entries[:20]  # 소스당 최대 20개
             print(f'  → {len(entries)}건 수신')
 
             for entry in entries:
