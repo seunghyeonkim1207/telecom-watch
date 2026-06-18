@@ -424,15 +424,15 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
 .bills-pipeline::-webkit-scrollbar { display:none; }
 .bills-stage { flex:1; min-width:60px; text-align:center; position:relative; }
 /* Inter-stage connector line: from center of previous stage to center of this stage */
-.bills-stage::before { content:''; position:absolute; top:7px; left:-50%; width:100%; height:2px; background:var(--border); z-index:0; }
+.bills-stage::before { content:''; position:absolute; top:6px; left:-50%; width:100%; height:2px; background:var(--border); z-index:0; }
 /* First stage: extend line from left edge to dot center */
 .bills-stage:first-child::before { left:0; width:50%; }
 /* Last stage: extend line from dot center to right edge */
-.bills-stage:last-child::after { content:''; position:absolute; top:7px; left:50%; right:0; height:2px; background:var(--border); z-index:0; }
+.bills-stage:last-child::after { content:''; position:absolute; top:6px; left:50%; right:0; height:2px; background:var(--border); z-index:0; }
 .bills-stage.done::before { background:var(--blue); }
 .bills-stage.current::before { background:var(--blue); }
 .bills-stage.done:last-child::after { background:var(--blue); }
-.bills-stage-dot { width:14px; height:14px; border-radius:50%; background:var(--border); margin:0 auto 7px; position:relative; z-index:1; border:2px solid var(--surface); transition:background 0.15s; }
+.bills-stage-dot { width:12px; height:12px; border-radius:50%; background:var(--border); margin:0 auto 8px; position:relative; z-index:1; transition:background 0.15s; }
 .bills-stage.done .bills-stage-dot { background:var(--blue); }
 .bills-stage.current .bills-stage-dot { background:var(--blue); box-shadow:0 0 0 3px rgba(43,30,222,0.18); }
 .bills-stage-name { font-size:10px; color:var(--text-3); line-height:1.3; }
@@ -1991,7 +1991,8 @@ function billsRender(){
       +'<span class="bills-proc-chip '+procCls+'">'+e(procResult)+'</span>'
       +(isHidden?'<span style="font-size:10px;color:var(--text-3);">숨김</span>':'')
       +'</div>'
-      +'<div class="bills-card-title">'+e(b.BILL_NAME||'')+'</div>'
+      +(function(){var nm=b.BILL_NAME||'';var m=nm.match(/^([\s\S]*?)\(([^)]+)\)\s*$/);return m?'<div class="bills-card-title">'+e(m[1])+'<span style="color:var(--blue);font-weight:500;">('+e(m[2])+')</span></div>':'<div class="bills-card-title">'+e(nm)+'</div>';})()
+
       +'<div class="bills-card-meta">'+e(b.PROPOSER||'')+(b.BILL_NO?' &nbsp;·&nbsp; 의안번호 '+e(b.BILL_NO):'')+'</div>'
       +'</div>'
       +'<div style="display:flex;gap:6px;flex-shrink:0;" onclick="event.stopPropagation()">'
