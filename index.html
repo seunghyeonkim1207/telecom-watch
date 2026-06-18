@@ -1178,9 +1178,12 @@ function renderHero(data){
   var ta=ALL.filter(function(a){return a.date===today;});
   var src=ta.length?ta:ALL.slice(0,10);
   var top3=src.slice().sort(function(a,b){return b.importance-a.importance;}).slice(0,3);
-  var dl2=ta.length?today:(ALL[0]?ALL[0].date:'');
-  var upd=data.updated?data.updated.slice(11,16):'';
-  document.getElementById('heroLabel').textContent='오늘의 주요 이슈 — '+dl2.replace(/-/g,'.')+' · '+upd+' 수집';
+  var updRaw=data.updated||'';
+  var updDate=updRaw?updRaw.slice(0,10).replace(/-/g,'.'):'';
+  var updTime=updRaw?updRaw.slice(11,16):'';
+  var updLabel=updDate?(updDate+' '+updTime+' 수집'):'';
+  var newToday=ta.length?(' · 오늘 '+ta.length+'건'):'';
+  document.getElementById('heroLabel').textContent='오늘의 주요 이슈 — '+updLabel+newToday;
   document.getElementById('heroGrid').innerHTML=top3.map(function(a){
     var cm=CM[a.country]||CM.domestic;
     var stars='';for(var i=1;i<=5;i++)stars+=(i<=a.importance?'★':'☆');
