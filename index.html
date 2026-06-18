@@ -1814,7 +1814,7 @@ async function billsSummaryFetch(bill){
   var detailUrl=bill.LINK_URL||('https://likms.assembly.go.kr/bill/billDetail.do?billId='+encodeURIComponent(billId));
   try{
     var ctrl=new AbortController();
-    var tid=setTimeout(function(){ctrl.abort();},7000);
+    var tid=setTimeout(function(){ctrl.abort();},3000);
     var proxyUrl='https://corsproxy.io/?'+encodeURIComponent(detailUrl);
     var r=await fetch(proxyUrl,{signal:ctrl.signal});
     clearTimeout(tid);
