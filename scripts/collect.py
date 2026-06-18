@@ -280,14 +280,14 @@ def is_bill_relevant(name: str) -> bool:
 
 
 def fetch_bills(api_key: str) -> list:
-    import urllib.request, urllib.parse
+    import requests as req
     all_rows = {}
     for term in BILL_SEARCH_TERMS:
-        params = urllib.parse.urlencode({'KEY': api_key, 'Type': 'json', 'pIndex': 1, 'pSize': 100, 'AGE': 22, 'BILL_NAME': term})
-        url = f'{BILL_API_BASE}?{params}'
+        params = {'KEY': api_key, 'Type': 'json', 'pIndex': 1, 'pSize': 100, 'AGE': 22, 'BILL_NAME': term}
         try:
-            with urllib.request.urlopen(url, timeout=15) as r:
-                data = json.loads(r.read().decode('utf-8'))
+            r = req.get(BILL_API_BASE, params=params, timeout=15)
+            r.raise_for_status()
+            data = r.json()
             svc_key = [k for k in data if k != 'RESULT'][0]
             for item in data[svc_key]:
                 if 'row' in item:
