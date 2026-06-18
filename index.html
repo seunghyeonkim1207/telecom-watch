@@ -1859,7 +1859,7 @@ function billsSummaryCardHtml(bill){
   var cached=cache[bill.BILL_ID];
   var cachedText=cached&&(cached.text||cached.summary);
 
-  // AI 요약이 있으면 표시
+  // AI 요약이 있으면 바로 표시
   if(cachedText){
     return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
       +'<div class="bills-card-summary-label">✦ AI 요약</div>'
@@ -1867,23 +1867,17 @@ function billsSummaryCardHtml(bill){
       +'</div>';
   }
 
-  // AI 요약 없어도 법안 이름에서 키워드 추출해서 즉시 표시
-  var kw=billsExtractKeyword(bill.BILL_NAME||'');
-  var committee=bill.CURR_COMMITTEE||'';
-  var proposer=bill.RST_PROPOSER||bill.PROPOSER||'';
-  var baseDesc='';
-  if(kw) baseDesc=kw+' 관련 전기통신사업법 개정안.';
-  if(committee) baseDesc+=(baseDesc?' ':'')+committee+' 심의 중.';
-  if(!baseDesc) baseDesc='전기통신사업법 일부개정법률안.';
+  // Claude API 키 있으면 → 생성 중 표시 (큐에서 자동 생성)
+  if(apiKey){
+    return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
+      +'<div class="bills-card-summary-loading">AI 요약 생성 중...</div>'
+      +'</div>';
+  }
 
-  var labelHtml=apiKey
-    ?'<div class="bills-card-summary-label" style="color:var(--text-3);">법안 개요</div>'
-    :'<div class="bills-card-summary-label" style="color:var(--text-3);">법안 개요</div>';
-
-  return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'" style="opacity:0.8;">'
-    +labelHtml
-    +'<div class="bills-card-summary-text" style="color:var(--text-3);">'+escapeHtml(baseDesc)+'</div>'
-    +(apiKey?'':'')
+  // API 키 없으면 → 설정 안내
+  return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
+    +'<div style="font-size:11px;color:var(--text-3);line-height:1.6;">'
+    +'⚙️ 설정에서 <span onclick="openSettings();event.stopPropagation();" style="color:var(--blue);cursor:pointer;text-decoration:underline;">Claude API 키</span>를 입력하면 법안 내용이 자동 요약됩니다.</div>'
     +'</div>';
 }
 
