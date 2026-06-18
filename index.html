@@ -422,11 +422,16 @@ body.dark .bills-proc-chip.rejected { background:#4c1d1d; color:#FCA5A5; }
 body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
 .bills-pipeline { display:flex; gap:0; overflow-x:auto; padding-bottom:6px; scrollbar-width:none; }
 .bills-pipeline::-webkit-scrollbar { display:none; }
-.bills-stage { flex:1; min-width:80px; text-align:center; position:relative; }
-.bills-stage::before { content:''; position:absolute; top:6px; left:-50%; width:100%; height:2px; background:var(--border); z-index:0; }
-.bills-stage:first-child::before { display:none; }
+.bills-stage { flex:1; min-width:60px; text-align:center; position:relative; }
+/* Inter-stage connector line: from center of previous stage to center of this stage */
+.bills-stage::before { content:''; position:absolute; top:7px; left:-50%; width:100%; height:2px; background:var(--border); z-index:0; }
+/* First stage: extend line from left edge to dot center */
+.bills-stage:first-child::before { left:0; width:50%; }
+/* Last stage: extend line from dot center to right edge */
+.bills-stage:last-child::after { content:''; position:absolute; top:7px; left:50%; right:0; height:2px; background:var(--border); z-index:0; }
 .bills-stage.done::before { background:var(--blue); }
 .bills-stage.current::before { background:var(--blue); }
+.bills-stage.done:last-child::after { background:var(--blue); }
 .bills-stage-dot { width:14px; height:14px; border-radius:50%; background:var(--border); margin:0 auto 7px; position:relative; z-index:1; border:2px solid var(--surface); transition:background 0.15s; }
 .bills-stage.done .bills-stage-dot { background:var(--blue); }
 .bills-stage.current .bills-stage-dot { background:var(--blue); box-shadow:0 0 0 3px rgba(43,30,222,0.18); }
@@ -1960,7 +1965,7 @@ function billsRender(){
   setTimeout(function(){ billsSummaryQueueAll(filtered); }, 300);
   box.innerHTML=filtered.map(function(b){
     var cur=billsCurrentStage(b);
-    var procResult=b.PROC_RESULT||'-';
+    var procResult=b.PROC_RESULT||'계류중';
     var procCls=billsProcClass(procResult);
     var pipeline=BILL_STAGES.map(function(s,i){
       var v=b[s.key];
