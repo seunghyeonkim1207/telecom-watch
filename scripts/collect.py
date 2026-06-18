@@ -60,6 +60,17 @@ FEEDS = [
      'region': 'overseas', 'country': 'us'},
     {'url': 'https://feeds.a.dj.com/rss/RSSWSJD.xml',         # WSJ Tech
      'region': 'overseas', 'country': 'us'},
+    # ── 국내 — 종합·경제 일간지 (통신 관련 기사 포함) ────────────────────────────
+    {'url': 'https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml',  # 조선일보
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://www.mk.co.kr/rss/30000001/',              # 매일경제
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://rss.donga.com/total.xml',                 # 동아일보
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://www.khan.co.kr/rss/rssdata/total_news.xml', # 경향신문
+     'region': 'domestic', 'country': 'domestic'},
+    {'url': 'https://www.techm.kr/rss/allArticle.xml',         # 테크M
+     'region': 'domestic', 'country': 'domestic'},
 ]
 
 # Google 뉴스 RSS는 로컬 테스트 시 추가로 활용 (CI에서는 차단됨)
@@ -104,7 +115,8 @@ RELEVANCE_KEYWORDS = [
     'mobile network', 'carrier', 'operator', 'MVNO', 'MNO',
 ]
 
-VALID_TAGS = ['요금제', '최적요금제', '리텐션', '결합상품', '이용약관', '안면인증', '규제·정책']
+VALID_TAGS = ['요금제', '최적요금제', '리텐션', '결합상품', '이용약관', '안면인증', '규제·정책',
+             '통신사동향', '서비스정책', '단말기·유통', '시장경쟁', '기술·네트워크']
 
 CARRIER_MAP = {
     'domestic': ['SKT', 'KT', 'LG U+', '알뜰폰', '방통위', '과기정통부'],
@@ -144,17 +156,23 @@ def process_with_claude(title: str, summary: str, country: str) -> dict | None:
 {{
   "relevant": true 또는 false,
   "title_ko": "한국어 제목. 원문이 한국어면 그대로. 영어/일어면 자연스러운 한국어로 번역.",
-  "summary_ko": "한국어 요약 2~3문장. 핵심 수치와 우리 업무(요금/리텐션/결합/약관/인증)에 주는 시사점 포함.",
+  "summary_ko": "한국어 요약 2~3문장. 핵심 수치와 통신업계 시사점 포함.",
   "tags": ["태그1"],
   "carrier": "통신사명 또는 빈문자열",
   "importance": 3
 }}
 
 규칙:
-- relevant: 요금·요금제·이용약관·리텐션·결합상품·안면인증·통신규제 관련이면 true
+- relevant: 아래 중 하나라도 해당하면 true
+  · 요금·요금제·이용약관·결합상품·리텐션·안면인증 관련
+  · SKT·KT·LG U+·알뜰폰 등 이동통신사 정책·서비스·실적·전략 관련
+  · 통신 규제·법률·정책(방통위·과기정통부·전기통신사업법 등) 관련
+  · 5G·LTE·네트워크 투자·기술 동향 관련
+  · 단말기 유통·공시지원금·자급제 관련
+  · 해외 이통사 요금·정책·경쟁 동향으로 국내 벤치마킹 가치 있는 것
 - tags: 다음 중만 사용 → {tags_str}
 - carrier: 다음 중만 사용 → {carriers}
-- importance: 1~5 정수. 우리 팀 업무 직결도 기준 (5=즉시 대응 필요, 3=참고, 1=관련 낮음)"""
+- importance: 1~5 정수 (5=즉시 대응 필요, 4=중요 참고, 3=일반 참고, 2=낮음, 1=매우 낮음)"""
 
     try:
         msg = client.messages.create(
