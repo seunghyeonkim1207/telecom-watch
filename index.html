@@ -1113,14 +1113,14 @@ function openSettings(){
 function closeSettings(){document.getElementById('settingsPanel').classList.remove('open');document.getElementById('settingsBg').classList.remove('open');}
 function saveApiKey(){
   var v=(document.getElementById('apiKeyInput').value||'').trim();
-  if(v){localStorage.setItem('tw_apikey',v);updateApiKeyStatus();showToast('API 키가 저장되었습니다.');}
-  else{showToast('API 키를 입력해주세요.');}
+  if(v){localStorage.setItem('tw_apikey',v);updateApiKeyStatus();toast('API 키가 저장되었습니다.');}
+  else{toast('API 키를 입력해주세요.');}
 }
 function clearApiKey(){
   localStorage.removeItem('tw_apikey');
   document.getElementById('apiKeyInput').value='';
   updateApiKeyStatus();
-  showToast('API 키가 삭제되었습니다.');
+  toast('API 키가 삭제되었습니다.');
 }
 function updateApiKeyStatus(){
   var v=(document.getElementById('apiKeyInput').value||'').trim();
