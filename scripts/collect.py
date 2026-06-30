@@ -468,18 +468,21 @@ def bill_corpus_collect():
         impact = (prev or {}).get('IMPACT', '')
         impact_reason = (prev or {}).get('IMPACT_REASON', '')
 
-        # 본문이 아직 없으면 크롤링 (+ 요약 + 영향도)
+        # 본문이 아직 없으면 크롤링
         if not reason:
             reason = fetch_bill_text(b) or ''
-            if reason and has_claude:
-                print(f'  ✅ 본문·요약·영향도 생성: {b.get("BILL_NAME","")[:40]}')
-                res = summarize_from_text(reason)
-                if res:
-                    summary = res.get('summary', '')
-                    impact = res.get('impact', '')
-                    impact_reason = res.get('impact_reason', '')
+            if reason:
                 new_crawls += 1
-                time.sleep(0.5)
+                time.sleep(0.4)
+        # 요약 또는 영향도가 비어 있으면 생성/백필 (본문 있을 때)
+        if reason and has_claude and (not summary or not impact):
+            print(f'  ✅ 요약·영향도 생성: {b.get("BILL_NAME","")[:40]}')
+            res = summarize_from_text(reason)
+            if res:
+                summary = res.get('summary', '')
+                impact = res.get('impact', '')
+                impact_reason = res.get('impact_reason', '')
+            time.sleep(0.4)
 
         entry = dict(b)              # API 원본 필드 전부 패스스루
         entry['REASON_TEXT'] = reason
