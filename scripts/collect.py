@@ -301,49 +301,70 @@ def fetch_bills(api_key: str) -> list:
     return list(all_rows.values())
 
 
-def fetch_bill_text(bill: dict) -> str | None:
-    """국회 의안정보시스템에서 제안이유·주요내용 텍스트를 추출.
+def _extract_reason(txt: str) -> str | None:
+    """정제된 텍스트에서 제안이유 섹션부터 잘라 반환."""
+    idx = txt.find('제안이유')
+    if idx < 0:
+        idx = txt.find('주요내용')
+    if idx >= 0:
+        return txt[idx:idx+2500]
+    return None
 
-    billDetail.do 페이지는 JS로 렌더링되어 정적 HTML에 본문이 없으므로,
-    1) 상세 페이지 GET → 쿠키 + hidden 폼 파라미터(_csrf 포함) 획득
-    2) 파라미터를 billInfo.do로 POST → 제안이유·주요내용 fragment 획득
-    """
+
+def _fetch_via_billinfo(bill_id: str) -> str | None:
+    """방법1: billDetail.do(쿠키+csrf) → billInfo.do POST 로 fragment 획득."""
     import requests as req, re
+    detail_url = f'https://likms.assembly.go.kr/bill/billDetail.do?billId={bill_id}'
+    info_url = 'https://likms.assembly.go.kr/bill/bi/bill/detail/billInfo.do'
+    s = req.Session()
+    s.headers.update({'User-Agent': 'Mozilla/5.0', 'Accept-Language': 'ko-KR,ko;q=0.9'})
+    html = s.get(detail_url, timeout=12).text
+    params = {}
+    for inp in re.findall(r'<input[^>]+type="hidden"[^>]*>', html):
+        n = re.search(r'name="([^"]+)"', inp)
+        v = re.search(r'value="([^"]*)"', inp)
+        if n:
+            params[n.group(1)] = v.group(1) if v else ''
+    if not params.get('billId'):
+        params['billId'] = bill_id
+    frag = s.post(info_url, data=params, timeout=12, headers={
+        'X-Requested-With': 'XMLHttpRequest',
+        'Referer': detail_url,
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    }).text
+    txt = re.sub(r'<[^>]+>', ' ', frag)
+    txt = txt.replace('&nbsp;', ' ').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
+    txt = re.sub(r'\s+', ' ', txt).strip()
+    return _extract_reason(txt)
+
+
+def _fetch_via_jina(bill_id: str) -> str | None:
+    """방법2: r.jina.ai 리더로 JS 렌더링된 본문 마크다운 획득 (폴백)."""
+    import requests as req, re
+    target = f'https://likms.assembly.go.kr/bill/billDetail.do?billId={bill_id}'
+    md = req.get('https://r.jina.ai/' + target, timeout=30,
+                 headers={'User-Agent': 'Mozilla/5.0'}).text
+    txt = re.sub(r'\s+', ' ', md).strip()
+    return _extract_reason(txt)
+
+
+def fetch_bill_text(bill: dict) -> str | None:
+    """국회 의안정보시스템에서 제안이유·주요내용 텍스트 추출.
+
+    billDetail.do 는 JS 렌더링이라 정적 HTML에 본문이 없음.
+    방법1(billInfo.do POST) → 실패 시 방법2(jina 리더) 순으로 시도.
+    """
     bill_id = bill.get('BILL_ID', '')
     if not bill_id:
         return None
-    detail_url = f'https://likms.assembly.go.kr/bill/billDetail.do?billId={bill_id}'
-    info_url = 'https://likms.assembly.go.kr/bill/bi/bill/detail/billInfo.do'
-    try:
-        s = req.Session()
-        s.headers.update({'User-Agent': 'Mozilla/5.0'})
-        html = s.get(detail_url, timeout=10).text
-        # hidden 폼 파라미터 수집
-        params = {}
-        for inp in re.findall(r'<input[^>]+type="hidden"[^>]*>', html):
-            n = re.search(r'name="([^"]+)"', inp)
-            v = re.search(r'value="([^"]*)"', inp)
-            if n:
-                params[n.group(1)] = v.group(1) if v else ''
-        if not params.get('billId'):
-            params['billId'] = bill_id
-        frag = s.post(info_url, data=params, timeout=10, headers={
-            'X-Requested-With': 'XMLHttpRequest',
-            'Referer': detail_url,
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        }).text
-        txt = re.sub(r'<[^>]+>', ' ', frag)
-        txt = txt.replace('&nbsp;', ' ').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
-        txt = re.sub(r'\s+', ' ', txt).strip()
-        idx = txt.find('제안이유')
-        if idx < 0:
-            idx = txt.find('주요내용')
-        if idx >= 0:
-            return txt[idx:idx+2500]
-        return None
-    except Exception as e:
-        print(f'  ⚠️  본문 크롤링 실패: {e}')
-        return None
+    for method in (_fetch_via_billinfo, _fetch_via_jina):
+        try:
+            result = method(bill_id)
+            if result and len(result) > 100:
+                return result
+        except Exception as e:
+            print(f'  ⚠️  {method.__name__} 실패: {e}')
+    return None
 
 
 def summarize_bill(bill: dict) -> str | None:

@@ -1959,9 +1959,19 @@ function billsProcClass(r){
   return 'other';
 }
 
+// 단계별 값 해석 (날짜 없어도 회부 완료 등은 done 처리)
+function billsStageVal(b,key){
+  if(b[key]) return b[key];
+  // 소관위 회부: 위원회명이 지정돼 있으면 이미 회부된 것 (API가 날짜 미제공)
+  if(key==='CURR_COMMITTEE_DT' && b.CURR_COMMITTEE) return 'DONE';
+  return '';
+}
+function billsStageDateStr(v){
+  return (v && v!=='DONE' && /^\d/.test(v)) ? v : '';
+}
 function billsCurrentStage(b){
   var last=0;
-  BILL_STAGES.forEach(function(s,i){ if(b[s.key]) last=i; });
+  BILL_STAGES.forEach(function(s,i){ if(billsStageVal(b,s.key)) last=i; });
   return last;
 }
 
@@ -2020,13 +2030,14 @@ function billsRender(){
     var procResult=b.PROC_RESULT||'계류중';
     var procCls=billsProcClass(procResult);
     var pipeline=BILL_STAGES.map(function(s,i){
-      var v=b[s.key];
+      var v=billsStageVal(b,s.key);
+      var ds=billsStageDateStr(v);
       var cls=v?'done':'';
       if(i===cur&&v) cls='done current';
       return '<div class="bills-stage '+cls+'">'
         +'<div class="bills-stage-dot"></div>'
         +'<div class="bills-stage-name">'+s.label+'</div>'
-        +'<div class="bills-stage-date">'+(v?billsFmtDateShort(v):'')+'</div>'
+        +'<div class="bills-stage-date">'+(ds?billsFmtDateShort(ds):'')+'</div>'
         +'</div>';
     }).join('');
 
@@ -2207,20 +2218,22 @@ function openBillDetail(billId){
     {key:'PROM_DT',label:'공포'},
   ];
   var lastDone=-1;
-  stages.forEach(function(s,i){ if(b[s.key]) lastDone=i; });
+  stages.forEach(function(s,i){ if(billsStageVal(b,s.key)) lastDone=i; });
   var currIdx=lastDone<stages.length-1?lastDone+1:-1;
 
   var timelineHtml='<div class="bdm-section">'
     +'<div class="bdm-section-title">입법 진행 현황</div>'
     +'<div class="bdm-timeline">'
     +stages.map(function(s,i){
-      var isDone=i<=lastDone, isCurr=i===currIdx&&!b[s.key];
+      var v=billsStageVal(b,s.key);
+      var ds=billsStageDateStr(v);
+      var isDone=i<=lastDone, isCurr=i===currIdx&&!v;
       var cls=isDone?'ts-done':isCurr?'ts-curr':'';
       var linesArr=s.label.split('\n');
       return '<div class="bdm-tstep '+cls+'">'
         +'<div class="bdm-tdot"></div>'
         +'<div class="bdm-tname">'+linesArr.join('<br>')+'</div>'
-        +'<div class="bdm-tdate">'+(b[s.key]?billsFmtDate(b[s.key]):'')+'</div>'
+        +'<div class="bdm-tdate">'+(ds?billsFmtDate(ds):'')+'</div>'
         +'</div>';
     }).join('')
     +'</div></div>';
