@@ -1768,9 +1768,9 @@ function billsSummaryLoadServer(onDone){
     .then(function(r){ return r.json(); })
     .then(function(data){
       BILLS_SERVER_SUMMARIES=data||{};
-      // 서버 요약을 로컬 캐시에도 병합 (클라이언트 캐시 우선)
+      // 서버 요약이 정본(authoritative) — 로컬 캐시보다 서버 요약 우선
       var local=billsSummaryLoad();
-      var merged=Object.assign({},BILLS_SERVER_SUMMARIES,local);
+      var merged=Object.assign({},local,BILLS_SERVER_SUMMARIES);
       billsSummarySave(merged);
       if(onDone) onDone();
     })
@@ -1962,8 +1962,9 @@ function billsProcClass(r){
 // 단계별 값 해석 (날짜 없어도 회부 완료 등은 done 처리)
 function billsStageVal(b,key){
   if(b[key]) return b[key];
-  // 소관위 회부: 위원회명이 지정돼 있으면 이미 회부된 것 (API가 날짜 미제공)
-  if(key==='CURR_COMMITTEE_DT' && b.CURR_COMMITTEE) return 'DONE';
+  // 소관위 회부: 회부일 필드가 비어도 위원회명이 지정돼 있으면 회부 완료로 간주
+  // (open API 필드명 편차 대응: COMMITTEE_DT / COMMITTEE / CURR_COMMITTEE 모두 확인)
+  if(key==='CURR_COMMITTEE_DT' && (b.CURR_COMMITTEE || b.COMMITTEE)) return 'DONE';
   return '';
 }
 function billsStageDateStr(v){
