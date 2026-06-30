@@ -1,6 +1,573 @@
 {
-  "updated": "2026-06-29T23:37:46.195887+09:00",
+  "updated": "2026-06-30T14:45:31.731165+09:00",
   "articles": [
+    {
+      "id": "d086eff72f7c",
+      "title": "오래된 통신 가입 방식 깼다…LGU+, 고객 경험 바꾼 '올인원'",
+      "summary": "LG유플러스가 모바일·인터넷·결합 가입 절차를 하나로 통합한 '올인원' 상품을 출시했다. 7월부터 시행한 '심플리 2.0'의 핵심 상품으로 월 9만원 이상 모바일 요금제 이용 시 별도 결합 신청 없이 혜택을 받을 수 있어 가입 절차 단순화와 고객 편의성을 대폭 개선했다.",
+      "tags": [
+        "요금제",
+        "결합상품",
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "LG U+",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.etnews.com/20260630000318",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "c82c5e5a2fa1",
+      "title": "과기정통부, 6일부터 휴대폰 안면인증 단계적 시행…신분증·초본 등 대체인증 허용",
+      "summary": "정부가 휴대전화 개통시 안면인증 제도를 6일부터 단계적으로 시행한다. 실패시 신분증·초본 등으로 조건부 개통을 허용하며, 10월까지 법적·시스템 정비를 완료할 예정이다. 명의도용 등 휴대전화 부정사용 방지가 주목적이며, 통신산업 신원확인 절차의 중요한 정책 변화다.",
+      "tags": [
+        "안면인증",
+        "규제·정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "과기정통부",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.etnews.com/20260630000056",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "e4bf2ce3387b",
+      "title": "애플, 국내에서만 아이폰 가격 인상 '신중 모드'…9월이 인상 분수령",
+      "summary": "애플이 맥북·아이패드 등 주요 제품 가격을 대폭 인상했으나 아이폰은 제외했다. 국내 휴대폰 시장의 경쟁상황을 고려한 판단으로, 이동통신사와 유통업계는 9월을 제품 가격조정의 분수령으로 예상하고 있다.",
+      "tags": [
+        "단말기·유통",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.etnews.com/20260628000067",
+      "source_name": "오늘의 인기기사 - 이티뉴스"
+    },
+    {
+      "id": "c4a1bb6a74b3",
+      "title": "대표팀 후원사 KT도 월드컵 마케팅 중단···포스터 제거 지침 내려",
+      "summary": "축구 국가대표팀 공식 후원사인 KT가 2026 북중미 월드컵 관련 마케팅을 중단하고 전국 영업점의 월드컵 관련 포스터 및 시각홍보물을 제거하도록 지시했다. 국가대표팀의 32강 진출 실패로 월드컵과의 거리두기에 나선 것으로 풀이되며, 통신사의 스포츠 마케팅 전략 조정을 보여주는 사례다.",
+      "tags": [
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422073",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "c36477dc5416",
+      "title": "고고팩토리, 시니어 안전 케어 돕는 '안심실버폰' 선보여",
+      "summary": "알뜰폰 및 IT 솔루션 전문 기업 고고팩토리가 시니어 계층의 배회, 금융사기, 고독사 위험을 통합 관리하는 '안심실버폰'을 출시했다. 실시간 위치 정보, 휴대폰 사용 패턴, 금융 위험 신호를 종합 분석하여 평소 생활 패턴과 비교한 이상 징후를 감지하는 서비스로, 알뜰폰 시장의 사회적 책임 강화 사례이다.",
+      "tags": [
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "알뜰폰",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.itbiznews.com/news/articleView.html?idxno=217826",
+      "source_name": "IT비즈뉴스 - 전체기사"
+    },
+    {
+      "id": "62c03ea3eb9a",
+      "title": "스페이스X, 차터 커뮤니케이션과 모바일 서비스 제휴 논의 중",
+      "summary": "일론 머스크의 스페이스X가 미국 케이블통신사 차터 커뮤니케이션과 소비자 모바일폰 서비스 제휴에 대해 임원진 차원의 협상을 진행 중인 것으로 보도되었다. 위성통신 기업의 이동통신 시장 진출 움직임으로, 향후 통신 산업의 경쟁 구도와 결합상품 전략에 영향을 미칠 수 있는 사항이다.",
+      "tags": [
+        "시장경쟁",
+        "통신사동향",
+        "결합상품"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/wireless/now-spacex-talking-charter-about-mobile-offer-report",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "f877d1f5077e",
+      "title": "AWS-3 경매에서 베라이즌이 최대 낙찰자로 선정",
+      "summary": "FCC가 실시한 113차 경매(AWS-3 대역)를 완료하고 낙찰자를 발표했으며, 베라이즌이 최대 낙찰자로 선정되었다. 이는 미국 무선통신 시장의 주파수 확보를 통한 통신사 간 경쟁 심화를 의미하며, 국내 통신사의 주파수 전략 수립 시 참고 가치가 있다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/wireless/verizon-emerges-biggest-winner-aws-3-auction",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "975ddf19a19f",
+      "title": "로켓랩, 아이리듐을 80억 달러에 인수",
+      "summary": "로켓랩이 아이리듐 커뮤니케이션즈를 80억 달러(약 10조 원대)에 인수하며, 발사체 및 위성 제조 역량과 아이리듐의 글로벌 위성 네트워크, L대역 스펙트럼을 통합한다. 이는 위성통신 산업의 주요 M&A로 향후 저궤도 위성 통신 서비스 경쟁 구도에 영향을 미칠 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/wireless/rocket-lab-acquires-iridium-8b-deal",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "df405bb04f3e",
+      "title": "Vistabeam, gaiia 워크플로우로 운영 자동화",
+      "summary": "미국 Mountain West 지역 ISP인 Vistabeam이 gaiia 워크플로우를 통해 가입자 이벤트 관련 네트워크 운영을 자동화하여 1년 내 97,000개 이상의 워크플로우를 98.5% 성공률로 구축했다. 이는 통신사의 운영 효율화와 자동화 기술 활용을 통한 비용 절감 및 서비스 품질 향상의 실사례를 보여준다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/sponsored/how-vistabeam-automated-its-operations-gaiia-workflows",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "a1c33aa6e990",
+      "title": "T-Mobile, 기존 요금제 고객에게 5G 기반 신규 요금제로 전환 안내",
+      "summary": "T-Mobile이 기존 요금제 사용 고객들을 신규 요금제로 전환하고 있으며, 일부 고객의 요금이 인상될 수 있다. 해외 통신사의 레거시 요금제 정리 및 신기술 기반 요금제 전환 전략으로, 국내 통신사의 요금제 현대화 정책 벤치마킹 가치가 있다.",
+      "tags": [
+        "요금제",
+        "리텐션",
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/wireless/t-mobile-says-older-plan-customers-need-5g-refresh",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "04d5a61c4ab1",
+      "title": "SpaceX, 미국에서 Starlink 모바일 사업 확대 계획",
+      "summary": "Elon Musk의 SpaceX가 Starlink를 통한 모바일 서비스 확대를 추진 중이다. 위성통신 기반의 모바일 사업 진출은 기존 이동통신사들의 경쟁 구도를 재편할 가능성이 있으며, 국내 통신산업의 미래 기술 동향 및 경쟁 전략 수립에 참고 가치가 높다.",
+      "tags": [
+        "시장경쟁",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/wireless/spacex-plans-bigger-starlink-mobile-push-us-report",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "a0f5de499ed1",
+      "title": "멀티벤더 네트워크에서의 변화 관리 과제",
+      "summary": "멀티벤더 네트워크 환경에서의 변화 관리가 점점 복잡해지고 있으며, 안정성과 통제력을 유지하기 위해 거버넌스가 필수적이 되고 있다. 이는 통신사들의 네트워크 운영 전략과 조직 구조 개선의 중요성을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/sponsored/why-blue-planet-rethinking-configuration-governance",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "7bd671340b64",
+      "title": "마이크로소프트의 네트워크 AI 대규모 적용 방식",
+      "summary": "마이크로소프트가 통신 네트워크 운영의 일상적 업무에 AI를 적용하여 팀의 확장성과 작업 실행 방식을 혁신하고 있다. AI 기반 네트워크 운영의 실질적 도입을 위한 기회와 요구사항을 제시하며, 통신사의 디지털 전환과 운영 효율화의 중요한 사례를 보여준다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/sponsored/how-microsoft-applying-network-ai-scale",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "cc81bf7c52f2",
+      "title": "자율 네트워크에서 지능형 통신사로 – 통신산업의 다음 진화",
+      "summary": "AI 기술이 통신사들을 네트워크 자동화를 넘어 비즈니스 인텔리전스 시대로 진화시키고 있다. Wipro는 전 세계 통신사들과의 협력을 통해 실시간 학습, 의사결정, 성장이 가능한 지능형 적응 조직으로의 산업 변혁을 설명하고 있으며, 이는 통신사의 운영 효율성과 경쟁력 강화의 핵심 전략이 될 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.rcrwireless.com/20260625/automation/autonomous-networks-wipro",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "27bb2589a04d",
+      "title": "5G 배포를 위한 실제 네트워크 에뮬레이션의 중요성",
+      "summary": "Apposite Technologies의 시스템 엔지니어는 5G 배포 성공을 위해 실제 네트워크 에뮬레이션이 필수적이라고 강조했다. 변수 조건 하에서의 성능 테스트를 통해 운영사의 위험을 감소시키고 안정적인 프로덕션 출시를 보장할 수 있다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.rcrwireless.com/20260625/opinion/real-world-network-emulation-5g-apposite",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "544af582ab1e",
+      "title": "자동화 네트워크가 균등하게 성숙하지 않는 이유",
+      "summary": "통신사 자동화 네트워크는 기술보다 데이터 품질, 통합 준비도, 거버넌스 기반에 따라 진전 속도가 결정되며, 대부분의 통신사가 자동화 수준 1~2 단계에 머물러 있다. 자동화 네트워크 구축 시 기술 투자보다 조직 역량과 데이터 관리체계 강화가 우선되어야 함을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.rcrwireless.com/20260625/opinion/autonomous-networks-maturity-avenga",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "e25bd6772b35",
+      "title": "AI 기반 6G는 네트워크-컴퓨팅 자원의 통합 오케스트레이션 필요, 중국통신 주장",
+      "summary": "중국통신의 최고 기술책임자는 AI 기반 6G 구현을 위해 네트워킹과 컴퓨팅 자원을 통합 관리하는 근본적인 아키텍처 전환이 필수적이라고 주장했다. 이는 6G 네트워크 기술 진화 방향을 보여주는 주요 기술 트렌드로, 국내 통신사의 차세대 네트워크 투자 전략 수립에 벤치마킹 가치가 있다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.rcrwireless.com/20260625/network-infrastructure/ai-6g-china",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "b2456f2410fb",
+      "title": "Verizon, Ericsson에 Samsung 수준의 개방성 요구",
+      "summary": "Verizon이 자사 네트워크의 거의 절반에 Samsung의 가상 RAN을 배포한 가운데, CTO Yago Tenorio는 Ericsson도 곧 같은 수준의 개방성을 갖추기를 기대하고 있다. 이는 통신사들이 네트워크 장비 공급업체의 개방형 구조를 강력히 요구하는 글로벌 추세를 보여준다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.lightreading.com/5g/verizon-ups-pressure-on-ericsson-to-be-open-like-samsung",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "d1c23c5e22c4",
+      "title": "Comcast, NBCU와 Sky 분사해 독립 상장사로 분리",
+      "summary": "Comcast가 케이블/기술사업과 미디어사업을 두 개의 독립적인 상장사로 분할할 계획을 발표했다. 분사 후 Mike Cavanagh가 NBCU CEO로, 전 CFO Michael Angelakis가 Comcast CEO로 취임할 예정이다. 이는 대형 통신미디어 기업의 사업 포트폴리오 재편 전략으로 국내 통신사들의 사업 다각화 및 자산 관리 방식에 참고 가치가 있다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.lightreading.com/cable-technology/comcast-to-spin-out-nbcu-and-sky",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "4d2e192ad95f",
+      "title": "SpaceX, AT&T, T-Mobile, Verizon, EchoStar, AWS-3 경매 낙찰자로 선정",
+      "summary": "미국 AWS-3 스펙트럼 경매에서 Verizon, AT&T, T-Mobile 등 주요 통신사와 SpaceX, EchoStar가 낙찰자로 결정되었다. Verizon이 최고 입찰자로 주요 시장에서 대역폭을 확보하며, 이는 미국 통신시장의 경쟁 구도와 5G 네트워크 투자 전략을 반영한다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.lightreading.com/wireless/spacex-at-t-t-mobile-verizon-echostar-among-aws-3-auction-winners",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "9923410221e6",
+      "title": "SK Telecom, 미국 AI 분야에 4억8천만 달러 투자",
+      "summary": "SK Telecom이 SK Hynix 미국 자회사에 4억8천만 달러를 투자하며 AI 산업 진출을 강화하고 있다. 이미 Anthropic에 25억 달러를 보유 중이며, 통신사의 AI 기술 기반 신사업 전략 추진이 두드러진다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.lightreading.com/ai-machine-learning/sk-telecom-to-invest-480m-in-us-ai",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "d18c47d7153f",
+      "title": "GSMA, 중국타워 신규 회원 승인으로 AI 기반 모바일 인프라 고도화 추진",
+      "summary": "세계 최대 통신 타워 회사인 중국타워가 GSMA에 신규 회원으로 가입했다. 중국타워는 지난해 중국 전역의 560만 기지국과 210만 타워 사이트를 지능형 엣지 컴퓨팅 허브로 업그레이드하며 AI 기반 모바일 인프라 고도화를 선도하고 있다. 이는 통신사의 네트워크 고도화와 스마트 인프라 투자 전략의 글로벌 동향을 보여주는 사례다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.gsma.com/newsroom/press-release/gsma-welcomes-china-tower-to-advance-ai-ready-mobile-infrastructure/",
+      "source_name": "NewsroomNewsroom - Article Feed"
+    },
+    {
+      "id": "9c0dede28791",
+      "title": "통신사업자들이 국경 간 통신 앱 성장에서 배울 수 있는 교훈",
+      "summary": "전 세계 수억 명이 국경 간 통신 앱을 통해 가족 및 업무 연락을 유지하고 있으며, 이는 전통 통신사의 국제 로밍 서비스에 대한 위협 요소다. 통신사들은 앱 기반 서비스의 사용성, 가격 경쟁력, 사용자 경험 개선을 벤치마킹하여 자신들의 국제 통신 전략을 재편할 필요가 있다.",
+      "tags": [
+        "서비스정책",
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://totaltele.com/what-telecom-operators-can-learn-from-the-growth-of-cross-border-communication-apps/",
+      "source_name": "Total Telecom"
+    },
+    {
+      "id": "c6dd496d8b42",
+      "title": "Extreme Networks, NFL 경기장에 초지향성 WiFi 7 안테나 기술 도입",
+      "summary": "Extreme Networks가 내슈빌 Nissan Stadium(6만석 규모)에 Multi-Beam Wireless 기술을 최초 배치했다. 초지향성 WiFi 안테나 솔루션으로 경기장 같은 대규모 공공시설의 무선 네트워크 품질 향상을 위한 신기술 트렌드를 보여준다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://capacityglobal.com/news/extreme-networks-debuts-hyper-directional-wifi-7-antenna-technology-at-new-60000-seat-nfl-venue/",
+      "source_name": "Capacity"
+    },
+    {
+      "id": "f9b7d5b3ac6e",
+      "title": "SpaceX, 미국에서 스타링크 모바일 서비스 출시 계획",
+      "summary": "SpaceX가 미국 내 스타링크 모바일 서비스 출시를 추진 중이며, 이는 위성통신 기업이 대중 시장의 이동통신 사업으로 진출하려는 첫 시도입니다. 기존 이동통신사들의 사업 모델을 위협할 수 있는 새로운 경쟁자 등장으로, 국내 통신시장의 경쟁 구도 변화를 살펴볼 필요가 있습니다.",
+      "tags": [
+        "시장경쟁",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://arstechnica.com/space/2026/06/spacex-plans-to-launch-starlink-mobile-service-in-the-us/",
+      "source_name": "Policy - Ars Technica"
+    },
+    {
+      "id": "265487b49f0b",
+      "title": "디즈니, 라이브 TV 스트리밍 가격 인상 관련 5천만 달러 합의",
+      "summary": "디즈니가 ESPN을 강제로 포함시켜 통신사들의 라이브 TV 스트리밍 요금을 부당하게 인상했다는 소송에서 5천만 달러 규모로 합의했다. 통신사의 요금 책정 자율성 제약 문제로 해외 통신업계의 콘텐츠 기업과의 요금 분쟁이 심화되고 있음을 시사한다.",
+      "tags": [
+        "시장경쟁",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://arstechnica.com/tech-policy/2026/06/disney-agreed-to-50m-settlement-over-claims-it-made-live-tv-streaming-expensive/",
+      "source_name": "Policy - Ars Technica"
+    },
+    {
+      "id": "8fab5a714883",
+      "title": "FCC, 선불 익명폰 사용 차단 가능한 신원확인 의무화 계획",
+      "summary": "미국 FCC가 선불 요금제 휴대폰의 신원확인 의무화를 추진 중이며, 프라이버시 옹호 단체와 가정폭력 피해자 그룹이 이 정책이 사용자 익명성을 침해한다며 반발하고 있다. 통신 규제 정책 변화가 요금제 정책과 사용자 보호 간의 균형 문제를 야기하는 사례로, 국내 통신 규제 정책 수립 시 참고 가치가 있다.",
+      "tags": [
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://arstechnica.com/tech-policy/2026/06/fcc-plans-id-mandate-that-could-block-anonymous-use-of-prepaid-burner-phones/",
+      "source_name": "Policy - Ars Technica"
+    },
+    {
+      "id": "adadc3af3e93",
+      "title": "T-Mobile, 레거시 요금제 고객 퇴출 추진",
+      "summary": "T-Mobile이 3G 시대까지 거슬러 올라가는 구형 레거시 요금제를 폐지하고 기존 고객들을 현재 요금제로 이전하는 정책을 시행 중이다. 이는 요금제 정책 변화와 고객 리텐션 이슈로서 국내 통신업계의 요금제 개편 및 고객 관리 전략에 대한 벤치마킹 가치가 있다.",
+      "tags": [
+        "요금제",
+        "리텐션",
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.theverge.com/tech/959144/t-mobile-legacy-plan-retire-sprint",
+      "source_name": "The Verge"
+    },
+    {
+      "id": "d017682adcc4",
+      "title": "의원들, AI 기업의 건강 데이터 판매 금지 법안 추진",
+      "summary": "미국 상원의원 엘리자베스 워렌과 하원의원 메리 게이 스캔런은 데이터 중개업체에 대한 미국인의 건강 및 위치 정보 판매를 금지하는 법안을 발의할 예정이다. 해당 법안은 ChatGPT 등 AI 챗봇에 사용자가 공개한 정보도 규제 대상에 포함시킨다. 이는 통신·데이터 기업의 개인정보 취급과 규제 강화 동향을 시사한다.",
+      "tags": [
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.theverge.com/ai-artificial-intelligence/959033/health-location-data-protection-act-ai-warren-scanlon",
+      "source_name": "The Verge"
+    },
+    {
+      "id": "5bb5685ce2d7",
+      "title": "싱텔 CEO 급여 17% 삭감, 네트워크 장애에 따른 책임",
+      "summary": "싱가포르통신(Singtel)이 네트워크 장애로 인한 책임을 지고 CEO 유엔 쿠안 문의 연봉을 17% 인상 대비 5.3백만 달러로 삭감했다. 호주와 싱가포르에서 발생한 긴급서비스 중단 및 네트워크 장애에 대해 최고경영진이 책임을 다하는 사례로, 네트워크 안정성 관리의 중요성을 보여준다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-06-30/singtel-ceo-s-pay-cut-17-to-5-3-million-after-network-outages",
+      "source_name": "Bloomberg Technology"
+    },
+    {
+      "id": "e95a6a539b03",
+      "title": "아마존, 호주 소비자청으로부터 Prime Video 광고 정책 관련 소송 제기당해",
+      "summary": "아마존이 Prime Video 스트리밍 서비스에 광고를 도입한 후 기존 구독자에게 광고 제거를 위해 추가 요금을 부과한 것에 대해 호주 소비자청이 소송을 제기했다. 광고 도입과 이용약관 변경에 따른 소비자 피해 문제로, 국내 통신·방송 서비스의 요금제 변경 및 이용약관 정책 수립 시 규제 리스크 관리의 벤치마크 사례다.",
+      "tags": [
+        "요금제",
+        "이용약관",
+        "규제·정책",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-06-29/amazon-sued-by-australian-consumer-watchdog-over-prime-video-ads",
+      "source_name": "Bloomberg Technology"
+    },
+    {
+      "id": "75096d092dd0",
+      "title": "콤캐스트, NBCUniversal 및 Sky 분사 추진 - 10년 전략 방향 전환",
+      "summary": "콤캐스트가 10년 이상 지속해온 미디어·케이블 통합 전략을 포기하고 NBCUniversal과 Sky를 분사하기로 결정했다. 케이블·미디어 통합사업이 주주가치 창출에 실패한 것으로 판단하고 사업 구조 재편을 추진 중으로, 대형 통신미디어 기업의 전략 재평가 추세를 시사한다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-06-29/comcast-plans-to-spin-off-nbcuniversal-and-sky-into-media-unit",
+      "source_name": "Bloomberg Technology"
+    },
+    {
+      "id": "0a8949413169",
+      "title": "기술, 미디어 및 통신 라운드업: 시장 동향",
+      "summary": "퀘벡, 베라이즌, 텍사스인스트루먼츠 등 주요 통신 및 기술 기업들의 최신 시장 동향을 다룬 종합 분석 기사. 통신사 경영 전략과 시장 경쟁 동향을 파악할 수 있는 글로벌 벤치마킹 자료.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.wsj.com/articles/tech-media-telecom-roundup-market-talk-d3dd8fb0?mod=rss_Technology",
+      "source_name": "WSJ.com: WSJD"
+    },
+    {
+      "id": "817fe18749e0",
+      "title": "얼굴로 결제 끝, 네이버페이·토스 안면 인식 결제 선점 경쟁 '후끈'",
+      "summary": "네이버페이와 토스가 안면 인식 기반 결제 서비스 확대로 간편결제 시장 주도권 경쟁을 심화시키고 있다. 한국은행 데이터에 따르면 2025년 국내 간편 지급 서비스의 일일 이용 건수는 3557만 건, 거래액은 1조1053억원에 달하며 안면결제가 핵심 성장 동인으로 부상했다.",
+      "tags": [
+        "안면인증",
+        "서비스정책",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153001",
+      "source_name": "테크M - 전체기사"
+    },
+    {
+      "id": "2533995d6716",
+      "title": "SKT '에이닷', 전화도 대신 걸어줍니다...VPPL 기술도 상용화",
+      "summary": "SK텔레콤이 AI 에이전트 '에이닷'에 '에이전트콜' 기능을 추가해 사용자 대신 전화를 걸고 통화를 보조하는 AI 서비스를 제공한다. 최근 통화 데이터 기반 혼잡도 예측, ARS 자동 처리 등 이용자 중심의 기능으로 AI 데이터센터 사업 확장과 함께 AI 기술 고도화를 강화하고 있다.",
+      "tags": [
+        "통신사동향",
+        "서비스정책",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=152999",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "kt05hack",
       "title": "KT, 소액결제 해킹 피해자에 위약금 면제 및 100GB·15만원 상당 보상",
