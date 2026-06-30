@@ -1,6 +1,88 @@
 {
-  "updated": "2026-06-30T15:56:09.410458+09:00",
+  "updated": "2026-06-30T16:53:55.132853+09:00",
   "articles": [
+    {
+      "id": "f783722967da",
+      "title": "[ET시론] 데이터 주권, 올바른 질문을 던져야 한다",
+      "summary": "적기조례 사례처럼 기술 변화에 뒤떨어진 규제가 산업 주도권 상실을 초래할 수 있다는 역사적 교훈을 제시하며, 데이터 주권 논쟁에서 단순한 규제 강화보다는 신중한 정책 접근의 필요성을 강조하고 있다. 개인정보보호위원회의 대주주 변경 관련 정책이 국내 통신산업 경쟁력에 미칠 영향을 다루고 있다.",
+      "tags": [
+        "규제·정책",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "방통위",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.etnews.com/20260630000189",
+      "source_name": "속보 - 이티뉴스"
+    },
+    {
+      "id": "002656ac83e5",
+      "title": "대통령도 폭발한 '홍명보호' 참사 ... 25년 스폰서 KT의 월드컵 손절",
+      "summary": "KT가 2001년부터 25년간 후원해온 한국 축구 국가대표팀과의 스폰서십을 중단하고 관련 광고물을 철수하기로 결정했다. 이는 8년 만의 조별리그 탈락이라는 월드컵 참사로 촉발된 대기업의 냉혹한 브랜드 이미지 보호 결단으로, 통신업계의 위기 관리 전략 사례를 보여준다.",
+      "tags": [
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422096",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "89c51e701061",
+      "title": "M&A 추적기 - Verizon, BT, Iridium, Rocket Lab 및 Comcast",
+      "summary": "통신 및 기술산업의 급변하는 인수합병(M&A) 동향을 추적하는 기사로, Verizon 등 주요 통신사의 전략적 인수합병 활동을 다룬다. 통신산업의 경쟁 구도 변화와 사업 다각화 추세를 파악할 수 있는 자료다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/broadband/2026-ma-tracker",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "4242f4ff4c22",
+      "title": "휴대폰 개통 시 안면인증 거쳐야... 모바일 신분증·초본으로 대체 가능",
+      "summary": "휴대폰 개통 절차에 안면인증이 의무화되는 가운데, 모바일 신분증과 초본으로 대체 가능한 옵션이 제공된다. 이는 본인확인 강화와 사용자 편의성을 동시에 추구하는 통신업계의 서비스 정책 변화로, 향후 개통 프로세스 표준화에 영향을 미칠 것으로 예상된다.",
+      "tags": [
+        "안면인증",
+        "이용약관",
+        "서비스정책",
+        "규제·정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.chosun.com/economy/tech_it/2026/06/30/4MYCZHYUJVEQTLCSKQXQZIRFIM/",
+      "source_name": "조선일보"
+    },
+    {
+      "id": "9b1f5e6393b6",
+      "title": "기본권 침해·제도 운영 논란에도 '안면인증' 정식 도입… 개보위·인권위는 우려, 과기정통부는 '마이웨이'",
+      "summary": "정부가 대포폰과 보이스피싱 범죄 방지를 위해 내달 6일부터 휴대전화 개통 시 안면인증을 정식 도입한다. 개인정보보호위원회와 인권위의 기본권 침해 우려에도 불구하고 과기정통부가 추진 중이며, 외국인 명의 개통 제외로 실효성 논란이 제기되고 있다.",
+      "tags": [
+        "안면인증",
+        "규제·정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "과기정통부",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.chosun.com/economy/tech_it/2026/06/30/MJSDSY3EGQ3WGOLCHA3DQZLBMQ/",
+      "source_name": "조선일보"
+    },
     {
       "id": "189bd6f63bbf",
       "title": "[대한민국 3대 메가프로젝트] 정부-SK·GS·네이버, AI 데이터센터 지역별 구축 박차",
