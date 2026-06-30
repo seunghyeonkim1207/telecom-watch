@@ -1076,10 +1076,8 @@ function navTo(page,triggerEl){
   if(page==='report') renderReport();
   if(page==='calendar') calRender();
   if(page==='bills'){
-    billsPurgeOld();
     billsSummaryLoadServer(function(){
-      billsRender();
-      billsAutoSync(function(){ billsRender(); });
+      billsLoadCorpus(function(){ billsRender(); });
     });
   }
   if(page==='intl') intlRender();
@@ -1659,13 +1657,15 @@ function billsAddKeyword(){
   billsSaveKw(kw);
   inp.value='';
   billsRenderKeywords();
-  toast('"'+v+'" 키워드를 추가했어요. 동기화 버튼을 눌러 법안을 불러오세요.');
+  billsRender();
+  toast('"'+v+'" 키워드 추가 — 의안명·제안이유에서 검색합니다.');
 }
 
 function billsRemoveKeyword(k){
   var kw=billsLoadKw().filter(function(x){return x!==k;});
   billsSaveKw(kw);
   billsRenderKeywords();
+  billsRender();
 }
 
 function billsAutoSync(onDone){
@@ -1735,11 +1735,10 @@ function billsAutoSync(onDone){
   });
 }
 
-function billsLoad(){
-  try{ return JSON.parse(localStorage.getItem('tw_tracked_bills'))||[]; }
-  catch(e){ return []; }
-}
-function billsSave(list){ localStorage.setItem('tw_tracked_bills',JSON.stringify(list)); }
+// 법안 데이터 소스 = 서버 코퍼스(data/bills.json). by-ID 조회/렌더 모두 이 배열을 사용.
+function billsLoad(){ return BILLS_CORPUS; }
+// 코퍼스는 서버에서 매일 관리되므로 클라이언트 저장은 의미 없음(no-op).
+function billsSave(list){ /* 서버 관리 — no-op */ }
 function billsLoadHidden(){
   try{ return JSON.parse(localStorage.getItem('tw_hidden_bills'))||{}; }
   catch(e){ return {}; }
@@ -1787,6 +1786,40 @@ function billsSummaryLoadServer(onDone){
       if(onDone) onDone();
     })
     .catch(function(){ if(onDone) onDone(); });
+}
+
+/* ─── 법안 코퍼스 (서버 생성: data/bills.json) ───────────────────────────────
+ * 통신 관련 법안 풀 + 각 법안의 제안이유 본문(REASON_TEXT) + 요약(SUMMARY).
+ * 화면은 이 코퍼스를 받아 사용자 키워드를 [의안명 + 제안이유]에 매칭해 필터한다.
+ * (예전: 키워드로 OPEN API 의안명만 실시간 검색 → 현재: 코퍼스에서 제안이유까지 검색)
+ * ─────────────────────────────────────────────────────────────────────────── */
+var BILLS_CORPUS=[];  // data/bills.json 에서 로드한 전체 통신 법안 풀
+
+function billsLoadCorpus(onDone){
+  fetch('data/bills.json?_='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(list){
+      BILLS_CORPUS=Array.isArray(list)?list:[];
+      // 코퍼스에 들어있는 요약을 요약 캐시에도 반영 (서버 정본)
+      if(BILLS_CORPUS.length){
+        var cache=billsSummaryLoad();
+        BILLS_CORPUS.forEach(function(b){
+          if(b.BILL_ID && b.SUMMARY){
+            cache[b.BILL_ID]={summary:b.SUMMARY, bill_name:b.BILL_NAME||'', updated:(b.SUMMARY_UPDATED||'')};
+          }
+        });
+        billsSummarySave(cache);
+      }
+      if(onDone) onDone();
+    })
+    .catch(function(){ BILLS_CORPUS=[]; if(onDone) onDone(); });
+}
+
+// 키워드가 [의안명 + 제안이유] 안에 하나라도 들어 있으면 매칭
+function billsMatchesKeywords(b, keywords){
+  if(!keywords.length) return true;  // 키워드 없으면 통신 법안 풀 전체 노출
+  var hay=((b.BILL_NAME||'')+' '+(b.REASON_TEXT||'')).toLowerCase();
+  return keywords.some(function(kw){ return hay.indexOf(kw.toLowerCase())>=0; });
 }
 
 var BILLS_SUMMARY_QUEUE=[];
@@ -1989,24 +2022,21 @@ function billsCurrentStage(b){
 }
 
 function billsRender(){
-  var key=localStorage.getItem('tw_assembly_key')||'';
   var noKeyEl=document.getElementById('billsNoKey');
   var filterRow=document.getElementById('billsFilterRow');
   var kwBox=document.getElementById('billsKeywordBox');
-  if(!key){
-    noKeyEl.style.display='block';
-    if(filterRow) filterRow.style.display='none';
-    if(kwBox) kwBox.style.display='none';
-    document.getElementById('billsList').innerHTML='';
-    return;
-  }
-  noKeyEl.style.display='none';
+  // 코퍼스(data/bills.json) 기반 — 더 이상 API 키 불필요
+  if(noKeyEl) noKeyEl.style.display='none';
   if(filterRow) filterRow.style.display='flex';
   if(kwBox) kwBox.style.display='block';
   billsRenderKeywords();
 
   var hidden=billsLoadHidden();
-  var list=billsLoad().filter(function(b){ return !b.PROM_DT; });
+  var kw=billsLoadKw();
+  // 통신 법안 풀에서 사용자 키워드를 [의안명 + 제안이유]에 매칭해 필터
+  var list=BILLS_CORPUS.filter(function(b){
+    return !b.PROM_DT && billsMatchesKeywords(b, kw);
+  });
   var hiddenList=list.filter(function(b){ return hidden[b.BILL_ID]; });
   var visibleList=list.filter(function(b){ return !hidden[b.BILL_ID]; });
   var showHiddenBtn=document.getElementById('billsShowHiddenBtn');
@@ -2027,7 +2057,11 @@ function billsRender(){
 
   var box=document.getElementById('billsList');
   if(!list.length){
-    box.innerHTML='<div class="bills-empty">추적 중인 법안이 없습니다.<br><span style="font-size:12px;">+ 법안 추가 버튼으로 전기통신사업법 등을 검색해 추가하세요.</span></div>';
+    if(!BILLS_CORPUS.length){
+      box.innerHTML='<div class="bills-empty">법안 데이터를 준비 중입니다.<br><span style="font-size:12px;">매일 새벽 자동 수집됩니다. 잠시 후 다시 확인해주세요.</span></div>';
+    } else {
+      box.innerHTML='<div class="bills-empty">키워드와 일치하는 법안이 없습니다.<br><span style="font-size:12px;">키워드는 의안명과 제안이유 본문에서 함께 검색됩니다.</span></div>';
+    }
     return;
   }
   if(!filtered.length){
@@ -2165,8 +2199,12 @@ function billsAddFromSearch(bill){
 }
 
 function billsRemove(billId){
-  billsSave(billsLoad().filter(function(b){return b.BILL_ID!==billId;}));
+  // 코퍼스는 서버 정본 — 삭제 대신 영구 숨김 처리
+  var h=billsLoadHidden();
+  h[billId]=true;
+  billsSaveHidden(h);
   billsRender();
+  toast('목록에서 숨겼어요. (숨긴 법안 보기에서 복원 가능)');
 }
 
 function openBillDetail(billId){
@@ -2305,52 +2343,19 @@ function closeBillDetail(){
 }
 
 function billsRefreshOne(billId){
-  var key=localStorage.getItem('tw_assembly_key')||'';
-  var list=billsLoad();
-  var bill=list.filter(function(b){return b.BILL_ID===billId;})[0];
-  if(!bill||!key) return;
-  var card=document.getElementById('bc-'+billId);
-  if(card) card.style.opacity='0.5';
-  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=10&AGE=22&BILL_NAME='+encodeURIComponent(bill.BILL_NAME||'');
-  fetch(url).then(function(r){return r.json();}).then(function(data){
-    var rows=null;
-    try{
-      var sec=data[ASSEMBLY_SVC]||data['BILLINFOLIST']||data[Object.keys(data).filter(function(k){return k!=='RESULT';})[0]];
-      for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
-    }catch(e){}
-    if(rows){
-      var fresh=rows.filter(function(r){return r.BILL_ID===billId;})[0]||rows[0];
-      if(fresh){
-        var idx=list.findIndex?list.findIndex(function(b){return b.BILL_ID===billId;}):
-          (function(){for(var i=0;i<list.length;i++){if(list[i].BILL_ID===billId)return i;}return -1;})();
-        if(idx>=0){ list[idx]=fresh; billsSave(list); }
-        toast('동기화 완료');
-      }
-    }
-    billsRender();
-  }).catch(function(){
-    if(card) card.style.opacity='1';
-    toast('동기화 실패 — 네트워크를 확인해주세요.');
-  });
+  // 코퍼스는 서버 정본이므로 최신 데이터를 다시 불러와 재렌더
+  billsRefreshAll();
 }
 
 function billsRefreshAll(){
-  var key=localStorage.getItem('tw_assembly_key')||'';
-  if(!key){ openAssemblyModal(); return; }
   var btn=document.getElementById('billsRefreshBtn');
-  if(btn){ btn.disabled=true; btn.textContent='동기화 중...'; }
-  billsAutoSync(function(err){
-    billsRender();
-    if(btn){ btn.disabled=false; btn.textContent='↻ 동기화'; }
-    if(err){
-      if(err.indexOf('ERROR-290')>=0||err.indexOf('인증키')>=0){
-        toast('❌ API 키가 유효하지 않습니다. 🔑 키 변경으로 다시 입력해주세요.');
-      } else {
-        toast('❌ 동기화 실패: '+err.slice(0,60));
-      }
-    } else {
-      toast('동기화 완료');
-    }
+  if(btn){ btn.disabled=true; btn.textContent='불러오는 중...'; }
+  billsSummaryLoadServer(function(){
+    billsLoadCorpus(function(){
+      billsRender();
+      if(btn){ btn.disabled=false; btn.textContent='↻ 동기화'; }
+      toast(BILLS_CORPUS.length?('최신 법안 '+BILLS_CORPUS.length+'건 불러옴'):'아직 수집된 법안이 없습니다.');
+    });
   });
 }
 

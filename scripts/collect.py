@@ -271,7 +271,11 @@ def collect():
 
 BILL_API_BASE = 'https://open.assembly.go.kr/portal/openapi/nzmimeepazxkubdpn'
 BILL_SUMMARY_FILE = 'data/bill_summaries.json'
-BILL_SEARCH_TERMS = ['전기통신사업법', '이동통신', '통신요금', '알뜰폰']
+BILLS_FILE = 'data/bills.json'   # 제안이유 본문 포함 통신 법안 코퍼스
+# 통신 관련 법안 풀을 구성하기 위한 의안명 검색어 (OPEN API는 의안명만 검색 가능).
+# 이 풀 안에서 화면이 사용자 키워드를 의안명+제안이유에 매칭한다.
+BILL_SEARCH_TERMS = ['전기통신사업법', '이동통신', '통신요금', '통신비', '알뜰폰',
+                     '정보통신', '방송통신', '단말기', '전기통신', '부가통신']
 
 
 def is_bill_relevant(name: str) -> bool:
@@ -367,23 +371,13 @@ def fetch_bill_text(bill: dict) -> str | None:
     return None
 
 
-def summarize_bill(bill: dict) -> str | None:
-    name = bill.get('BILL_NAME', '')
-    proposer = bill.get('RST_PROPOSER') or bill.get('PROPOSER', '')
-    committee = bill.get('CURR_COMMITTEE', '')
-    propose_dt = bill.get('PROPOSE_DT', '')
-
-    raw_text = fetch_bill_text(bill)
-
-    # 본문을 못 가져오면 메타데이터만으로는 무의미한 요약이 생성되므로 건너뜀
+def summarize_from_text(raw_text: str) -> str | None:
+    """크롤링된 제안이유·주요내용 텍스트를 2~3문장으로 요약."""
     if not raw_text or len(raw_text) <= 100:
-        print(f'  ⏭  본문 없음 — 요약 건너뜀: {name[:30]}')
         return None
-
     prompt = f"""다음은 국회 법안 페이지의 제안이유·주요내용 텍스트입니다. 통신업계 실무자 관점에서 2~3문장으로 간결하게 요약해줘. 요약문만 출력하고, 다른 안내 문구는 절대 넣지 마.
 
 {raw_text}"""
-
     try:
         msg = client.messages.create(
             model='claude-haiku-4-5-20251001',
@@ -396,70 +390,87 @@ def summarize_bill(bill: dict) -> str | None:
         return None
 
 
-def bill_summary_collect():
-    api_key = os.environ.get('ASSEMBLY_API_KEY', '')
-    if not api_key:
+def _is_recent_bill(b: dict) -> bool:
+    """2025년 이후 발의 또는 진행된 법안만 대상."""
+    propose_dt = b.get('PROPOSE_DT', '').replace('-', '')
+    activity_dates = [b.get('CURR_COMMITTEE_DT', ''), b.get('COMMITTEE_DT', ''),
+                      b.get('LAW_PROC_DT', ''), b.get('PROC_DT', '')]
+    recent_activity = any(d.replace('-', '') >= '20250101' for d in activity_dates if d)
+    recent_propose = propose_dt >= '20250101' if propose_dt else False
+    return recent_propose or recent_activity
+
+
+def bill_corpus_collect():
+    """통신 법안 풀을 구성하고 각 법안의 제안이유 본문 + 요약을 data/bills.json 에 저장.
+
+    - 화면은 이 코퍼스를 받아 사용자 키워드를 의안명+제안이유에 매칭해 필터링한다.
+    - 이미 본문·요약이 있는 법안은 재크롤링/재요약하지 않고 캐시 재사용한다.
+    - data/bill_summaries.json 도 함께 갱신(기존 화면 호환).
+    """
+    assembly_key = os.environ.get('ASSEMBLY_API_KEY', '')
+    if not assembly_key:
         print('\n⏭  ASSEMBLY_API_KEY 없음 — 법안 수집 건너뜀')
         return
-    if not os.environ.get('ANTHROPIC_API_KEY', ''):
-        print('\n⏭  ANTHROPIC_API_KEY 없음 — 법안 요약 건너뜀')
-        return
+    has_claude = bool(os.environ.get('ANTHROPIC_API_KEY', ''))
 
-    print(f'\n📋 법안 요약 수집 시작')
+    print('\n📋 법안 코퍼스 수집 시작')
 
-    # 기존 요약 로드
-    existing: dict = {}
-    if os.path.exists(BILL_SUMMARY_FILE):
+    # 기존 코퍼스 로드 (본문·요약 캐시 재사용)
+    prev_by_id: dict = {}
+    if os.path.exists(BILLS_FILE):
         try:
-            with open(BILL_SUMMARY_FILE, 'r', encoding='utf-8') as f:
-                existing = json.load(f)
+            with open(BILLS_FILE, 'r', encoding='utf-8') as f:
+                for it in json.load(f):
+                    if it.get('BILL_ID'):
+                        prev_by_id[it['BILL_ID']] = it
         except Exception:
-            existing = {}
+            prev_by_id = {}
 
-    rows = fetch_bills(api_key)
-    print(f'  → {len(rows)}건 수신')
+    rows = fetch_bills(assembly_key)
+    print(f'  → {len(rows)}건 수신 (검색어 {len(BILL_SEARCH_TERMS)}개)')
 
-    updated = 0
+    corpus = []
+    summaries = {}
+    new_crawls = 0
     for b in rows:
         bill_id = b.get('BILL_ID', '')
-        if not bill_id:
+        if not bill_id or b.get('PROM_DT'):   # 공포 완료 제외
             continue
-        # 공포 완료 제외
-        if b.get('PROM_DT'):
-            continue
-        # 토픽 필터
-        if not is_bill_relevant(b.get('BILL_NAME', '')):
-            continue
-        # 2025년 이전 제외
-        propose_dt = b.get('PROPOSE_DT', '').replace('-', '')
-        activity_dates = [b.get('CURR_COMMITTEE_DT', ''), b.get('COMMITTEE_DT', ''), b.get('LAW_PROC_DT', ''), b.get('PROC_DT', '')]
-        recent_activity = any(d.replace('-', '') >= '20250101' for d in activity_dates if d)
-        recent_propose = propose_dt >= '20250101' if propose_dt else False
-        if not recent_propose and not recent_activity:
-            continue
-        # 이미 요약 있으면 건너뜀
-        if bill_id in existing:
+        if not _is_recent_bill(b):
             continue
 
-        print(f'  ✅ 요약 생성: {b["BILL_NAME"][:40]}')
-        summary = summarize_bill(b)
+        prev = prev_by_id.get(bill_id)
+        reason = (prev or {}).get('REASON_TEXT', '')
+        summary = (prev or {}).get('SUMMARY', '')
+
+        # 본문이 아직 없으면 크롤링 (+ 요약)
+        if not reason:
+            reason = fetch_bill_text(b) or ''
+            if reason and has_claude:
+                print(f'  ✅ 본문·요약 생성: {b.get("BILL_NAME","")[:40]}')
+                summary = summarize_from_text(reason) or ''
+                new_crawls += 1
+                time.sleep(0.5)
+
+        entry = dict(b)              # API 원본 필드 전부 패스스루
+        entry['REASON_TEXT'] = reason
+        entry['SUMMARY'] = summary
+        corpus.append(entry)
         if summary:
-            existing[bill_id] = {
+            summaries[bill_id] = {
                 'summary': summary,
                 'bill_name': b.get('BILL_NAME', ''),
-                'updated': TODAY,
+                'updated': (prev or {}).get('SUMMARY_UPDATED', TODAY),
             }
-            updated += 1
-        time.sleep(0.5)
 
-    if updated > 0:
-        with open(BILL_SUMMARY_FILE, 'w', encoding='utf-8') as f:
-            json.dump(existing, f, ensure_ascii=False, indent=2)
-        print(f'✅ bill_summaries.json 저장 완료 ({updated}건 추가, 총 {len(existing)}건)')
-    else:
-        print(f'  변경 없음 (총 {len(existing)}건)')
+    os.makedirs('data', exist_ok=True)
+    with open(BILLS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(corpus, f, ensure_ascii=False, indent=2)
+    with open(BILL_SUMMARY_FILE, 'w', encoding='utf-8') as f:
+        json.dump(summaries, f, ensure_ascii=False, indent=2)
+    print(f'✅ bills.json 저장 ({len(corpus)}건, 신규 크롤링 {new_crawls}건) / 요약 {len(summaries)}건')
 
 
 if __name__ == '__main__':
     collect()
-    bill_summary_collect()
+    bill_corpus_collect()
