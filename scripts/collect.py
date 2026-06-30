@@ -265,6 +265,7 @@ def collect():
         json.dump(output, f, ensure_ascii=False, indent=2)
 
     print(f'✅ data/articles.json 저장 완료 (총 {len(all_articles)}건)')
+    return new_articles
 
 
 # ── 법안 요약 수집 ─────────────────────────────────────────────────────────────
@@ -371,20 +372,42 @@ def fetch_bill_text(bill: dict) -> str | None:
     return None
 
 
-def summarize_from_text(raw_text: str) -> str | None:
-    """크롤링된 제안이유·주요내용 텍스트를 2~3문장으로 요약."""
+def summarize_from_text(raw_text: str) -> dict | None:
+    """제안이유·주요내용 텍스트 → 요약 + SKT 사업 영향도(JSON)."""
     if not raw_text or len(raw_text) <= 100:
         return None
-    prompt = f"""다음은 국회 법안 페이지의 제안이유·주요내용 텍스트입니다. 통신업계 실무자 관점에서 2~3문장으로 간결하게 요약해줘. 요약문만 출력하고, 다른 안내 문구는 절대 넣지 마.
+    prompt = f"""다음은 국회 법안 페이지의 제안이유·주요내용 텍스트입니다. 아래 JSON 형식으로만 응답해. 다른 텍스트 없이 JSON만 출력.
 
+{{
+  "summary": "통신업계 실무자 관점 2~3문장 요약 (안내 문구 금지)",
+  "impact": "높음" 또는 "중간" 또는 "낮음",
+  "impact_reason": "SKT 등 이동통신사 사업 관점에서 왜 그 영향도인지 한 문장"
+}}
+
+[영향도 기준]
+- 높음: 요금·약관·결합·단말유통·번호이동 등 이동통신사 핵심 사업/수익에 직접 영향
+- 중간: 부가통신·플랫폼·이용자보호 등 간접 영향 또는 일부 사업 영향
+- 낮음: 통신과 약하게 연관되거나 사업 영향이 미미
+
+[법안 텍스트]
 {raw_text}"""
     try:
         msg = client.messages.create(
             model='claude-haiku-4-5-20251001',
-            max_tokens=220,
+            max_tokens=320,
             messages=[{'role': 'user', 'content': prompt}]
         )
-        return msg.content[0].text.strip()
+        text = msg.content[0].text.strip()
+        if '```' in text:
+            text = text.split('```')[1]
+            if text.startswith('json'):
+                text = text[4:]
+        data = json.loads(text.strip())
+        if not data.get('summary'):
+            return None
+        if data.get('impact') not in ('높음', '중간', '낮음'):
+            data['impact'] = '중간'
+        return data
     except Exception as e:
         print(f'  ⚠️  요약 오류: {e}')
         return None
@@ -442,23 +465,33 @@ def bill_corpus_collect():
         prev = prev_by_id.get(bill_id)
         reason = (prev or {}).get('REASON_TEXT', '')
         summary = (prev or {}).get('SUMMARY', '')
+        impact = (prev or {}).get('IMPACT', '')
+        impact_reason = (prev or {}).get('IMPACT_REASON', '')
 
-        # 본문이 아직 없으면 크롤링 (+ 요약)
+        # 본문이 아직 없으면 크롤링 (+ 요약 + 영향도)
         if not reason:
             reason = fetch_bill_text(b) or ''
             if reason and has_claude:
-                print(f'  ✅ 본문·요약 생성: {b.get("BILL_NAME","")[:40]}')
-                summary = summarize_from_text(reason) or ''
+                print(f'  ✅ 본문·요약·영향도 생성: {b.get("BILL_NAME","")[:40]}')
+                res = summarize_from_text(reason)
+                if res:
+                    summary = res.get('summary', '')
+                    impact = res.get('impact', '')
+                    impact_reason = res.get('impact_reason', '')
                 new_crawls += 1
                 time.sleep(0.5)
 
         entry = dict(b)              # API 원본 필드 전부 패스스루
         entry['REASON_TEXT'] = reason
         entry['SUMMARY'] = summary
+        entry['IMPACT'] = impact
+        entry['IMPACT_REASON'] = impact_reason
         corpus.append(entry)
         if summary:
             summaries[bill_id] = {
                 'summary': summary,
+                'impact': impact,
+                'impact_reason': impact_reason,
                 'bill_name': b.get('BILL_NAME', ''),
                 'updated': (prev or {}).get('SUMMARY_UPDATED', TODAY),
             }
@@ -471,6 +504,113 @@ def bill_corpus_collect():
     print(f'✅ bills.json 저장 ({len(corpus)}건, 신규 크롤링 {new_crawls}건) / 요약 {len(summaries)}건')
 
 
+# ── 오늘의 브리핑 (TOP 3) ──────────────────────────────────────────────────────
+
+BRIEFING_FILE = 'data/briefing.json'
+
+
+def generate_briefing(new_articles: list):
+    """오늘 새로 수집된 기사 중 핵심 3건 + 종합 브리핑 한 문단 생성 → data/briefing.json."""
+    if not os.environ.get('ANTHROPIC_API_KEY', ''):
+        return
+    if not new_articles:
+        print('\n📰 오늘 새 기사 없음 — 브리핑 생략')
+        return
+
+    # 중요도 높은 순으로 후보 추림 (최대 15건)
+    cand = sorted(new_articles, key=lambda a: a.get('importance', 3), reverse=True)[:15]
+    lines = [f"[{i}] (중요도 {a.get('importance',3)}) {a.get('title','')} — {a.get('summary','')[:160]}"
+             for i, a in enumerate(cand)]
+    prompt = ("다음은 오늘 수집된 통신산업 뉴스 목록입니다. 통신사 실무자가 아침에 30초로 핵심을 파악하도록,\n"
+              "가장 중요한 3건을 고르고 종합 브리핑을 작성해줘. 아래 JSON 형식으로만 응답:\n\n"
+              '{\n  "summary": "오늘 동향 종합 2~3문장",\n'
+              '  "picks": [{"index": 0, "why": "왜 중요한지 한 문장"}]\n}\n\n'
+              "picks는 정확히 3개(기사가 3개 미만이면 그 수만큼). index는 아래 번호.\n\n"
+              + "\n".join(lines))
+    try:
+        msg = client.messages.create(
+            model='claude-haiku-4-5-20251001',
+            max_tokens=600,
+            messages=[{'role': 'user', 'content': prompt}]
+        )
+        text = msg.content[0].text.strip()
+        if '```' in text:
+            text = text.split('```')[1]
+            if text.startswith('json'):
+                text = text[4:]
+        data = json.loads(text.strip())
+    except Exception as e:
+        print(f'  ⚠️  브리핑 생성 오류: {e}')
+        return
+
+    picks = []
+    for p in data.get('picks', [])[:3]:
+        idx = p.get('index')
+        if isinstance(idx, int) and 0 <= idx < len(cand):
+            a = cand[idx]
+            picks.append({'id': a['id'], 'title': a['title'], 'why': p.get('why', '')})
+    out = {'date': TODAY, 'summary': data.get('summary', ''), 'picks': picks}
+    with open(BRIEFING_FILE, 'w', encoding='utf-8') as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    print(f'✅ briefing.json 저장 (핵심 {len(picks)}건)')
+
+
+# ── 텔레그램 알림 ───────────────────────────────────────────────────────────────
+
+def send_telegram_alert(new_articles: list):
+    """중요도 5 기사 + 신규 발의 통신 법안을 텔레그램으로 발송.
+    TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID 시크릿이 없으면 조용히 건너뜀."""
+    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
+    if not token or not chat_id:
+        print('\n⏭  텔레그램 시크릿 없음 — 알림 생략')
+        return
+
+    urgent = [a for a in new_articles if a.get('importance', 3) >= 5]
+
+    # 오늘 신규 발의된 통신 법안
+    new_bills = []
+    if os.path.exists(BILLS_FILE):
+        try:
+            with open(BILLS_FILE, 'r', encoding='utf-8') as f:
+                for b in json.load(f):
+                    if b.get('PROPOSE_DT', '').replace('-', '') == TODAY.replace('-', ''):
+                        new_bills.append(b)
+        except Exception:
+            pass
+
+    if not urgent and not new_bills:
+        print('\n📭 긴급 기사·신규 법안 없음 — 알림 생략')
+        return
+
+    parts = [f"📡 *텔레콤워치 일일 알림* ({TODAY})", ""]
+    if urgent:
+        parts.append(f"🔴 *긴급 뉴스 {len(urgent)}건*")
+        for a in urgent[:5]:
+            parts.append(f"• {a.get('title','')}")
+        parts.append("")
+    if new_bills:
+        parts.append(f"📋 *신규 발의 법안 {len(new_bills)}건*")
+        for b in new_bills[:5]:
+            parts.append(f"• {b.get('BILL_NAME','')}")
+    message = "\n".join(parts)
+
+    try:
+        import requests as req
+        r = req.post(f'https://api.telegram.org/bot{token}/sendMessage', json={
+            'chat_id': chat_id, 'text': message, 'parse_mode': 'Markdown',
+            'disable_web_page_preview': True,
+        }, timeout=15)
+        if r.ok:
+            print(f'✅ 텔레그램 알림 발송 (긴급 {len(urgent)} / 신규법안 {len(new_bills)})')
+        else:
+            print(f'  ⚠️  텔레그램 발송 실패: {r.status_code} {r.text[:120]}')
+    except Exception as e:
+        print(f'  ⚠️  텔레그램 발송 오류: {e}')
+
+
 if __name__ == '__main__':
-    collect()
+    new_articles = collect() or []
     bill_corpus_collect()
+    generate_briefing(new_articles)
+    send_telegram_alert(new_articles)

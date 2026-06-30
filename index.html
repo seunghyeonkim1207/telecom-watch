@@ -442,8 +442,21 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
 .bills-stage.done .bills-stage-name, .bills-stage.current .bills-stage-name { color:var(--text); font-weight:500; }
 .bills-stage-date { font-size:9px; color:var(--text-3); margin-top:2px; }
 .bills-card-summary { margin-top:12px; padding:11px 14px; background:var(--bg); border:0.5px solid var(--border); border-radius:10px; font-size:12px; color:var(--text-2); line-height:1.65; }
-.bills-card-summary-label { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:600; color:var(--blue); margin-bottom:5px; }
+.bills-card-summary-label { display:flex; align-items:center; justify-content:space-between; gap:4px; font-size:10px; font-weight:600; color:var(--blue); margin-bottom:5px; }
+.bills-impact-badge { font-size:10px; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap; cursor:default; }
+.bills-impact-reason { font-size:11px; color:var(--text-3); line-height:1.55; margin-top:6px; }
 .bills-card-summary-text { color:var(--text-2); }
+/* 오늘의 브리핑 */
+#briefingBox { margin:0 0 18px; padding:16px 18px; background:var(--blue-lite); border:0.5px solid var(--blue-mid); border-radius:14px; }
+body.dark #briefingBox { background:#1a1640; border-color:#332a6b; }
+.brief-head { font-size:12px; font-weight:700; color:var(--blue); margin-bottom:8px; letter-spacing:-0.2px; }
+body.dark .brief-head { color:var(--blue-mid); }
+.brief-summary { font-size:13px; line-height:1.7; color:var(--text); margin-bottom:12px; }
+.brief-picks { display:flex; flex-direction:column; gap:7px; }
+.brief-pick { background:var(--surface); border:0.5px solid var(--border); border-radius:9px; padding:9px 12px; cursor:pointer; transition:border-color .15s; }
+.brief-pick:hover { border-color:var(--blue); }
+.brief-pick-title { font-size:12.5px; font-weight:600; color:var(--text); line-height:1.45; }
+.brief-pick-why { font-size:11px; color:var(--text-3); margin-top:3px; line-height:1.5; }
 .bills-card-summary-loading { color:var(--text-3); font-size:11px; display:flex; align-items:center; gap:6px; }
 .bills-card-summary-loading::before { content:''; width:10px; height:10px; border:1.5px solid var(--border); border-top-color:var(--blue); border-radius:50%; animation:spin 0.8s linear infinite; display:inline-block; }
 .bills-card-summary-gen { display:inline-block; font-size:11px; color:var(--blue); background:none; border:0.5px solid var(--blue); border-radius:6px; padding:4px 10px; cursor:pointer; }
@@ -812,6 +825,8 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
           <div class="hero-card"><div class="hero-card-topic" style="opacity:.4;">로딩 중...</div><div class="hero-card-title" style="opacity:.2;background:rgba(255,255,255,0.15);height:36px;border-radius:4px;"></div></div>
         </div>
       </div>
+      <!-- 오늘의 브리핑 -->
+      <div id="briefingBox" style="display:none;"></div>
       <!-- TAB BAR -->
       <div class="tab-bar">
         <button class="tab-btn active" onclick="setTopic('all',this)">전체</button>
@@ -1143,7 +1158,7 @@ function doRefresh(){
   closeSettings();
   fetch('data/articles.json?_='+Date.now())
     .then(function(r){return r.json();})
-    .then(function(d){ALL=d.articles||[];renderHero(d);buildDateChips();buildCarrierFilter();render();toast('새로 불러왔어요.');})
+    .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();render();toast('새로 불러왔어요.');})
     .catch(function(){toast('새로고침 실패 — 잠시 후 다시 시도해주세요.');});
 }
 
@@ -1215,6 +1230,29 @@ function doExport(type){
   toast((type==='csv'?'CSV':'JSON')+' 파일 다운로드했어요.');
 }
 function dl(c,n,m){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:m}));a.download=n;a.click();URL.revokeObjectURL(a.href);}
+
+/* ─── 오늘의 브리핑 ─── */
+function loadBriefing(){
+  fetch('data/briefing.json?_='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(b){ renderBriefing(b); })
+    .catch(function(){});
+}
+function renderBriefing(b){
+  var box=document.getElementById('briefingBox');
+  if(!box) return;
+  if(!b || !b.summary || !b.picks || !b.picks.length){ box.style.display='none'; return; }
+  var picks=b.picks.map(function(p){
+    return '<div class="brief-pick" onclick="openModal(\''+e(p.id)+'\')">'
+      +'<div class="brief-pick-title">'+e(p.title)+'</div>'
+      +(p.why?'<div class="brief-pick-why">'+e(p.why)+'</div>':'')
+      +'</div>';
+  }).join('');
+  box.innerHTML='<div class="brief-head">✦ 오늘의 브리핑</div>'
+    +'<div class="brief-summary">'+e(b.summary)+'</div>'
+    +'<div class="brief-picks">'+picks+'</div>';
+  box.style.display='block';
+}
 
 /* ─── HERO ─── */
 function renderHero(data){
@@ -1364,7 +1402,7 @@ function setTopic(val,btn){
 /* ─── LOAD articles.json ─── */
 fetch('data/articles.json')
   .then(function(r){return r.json();})
-  .then(function(d){ALL=d.articles||[];renderHero(d);buildDateChips();buildCarrierFilter();render();})
+  .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();render();})
   .catch(function(){document.getElementById('feedList').innerHTML='<div style="padding:40px 0;text-align:center;font-size:13px;color:var(--text-3);">데이터를 불러올 수 없습니다.</div>';});
 
 
@@ -1955,6 +1993,23 @@ function billsExtractKeyword(name){
   return m?m[1].trim():'';
 }
 
+// 영향도 사유 한 줄 (요약 아래)
+function billsImpactReasonHtml(bill, cached){
+  var reason=(bill&&bill.IMPACT_REASON)||(cached&&cached.impact_reason)||'';
+  if(!reason) return '';
+  return '<div class="bills-impact-reason">↳ '+escapeHtml(reason)+'</div>';
+}
+// SKT 사업 영향도 배지 (높음=빨강 / 중간=파랑 / 낮음=회색)
+function billsImpactBadge(bill, cached){
+  var imp=(bill&&bill.IMPACT)||(cached&&cached.impact)||'';
+  if(!imp) return '';
+  var reason=(bill&&bill.IMPACT_REASON)||(cached&&cached.impact_reason)||'';
+  var c=imp==='높음'?'var(--red)':imp==='낮음'?'var(--text-3)':'var(--blue)';
+  var bg=imp==='높음'?'var(--red-lite)':imp==='낮음'?'var(--bg)':'var(--blue-lite)';
+  return '<span class="bills-impact-badge" title="'+escapeHtml(reason)+'" '
+    +'style="background:'+bg+';color:'+c+';">영향도 '+e(imp)+'</span>';
+}
+
 function billsSummaryCardHtml(bill){
   var apiKey=localStorage.getItem('tw_apikey')||'';
   var cache=billsSummaryLoad();
@@ -1964,8 +2019,9 @@ function billsSummaryCardHtml(bill){
   // AI 요약이 있으면 바로 표시
   if(cachedText){
     return '<div class="bills-card-summary" id="bcs-'+e(bill.BILL_ID||'')+'">'
-      +'<div class="bills-card-summary-label">✦ AI 요약</div>'
+      +'<div class="bills-card-summary-label"><span>✦ AI 요약</span>'+billsImpactBadge(bill,cached)+'</div>'
       +'<div class="bills-card-summary-text">'+escapeHtml(cachedText)+'</div>'
+      +(billsImpactReasonHtml(bill,cached))
       +'</div>';
   }
 
