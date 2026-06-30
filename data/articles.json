@@ -1,6 +1,22 @@
 {
-  "updated": "2026-06-30T16:53:55.132853+09:00",
+  "updated": "2026-06-30T17:46:58.164684+09:00",
   "articles": [
+    {
+      "id": "a48b5b2ec364",
+      "title": "차이나타워, '디지털'·'지능형' 기지국으로 전환 추진",
+      "summary": "차이나타워가 약 620만 개의 기지국 사이트를 구축했으며, 이 중 326만 개가 5G 사이트라고 MWC 상하이에서 발표했다. 기지국의 디지털화와 지능화 전환을 가속화할 계획으로, 향후 네트워크 고도화 및 운영 효율성 개선이 핵심 전략이다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.rcrwireless.com/20260630/5g/china-tower-digital",
+      "source_name": "RCR Wireless"
+    },
     {
       "id": "f783722967da",
       "title": "[ET시론] 데이터 주권, 올바른 질문을 던져야 한다",
