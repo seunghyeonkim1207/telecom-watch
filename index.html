@@ -433,6 +433,7 @@ body.dark .bills-proc-chip.other { background:#374151; color:#9CA3AF; }
 .bills-stage:last-child::after { content:''; position:absolute; top:6px; left:50%; right:0; height:2px; background:var(--border); z-index:0; }
 .bills-stage.done::before { background:var(--blue); }
 .bills-stage.current::before { background:var(--blue); }
+.bills-stage.done + .bills-stage::before { background:var(--blue); }
 .bills-stage.done:last-child::after { background:var(--blue); }
 .bills-stage-dot { width:12px; height:12px; border-radius:50%; background:var(--border); margin:0 auto 8px; position:relative; z-index:1; transition:background 0.15s; }
 .bills-stage.done .bills-stage-dot { background:var(--blue); }

@@ -301,13 +301,46 @@ def fetch_bills(api_key: str) -> list:
     return list(all_rows.values())
 
 
+def fetch_bill_text(bill: dict) -> str | None:
+    import requests as req, re
+    bill_id = bill.get('BILL_ID', '')
+    link_url = bill.get('LINK_URL', '') or f'https://likms.assembly.go.kr/bill/billDetail.do?billId={bill_id}'
+    try:
+        r = req.get(link_url, timeout=10, headers={'User-Agent': 'Mozilla/5.0'})
+        if not r.ok:
+            return None
+        html = r.text
+        # 스크립트·스타일 제거 후 텍스트 추출
+        txt = re.sub(r'<script[\s\S]*?</script>', '', html, flags=re.IGNORECASE)
+        txt = re.sub(r'<style[\s\S]*?</style>', '', txt, flags=re.IGNORECASE)
+        txt = re.sub(r'<[^>]+>', ' ', txt)
+        txt = txt.replace('&nbsp;', ' ').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
+        txt = re.sub(r'\s+', ' ', txt).strip()
+        idx = txt.find('제안이유')
+        if idx >= 0:
+            return txt[idx:idx+2000]
+        idx = txt.find('주요내용')
+        if idx >= 0:
+            return txt[idx:idx+2000]
+        return txt[:2000] if len(txt) > 100 else None
+    except Exception:
+        return None
+
+
 def summarize_bill(bill: dict) -> str | None:
     name = bill.get('BILL_NAME', '')
     proposer = bill.get('RST_PROPOSER') or bill.get('PROPOSER', '')
     committee = bill.get('CURR_COMMITTEE', '')
     propose_dt = bill.get('PROPOSE_DT', '')
 
-    prompt = f"""다음 국회 전기통신사업법 개정안의 제안이유와 주요내용을 통신업계 실무자 관점에서 2문장으로 간결하게 요약해줘. 요약문만 출력해.
+    raw_text = fetch_bill_text(bill)
+
+    if raw_text and len(raw_text) > 100:
+        prompt = f"""다음은 국회 법안 페이지 텍스트입니다. 제안이유와 주요내용을 통신업계 실무자 관점에서 2~3문장으로 간결하게 요약해줘. 요약문만 출력해.
+
+{raw_text}"""
+    else:
+        prompt = f"""다음 국회 법안의 제안이유와 주요내용을 통신업계 실무자 관점에서 2문장으로 간결하게 요약해줘. 요약문만 출력해.
 
 법안명: {name}
 대표발의자: {proposer}
@@ -317,7 +350,7 @@ def summarize_bill(bill: dict) -> str | None:
     try:
         msg = client.messages.create(
             model='claude-haiku-4-5-20251001',
-            max_tokens=180,
+            max_tokens=220,
             messages=[{'role': 'user', 'content': prompt}]
         )
         return msg.content[0].text.strip()
