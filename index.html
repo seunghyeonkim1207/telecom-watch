@@ -610,7 +610,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
   <div style="position:fixed;inset:0;background:rgba(8,6,28,0.55);backdrop-filter:blur(3px);" onclick="billsCloseSearch()"></div>
   <div class="bills-search-box" style="position:relative;z-index:1;">
     <div class="bills-search-hdr">
-      <input type="text" id="billsSearchInput" placeholder="법안명 검색 (예: 전기통신사업법)" onkeydown="if(event.key==='Enter')billsDoSearch()">
+      <input type="text" id="billsSearchInput" placeholder="법안명 검색 (예: 전기통신사업법)" onkeydown="if(event.key==='Enter'&&!event.isComposing)billsDoSearch()">
       <button class="btn-primary" onclick="billsDoSearch()">검색</button>
       <button class="btn-outline" onclick="billsCloseSearch()">닫기</button>
     </div>
@@ -893,7 +893,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;" id="billsKeywordList"></div>
           <div style="display:flex;gap:6px;margin-top:8px;" id="billsKeywordAdd">
-            <input id="billsKwInput" class="bill-search-input" style="max-width:200px;" placeholder="키워드 추가 (예: 방송통신발전법)" onkeydown="if(event.key==='Enter')billsAddKeyword()">
+            <input id="billsKwInput" class="bill-search-input" style="max-width:200px;" placeholder="키워드 추가 (예: 방송통신발전법)" onkeydown="if(event.key==='Enter'&&!event.isComposing)billsAddKeyword()">
             <button class="btn-outline" style="font-size:11px;padding:5px 10px;" onclick="billsAddKeyword()">추가</button>
           </div>
         </div>
@@ -1620,6 +1620,17 @@ var BILLS_FILTER='all';
 var BILLS_KW_KEY='tw_bill_keywords';
 var BILLS_DEFAULT_KW=['전기통신사업법'];
 
+/* ─────────────────────────────────────────────────────────────────────────
+ * [자동 추적 키워드가 매칭되는 곳]
+ * 키워드는 국회 열린국회정보 OPEN API(nzmimeepazxkubdpn)의 `BILL_NAME`
+ * 파라미터로 전달된다 → 즉 "의안명(=법안명/법률안 제목)"에 대해 부분 일치 검색.
+ *   예) 키워드 "전기통신사업법" → 의안명에 "전기통신사업법"이 포함된 법안 조회
+ *       (BILL_NAME = "전기통신사업법 일부개정법률안" 등)
+ * ※ 법률 본문/조문이나 제안이유가 아니라 "의안 제목"만 검색 대상이다.
+ *   billsAutoSync()에서 키워드별로 BILL_NAME=키워드 로 API를 호출한다.
+ * 2차 필터: 조회된 결과는 다시 BILL_TOPIC_KW로 BILL_NAME을 한 번 더 거른다.
+ * ───────────────────────────────────────────────────────────────────────── */
+
 function billsLoadKw(){
   try{ return JSON.parse(localStorage.getItem(BILLS_KW_KEY))||BILLS_DEFAULT_KW; }
   catch(e){ return BILLS_DEFAULT_KW.slice(); }
@@ -1669,6 +1680,7 @@ function billsAutoSync(onDone){
   var syncError=null;
 
   kw.forEach(function(keyword){
+    // 키워드는 의안명(BILL_NAME = 법안 제목)에 부분 일치로 검색됨 (법률 본문 아님)
     var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)
       +'&Type=json&pIndex=1&pSize=100&AGE=22&BILL_NAME='+encodeURIComponent(keyword);
     fetch(url).then(function(r){return r.json();}).then(function(data){
