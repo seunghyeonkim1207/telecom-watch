@@ -1,6 +1,55 @@
 {
-  "updated": "2026-06-30T14:45:31.731165+09:00",
+  "updated": "2026-06-30T15:19:22.989870+09:00",
   "articles": [
+    {
+      "id": "c303e849bcb6",
+      "title": "휴대폰 안면인증 6일 시행…모바일신분증 대체로 혼란 최소화",
+      "summary": "과학기술정보통신부는 7월 6일부터 이동통신 3사와 알뜰폰 전 채널에 휴대폰 부정사용 방지를 위한 안면인증 제도를 단계적으로 시행한다. 대포폰 악용을 원천 차단하기 위해 개통 시 본인확인을 강화하며, 시범 과정에서의 인식률 논란을 해소하기 위해 대체수단을 다양화할 예정이다.",
+      "tags": [
+        "안면인증",
+        "규제·정책",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "과기정통부",
+      "importance": 4,
+      "date": "2026-06-30",
+      "source_url": "https://www.etnews.com/20260630000322",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "90e779596531",
+      "title": "Jio가 인도의 스타링크 대항마를 만들 수 있을까?",
+      "summary": "인도 최대 통신사 릴라이언스 지오가 저궤도(LEO) 위성통신 인프라 개발을 추진 중이며, 이는 스타링크, 유텔샛 원웹, 아마존 프로젝트 레오 등 글로벌 위성통신 사업자들과의 경쟁 구도를 형성할 것으로 예상된다. 위성통신은 차세대 초고속 인터넷 인프라로 국내 이동통신사들의 벤치마킹 대상이 될 수 있다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://www.fierce-network.com/wireless/can-jio-build-indias-answer-starlink",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "7088404b83d5",
+      "title": "AI 기반 그린 & 복원력: 탄소중립 및 신뢰성 높은 네트워크 아키텍처의 새로운 청사진",
+      "summary": "화웨이가 디지털 변환 월드 2026에서 AI 기술을 활용한 탄소중립 네트워크 아키텍처를 발표했다. 본 기술은 네트워크 에너지 효율 극대화와 시스템 안정성 강화에 초점을 맞춘 것으로, 통신사의 친환경 전략 및 기술 혁신 방향을 제시한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-06-30",
+      "source_url": "https://totaltele.com/ai-driven-green-resilience-new-blueprint-for-zero-carbon-and-reliable-network-architecture/",
+      "source_name": "Total Telecom"
+    },
     {
       "id": "d086eff72f7c",
       "title": "오래된 통신 가입 방식 깼다…LGU+, 고객 경험 바꾼 '올인원'",
