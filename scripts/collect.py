@@ -302,28 +302,47 @@ def fetch_bills(api_key: str) -> list:
 
 
 def fetch_bill_text(bill: dict) -> str | None:
+    """국회 의안정보시스템에서 제안이유·주요내용 텍스트를 추출.
+
+    billDetail.do 페이지는 JS로 렌더링되어 정적 HTML에 본문이 없으므로,
+    1) 상세 페이지 GET → 쿠키 + hidden 폼 파라미터(_csrf 포함) 획득
+    2) 파라미터를 billInfo.do로 POST → 제안이유·주요내용 fragment 획득
+    """
     import requests as req, re
     bill_id = bill.get('BILL_ID', '')
-    link_url = bill.get('LINK_URL', '') or f'https://likms.assembly.go.kr/bill/billDetail.do?billId={bill_id}'
+    if not bill_id:
+        return None
+    detail_url = f'https://likms.assembly.go.kr/bill/billDetail.do?billId={bill_id}'
+    info_url = 'https://likms.assembly.go.kr/bill/bi/bill/detail/billInfo.do'
     try:
-        r = req.get(link_url, timeout=10, headers={'User-Agent': 'Mozilla/5.0'})
-        if not r.ok:
-            return None
-        html = r.text
-        # 스크립트·스타일 제거 후 텍스트 추출
-        txt = re.sub(r'<script[\s\S]*?</script>', '', html, flags=re.IGNORECASE)
-        txt = re.sub(r'<style[\s\S]*?</style>', '', txt, flags=re.IGNORECASE)
-        txt = re.sub(r'<[^>]+>', ' ', txt)
+        s = req.Session()
+        s.headers.update({'User-Agent': 'Mozilla/5.0'})
+        html = s.get(detail_url, timeout=10).text
+        # hidden 폼 파라미터 수집
+        params = {}
+        for inp in re.findall(r'<input[^>]+type="hidden"[^>]*>', html):
+            n = re.search(r'name="([^"]+)"', inp)
+            v = re.search(r'value="([^"]*)"', inp)
+            if n:
+                params[n.group(1)] = v.group(1) if v else ''
+        if not params.get('billId'):
+            params['billId'] = bill_id
+        frag = s.post(info_url, data=params, timeout=10, headers={
+            'X-Requested-With': 'XMLHttpRequest',
+            'Referer': detail_url,
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        }).text
+        txt = re.sub(r'<[^>]+>', ' ', frag)
         txt = txt.replace('&nbsp;', ' ').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
         txt = re.sub(r'\s+', ' ', txt).strip()
         idx = txt.find('제안이유')
+        if idx < 0:
+            idx = txt.find('주요내용')
         if idx >= 0:
-            return txt[idx:idx+2000]
-        idx = txt.find('주요내용')
-        if idx >= 0:
-            return txt[idx:idx+2000]
-        return txt[:2000] if len(txt) > 100 else None
-    except Exception:
+            return txt[idx:idx+2500]
+        return None
+    except Exception as e:
+        print(f'  ⚠️  본문 크롤링 실패: {e}')
         return None
 
 
@@ -335,17 +354,14 @@ def summarize_bill(bill: dict) -> str | None:
 
     raw_text = fetch_bill_text(bill)
 
-    if raw_text and len(raw_text) > 100:
-        prompt = f"""다음은 국회 법안 페이지 텍스트입니다. 제안이유와 주요내용을 통신업계 실무자 관점에서 2~3문장으로 간결하게 요약해줘. 요약문만 출력해.
+    # 본문을 못 가져오면 메타데이터만으로는 무의미한 요약이 생성되므로 건너뜀
+    if not raw_text or len(raw_text) <= 100:
+        print(f'  ⏭  본문 없음 — 요약 건너뜀: {name[:30]}')
+        return None
+
+    prompt = f"""다음은 국회 법안 페이지의 제안이유·주요내용 텍스트입니다. 통신업계 실무자 관점에서 2~3문장으로 간결하게 요약해줘. 요약문만 출력하고, 다른 안내 문구는 절대 넣지 마.
 
 {raw_text}"""
-    else:
-        prompt = f"""다음 국회 법안의 제안이유와 주요내용을 통신업계 실무자 관점에서 2문장으로 간결하게 요약해줘. 요약문만 출력해.
-
-법안명: {name}
-대표발의자: {proposer}
-발의일: {propose_dt}
-소관위: {committee}"""
 
     try:
         msg = client.messages.create(
