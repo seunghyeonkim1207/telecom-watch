@@ -1,6 +1,279 @@
 {
-  "updated": "2026-06-30T19:47:33.876374+09:00",
+  "updated": "2026-07-01T20:01:58.342168+09:00",
   "articles": [
+    {
+      "id": "451628828920",
+      "title": "'2026 ICT 넥스트 어워즈' 개최…AI·디지털 혁신 9개사에 부총리 표창",
+      "summary": "과학기술정보통신부와 한국방송통신전파진흥원이 ICT 기금사업 우수기업 50곳을 선정하는 '2026 ICT 넥스트 어워즈'를 개최했다. AI·디지털 혁신 분야 9개사가 부총리 표창을 수상하며, 정보통신기술 분야의 유망기업들의 성과를 격려하고 산업 전반에 성공 사례를 공유했다.",
+      "tags": [
+        "규제·정책",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "과기정통부",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.etnews.com/20260701000418",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "c944ec14180a",
+      "title": "통신3사 공습에 숨 넘어가는 알뜰폰···정부 '심폐소생술'",
+      "summary": "통신3사의 5G·LTE 통합요금제와 요금 구조 단순화로 중저가 시장 공략이 심화되자, 정부가 알뜰폰 업계 지원을 위해 전파사용료 감면율 확대 등 원가 부담 완화 방안을 추진 중이다. 다만 업계에서는 도매대가 인하 및 경쟁력 있는 요금제 출시 지원 등 추가 정책이 필요하다고 지적하고 있다.",
+      "tags": [
+        "요금제",
+        "규제·정책",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "알뜰폰",
+      "importance": 4,
+      "date": "2026-07-01",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422112",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "0b0116986ff9",
+      "title": "디시(Dish), Chapter 11 파산 신청",
+      "summary": "미국 위성통신 기업 Dish DBS Corp.와 자회사인 Dish Wireless가 Chapter 11 파산 보호를 신청했다. 미국 통신시장의 경쟁 심화와 무선통신사의 구조적 어려움이 심각함을 보여주는 사례로, 국내 통신업계에도 원가 효율성과 경쟁력 강화의 중요성을 시사한다.",
+      "tags": [
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-07-01",
+      "source_url": "https://www.fierce-network.com/wireless/dish-files-chapter-11-bankruptcy-0",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "87264974b47b",
+      "title": "FCC, C-band '슈퍼밴드' 대규모 경매 추진",
+      "summary": "미국 FCC가 상향 C-대역 160MHz에 대한 대규모 주파수 경매를 내년에 실시할 예정이다. AWS-3 경매 완료 후 진행되는 이번 경매는 미국 통신사들의 5G 네트워크 확충 경쟁을 심화시킬 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.fierce-network.com/wireless/fcc-tees-big-auction-c-band-super-band",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "c93ed2c2471b",
+      "title": "화웨이와 파트너사, 레벨 4 자율 네트워크를 위한 OpenAN 프로젝트 출범",
+      "summary": "화웨이가 파트너사들과 함께 오픈소스 기반의 OpenAN 프로젝트를 출범했으며, 스마트 링크, 민첩한 구축, 대규모 협력 및 통신 에이전트의 결정론적 실행을 위한 자동화된 컴포넌트를 제공한다. 이는 통신사들의 네트워크 자동화 수준을 한 단계 높이고 운영 효율성을 개선하는 데 중요한 기술 동향이다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.fierce-network.com/newswire/huawei-and-partners-launch-openan-project-level-4-autonomous-networks",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "7f32ccdf80bf",
+      "title": "Dell'Oro, AI-RAN 시장 2030년 350억 달러 규모 예측",
+      "summary": "Dell'Oro는 AI-RAN 시장이 2030년까지 350억 달러 규모로 성장할 것으로 전망했다. 다만 AI-RAN 시장의 호황이 전체 RAN 시장에는 영향을 미치지 않을 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.fierce-network.com/wireless/ai-ran-market-hit-35b-2030-says-delloro",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "df0f21c21426",
+      "title": "Cyient, 지능형 네트워크 현대화를 위한 청사진 제시",
+      "summary": "Cyient는 DTW Ignite에서 네트워크 엔지니어링, 데이터 기반, 인지 운영의 연속성을 강조하며 통신산업의 자동화, 효율성, 성장 동력을 제시했습니다. 업계 전반에서 AI 강화 네트워크와 자율 운영에 대한 관심이 높아지고 있으며, 이는 향후 통신 인프라의 지능화 방향을 제시하는 중요한 시사점입니다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.rcrwireless.com/20260701/automation/cyient-dtw-ignite-2026",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "3207e4d71a3b",
+      "title": "에릭sson 클라우드 책임자, 5G 코어에서 노키아 전략 거부",
+      "summary": "에릭손의 클라우드 소프트웨어 서비스 그룹 책임자 Jenny Lindqvist는 노키아와 달리 자체 클라우드 인프라 플랫폼 개발을 지속할 방침을 밝혔다. 5G 코어 네트워크 기술에서 주요 장비업체들의 전략 차이가 드러나고 있으며, 이는 통신사들의 네트워크 인프라 선택에 영향을 미칠 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.lightreading.com/mobile-core/ericsson-cloud-boss-still-resists-a-nokia-move-in-the-5g-core",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "4a5e6c29523f",
+      "title": "FCC, 상향 C-밴드 160MHz 경매 규칙에 대한 투표 예정",
+      "summary": "미국 FCC는 7월 22일 상향 C-밴드 160MHz 경매 규칙안에 대해 투표할 예정이며, 하향 C-밴드 스펙트럼을 조화시킬 440MHz '슈퍼밴드' 구성 조항을 포함하고 있다. 이는 통신사들의 스펙트럼 활용도를 높이고 네트워크 효율성을 개선하는 중요한 규제 정책이다.",
+      "tags": [
+        "규제·정책",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-07-01",
+      "source_url": "https://www.lightreading.com/5g/fcc-sets-vote-on-rules-to-auction-160mhz-of-upper-c-band-spectrum",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "bbc8b5797216",
+      "title": "베라이즌·아르카디안, 외국산 라우터 금지 면제 획득; NTCA·ACA·USTelecom도 신청",
+      "summary": "FCC가 베라이즌과 아르카디안에 외국산 라우터 판매 금지에 대한 임시 면제를 승인했다. 통신 규제 강화 추세 속에서 NTCA, ACA, USTelecom, Askey 등도 동일한 면제를 요청하고 있으며, 이는 장비 조달 규제의 비즈니스 영향을 보여주는 사례다.",
+      "tags": [
+        "규제·정책",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.lightreading.com/broadband/verizon-arcadyan-net-router-waivers-ntca-aca-ustelecom-also-want-one",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "5bffdec77461",
+      "title": "AT&T '빌드-어-플랜'에 홈 브로드밴드 옵션 추가",
+      "summary": "AT&T가 무선 중심의 '빌드-어-플랜' 서비스에 광섬유(Fiber)와 고정무선(FWA) 홈 브로드밴드 서비스를 번들링할 수 있도록 확대했다. 이는 이동통신사가 고정 브로드밴드를 결합상품으로 제공하는 통합 전략으로, 국내 통신사의 결합상품 경쟁력 벤치마킹에 참고할 가치가 있다.",
+      "tags": [
+        "결합상품",
+        "서비스정책",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.lightreading.com/broadband/at-t-build-a-plan-adds-home-broadband-options",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "45a645cc78d2",
+      "title": "한국, 2035년까지 대규모 18.4GW AI 데이터센터 구축 계획",
+      "summary": "한국이 SK그룹, GS그룹, 네이버와 협력하여 10년간 약 650억 달러를 투자해 18.4GW 규모의 AI 데이터센터를 2단계로 구축할 계획이다. 이는 국내 통신·인터넷 인프라의 경쟁력 강화와 AI 산업 육성을 위한 국가적 전략 프로젝트로, 향후 통신사의 네트워크 투자 및 데이터센터 사업 확대에 영향을 미칠 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-07-01",
+      "source_url": "https://www.lightreading.com/data-centers/south-korea-plans-massive-18-4gw-ai-data-center-buildout-by-2035",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "e26d4b85269c",
+      "title": "Dish, 파산 신청했지만 사업 중단 아님",
+      "summary": "Dish TV와 Sling TV를 운영하는 Dish가 Chapter 11 파산을 신청했으나 사업은 계속 운영한다. AT&T와의 230억 달러 규모 5G 스펙트럼 판매가 지연되면서 무선사업 축소 계획을 진행 중이다. 해외 주요 통신사의 경영위기 사례로 국내 통신시장 동향 참고 가치가 있다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.theverge.com/tech/959894/dish-chapter-11-bankruptcy",
+      "source_name": "The Verge"
+    },
+    {
+      "id": "d22649c4748e",
+      "title": "OCBC, 연간 기술 지출을 7억7천만 달러 이상으로 확대",
+      "summary": "싱가포르 은행 OCBC가 인공지능을 포함한 연간 기술 지출을 10억 싱가포르달러(7억7천만 달러) 이상으로 증액할 계획이다. 금융권의 AI 투자 확대 추세는 통신사의 AI·클라우드 사업 기회 창출과 고객 경험 혁신 방향을 시사한다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-07-01/ocbc-to-raise-annual-tech-spending-to-more-than-771-million",
+      "source_name": "Bloomberg Technology"
+    },
+    {
+      "id": "ad6b2ec51edc",
+      "title": "\"010 번호면 속겠지\"…전국 모텔 돌며 피싱조직 번호 조작한 20대들",
+      "summary": "해외 피싱 조직의 발신번호를 국내 휴대전화 번호인 '010'으로 조작하는 역할을 한 20대 남성 2명이 재판에 넘겨졌다. 이는 통신사기 규제 및 통신번호 악용 방지와 관련된 통신 정책 및 법률 이슈로, 이동통신사의 번호 보호 체계 강화 필요성을 시사한다.",
+      "tags": [
+        "규제·정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "방통위",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.mk.co.kr/news/society/12088111",
+      "source_name": "매일경제 : 헤드라인"
+    },
+    {
+      "id": "a58d18fab727",
+      "title": "휴대전화 개통 시 안면인증 본격 시행…대체수단은?",
+      "summary": "과기정통부가 보이스피싱 근절을 위해 7월 6일부터 휴대전화 개통 시 안면인증을 도입한다. 이통3사와 알뜰폰사 전 채널에 적용되며, 안면인증 실패 또는 거부 시 모바일신분증 등 대체 인증수단으로 개통 가능하다.",
+      "tags": [
+        "안면인증",
+        "규제·정책",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "과기정통부",
+      "importance": 4,
+      "date": "2026-07-01",
+      "source_url": "https://www.donga.com/news/It/article/all/20260701/134219860/1",
+      "source_name": "동아일보 | 전체 뉴스"
+    },
+    {
+      "id": "c00485ca3caf",
+      "title": "원 구성 후폭풍 속 과방위 지각변동...이해민→정무위, 최민희→문체위",
+      "summary": "22대 국회 후반기 과학기술정보방송통신위원회에서 AI, 보안, 방송 등 주요 통신·방송 현안 입법을 주도해온 의원들이 위원회를 옮기고 있다. 더불어민주당이 상임위원장 단독 선출로 국회 주도권을 장악한 가운데 통신·방송 규제 리더십에 변화가 예상된다.",
+      "tags": [
+        "규제·정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "방통위",
+      "importance": 3,
+      "date": "2026-07-01",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153033",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "c372ecdbdf51",
       "title": "통신3사, 작년 정보보안 투자 22% 증가…올해 4000억 돌파 전망",
