@@ -222,8 +222,8 @@ body.dark .t-cn { background: #3a1010; color: #f87171; }
 .m-btn.telegram:hover { background: #E8F4FD; color: #0088CC; border-color: #9ECFEC; }
 
 /* ── API KEY MODAL ── */
-#apiKeyModal, #assemblyKeyModal { display: none; position: fixed; inset: 0; z-index: 700; align-items: center; justify-content: center; padding: 20px; }
-#apiKeyModal.open, #assemblyKeyModal.open { display: flex; }
+#apiKeyModal { display: none; position: fixed; inset: 0; z-index: 700; align-items: center; justify-content: center; padding: 20px; }
+#apiKeyModal.open { display: flex; }
 .api-modal-box { position: relative; background: var(--surface); border-radius: 16px; max-width: 420px; width: 100%; padding: 28px; z-index: 1; }
 .api-modal-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .api-modal-desc { font-size: 12px; color: var(--text-3); margin-bottom: 18px; line-height: 1.6; }
@@ -582,22 +582,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
   </div>
 </div>
 
-<!-- ── ADMIN AUTH OVERLAY ── -->
-<div id="adminAuthOverlay" style="position:fixed;inset:0;z-index:900;align-items:center;justify-content:center;padding:24px 20px;background:rgba(8,6,28,0.65);backdrop-filter:blur(6px);display:none;">
-  <div style="background:var(--surface);border-radius:20px;width:100%;max-width:360px;padding:32px 28px;box-shadow:0 32px 80px rgba(8,6,28,0.32);">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-      <svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="var(--blue)" stroke-width="1.8"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg>
-      <span style="font-size:16px;font-weight:700;color:var(--text);">관리자 인증</span>
-    </div>
-    <p style="font-size:12px;color:var(--text-3);margin-bottom:20px;">국회 API 키 변경은 운영자만 가능합니다.</p>
-    <input id="adminPwInput" type="password" placeholder="비밀번호 입력" style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:0.5px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;margin-bottom:8px;">
-    <div id="adminPwError" style="display:none;font-size:11px;color:var(--red);margin-bottom:10px;"></div>
-    <div style="display:flex;gap:8px;margin-top:4px;">
-      <button onclick="adminClose()" style="flex:1;padding:11px;border-radius:10px;border:0.5px solid var(--border);background:none;color:var(--text-2);font-size:13px;cursor:pointer;">취소</button>
-      <button onclick="adminSubmit()" style="flex:1;padding:11px;border-radius:10px;border:none;background:var(--blue);color:#fff;font-size:13px;font-weight:600;cursor:pointer;">확인</button>
-    </div>
-  </div>
-</div>
+<!-- (관리자 인증 오버레이 제거 — 국회 API 키가 더 이상 클라이언트에 필요 없음) -->
 
 <!-- ── BILL DETAIL MODAL ── -->
 <div id="billDetailModal">
@@ -647,19 +632,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
   </div>
 </div>
 
-<!-- ── ASSEMBLY API KEY MODAL ── -->
-<div id="assemblyKeyModal">
-  <div class="modal-bg" onclick="closeAssemblyModal()"></div>
-  <div class="api-modal-box">
-    <div class="api-modal-title">국회 Open API 키 입력</div>
-    <div class="api-modal-desc">open.assembly.go.kr 에서 무료로 발급받은 API 키를 입력하세요. 법안 검색 시 입법 절차(발의·회부·의결 등)를 자동으로 불러옵니다. 키는 브라우저에만 저장됩니다.</div>
-    <input class="api-modal-input" type="password" id="assemblyKeyInput" placeholder="국회 Open API Key">
-    <div class="api-modal-actions">
-      <button class="api-modal-btn" onclick="closeAssemblyModal()">취소</button>
-      <button class="api-modal-btn primary" onclick="submitAssemblyKey()">저장</button>
-    </div>
-  </div>
-</div>
+<!-- (국회 API 키 모달 제거 — 법안 데이터는 서버 코퍼스에서 제공) -->
 
 <!-- ── SETTINGS ── -->
 <div id="settingsBg" onclick="closeSettings()"></div>
@@ -891,14 +864,9 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
             <div class="page-desc" style="margin-bottom:0;">전기통신사업법 등 주요 법안의 입법절차 단계를 실시간으로 확인합니다.</div>
           </div>
           <div style="display:flex;gap:8px;flex-shrink:0;">
-            <button class="btn-outline" style="font-size:11px;" onclick="openAssemblyModal()" title="API 키 변경">🔑 키 변경</button>
             <button class="btn-outline" id="billsRefreshBtn" onclick="billsRefreshAll()">↻ 동기화</button>
-            <button class="btn-primary" onclick="billsOpenSearch()">+ 법안 추가</button>
+            <button class="btn-primary" onclick="billsOpenSearch()">법안 검색</button>
           </div>
-        </div>
-        <div id="billsNoKey" style="display:none;background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:28px;text-align:center;margin-bottom:20px;">
-          <div style="font-size:13px;color:var(--text-2);margin-bottom:12px;">국회 Open API 키를 등록하면 실시간 법안 진행 현황을 확인할 수 있습니다.</div>
-          <button class="btn-primary" onclick="openAssemblyModal()">API 키 등록</button>
         </div>
         <!-- 자동 추적 키워드 -->
         <div id="billsKeywordBox" style="display:none;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;">
@@ -920,7 +888,6 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
             <button class="bills-filter-chip" onclick="billsSetFilter('폐기',this)">폐기·부결</button>
           </div>
           <button id="billsShowHiddenBtn" onclick="billsToggleHidden()" style="display:none;font-size:11px;padding:4px 10px;background:none;border:0.5px solid var(--border);border-radius:6px;color:var(--text-3);cursor:pointer;font-family:inherit;"></button>
-          <span id="billsSyncStatus" style="font-size:11px;color:var(--text-3);"></span>
         </div>
         <div id="billsList"></div>
       </div>
@@ -937,6 +904,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
           <button class="intl-tab" onclick="intlSetTab('jp',this)">총무성 (일본)</button>
           <button class="intl-tab" onclick="intlSetTab('kr',this)">국내기관</button>
           <button class="intl-tab" onclick="intlSetTab('itu',this)">ITU</button>
+          <button class="intl-tab" onclick="intlSetTab('global',this)">해외 민간</button>
         </div>
         <div id="intlList"></div>
       </div>
@@ -1095,7 +1063,7 @@ function navTo(page,triggerEl){
       billsLoadCorpus(function(){ billsRender(); });
     });
   }
-  if(page==='intl') intlRender();
+  if(page==='intl'){ if(INTL_LOADED) intlRender(); else intlLoad(intlRender); }
 
   window.scrollTo(0,0);
 }
@@ -1410,99 +1378,35 @@ fetch('data/articles.json')
    PAGE: INTL COMPARISON
 ════════════════════════════════════ */
 var INTL_TAB = 'all';
-
-var INTL_DATA = [
-  {
-    id:'oecd-digital', org:'OECD', cat:'oecd', color:'#1B4FD8',
-    name:'OECD Digital Economy Outlook 2024',
-    cycle:'격년 발표', latest:'2024년판 (Vol.1·2)',
-    url:'https://www.oecd.org/en/publications/2024/05/oecd-digital-economy-outlook-2024-volume-1_d30a04c9.html',
-    result:'한국 광대역·모바일 인프라 경쟁력 상위권 평가. 요금 바구니보다 커버리지·속도·경쟁구조 복합 지표 위주.',
-    method:[
-      '요금 바구니 외 속도·커버리지·경쟁사업자 수 등 복합 지표 활용',
-      'OECD Broadband Portal 데이터 기반. 유선+무선 통합 평가',
-      '국가 간 디지털 격차(Digital Divide) 지표 포함',
-      '※ OECD Communications Outlook은 2013년 이후 미발간. 요금 바구니 비교는 별도 데이터셋(OECD Broadband Statistics) 참조',
-    ]
-  },
-  {
-    id:'oecd-broadband', org:'OECD', cat:'oecd', color:'#1B4FD8',
-    name:'OECD Broadband Statistics (요금 바구니)',
-    cycle:'연 2회 업데이트', latest:'2024년 하반기',
-    url:'https://www.oecd.org/en/publications/oecd-communications-outlook_19991460.html',
-    result:'한국, 소용량(1GB 이하) 구간 주요국 중 중위권. 대용량(무제한) 구간은 일본·독일 대비 저렴 평가.',
-    method:[
-      '바구니 비교법(Basket Approach): 0.5GB / 1GB / 5GB / 15GB / 무제한 5구간 기준 월정액 비교',
-      '통화·SMS 포함 복합 바구니. PPP(구매력평가) 기준 USD 환산',
-      '실제 판매 중인 요금제 기준. 프로모션 제외 원칙',
-      'OECD.Stat 포털에서 국가별 원시 데이터 다운로드 가능',
-    ]
-  },
-  {
-    id:'miac-jp', org:'일본 총무성', cat:'jp', color:'#9A3412',
-    name:'電気通信サービスに係る内外価格差調査',
-    cycle:'연 1회 (매년 5~6월 공표)', latest:'令和6年度 (2024년도) 결과',
-    url:'https://www.soumu.go.jp/menu_news/s-news/01kiban03_02000990.html',
-    result:'도쿄·뉴욕·런던·파리·뒤셀도르프·서울 6개 도시 비교. 2024년 기준 한국 20GB 구간이 조사 도시 중 최저가 수준으로 평가.',
-    method:[
-      '실제 판매 중인 요금제 중 각 용량 구간별 최저가 기준 비교',
-      '20GB·100GB·무제한 3구간. 단말 포함/제외 모두 조사',
-      '실환율(엔·원·달러) 기준 환산 — PPP 미적용',
-      '프로모션 요금 포함 가능 → OECD 결과와 상이할 수 있으므로 비교 시 주의',
-    ]
-  },
-  {
-    id:'itu-price', org:'ITU', cat:'itu', color:'#3730A3',
-    name:'ITU ICT Price Basket / Affordability Report',
-    cycle:'연 1회', latest:'2024년판',
-    url:'https://www.itu.int/itu-d/reports/statistics/affordability2024/',
-    result:'한국 모바일 브로드밴드 가격지수 상위권(저렴). 2024년 모바일 바구니 중위값 GNI 대비 1.1% — 전년 대비 하락.',
-    method:[
-      'GNI(국민총소득) 대비 월정액 비율로 국가 간 비교 (절대가격이 아닌 상대적 부담)',
-      '2GB 이상 모바일 데이터 바구니 단일 기준 (2024년 기준)',
-      '고정형 브로드밴드·음성통화 바구니 별도 산출',
-      '개발도상국 포함 208개국 비교 → 선진국 내 순위와 전체 순위 구별 필요',
-    ]
-  },
-  {
-    id:'kisdi-kindex', org:'KISDI / 과기정통부', cat:'kr', color:'#0B5E2E',
-    name:'K-INDEX (통신서비스 물가지수)',
-    cycle:'분기 발표', latest:'2025년 1분기',
-    url:'https://www.kisdi.re.kr/bbs/list.do?key=m2102234521801',
-    result:'이동통신서비스 소비자물가지수 대비 통신비 변화 추적. 통합요금제 전환 이후 일부 구간 요금 인상 효과 모니터링 중.',
-    method:[
-      '가계통신비 지출 비중을 CPI(소비자물가지수) 대비로 추적',
-      '이동통신·초고속인터넷·유선전화 분리 산출',
-      '요금제 개편 시 기저효과 발생 → 전분기 대비 증감으로 해석',
-    ]
-  },
-  {
-    id:'kcc-competitive', org:'방통위', cat:'kr', color:'#0B5E2E',
-    name:'방송시장 경쟁상황 평가',
-    cycle:'연 1회 (하반기 공표)', latest:'2024년 평가 (2025년 3월 공표)',
-    url:'https://kcc.go.kr/user.do?boardId=1113&boardSeq=65916&dc=K00000200&mode=view&page=A05030000',
-    result:'유료방송·방송채널·방송광고 시장별 HHI 산출. 통신+방송 결합상품 집중도 지속 모니터링.',
-    method:[
-      'HHI(허핀달-허시만 지수): 각 사업자 점유율²의 합. 1,500~2,500 = 집중 / 2,500↑ = 고집중',
-      '가입자 수·매출액 기준 별도 산출',
-      '결합상품·MVNO 별도 섹션 포함',
-    ]
-  },
-  {
-    id:'msit-price', org:'과기정통부', cat:'kr', color:'#0B5E2E',
-    name:'이동통신서비스 요금수준 비교 조사',
-    cycle:'연 1회 (상반기)', latest:'2025년 상반기 (예정)',
-    url:'https://www.msit.go.kr/bbs/list.do?mPid=74&mId=99',
-    result:'국내 이통3사 + 알뜰폰 요금제 전수 조사. OECD 바구니 기준 국내가격을 독자 산출 — 공식 OECD 발표 전 선행 검토 자료로 활용.',
-    method:[
-      'OECD 방법론 준용: 5구간 바구니 (0.5/1/5/15GB/무제한)',
-      '알뜰폰 포함 전체 요금제 조사 — OECD 공식 조사와 커버리지 차이 있음',
-      'PPP 환산 및 USD 명목환율 환산 병행 제시',
-    ]
-  },
-];
-
 var INTL_MEMO_KEY = 'tw_intl_memo_';
+var INTL_DATA = [];       // data/intl.json 에서 로드 (하드코딩 제거)
+var INTL_UPDATED = '';
+var INTL_LOADED = false;
+
+// 국제비교 데이터 로드 — data/intl.json 수정만으로 내용 갱신 가능 (코드 수정 불필요)
+function intlLoad(onDone){
+  fetch('data/intl.json?_='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      INTL_DATA = (d && d.items) || [];
+      INTL_UPDATED = (d && d.updated) || '';
+      INTL_LOADED = true;
+      if(onDone) onDone();
+    })
+    .catch(function(){
+      INTL_LOADED = true;
+      if(onDone) onDone();
+    });
+}
+
+// 매일 수집되는 기사 중 해당 기관 키워드와 매칭되는 최신 뉴스 (최대 3건)
+function intlRelatedNews(keywords){
+  if(!keywords || !keywords.length || !ALL.length) return [];
+  return ALL.filter(function(a){
+    var hay=((a.title||'')+' '+(a.summary||'')).toLowerCase();
+    return keywords.some(function(k){ return hay.indexOf(k.toLowerCase())>=0; });
+  }).sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); }).slice(0,3);
+}
 
 function intlSetTab(tab, btn){
   INTL_TAB = tab;
@@ -1515,26 +1419,40 @@ function intlRender(){
   var list = INTL_TAB === 'all' ? INTL_DATA : INTL_DATA.filter(function(d){return d.cat===INTL_TAB;});
   var html = list.map(function(d){
     var memo = localStorage.getItem(INTL_MEMO_KEY + d.id) || '';
-    var methods = d.method.map(function(m){
+    var methods = (d.method||[]).map(function(m){
       return '<div class="intl-method-item">'+e(m)+'</div>';
     }).join('');
+    // 매일 수집 기사에서 이 기관 관련 최신 뉴스 자동 연동
+    var news = intlRelatedNews(d.keywords);
+    var newsHtml = news.length
+      ? '<div class="intl-method" style="margin-top:12px;"><div class="intl-method-label">📰 관련 최신 뉴스 (자동연동)</div>'
+        + news.map(function(a){
+            return '<div class="intl-method-item" style="cursor:pointer;" onclick="openModal(\''+a.id+'\')">'
+              + '<span style="color:var(--text-3);flex-shrink:0;">'+e((a.date||'').slice(5))+'</span> '
+              + '<span style="color:var(--blue);">'+e(a.title)+'</span></div>';
+          }).join('')
+        + '</div>'
+      : '';
     return '<div class="intl-card">'
       + '<div class="intl-card-hdr">'
       + '<div><span class="intl-badge" style="background:'+d.color+';">'+e(d.org)+'</span>'
       + '<div class="intl-name">'+e(d.name)+'</div>'
-      + '<div class="intl-meta">'+e(d.cycle)+' &nbsp;·&nbsp; 최신: '+e(d.latest)+'</div></div>'
+      + '<div class="intl-meta">'+e(d.cycle)+' &nbsp;·&nbsp; 최신: '+e(d.latest)
+      + (d.next?' &nbsp;·&nbsp; 다음: '+e(d.next):'')+'</div></div>'
       + '<a class="intl-link-btn" href="'+e(d.url)+'" target="_blank" rel="noopener">'
       + '<svg viewBox="0 0 14 14"><path d="M6 2H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V8M8 1h5v5M13 1l-6 6"/></svg>원문</a>'
       + '</div>'
       + '<div class="intl-result"><div class="intl-result-label">✦ 한국 결과 요약</div>'
       + '<div class="intl-result-val">'+e(d.result)+'</div></div>'
       + '<div class="intl-method"><div class="intl-method-label">방법론 포인트</div>'+methods+'</div>'
+      + newsHtml
       + '<div class="intl-memo-wrap"><div class="intl-memo-label">✎ 대응 메모</div>'
       + '<textarea class="intl-memo" placeholder="발표 대응, 이슈 포인트, 내부 검토 내용 등을 기록하세요..." onchange="intlSaveMemo(\''+d.id+'\',this.value)">'+e(memo)+'</textarea>'
       + '</div>'
       + '</div>';
   }).join('');
-  document.getElementById('intlList').innerHTML = html || '<div style="padding:40px 0;text-align:center;color:var(--text-3);font-size:13px;">해당 기관의 보고서가 없습니다.</div>';
+  var updLabel = INTL_UPDATED ? '<div style="font-size:11px;color:var(--text-3);margin-bottom:12px;">기준 정보 업데이트: '+e(INTL_UPDATED)+' · 데이터 파일(data/intl.json)만 수정하면 반영됩니다</div>' : '';
+  document.getElementById('intlList').innerHTML = updLabel + (html || '<div style="padding:40px 0;text-align:center;color:var(--text-3);font-size:13px;">해당 기관의 보고서가 없습니다.</div>');
 }
 
 function intlSaveMemo(id, val){
@@ -1557,7 +1475,7 @@ var CAL_DEFAULT=[
 
 var DOW_KR=['일','월','화','수','목','금','토'];
 var IMP_COLORS={high:'#EF4444',mid:'#F59E0B',low:'#6B7280'};
-var TODAY_STR='2026-06-15';
+var TODAY_STR=(function(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
 
 function calLoad(){
   try{ return JSON.parse(localStorage.getItem('tw_cal'))||CAL_DEFAULT; }
@@ -1641,9 +1559,6 @@ function calAddEvent(){
 /* ════════════════════════════════════
    BILLS PAGE (국회 법안 모니터링)
 ════════════════════════════════════ */
-var ASSEMBLY_API_BASE='https://open.assembly.go.kr/portal/openapi/';
-var ASSEMBLY_SVC='nzmimeepazxkubdpn'; // 의안정보 서비스명 (법률안 목록)
-var BILL_TOPIC_KW=['이동통신','통신요금','요금제','번호이동','데이터요금','MVNO','알뜰폰','로밍'];
 var BILL_STAGES=[
   {key:'PROPOSE_DT',     label:'발의'},
   {key:'CURR_COMMITTEE_DT', label:'소관위 회부'},
@@ -1658,13 +1573,11 @@ var BILLS_DEFAULT_KW=['전기통신사업법'];
 
 /* ─────────────────────────────────────────────────────────────────────────
  * [자동 추적 키워드가 매칭되는 곳]
- * 키워드는 국회 열린국회정보 OPEN API(nzmimeepazxkubdpn)의 `BILL_NAME`
- * 파라미터로 전달된다 → 즉 "의안명(=법안명/법률안 제목)"에 대해 부분 일치 검색.
- *   예) 키워드 "전기통신사업법" → 의안명에 "전기통신사업법"이 포함된 법안 조회
- *       (BILL_NAME = "전기통신사업법 일부개정법률안" 등)
- * ※ 법률 본문/조문이나 제안이유가 아니라 "의안 제목"만 검색 대상이다.
- *   billsAutoSync()에서 키워드별로 BILL_NAME=키워드 로 API를 호출한다.
- * 2차 필터: 조회된 결과는 다시 BILL_TOPIC_KW로 BILL_NAME을 한 번 더 거른다.
+ * 서버가 매일 만들어 두는 통신 법안 풀(data/bills.json)을 불러온 뒤,
+ * 각 키워드를 [의안명(BILL_NAME) + 제안이유 본문(REASON_TEXT)] 에 부분 일치로
+ * 매칭한다 (billsMatchesKeywords 함수). API 키·실시간 호출 없음.
+ * 풀 자체는 scripts/collect.py 의 BILL_SEARCH_TERMS(전기통신사업법·이동통신 등)
+ * 로 매일 새벽 수집·갱신된다.
  * ───────────────────────────────────────────────────────────────────────── */
 
 function billsLoadKw(){
@@ -1706,73 +1619,6 @@ function billsRemoveKeyword(k){
   billsRender();
 }
 
-function billsAutoSync(onDone){
-  var key=localStorage.getItem('tw_assembly_key')||'';
-  var kw=billsLoadKw();
-  if(!key||!kw.length){ if(onDone) onDone(null); return; }
-  var status=document.getElementById('billsSyncStatus');
-  if(status) status.textContent='키워드 법안 조회 중…';
-
-  var pending=kw.length;
-  var allFetched=[];
-  var syncError=null;
-
-  kw.forEach(function(keyword){
-    // 키워드는 의안명(BILL_NAME = 법안 제목)에 부분 일치로 검색됨 (법률 본문 아님)
-    var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)
-      +'&Type=json&pIndex=1&pSize=100&AGE=22&BILL_NAME='+encodeURIComponent(keyword);
-    fetch(url).then(function(r){return r.json();}).then(function(data){
-      if(data && data.RESULT && data.RESULT.CODE && data.RESULT.CODE!=='INFO-000'){
-        syncError=data.RESULT.CODE+': '+data.RESULT.MESSAGE;
-        console.warn('Assembly API error:', data.RESULT);
-        return;
-      }
-      var rows=[];
-      try{
-        var dataKeys=Object.keys(data).filter(function(k){return k!=='RESULT';});
-        var sec=data[ASSEMBLY_SVC]||data[dataKeys[0]];
-        for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
-      }catch(er){ console.warn('파싱 오류',er); }
-      rows.forEach(function(b){
-        if(b.PROM_DT) return;
-        var cls=billsProcClass(b.PROC_RESULT||'');
-        if(cls!=='pending'&&cls!=='passed') return;
-        var name=(b.BILL_NAME||'').toLowerCase();
-        var relevant=BILL_TOPIC_KW.some(function(kw){return name.indexOf(kw.toLowerCase())>=0;});
-        if(!relevant) return;
-        // 2025년 이후 발의이거나, 2025년 이후 소관위 이상 진행된 것만
-        var recentActivity=[b.CURR_COMMITTEE_DT,b.COMMITTEE_DT,b.LAW_PROC_DT,b.PROC_DT]
-          .some(function(d){return d&&d>='20250101';});
-        var recentPropose=b.PROPOSE_DT&&b.PROPOSE_DT>='20250101';
-        if(!recentPropose&&!recentActivity) return;
-        allFetched.push(b);
-      });
-    }).catch(function(err){ syncError='네트워크 오류: '+err; console.warn('fetch 오류',err); }).then(function(){
-      pending--;
-      if(pending===0){
-        if(syncError){
-          if(status) status.textContent='오류: '+syncError;
-          if(onDone) onDone(syncError);
-          return;
-        }
-        var list=billsLoad();
-        allFetched.forEach(function(b){
-          var idx=-1;
-          for(var i=0;i<list.length;i++){ if(list[i].BILL_ID===b.BILL_ID){idx=i;break;} }
-          if(idx>=0){ list[idx]=b; }
-          else{ list.unshift(b); }
-        });
-        // 공포완료된 법안 저장 목록에서도 제거
-        list=list.filter(function(b){ return !b.PROM_DT; });
-        billsSave(list);
-        var msg='총 '+list.length+'건 ('+allFetched.length+'건 자동 반영)';
-        if(status) status.textContent=msg;
-        if(onDone) onDone(null);
-      }
-    });
-  });
-}
-
 // 법안 데이터 소스 = 서버 코퍼스(data/bills.json). by-ID 조회/렌더 모두 이 배열을 사용.
 function billsLoad(){ return BILLS_CORPUS; }
 // 코퍼스는 서버에서 매일 관리되므로 클라이언트 저장은 의미 없음(no-op).
@@ -1793,18 +1639,6 @@ function billsToggleHidden(){
   BILLS_SHOW_HIDDEN=!BILLS_SHOW_HIDDEN;
   billsRender();
 }
-function billsPurgeOld(){
-  // 2025년 이전 발의 + 소관위 이상 진행 없는 법안 자동 정리
-  var list=billsLoad().filter(function(b){
-    if(b.PROM_DT) return false;
-    var recentActivity=[b.CURR_COMMITTEE_DT,b.COMMITTEE_DT,b.LAW_PROC_DT,b.PROC_DT]
-      .some(function(d){return d&&d>='20250101';});
-    var recentPropose=b.PROPOSE_DT&&b.PROPOSE_DT>='20250101';
-    return recentPropose||recentActivity;
-  });
-  billsSave(list);
-}
-
 // ── 법안 요약 (AI) ──────────────────────────────────────────────────────────
 var BILLS_SERVER_SUMMARIES={};  // data/bill_summaries.json 에서 로드
 
@@ -2078,11 +1912,8 @@ function billsCurrentStage(b){
 }
 
 function billsRender(){
-  var noKeyEl=document.getElementById('billsNoKey');
   var filterRow=document.getElementById('billsFilterRow');
   var kwBox=document.getElementById('billsKeywordBox');
-  // 코퍼스(data/bills.json) 기반 — 더 이상 API 키 불필요
-  if(noKeyEl) noKeyEl.style.display='none';
   if(filterRow) filterRow.style.display='flex';
   if(kwBox) kwBox.style.display='block';
   billsRenderKeywords();
@@ -2185,8 +2016,6 @@ function billsSetFilter(f, el){
 }
 
 function billsOpenSearch(){
-  var key=localStorage.getItem('tw_assembly_key')||'';
-  if(!key){ openAssemblyModal(); return; }
   document.getElementById('billsSearchModal').classList.add('open');
   document.getElementById('billsSearchInput').focus();
 }
@@ -2196,62 +2025,38 @@ function billsCloseSearch(){
   document.getElementById('billsSearchInput').value='';
 }
 
+// 수집된 법안 풀(BILLS_CORPUS) 안에서 의안명+제안이유 검색 — API 키 불필요
 function billsDoSearch(){
-  var key=localStorage.getItem('tw_assembly_key')||'';
   var q=document.getElementById('billsSearchInput').value.trim();
   if(!q){ toast('검색할 법안명을 입력해주세요.'); return; }
   var box=document.getElementById('billsSearchResults');
-  box.innerHTML='<div class="bills-search-empty">검색 중...</div>';
-  var url=ASSEMBLY_API_BASE+ASSEMBLY_SVC+'?KEY='+encodeURIComponent(key)+'&Type=json&pIndex=1&pSize=20&AGE=22&BILL_NAME='+encodeURIComponent(q);
-  fetch(url).then(function(r){return r.json();}).then(function(data){
-    if(data&&data.RESULT&&data.RESULT.CODE&&data.RESULT.CODE!=='INFO-000'){
-      box.innerHTML='<div class="bills-search-empty" style="color:#EF4444;">API 오류 ('+data.RESULT.CODE+')<br>'+e(data.RESULT.MESSAGE||'')+'<br><br>🔑 키 변경 버튼으로 API 키를 확인해주세요.</div>';
+  var run=function(){
+    var ql=q.toLowerCase();
+    var rows=BILLS_CORPUS.filter(function(b){
+      return ((b.BILL_NAME||'')+' '+(b.REASON_TEXT||'')).toLowerCase().indexOf(ql)>=0;
+    }).slice(0,30);
+    if(!rows.length){
+      box.innerHTML='<div class="bills-search-empty">수집된 통신 법안 중 검색 결과가 없습니다.<br>키워드를 자동 추적에 추가하면 다음 수집부터 반영됩니다.</div>';
       return;
     }
-    var rows=null;
-    try{
-      var dataKeys=Object.keys(data).filter(function(k){return k!=='RESULT';});
-      var sec=data[ASSEMBLY_SVC]||data[dataKeys[0]];
-      for(var i=0;i<sec.length;i++){ if(sec[i].row){rows=sec[i].row;break;} }
-    }catch(err){}
-    if(!rows||!rows.length){
-      box.innerHTML='<div class="bills-search-empty">검색 결과가 없습니다.<br>법안명을 더 구체적으로 입력해보세요.</div>';
-      return;
-    }
-    var tracked=billsLoad();
-    var trackedIds=tracked.map(function(b){return b.BILL_ID;});
     box.innerHTML=rows.map(function(b){
-      var isTracked=trackedIds.indexOf(b.BILL_ID)>=0;
-      var dt=b.PROPOSE_DT?b.PROPOSE_DT.slice(0,4)+'.'+b.PROPOSE_DT.slice(4,6)+'.'+b.PROPOSE_DT.slice(6,8):'';
+      var dt=billsFmtDate(b.PROPOSE_DT);
       var procCls=billsProcClass(b.PROC_RESULT||'');
-      return '<div class="bills-result-row">'
+      return '<div class="bills-result-row" style="cursor:pointer;" onclick="billsCloseSearch();openBillDetail(\''+e(b.BILL_ID||'')+'\')">'
         +'<div style="flex:1;">'
         +'<div class="bills-result-name">'+e(b.BILL_NAME||'')
         +(b.PROC_RESULT?'&nbsp;<span class="bills-proc-chip '+procCls+'" style="font-size:9px;">'+e(b.PROC_RESULT)+'</span>':'')
         +'</div>'
-        +'<div class="bills-result-meta">'+e(b.PROPOSER||'')+(dt?' · 발의 '+dt:'')+(b.AGE?' · '+b.AGE+'대':'')+'</div>'
+        +'<div class="bills-result-meta">'+e(b.PROPOSER||b.RST_PROPOSER||'')+(dt?' · 발의 '+dt:'')+(b.AGE?' · '+b.AGE+'대':'')+'</div>'
         +'</div>'
-        +(isTracked
-          ?'<span style="font-size:11px;color:var(--text-3);">추적 중</span>'
-          :'<button class="btn-primary" style="font-size:11px;padding:5px 12px;white-space:nowrap;" onclick=\'billsAddFromSearch('+JSON.stringify(b).replace(/'/g,"&#39;")+')\'>추가</button>')
+        +'<span style="font-size:11px;color:var(--blue);white-space:nowrap;">상세 →</span>'
         +'</div>';
     }).join('');
-  }).catch(function(){
-    box.innerHTML='<div class="bills-search-empty" style="color:#EF4444;">API 오류가 발생했습니다.<br>API 키 또는 네트워크를 확인해주세요.</div>';
-  });
-}
-
-function billsAddFromSearch(bill){
-  var list=billsLoad();
-  if(list.some(function(b){return b.BILL_ID===bill.BILL_ID;})){
-    toast('이미 추적 중인 법안입니다.');
-    return;
-  }
-  list.unshift(bill);
-  billsSave(list);
-  billsRender();
-  billsCloseSearch();
-  toast('법안을 추가했어요.');
+  };
+  if(!BILLS_CORPUS.length){
+    box.innerHTML='<div class="bills-search-empty">법안 데이터 불러오는 중...</div>';
+    billsLoadCorpus(run);
+  } else { run(); }
 }
 
 function billsRemove(billId){
@@ -2424,7 +2229,10 @@ function billsPushToCalendar(billId){
   BILL_STAGES.forEach(function(s){
     var v=b[s.key];
     if(!v) return;
-    var date=v.slice(0,4)+'-'+v.slice(4,6)+'-'+v.slice(6,8);
+    // 날짜 정규화: 'YYYY-MM-DD' 또는 'YYYYMMDD' 모두 지원
+    var c=String(v).replace(/-/g,'');
+    if(!/^\d{8}/.test(c)) return;
+    var date=c.slice(0,4)+'-'+c.slice(4,6)+'-'+c.slice(6,8);
     var title=(b.BILL_NAME||'')+' — '+s.label;
     if(!events.some(function(ev){return ev.date===date&&ev.title===title;})){
       events.push({date:date,title:title,org:'국회',country:'국내',imp:'mid'});
@@ -2434,9 +2242,6 @@ function billsPushToCalendar(billId){
   calSave(events);
   toast(added?added+'건 캘린더에 추가했어요.':'추가할 새 일정이 없어요.');
 }
-
-/* ── calendar page init also calls billsRender for key check ── */
-function billTrackerInit(){ /* no-op: replaced by billsRender */ }
 
 /* ════════════════════════════════════
    PAGE: REPORT
@@ -2496,24 +2301,6 @@ function submitApiKey(){
   localStorage.setItem('tw_apikey',key);
   closeApiModal();
   callClaudeApi(key);
-}
-
-/* ─── ASSEMBLY API KEY MODAL ─── */
-function openAssemblyModal(){
-  if(!adminIsAuthed()){
-    adminPrompt(function(){ openAssemblyModal(); });
-    return;
-  }
-  document.getElementById('assemblyKeyModal').classList.add('open');
-}
-function closeAssemblyModal(){document.getElementById('assemblyKeyModal').classList.remove('open');}
-function submitAssemblyKey(){
-  var key=document.getElementById('assemblyKeyInput').value.trim();
-  if(!key){toast('API 키를 입력해주세요.');return;}
-  localStorage.setItem('tw_assembly_key',key);
-  closeAssemblyModal();
-  billTrackerInit();
-  toast('국회 API 키를 저장했어요.');
 }
 
 function callClaudeApi(key){
@@ -2604,59 +2391,6 @@ function saveMemo(id,val){
 /* ─── initial nav state ─── */
 document.getElementById('homeRegionNav').style.display='flex';
 
-/* ─── ADMIN AUTH ─── */
-var ADMIN_HASH='b5216bb9d5a2d834b4ec9d8a8d89e3a8e2cae50e503b8f098a2b0347fa785c48';
-var ADMIN_TOKEN_KEY='tw_admin_token';
-
-function adminIsAuthed(){
-  try{
-    var stored=JSON.parse(localStorage.getItem(ADMIN_TOKEN_KEY)||'null');
-    if(!stored) return false;
-    if(stored.hash!==ADMIN_HASH) return false;
-    if(Date.now()-stored.ts > 24*60*60*1000) return false; // 24시간 만료
-    return true;
-  }catch(e){ return false; }
-}
-
-async function adminCheckPw(pw){
-  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
-  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
-}
-
-function adminPrompt(onSuccess){
-  var overlay=document.getElementById('adminAuthOverlay');
-  overlay.style.display='flex';
-  document.getElementById('adminPwInput').value='';
-  document.getElementById('adminPwError').style.display='none';
-  setTimeout(function(){document.getElementById('adminPwInput').focus();},80);
-  window._adminOnSuccess=onSuccess;
-}
-
-function adminClose(){
-  document.getElementById('adminAuthOverlay').style.display='none';
-  window._adminOnSuccess=null;
-}
-
-function adminSubmit(){
-  var pw=document.getElementById('adminPwInput').value;
-  adminCheckPw(pw).then(function(hash){
-    if(hash===ADMIN_HASH){
-      localStorage.setItem(ADMIN_TOKEN_KEY,JSON.stringify({hash:hash,ts:Date.now()}));
-      adminClose();
-      if(typeof window._adminOnSuccess==='function') window._adminOnSuccess();
-    } else {
-      var err=document.getElementById('adminPwError');
-      err.textContent='비밀번호가 맞지 않습니다.';
-      err.style.display='block';
-      document.getElementById('adminPwInput').value='';
-      document.getElementById('adminPwInput').focus();
-    }
-  });
-}
-
-document.getElementById('adminPwInput').addEventListener('keydown',function(e){
-  if(e.key==='Enter') adminSubmit();
-});
 </script>
 </body>
 </html>
