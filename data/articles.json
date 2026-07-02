@@ -1,6 +1,244 @@
 {
-  "updated": "2026-07-01T20:01:58.342168+09:00",
+  "updated": "2026-07-02T19:19:46.947072+09:00",
   "articles": [
+    {
+      "id": "31036639eb09",
+      "title": "올 2분기 해킹 그늘 걷어낸 통신 3사…'이제는 AI로 성장'",
+      "summary": "SK텔레콤, KT, LG유플러스가 작년 해킹 사태의 영향을 극복하고 2분기 합산 매출 15조2060억원으로 침해사고 이전 수준 실적 회복을 전망하고 있다. 본업 정상화에 따라 통신 3사는 하반기부터 AI데이터센터와 AI 전환 솔루션을 핵심 성장동력으로 추진한다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT,KT,LG U+",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.etnews.com/20260702000365",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "00ac7f45606e",
+      "title": "내달부터 신분증 무단 수집·보관 휴대폰매장 판매자격 박탈",
+      "summary": "8월부터 신분증 위·변조 또는 무단 수집·보관한 이동통신 유통점에 대해 판매자격 박탈 수준의 제재가 시행된다. SK텔레콤, KT, LG유플러스 등 주요 통신사와 협회는 개인정보보호 위반을 불법 보조금 지급과 동등하게 처벌하기로 결정했으며, 이는 유통점 인식 제고와 이용자 권익 보호를 목표로 한다.",
+      "tags": [
+        "규제·정책",
+        "단말기·유통"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "방통위",
+      "importance": 4,
+      "date": "2026-07-02",
+      "source_url": "https://www.etnews.com/20260702000359",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "3fa2ecb52820",
+      "title": "KT·네이버클라우드, '포스트 국정자원' 판 짠다",
+      "summary": "KT와 네이버클라우드 컨소시엄이 국가정보자원관리원 혁신 ISP 수립 사업의 우선협상대상자로 선정됐다. 이는 지난해 화재 사태 이후 정부가 추진 중인 국가 정보자원 관리 체계 혁신 사업이 본격화되는 것으로, 통신 인프라 관련 정부 사업 수주 경쟁이 심화되고 있음을 보여준다.",
+      "tags": [
+        "규제·정책",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.etnews.com/20260702000353",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "65a0c7f2af46",
+      "title": "KT \"인공지능 전환(AX)에 이어 양자전환(QX)으로 파트너 역할 수행\"···금융 부문 협력 논의 중",
+      "summary": "KT가 인공지능 전환 플랫폼 사업에 이어 양자 기술 기반 '양자전환(QX)' 사업으로 확대하고 있다. 군 양자암호통신 체계 구축, 자체 개발 양자키분배(QKD) 기술 사업과 함께 올해부터 양자내성암호(PQC) 실증 사업을 진행 중이며, 금융 부문 협력을 논의 중이다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 4,
+      "date": "2026-07-02",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422127",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "efeca82ab109",
+      "title": "Boost Mobile 휴대폰 서비스 현황 - Dish Wireless 11장 파산 신청",
+      "summary": "Dish Wireless와 Dish DBS가 화요일 11장 파산 보호를 신청했으며, Boost Mobile 휴대폰 서비스의 현황을 확인하는 상황이다. 미국 통신시장에서 저가 이동통신사의 경영난과 시장 재편 동향을 보여주는 사례로, 국내 알뜰폰 시장 경쟁 환경 분석에 참고할 가치가 있다.",
+      "tags": [
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.fierce-network.com/wireless/boost-mobile-soldiers-dish-seeks-chapter-11-protection",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "1c57279cf4bf",
+      "title": "TM포럼 CEO \"엣지는 통신사의 '10억 달러 규모 질문'\"",
+      "summary": "TM포럼의 닉 윌렛츠 CEO는 통신사들이 엣지 AI의 과대 광고를 억제하고 네트워크 전반에 걸쳐 보장된 연결성을 제공하는 실질적인 API 수익화 기회에 집중해야 한다고 강조했다. 이는 통신사들의 엣지 컴퓨팅 전략이 단순한 기술 도입을 넘어 구체적인 수익 모델 개발의 중요성을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "서비스정책",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-07-02",
+      "source_url": "https://www.fierce-network.com/wireless/edge-opportunity-real-telcos-tm-forum-ceo-says-thats-billion-dollar-question",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "4f5563c3c186",
+      "title": "T-Mobile, 올 여름 2G GSM 네트워크 종료",
+      "summary": "T-Mobile이 올 여름 2G GSM 네트워크를 완전 폐지할 예정이다. 이는 레거시 네트워크 기술 단계적 철수의 일환으로, 3G·4G LTE와 5G 중심의 네트워크 전환 추세를 보여주는 사례다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.fierce-network.com/wireless/t-mobile-shut-down-2g-gsm-network-summer",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "9f9888e9b874",
+      "title": "라쿠텐 심포니, 아밋 바르드왈을 RAN 사업부 책임자로 임명",
+      "summary": "라쿠텐 심포니가 아밋 바르드왈을 RAN(Radio Access Network) 사업부 책임자로 임명했다. 바르드왈은 클라우드 네이티브 오픈 RAN 솔루션의 진화와 전 세계 통신사 배포를 주도할 예정이다. 이는 개방형 RAN 기술 표준화를 통해 네트워크 인프라 비용을 절감하려는 글로벌 통신사들의 디지털 전환 추세를 반영한다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.fierce-network.com/newswire/rakuten-symphony-taps-amit-bhardwaj-head-ran-business-unit",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "97b40ebb7a78",
+      "title": "화웨이, 5G와 AI로 중국 관광산업 변화 주도",
+      "summary": "화웨이와 중국텔레콤이 시안의 대당 에버라이트 시티 관광지에 3중 캐리어 어그리게이션(3CC) 기술을 활용한 5G-A 네트워크를 구축했다. 이는 5G 고도화 기술의 실제 상용화 사례로, 차세대 네트워크 기술 경쟁에서 글로벌 업체들의 기술 동향을 보여준다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.rcrwireless.com/20260701/5g/huawei-5g-a-ai-2",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "1987f2b8ba74",
+      "title": "미국 국방부, 에릭슨·노키아 기술의 경쟁 기술인 6G 솔루션 지원",
+      "summary": "미국 국방부가 OTFS 파형 기술의 선도기업인 Cohere Technologies와 정부 계약을 체결했다. 이는 6G 통신 기술 개발에서 기존 통신장비 업체들의 기술에 대한 경쟁 기술을 육성하는 동향으로, 향후 국내 6G 기술 개발 및 통신장비 생태계 구성에 참고할 만하다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.lightreading.com/6g/us-defense-dept-backs-6g-rival-to-tech-used-by-ericsson-and-nokia",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "b4473704108e",
+      "title": "EchoStar, Dish Wireless 자산 매각 입찰에서 스토킹 호스 입찰자로 지정",
+      "summary": "EchoStar가 Dish Wireless의 자산 대부분을 매각하기 위한 스토킹 호스 입찰자로 선정되었다. 8월 10일이 더 나은 입찰을 제시할 수 있는 마감일이며, 이후 경매가 진행될 예정이다. 이는 무선통신 시장의 자산 재편과 경쟁 구도 변화를 시사한다.",
+      "tags": [
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.lightreading.com/5g/echostar-tagged-as-stalking-horse-for-dish-wireless-assets",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "23f5dd2286f5",
+      "title": "Microsoft와 Lightstorm 컨소시엄, 인도-동남아 해저케이블 구축",
+      "summary": "Microsoft와 싱가포르 기반 통신 스타트업 Lightstorm이 주도하는 컨소시엄이 인도, 말레이시아, 싱가포르를 연결하는 새로운 해저케이블 구축을 계획하고 있다. 이는 아시아 지역의 디지털 인프라 강화와 국제 통신 연결성 확대를 의미하는 전략적 투자이다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://capacityglobal.com/news/microsoft-lightstorm-subsea-cable/",
+      "source_name": "Capacity"
+    },
+    {
+      "id": "fc23c50a9c32",
+      "title": "컴캐스트의 분할이 피콕의 성패를 좌우할 수 있다",
+      "summary": "컴캐스트가 NBCUniversal, 피콕, Sky를 통신사업부와 분리하면서 피콕이 독립적으로 스트리밍 시장에서 경쟁해야 한다. 과거 모기업의 자금 지원 없이 자체 경쟁력만으로 생존해야 하는 상황으로, 글로벌 미디어 및 통신 산업의 구조 재편이 진행 중이다.",
+      "tags": [
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-02",
+      "source_url": "https://www.theverge.com/streaming/960235/comcast-breakup-peacock-streaming",
+      "source_name": "The Verge"
+    },
+    {
+      "id": "7529844da8f8",
+      "title": "[카드뉴스] 2030년 보안의 판이 뒤집힌다.. KT가 지금 '양자암호'에 올인하는 이유",
+      "summary": "KT가 양자컴퓨터 시대에 대비하여 양자암호통신 기술을 준비 중이다. 현재의 복잡한 암호 체계가 양자컴퓨터에 의해 무력화될 수 있는 만큼, 2030년 이후를 대비한 차세대 보안 기술 확보가 이동통신사의 핵심 전략이 되고 있다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 4,
+      "date": "2026-07-02",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153085",
+      "source_name": "테크M - 전체기사"
+    },
+    {
+      "id": "49f123fd55f5",
+      "title": "노키아 \"통신도 AI도 GPU 장비 하나로...AI-RAN 패러다임 전환\"",
+      "summary": "노키아가 엔비디아 블랙웰 GPU를 장착한 통신·AI 통합 서버를 공개하며 AI-RAN 본격 상용화에 나섰다. 단일 서버로 통신 및 AI 서비스를 동시 제공하고 투자비와 운용비를 동등 수준으로 맞춰 통신사의 네트워크 운영 효율성을 크게 향상시킬 수 있을 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-07-02",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153083",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "451628828920",
       "title": "'2026 ICT 넥스트 어워즈' 개최…AI·디지털 혁신 9개사에 부총리 표창",
