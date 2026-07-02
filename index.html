@@ -1440,7 +1440,8 @@ function intlRender(){
       + '<div><span class="intl-badge" style="background:'+d.color+';">'+e(d.org)+'</span>'
       + '<div class="intl-name">'+e(d.name)+'</div>'
       + '<div class="intl-meta">'+e(d.cycle)+' &nbsp;·&nbsp; 최신: '+e(d.latest)
-      + (d.next?' &nbsp;·&nbsp; 다음: '+e(d.next):'')+'</div></div>'
+      + (d.next?' &nbsp;·&nbsp; 다음: '+e(d.next):'')
+      + (d.verified?' &nbsp;·&nbsp; <span style="color:var(--blue);">확인: '+e(d.verified)+'</span>':'')+'</div></div>'
       + '<a class="intl-link-btn" href="'+e(d.url)+'" target="_blank" rel="noopener">'
       + '<svg viewBox="0 0 14 14"><path d="M6 2H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V8M8 1h5v5M13 1l-6 6"/></svg>원문</a>'
       + '</div>'

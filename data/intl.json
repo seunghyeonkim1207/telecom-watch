@@ -10,7 +10,7 @@
       "cycle": "격년 발표",
       "latest": "2024년판 (Vol.1·2) — 격년 주기상 최신",
       "next": "2026년판 발표 예정 (2026.7 기준 미발간 확인)",
-      "url": "https://www.oecd.org/en/publications/2024/05/oecd-digital-economy-outlook-2024-volume-1_d30a04c9.html",
+      "url": "https://www.oecd.org/en/publications/oecd-digital-economy-outlook-2024-volume-2_3adf705b-en.html",
       "result": "한국 광대역·모바일 인프라 경쟁력 상위권 평가. 요금 바구니보다 커버리지·속도·경쟁구조 복합 지표 위주.",
       "keywords": [
         "OECD",
@@ -21,7 +21,8 @@
         "OECD Broadband Portal 데이터 기반. 유선+무선 통합 평가",
         "국가 간 디지털 격차(Digital Divide) 지표 포함",
         "※ OECD Communications Outlook은 2013년 이후 미발간. 요금 바구니 비교는 별도 데이터셋(OECD Broadband Statistics) 참조"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "oecd-broadband",
@@ -32,7 +33,7 @@
       "cycle": "연 2회 업데이트",
       "latest": "OECD Data Explorer 수시 업데이트",
       "next": "반기 단위 갱신 — 분기별 확인 권장",
-      "url": "https://www.oecd.org/en/data/datasets/oecd-broadband-statistics.html",
+      "url": "https://www.oecd.org/en/topics/sub-issues/broadband-statistics.html",
       "result": "한국, 소용량(1GB 이하) 구간 주요국 중 중위권. 대용량(무제한) 구간은 일본·독일 대비 저렴 평가.",
       "keywords": [
         "OECD",
@@ -44,7 +45,8 @@
         "통화·SMS 포함 복합 바구니. PPP(구매력평가) 기준 USD 환산",
         "실제 판매 중인 요금제 기준. 프로모션 제외 원칙",
         "OECD Data Explorer에서 국가별 원시 데이터 다운로드 가능"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "miac-jp",
@@ -66,7 +68,8 @@
         "20GB·100GB·무제한 3구간. 단말 포함/제외 모두 조사",
         "실환율(엔·원·달러) 기준 환산 — PPP 미적용",
         "프로모션 요금 포함 가능 → OECD 결과와 상이할 수 있으므로 비교 시 주의"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "itu-price",
@@ -88,7 +91,8 @@
         "고정형 브로드밴드·음성통화 바구니 별도 산출",
         "개발도상국 포함 208개국 비교 → 선진국 내 순위와 전체 순위 구별 필요",
         "2025년 데이터 수집부터 방법론 개정 — 저용량 모바일 바구니 폐지, 데이터 용량 기준 상향 (전년도와 직접 비교 주의)"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "kisdi-competition",
@@ -99,7 +103,7 @@
       "cycle": "연 1회 (연말~익년 초 공표)",
       "latest": "2025년도 평가 (2026.5 공표)",
       "next": "매년 상반기 전년도 평가 공표",
-      "url": "https://www.kisdi.re.kr/report/list.do?key=m2101113024790",
+      "url": "https://www.kisdi.re.kr/report/view.do?key=m2101113024770&arrMasterId=3934580&masterId=3934580&artId=1829176",
       "result": "2025년도 평가: SKT 무선 점유율 40.4%(2024말)→38.9%(2025.6)로 40% 붕괴에도 시장지배적 사업자 지위 유지 판단. 1위-2위 격차 14.5%p로 축소 추세.",
       "keywords": [
         "경쟁상황 평가",
@@ -111,7 +115,8 @@
         "소매·도매(알뜰폰 도매제공) 시장 별도 평가",
         "요금 수준·수익성(ARPU)·이용자 전환율 등 성과 지표 병행",
         "SKT 지배력 판단이 요금 인가·신고 규제 수위와 직결 → 서비스제도팀 최우선 모니터링 대상"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "kisdi-kindex",
@@ -133,7 +138,8 @@
         "가계통신비 지출 비중을 CPI(소비자물가지수) 대비로 추적",
         "이동통신·초고속인터넷·유선전화 분리 산출",
         "요금제 개편 시 기저효과 발생 → 전분기 대비 증감으로 해석"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "kcc-competitive",
@@ -155,7 +161,8 @@
         "HHI(허핀달-허시만 지수): 각 사업자 점유율²의 합. 1,500~2,500 = 집중 / 2,500↑ = 고집중",
         "가입자 수·매출액 기준 별도 산출",
         "결합상품·MVNO 별도 섹션 포함"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "msit-price",
@@ -176,7 +183,8 @@
         "OECD 방법론 준용: 5구간 바구니 (0.5/1/5/15GB/무제한)",
         "알뜰폰 포함 전체 요금제 조사 — OECD 공식 조사와 커버리지 차이 있음",
         "PPP 환산 및 USD 명목환율 환산 병행 제시"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "rewheel",
@@ -187,7 +195,7 @@
       "cycle": "반기 (연 2회)",
       "latest": "2025년 하반기 (50개 시장 173개 사업자)",
       "next": "반기별 공표",
-      "url": "https://research.rewheel.fi/",
+      "url": "https://rewheel.fi/research",
       "result": "GB당 단가 기준 국가 비교. 한국이 고가 그룹으로 분류되는 경우가 많아 국내 요금 논쟁에서 시민단체·언론이 자주 인용 — 대응 논리 준비 필요.",
       "keywords": [
         "Rewheel",
@@ -199,7 +207,8 @@
         "EU 중심 41개국. 환율 기준 환산 (PPP 미적용)",
         "방법론 한계(최저가 요금제만 비교, 커버리지·속도 미반영)로 정부·업계가 공식 반박한 사례 다수",
         "발표 직후 국내 인용 보도 모니터링 필요"
-      ]
+      ],
+      "verified": "2026-07-02"
     },
     {
       "id": "cable-uk",
@@ -220,7 +229,8 @@
         "국가별 판매 요금제들의 '1GB당 평균 단가' 산출 — 대용량 중심 시장일수록 불리한 구조",
         "품질(속도·커버리지)·결합할인·프로모션 미반영",
         "언론 헤드라인용으로 자주 인용되나 학술·정책 근거로는 한계 명확"
-      ]
+      ],
+      "verified": "2026-07-02"
     }
   ]
 }

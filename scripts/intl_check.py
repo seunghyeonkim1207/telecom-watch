@@ -98,10 +98,14 @@ def intl_check():
 
     print(f'🌐 국제비교 소스 자동 검증 시작 ({len(items)}개 소스)')
     updated = 0
+    checked = 0
     for item in items:
         print(f'  🔍 {item.get("name","")[:50]}')
         res = check_source(item)
         time.sleep(1)
+        if res is not None:
+            item['verified'] = TODAY   # 검증 수행일 스탬프 (신판 여부 무관)
+            checked += 1
         if not res or not res.get('new_edition'):
             continue
 
@@ -126,15 +130,16 @@ def intl_check():
                 'url': res.get('source_url', '') or item.get('url', ''),
             })
 
-    if updated > 0:
+    if checked > 0:
         intl['updated'] = TODAY
         with open(INTL_FILE, 'w', encoding='utf-8') as f:
             json.dump(intl, f, ensure_ascii=False, indent=2)
+    if updated > 0:
         with open(REPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(reports[:MAX_REPORTS], f, ensure_ascii=False, indent=2)
-        print(f'✅ 신판 {updated}건 반영 + 팀 보고서 생성')
+        print(f'✅ 신판 {updated}건 반영 + 팀 보고서 생성 (검증 {checked}건)')
     else:
-        print('  변경 없음 — 모든 소스 최신 상태')
+        print(f'  신판 없음 — 검증 {checked}건 확인일 갱신')
 
 
 if __name__ == '__main__':
