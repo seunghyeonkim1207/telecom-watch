@@ -30,12 +30,19 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ASSEMBLY_API_KEY: ${{ secrets.ASSEMBLY_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/collect.py
+
+      - name: 국제비교 소스 자동 검증 (매주 월요일)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/intl_check.py
 
       - name: 데이터 커밋 및 푸시
         run: |
           git config user.name  "Telecom Watch Bot"
           git config user.email "bot@telecom-watch.local"
-          git add data/articles.json data/bill_summaries.json data/bills.json
+          git add data/articles.json data/bill_summaries.json data/bills.json data/briefing.json data/intl.json data/intl_reports.json
           git diff --staged --quiet || git commit -m "data: daily update $(date +'%Y-%m-%d %H:%M KST' -d '+9 hours')"
           git push
