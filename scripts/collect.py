@@ -452,6 +452,12 @@ def bill_corpus_collect():
     rows = fetch_bills(assembly_key)
     print(f'  → {len(rows)}건 수신 (검색어 {len(BILL_SEARCH_TERMS)}개)')
 
+    # 방어: API 실패로 0건이거나 기존 대비 절반 미만으로 급감하면
+    # 빈/부실 데이터로 덮어쓰지 않고 기존 코퍼스를 유지한다.
+    if not rows or (prev_by_id and len(rows) < len(prev_by_id) * 0.5):
+        print(f'  ⚠️  수신 {len(rows)}건 < 기존 {len(prev_by_id)}건의 50% — 기존 코퍼스 유지, 저장 건너뜀')
+        return
+
     corpus = []
     summaries = {}
     new_crawls = 0
