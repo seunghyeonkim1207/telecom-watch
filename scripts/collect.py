@@ -301,6 +301,15 @@ def collect():
 BILL_API_BASE = 'https://open.assembly.go.kr/portal/openapi/nzmimeepazxkubdpn'
 BILL_SUMMARY_FILE = 'data/bill_summaries.json'
 BILLS_FILE = 'data/bills.json'   # 제안이유 본문 포함 통신 법안 코퍼스
+BILL_CHANGES_FILE = 'data/bill_changes.json'   # 법안 단계 변경 감지 기록
+# 단계 변경 감지 대상 필드 (필드명, 표시 라벨)
+BILL_STAGE_FIELDS = [
+    ('CURR_COMMITTEE_DT', '소관위 회부'),
+    ('COMMITTEE_DT', '위원회 의결'),
+    ('LAW_PROC_DT', '법사위'),
+    ('PROC_DT', '본회의 의결'),
+    ('PROC_RESULT', '처리 결과'),
+]
 # 통신 관련 법안 풀을 구성하기 위한 의안명 검색어 (OPEN API는 의안명만 검색 가능).
 # 이 풀 안에서 화면이 사용자 키워드를 의안명+제안이유에 매칭한다.
 BILL_SEARCH_TERMS = ['전기통신사업법', '이동통신', '통신요금', '통신비', '알뜰폰',
@@ -489,6 +498,7 @@ def bill_corpus_collect():
     corpus = []
     summaries = {}
     new_crawls = 0
+    changes = []   # 이번 실행에서 감지된 단계 변경
     for b in rows:
         bill_id = b.get('BILL_ID', '')
         if not bill_id or b.get('PROM_DT'):   # 공포 완료 제외
@@ -497,6 +507,21 @@ def bill_corpus_collect():
             continue
 
         prev = prev_by_id.get(bill_id)
+        # 단계 변경 감지: 이전 코퍼스와 비교해 진행 단계·처리결과가 달라졌으면 기록
+        if prev:
+            for field, label in BILL_STAGE_FIELDS:
+                old_v = prev.get(field) or ''
+                new_v = b.get(field) or ''
+                if new_v and new_v != old_v:
+                    changes.append({
+                        'bill_id': bill_id,
+                        'bill_name': b.get('BILL_NAME', ''),
+                        'field': field,
+                        'label': label,
+                        'old': old_v,
+                        'new': new_v,
+                        'detected': TODAY,
+                    })
         reason = (prev or {}).get('REASON_TEXT', '')
         summary = (prev or {}).get('SUMMARY', '')
         impact = (prev or {}).get('IMPACT', '')
@@ -538,6 +563,18 @@ def bill_corpus_collect():
         json.dump(corpus, f, ensure_ascii=False, indent=2)
     with open(BILL_SUMMARY_FILE, 'w', encoding='utf-8') as f:
         json.dump(summaries, f, ensure_ascii=False, indent=2)
+    # 단계 변경 기록 저장 (기존 기록 앞에 추가, 최대 50건)
+    if changes:
+        old_changes = []
+        if os.path.exists(BILL_CHANGES_FILE):
+            try:
+                with open(BILL_CHANGES_FILE, 'r', encoding='utf-8') as f:
+                    old_changes = json.load(f)
+            except Exception:
+                old_changes = []
+        with open(BILL_CHANGES_FILE, 'w', encoding='utf-8') as f:
+            json.dump((changes + old_changes)[:50], f, ensure_ascii=False, indent=2)
+        print(f'🔔 법안 단계 변경 {len(changes)}건 감지')
     print(f'✅ bills.json 저장 ({len(corpus)}건, 신규 크롤링 {new_crawls}건) / 요약 {len(summaries)}건')
 
 
@@ -616,8 +653,51 @@ def send_telegram_alert(new_articles: list):
         except Exception:
             pass
 
-    if not urgent and not new_bills:
-        print('\n📭 긴급 기사·신규 법안 없음 — 알림 생략')
+    # 오늘 감지된 법안 단계 변경
+    stage_changes = []
+    if os.path.exists(BILL_CHANGES_FILE):
+        try:
+            with open(BILL_CHANGES_FILE, 'r', encoding='utf-8') as f:
+                stage_changes = [c for c in json.load(f) if c.get('detected') == TODAY]
+        except Exception:
+            pass
+
+    # 국제비교 소스 인용 보도 감지 (오늘 새 기사 중 소스 키워드 언급)
+    intl_mentions = []
+    try:
+        with open('data/intl.json', 'r', encoding='utf-8') as f:
+            intl_items = json.load(f).get('items', [])
+        for a in new_articles:
+            hay = (a.get('title', '') + ' ' + a.get('summary', '')).lower()
+            for it in intl_items:
+                # 짧고 흔한 키워드(ITU/OECD 단독)는 기관명이 제목에 있을 때만 매칭
+                kws = [k for k in it.get('keywords', []) if len(k) >= 3]
+                if any(k.lower() in hay for k in kws):
+                    intl_mentions.append({'article': a, 'source': it.get('org', '')})
+                    break
+    except Exception:
+        pass
+
+    # 다가오는 규제 일정 (D-7 이내) — data/calendar.json 기준
+    upcoming = []
+    try:
+        from datetime import date
+        today_d = datetime.now(KST).date()
+        with open('data/calendar.json', 'r', encoding='utf-8') as f:
+            for ev in json.load(f):
+                try:
+                    ev_d = date.fromisoformat(ev.get('date', ''))
+                except Exception:
+                    continue
+                diff = (ev_d - today_d).days
+                if 0 <= diff <= 7:
+                    upcoming.append((diff, ev))
+        upcoming.sort(key=lambda x: x[0])
+    except Exception:
+        pass
+
+    if not urgent and not new_bills and not stage_changes and not intl_mentions and not upcoming:
+        print('\n📭 알릴 내용 없음 — 알림 생략')
         return
 
     parts = [f"📡 *텔레콤워치 일일 알림* ({TODAY})", ""]
@@ -626,10 +706,26 @@ def send_telegram_alert(new_articles: list):
         for a in urgent[:5]:
             parts.append(f"• {a.get('title','')}")
         parts.append("")
+    if stage_changes:
+        parts.append(f"⚖️ *법안 단계 변경 {len(stage_changes)}건*")
+        for c in stage_changes[:5]:
+            parts.append(f"• {c.get('bill_name','')[:40]} → {c.get('label','')} ({c.get('new','')})")
+        parts.append("")
     if new_bills:
         parts.append(f"📋 *신규 발의 법안 {len(new_bills)}건*")
         for b in new_bills[:5]:
             parts.append(f"• {b.get('BILL_NAME','')}")
+        parts.append("")
+    if intl_mentions:
+        parts.append(f"🌐 *국제비교 인용 보도 감지 {len(intl_mentions)}건*")
+        for m in intl_mentions[:4]:
+            parts.append(f"• [{m['source']}] {m['article'].get('title','')[:45]}")
+        parts.append("")
+    if upcoming:
+        parts.append(f"📅 *다가오는 규제 일정*")
+        for diff, ev in upcoming[:5]:
+            dd = 'D-Day' if diff == 0 else f'D-{diff}'
+            parts.append(f"• ({dd}) {ev.get('title','')}")
     message = "\n".join(parts)
 
     try:
@@ -639,7 +735,7 @@ def send_telegram_alert(new_articles: list):
             'disable_web_page_preview': True,
         }, timeout=15)
         if r.ok:
-            print(f'✅ 텔레그램 알림 발송 (긴급 {len(urgent)} / 신규법안 {len(new_bills)})')
+            print(f'✅ 텔레그램 알림 발송 (긴급 {len(urgent)} / 변경 {len(stage_changes)} / 신규법안 {len(new_bills)} / 인용 {len(intl_mentions)} / 일정 {len(upcoming)})')
         else:
             print(f'  ⚠️  텔레그램 발송 실패: {r.status_code} {r.text[:120]}')
     except Exception as e:

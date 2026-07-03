@@ -1150,7 +1150,9 @@ function navTo(page,triggerEl){
   if(page==='calendar') calRender();
   if(page==='bills'){
     billsSummaryLoadServer(function(){
-      billsLoadCorpus(function(){ billsRender(); });
+      billsLoadCorpus(function(){
+        billsLoadChanges(function(){ billsRender(); });
+      });
     });
   }
   if(page==='intl'){ if(INTL_LOADED) intlRender(); else intlLoad(intlRender); }
@@ -2154,6 +2156,22 @@ function billsSummaryLoadServer(onDone){
  * (예전: 키워드로 OPEN API 의안명만 실시간 검색 → 현재: 코퍼스에서 제안이유까지 검색)
  * ─────────────────────────────────────────────────────────────────────────── */
 var BILLS_CORPUS=[];  // data/bills.json 에서 로드한 전체 통신 법안 풀
+var BILL_CHANGES={};  // bill_id → 최근 단계 변경 (7일 이내)
+
+// 법안 단계 변경 기록 로드 (서버가 매일 감지해 기록)
+function billsLoadChanges(onDone){
+  fetch('data/bill_changes.json?_='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(list){
+      BILL_CHANGES={};
+      var cutoff = new Date(Date.now() - 7*86400000).toISOString().slice(0,10);
+      (list||[]).forEach(function(c){
+        if(c.detected >= cutoff && !BILL_CHANGES[c.bill_id]) BILL_CHANGES[c.bill_id]=c;
+      });
+      if(onDone) onDone();
+    })
+    .catch(function(){ if(onDone) onDone(); });
+}
 
 function billsLoadCorpus(onDone){
   fetch('data/bills.json?_='+Date.now())
@@ -2467,13 +2485,15 @@ function billsRender(){
     var age=b.AGE?b.AGE+'대':'';
 
     var isHidden=!!hidden[b.BILL_ID];
-    var cardStyle='cursor:pointer;'+(isHidden?'opacity:0.45;':'');
+    var chg=BILL_CHANGES[b.BILL_ID];
+    var cardStyle='cursor:pointer;'+(isHidden?'opacity:0.45;':'')+(chg?'border-color:var(--red);box-shadow:0 4px 14px rgba(255,64,78,0.12);':'');
     return '<div class="bills-card" id="bc-'+e(b.BILL_ID||'')+'" style="'+cardStyle+'" onclick="openBillDetail(\''+e(b.BILL_ID||'')+'\')">'
       +'<div class="bills-card-top">'
       +'<div style="flex:1;">'
       +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">'
       +(age?'<span class="bills-age">'+age+'</span>':'')
       +'<span class="bills-proc-chip '+procCls+'">'+e(procResult)+'</span>'
+      +(chg?'<span style="font-size:10px;font-weight:700;color:#fff;background:var(--red);border-radius:10px;padding:2px 9px;animation:advPulse 2s infinite;">🔔 '+e(chg.label)+' ('+e((chg.detected||'').slice(5).replace('-','.'))+')</span>':'')
       +(isHidden?'<span style="font-size:10px;color:var(--text-3);">숨김</span>':'')
       +'</div>'
       +(function(){var nm=b.BILL_NAME||'';var m=nm.match(/^([\s\S]*?)\(([^)]+)\)\s*$/);return m?'<div class="bills-card-title">'+e(m[1])+'<span style="color:var(--blue);font-weight:500;">('+e(m[2])+')</span></div>':'<div class="bills-card-title">'+e(nm)+'</div>';})()
