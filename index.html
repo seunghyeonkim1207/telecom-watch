@@ -1531,6 +1531,20 @@ function intlRender(){
     var methods = (d.method||[]).map(function(m){
       return '<div class="intl-method-item">'+e(m)+'</div>';
     }).join('');
+    // 이 소스의 발표 요약 보고서 (자동 검증이 신판 발견 시 생성)
+    var rep = INTL_REPORTS.find(function(r){ return r.source_id === d.id; });
+    var repHtml = rep
+      ? '<div class="intl-rep-box" style="margin:12px 0 0;padding:13px 15px;">'
+        + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">'
+        + '<span style="font-size:11px;font-weight:700;color:var(--blue);">📋 발표 요약 보고서</span>'
+        + '<span style="font-size:10px;color:var(--text-3);">'+e(rep.date)+'</span></div>'
+        + '<div style="font-size:12px;color:var(--text-2);line-height:1.7;">'+e(rep.report)+'</div>'
+        + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;">'
+        + '<button onclick="intlReportToLeaders(\''+e(d.id)+'\')" style="font-size:11px;font-weight:600;color:#fff;background:var(--blue);border:none;border-radius:14px;padding:4px 12px;cursor:pointer;font-family:inherit;">🧑‍💼 리더 보고라인으로 보고</button>'
+        + '<button onclick="intlReportDoc(\''+e(d.id)+'\')" style="font-size:11px;font-weight:600;color:var(--blue);background:var(--surface);border:1px solid var(--blue);border-radius:14px;padding:4px 12px;cursor:pointer;font-family:inherit;">📎 워드 보고서 다운로드</button>'
+        + '</div></div>'
+      : '';
+
     // 매일 수집 기사에서 이 기관 관련 최신 뉴스 자동 연동
     var news = intlRelatedNews(d.keywords);
     var newsHtml = news.length
@@ -1554,6 +1568,7 @@ function intlRender(){
       + '</div>'
       + '<div class="intl-result"><div class="intl-result-label">✦ 한국 결과 요약</div>'
       + '<div class="intl-result-val">'+e(d.result)+'</div></div>'
+      + repHtml
       + '<details class="intl-method"><summary class="intl-method-label" style="cursor:pointer;list-style:none;">▸ 방법론 포인트 ('+(d.method||[]).length+')</summary>'+methods+'</details>'
       + newsHtml
       + '<div class="intl-memo-wrap"><div class="intl-memo-label">✎ 대응 메모</div>'
@@ -1562,35 +1577,16 @@ function intlRender(){
       + '</div>';
   }).join('');
   var updLabel = INTL_UPDATED ? '<div style="font-size:11px;color:var(--text-3);margin-bottom:12px;">기준 정보 업데이트: '+e(INTL_UPDATED)+' · 매주 월요일 자동 검증</div>' : '';
-  // 발표 요약 보고서 (자동 검증이 신판 발견 시 생성)
-  var reportsHtml = '';
-  if(INTL_TAB==='all' && INTL_REPORTS.length){
-    reportsHtml = '<div class="intl-rep-box">'
-      + '<div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:10px;">📋 발표 요약 보고서 <span style="font-weight:400;color:var(--text-3);">— 신판 발표 자동 감지</span></div>'
-      + INTL_REPORTS.slice(0,5).map(function(r){
-          return '<div style="background:var(--surface);border:0.5px solid var(--border);border-radius:9px;padding:11px 14px;margin-bottom:7px;">'
-            + '<div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:5px;">'
-            + '<span style="font-size:12px;font-weight:600;color:var(--text);">'+e(r.org)+' — '+e(r.name)+'</span>'
-            + '<span style="font-size:10px;color:var(--text-3);white-space:nowrap;">'+e(r.date)+'</span></div>'
-            + '<div style="font-size:12px;color:var(--text-2);line-height:1.65;">'+e(r.report)+'</div>'
-            + '<div style="display:flex;gap:10px;align-items:center;margin-top:7px;">'
-            + (r.url?'<a href="'+e(r.url)+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--blue);">원문 확인 →</a>':'')
-            + '<button onclick="intlReportToLeaders('+INTL_REPORTS.indexOf(r)+')" style="font-size:11px;font-weight:600;color:#fff;background:var(--blue);border:none;border-radius:14px;padding:4px 12px;cursor:pointer;font-family:inherit;">🧑‍💼 리더 보고라인으로 보고</button>'
-            + '</div>'
-            + '</div>';
-        }).join('')
-      + '</div>';
-  }
-  document.getElementById('intlList').innerHTML = updLabel + reportsHtml + (html || '<div style="padding:40px 0;text-align:center;color:var(--text-3);font-size:13px;">해당 기관의 보고서가 없습니다.</div>');
+  document.getElementById('intlList').innerHTML = updLabel + (html || '<div style="padding:40px 0;text-align:center;color:var(--text-3);font-size:13px;">해당 기관의 보고서가 없습니다.</div>');
 }
 
 function intlSaveMemo(id, val){
   localStorage.setItem(INTL_MEMO_KEY + id, val);
 }
 
-// 국제비교 보고서를 리더 보고라인 입력으로 가져가기
-function intlReportToLeaders(idx){
-  var r = INTL_REPORTS[idx];
+// 국제비교 보고서를 리더 보고라인 입력으로 가져가기 (source_id 기준)
+function intlReportToLeaders(sid){
+  var r = INTL_REPORTS.find(function(x){ return x.source_id === sid; });
   if(!r) return;
   var draft = '['+r.org+' — '+r.name+'] '+r.latest+' 발표 관련 보고드립니다.\n\n'
     + r.report + '\n\n'
@@ -1601,6 +1597,48 @@ function intlReportToLeaders(idx){
     if(inp){ inp.value = draft; inp.focus(); inp.style.height='120px'; }
     toast('보고 초안을 입력창에 담았어요. 검토 후 [보고]를 누르세요.');
   }, 250);
+}
+
+// 발표 요약 보고서를 워드 파일(.doc)로 다운로드 — 1페이지 보고서 양식
+function intlReportDoc(sid){
+  var r = INTL_REPORTS.find(function(x){ return x.source_id === sid; });
+  var d = INTL_DATA.find(function(x){ return x.id === sid; });
+  if(!r) return;
+  var methods = (d && d.method || []).map(function(m){ return '<li>'+e(m)+'</li>'; }).join('');
+  var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'
+    + '<head><meta charset="utf-8"><title>발표 요약 보고서</title>'
+    + '<style>'
+    + 'body{font-family:"맑은 고딕",sans-serif;font-size:11pt;color:#222;margin:2.2cm 2cm;line-height:1.7;}'
+    + 'h1{font-size:16pt;color:#3617CE;border-bottom:2.5pt solid #3617CE;padding-bottom:6pt;margin-bottom:4pt;}'
+    + '.meta{font-size:9pt;color:#777;margin-bottom:14pt;}'
+    + 'h2{font-size:12pt;color:#3617CE;margin:14pt 0 5pt;border-left:3.5pt solid #3617CE;padding-left:7pt;}'
+    + 'table{border-collapse:collapse;width:100%;font-size:10.5pt;}'
+    + 'td{border:0.5pt solid #ccc;padding:5pt 9pt;}'
+    + 'td.k{background:#EEECFB;font-weight:bold;width:23%;}'
+    + 'ul{margin:4pt 0;padding-left:16pt;font-size:10pt;color:#444;}'
+    + '.foot{margin-top:18pt;font-size:8.5pt;color:#999;border-top:0.5pt solid #ddd;padding-top:6pt;}'
+    + '</style></head><body>'
+    + '<h1>발표 요약 보고서</h1>'
+    + '<div class="meta">작성일: '+e(r.date)+' · 작성: Telecom Watch (서비스제도팀 모니터링 시스템)</div>'
+    + '<table>'
+    + '<tr><td class="k">발행기관</td><td>'+e(r.org)+'</td></tr>'
+    + '<tr><td class="k">보고서명</td><td>'+e(r.name)+'</td></tr>'
+    + '<tr><td class="k">최신판</td><td>'+e(r.latest)+'</td></tr>'
+    + (d ? '<tr><td class="k">발표 주기</td><td>'+e(d.cycle)+'</td></tr>' : '')
+    + '<tr><td class="k">원문</td><td>'+e(r.url||'')+'</td></tr>'
+    + '</table>'
+    + '<h2>1. 발표 내용 및 시사점</h2>'
+    + '<div>'+e(r.report).replace(/\n/g,'<br>')+'</div>'
+    + (methods ? '<h2>2. 방법론 참고 사항</h2><ul>'+methods+'</ul>' : '')
+    + '<div class="foot">본 보고서는 AI가 자동 생성한 참고 자료입니다. 대외 인용 전 원문 확인이 필요합니다.</div>'
+    + '</body></html>';
+  var blob = new Blob(['\ufeff'+html], {type:'application/msword'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '발표요약보고서_'+(r.org||'').replace(/[\/\\:*?"<>| ]/g,'_')+'_'+r.date+'.doc';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  toast('워드 보고서를 다운로드했어요.');
 }
 
 /* ════════════════════════════════════
