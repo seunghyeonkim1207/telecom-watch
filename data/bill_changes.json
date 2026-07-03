@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "bill_id": "PRC_Q2Z6Y0F6D0D4B1Y6X0W7U4E9M5L4I3",
+    "bill_name": "전기통신사업법 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-07-02",
+    "detected": "2026-07-03"
+  },
+  {
+    "bill_id": "PRC_K2J6I0Q6L0S4Q1Q6P0X8W4T1C8Q6Z9",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-07-02",
+    "detected": "2026-07-03"
+  },
+  {
+    "bill_id": "PRC_X2Y6G0G4E2D9E1C4C1L3L4J0K2J1H5",
+    "bill_name": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-07-02",
+    "detected": "2026-07-03"
+  }
+]
