@@ -358,6 +358,10 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
 .intl-result-val { font-size:12px; color:var(--text); line-height:1.6; }
 .intl-method { margin-bottom:10px; }
 .intl-method-label { font-size:9px; font-weight:700; color:var(--text-3); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
+details.intl-method summary::-webkit-details-marker { display:none; }
+details.intl-method[open] summary { color: var(--blue); }
+.intl-rep-box { background:var(--blue-lite); border:0.5px solid var(--blue-mid); border-radius:14px; padding:16px 18px; margin-bottom:18px; }
+body.dark .intl-rep-box { background:#1a1640; border-color:#332a6b; }
 .intl-method-item { font-size:11px; color:var(--text-2); line-height:1.6; padding:1px 0; display:flex; gap:6px; }
 .intl-method-item::before { content:'·'; color:var(--blue); flex-shrink:0; font-weight:700; }
 .intl-memo-wrap { margin-top:12px; border-top:0.5px solid var(--border); padding-top:12px; }
@@ -973,6 +977,10 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
             <button class="btn-outline" style="font-size:11px;" onclick="advAsk('추적 중인 법안 중 규제 리스크가 가장 큰 것과 대응 방향을 제안해주세요.')">법안 리스크 판단</button>
             <button class="btn-outline" style="font-size:11px;" onclick="advAsk('이번 주 팀 위클리에서 공유할 핵심 아젠다 3가지를 정리해주세요.')">위클리 아젠다</button>
           </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <div id="advCurLabel" style="font-size:11px;font-weight:700;"></div>
+            <button onclick="advReset()" style="font-size:10px;color:var(--text-3);background:none;border:0.5px solid var(--border);border-radius:12px;padding:3px 10px;cursor:pointer;font-family:inherit;">↺ 대화 초기화</button>
+          </div>
           <div id="advLog" style="display:flex;flex-direction:column;gap:12px;min-height:200px;max-height:50vh;overflow-y:auto;padding:4px 2px;margin-bottom:10px;"></div>
           <!-- 에스컬레이션 -->
           <div id="advEscalate" style="display:none;margin-bottom:10px;text-align:center;"></div>
@@ -1049,6 +1057,14 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
   <button class="bottom-nav-item" onclick="navTo('bills',this)" data-bn="bills">
     <svg viewBox="0 0 20 20"><path d="M4 2h9l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><polyline points="13,2 13,7 18,7"/><line x1="6" y1="11" x2="14" y2="11"/><line x1="6" y1="14" x2="10" y2="14"/></svg>
     법안
+  </button>
+  <button class="bottom-nav-item" onclick="navTo('intl',this)" data-bn="intl">
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 2a14 14 0 0 1 0 16M10 2a14 14 0 0 0 0 16M2 10h16"/></svg>
+    <span>국제비교</span>
+  </button>
+  <button class="bottom-nav-item" onclick="navTo('advisor',this)" data-bn="advisor">
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="7" r="4"/><path d="M3 18a7 7 0 0 1 14 0"/></svg>
+    <span>보고라인</span>
   </button>
   <button class="bottom-nav-item" onclick="navTo('report',this)" data-bn="report">
     <svg viewBox="0 0 20 20"><path d="M5 2h8l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><polyline points="13,2 13,7 18,7"/></svg>
@@ -1285,7 +1301,14 @@ function loadBriefing(){
 function renderBriefing(b){
   var box=document.getElementById('briefingBox');
   if(!box) return;
-  if(!b || !b.summary || !b.picks || !b.picks.length){ box.style.display='none'; return; }
+  var heroGrid=document.getElementById('heroGrid');
+  if(!b || !b.summary || !b.picks || !b.picks.length){
+    box.style.display='none';
+    if(heroGrid) heroGrid.style.display='';
+    return;
+  }
+  // 브리핑이 히어로 TOP3와 중복되므로 히어로 그리드는 숨김 (수집 라벨은 유지)
+  if(heroGrid) heroGrid.style.display='none';
   var picks=b.picks.map(function(p){
     return '<div class="brief-pick" onclick="openModal(\''+e(p.id)+'\')">'
       +'<div class="brief-pick-title">'+e(p.title)+'</div>'
@@ -1391,10 +1414,13 @@ function filtered(){
 }
 
 /* ─── RENDER (home feed) ─── */
+var FEED_SHOW = 60;   // 한 번에 표시할 기사 수 (더 보기로 확장)
+function feedShowMore(){ FEED_SHOW += 100; render(); }
 function render(){
-  var arts=filtered();
+  var artsAll=filtered();
+  var arts=artsAll.slice(0, FEED_SHOW);
   var feed=document.getElementById('feedList');
-  if(!arts.length){feed.innerHTML='<div style="padding:40px 0;text-align:center;font-size:13px;color:var(--text-3);">'+(S.region==='bookmarks'?'저장된 북마크가 없어요.':'기사가 없습니다.')+'</div>';return;}
+  if(!artsAll.length){feed.innerHTML='<div style="padding:40px 0;text-align:center;font-size:13px;color:var(--text-3);">'+(S.region==='bookmarks'?'저장된 북마크가 없어요.':'기사가 없습니다.')+'</div>';return;}
   var grouped=S.region==='all'&&S.topic==='all'&&S.carrier==='all'&&S.date==='all'&&!S.sort&&!(document.getElementById('searchInput').value||'').trim();
   var html='';
   if(grouped){
@@ -1412,6 +1438,10 @@ function render(){
   } else {
     arts.forEach(function(a){html+=row(a);});
   }
+  if(artsAll.length > FEED_SHOW){
+    html += '<div style="text-align:center;padding:16px 0;">'
+      + '<button class="btn-outline" onclick="feedShowMore()" style="font-size:12px;padding:8px 24px;">더 보기 (남은 '+(artsAll.length-FEED_SHOW)+'건)</button></div>';
+  }
   feed.innerHTML=html;
 }
 
@@ -1422,6 +1452,7 @@ function row(a){
   var stars='';for(var i=1;i<=5;i++)stars+='<span style="color:'+(i<=imp?ac:'#D8D8D8')+'">★</span>';
   var tags=(a.tags||[]).slice(0,2).map(function(t){return '<span class="tag t-topic">'+e(t)+'</span>';}).join('');
   var cr='<span class="tag '+cm.cls+'">'+cm.flag+' '+cm.label+(a.carrier?' · '+e(a.carrier):'')+' </span>';
+  if(a.summary_long) cr+='<span class="tag" style="background:var(--blue-lite);color:var(--blue);">📖 상세</span>';
   var sum=SUMMARY?'':'<div class="list-summary">'+e(a.summary)+'</div>';
   return '<div class="list-row" onclick="openModal(\''+a.id+'\')">'
     +'<div class="list-accent" style="background:'+ac+';height:'+(SUMMARY?'20':'38')+'px;"></div>'
@@ -1523,7 +1554,7 @@ function intlRender(){
       + '</div>'
       + '<div class="intl-result"><div class="intl-result-label">✦ 한국 결과 요약</div>'
       + '<div class="intl-result-val">'+e(d.result)+'</div></div>'
-      + '<div class="intl-method"><div class="intl-method-label">방법론 포인트</div>'+methods+'</div>'
+      + '<details class="intl-method"><summary class="intl-method-label" style="cursor:pointer;list-style:none;">▸ 방법론 포인트 ('+(d.method||[]).length+')</summary>'+methods+'</details>'
       + newsHtml
       + '<div class="intl-memo-wrap"><div class="intl-memo-label">✎ 대응 메모</div>'
       + '<textarea class="intl-memo" placeholder="발표 대응, 이슈 포인트, 내부 검토 내용 등을 기록하세요..." onchange="intlSaveMemo(\''+d.id+'\',this.value)">'+e(memo)+'</textarea>'
@@ -1534,7 +1565,7 @@ function intlRender(){
   // 발표 요약 보고서 (자동 검증이 신판 발견 시 생성)
   var reportsHtml = '';
   if(INTL_TAB==='all' && INTL_REPORTS.length){
-    reportsHtml = '<div style="background:var(--blue-lite);border:0.5px solid var(--blue-mid);border-radius:14px;padding:16px 18px;margin-bottom:18px;">'
+    reportsHtml = '<div class="intl-rep-box">'
       + '<div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:10px;">📋 발표 요약 보고서 <span style="font-weight:400;color:var(--text-3);">— 신판 발표 자동 감지</span></div>'
       + INTL_REPORTS.slice(0,5).map(function(r){
           return '<div style="background:var(--surface);border:0.5px solid var(--border);border-radius:9px;padding:11px 14px;margin-bottom:7px;">'
@@ -1618,12 +1649,35 @@ var ADV_PERSONAS = [
 var ADV_CUR = 0;                          // 현재 대화 중인 리더 인덱스
 var ADV_CHATS = [[], [], []];             // 리더별 대화 이력
 var ADV_DONE = [false, false, false];     // 리더별 '보고 완료(승인)' 여부
+var ADV_LOADED = false;
+
+// 대화 이력을 localStorage에 보존 (새로고침해도 유지)
+function advSave(){
+  try{ localStorage.setItem('tw_adv_state', JSON.stringify({cur:ADV_CUR, chats:ADV_CHATS, done:ADV_DONE})); }catch(e){}
+}
+function advLoad(){
+  if(ADV_LOADED) return; ADV_LOADED = true;
+  try{
+    var s = JSON.parse(localStorage.getItem('tw_adv_state')||'null');
+    if(s && Array.isArray(s.chats) && s.chats.length===3){
+      ADV_CUR = s.cur||0; ADV_CHATS = s.chats; ADV_DONE = s.done||[false,false,false];
+    }
+  }catch(e){}
+}
+function advReset(){
+  if(!confirm('모든 리더와의 대화를 초기화할까요?')) return;
+  ADV_CUR = 0; ADV_CHATS = [[],[],[]]; ADV_DONE = [false,false,false];
+  localStorage.removeItem('tw_adv_state');
+  advRenderLadder(); advRenderChat();
+  toast('대화를 초기화했어요. 팀장님부터 다시 시작합니다.');
+}
 
 function advInit(){
   var key = localStorage.getItem('tw_apikey') || '';
   document.getElementById('advNoKey').style.display = key ? 'none' : 'block';
   document.getElementById('advWrap').style.display = key ? 'block' : 'none';
   if(!key) return;
+  advLoad();
   if(!BILLS_CORPUS.length) billsLoadCorpus(function(){});
   if(!INTL_LOADED) intlLoad(function(){});
   advRenderLadder();
@@ -1653,6 +1707,8 @@ function advRenderChat(){
   var log = document.getElementById('advLog');
   log.innerHTML = '';
   var p = ADV_PERSONAS[ADV_CUR];
+  var lbl = document.getElementById('advCurLabel');
+  if(lbl){ lbl.innerHTML = '현재 보고 상대: <span style="color:'+p.color+';">'+p.emoji+' LV.'+p.lv+' '+p.name+'</span> <span style="color:var(--text-3);font-weight:400;">('+p.role+')</span>'; }
   if(!ADV_CHATS[ADV_CUR].length){
     advAppend('ai', p.greeting.replace(/\\n/g, '\n'));
   } else {
@@ -1689,6 +1745,7 @@ function advEscalate(){
   ADV_CUR = next;
   // 다음 리더의 첫 대화에 이전 보고 내용 주입
   ADV_CHATS[next] = [{role:'user', content:'('+ADV_PERSONAS[cur].name+' 검토를 마치고 올라온 보고입니다)\n\n===== 이전 보고 내용 =====\n'+summary+'\n\n위 내용을 검토해주시고 의견 부탁드립니다.'}];
+  advSave();
   advRenderLadder();
   document.getElementById('advLog').innerHTML = '';
   advAppend('user', '📋 '+ADV_PERSONAS[cur].name+' 검토 완료 건 보고 올립니다.');
@@ -1808,6 +1865,7 @@ function advSend(){
   inp.value='';
   advAppend('user', q);
   ADV_CHATS[ADV_CUR].push({role:'user', content:q});
+  advSave();
   advCallApi();
 }
 
@@ -1841,6 +1899,7 @@ function advCallApi(){
     var text = (d.content&&d.content[0]&&d.content[0].text)||'응답을 받지 못했습니다.';
     thinking.innerHTML = advMd(text);
     ADV_CHATS[ADV_CUR].push({role:'assistant', content:text});
+    advSave();
     advUpdateEscalate();
     document.getElementById('advLog').scrollTop = 1e9;
   }).catch(function(){
@@ -2569,6 +2628,15 @@ function openBillDetail(billId){
     } else {
       bdmSum.innerHTML='';
     }
+  }
+
+  // ── 제안이유 원문 (서버 크롤링 데이터) ──
+  if(b.REASON_TEXT && b.REASON_TEXT.length > 50){
+    bdmSum.innerHTML += '<div style="margin-top:10px;">'
+      +'<details style="background:var(--bg);border:0.5px solid var(--border);border-radius:12px;padding:14px 18px;">'
+      +'<summary style="font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;list-style:none;">📄 제안이유·주요내용 원문 보기</summary>'
+      +'<div style="font-size:12px;color:var(--text-2);line-height:1.8;margin-top:10px;white-space:pre-wrap;">'+escapeHtml(b.REASON_TEXT)+'</div>'
+      +'</details></div>';
   }
 
   // ── 하단 버튼 ──
