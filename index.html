@@ -385,6 +385,22 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
 .adv-msg.user { align-self: flex-end; background: var(--blue); color: #fff; border-bottom-right-radius: 4px; }
 .adv-msg.ai { align-self: flex-start; background: var(--surface); border: 0.5px solid var(--border); color: var(--text-2); border-bottom-left-radius: 4px; }
 .adv-msg.ai .adv-name { font-size: 10px; font-weight: 700; margin-bottom: 4px; }
+/* 타이핑 인디케이터 */
+.adv-typing { display:flex; align-items:center; gap:8px; }
+.adv-typing-dots { display:inline-flex; gap:3px; }
+.adv-typing-dots span { width:6px; height:6px; border-radius:50%; background:var(--blue-mid); animation:advDot 1.2s infinite; }
+.adv-typing-dots span:nth-child(2) { animation-delay:0.2s; }
+.adv-typing-dots span:nth-child(3) { animation-delay:0.4s; }
+@keyframes advDot { 0%,60%,100%{transform:translateY(0);opacity:0.4;} 30%{transform:translateY(-5px);opacity:1;} }
+.adv-typing-label { font-size:12px; color:var(--text-3); }
+/* AI 답변 마크다운 */
+.adv-msg.ai .adv-body strong { color:var(--text); font-weight:700; }
+.adv-msg.ai .adv-body h4 { font-size:13px; font-weight:700; color:var(--text); margin:10px 0 4px; }
+.adv-msg.ai .adv-body ul { margin:4px 0; padding-left:18px; }
+.adv-msg.ai .adv-body li { margin:3px 0; }
+.adv-msg.ai .adv-body code { background:var(--bg); border:0.5px solid var(--border); border-radius:4px; padding:1px 5px; font-size:12px; }
+.adv-msg.ai .adv-body .adv-q { margin-top:10px; padding:9px 12px; background:var(--blue-lite); border-radius:8px; font-size:12.5px; }
+body.dark .adv-msg.ai .adv-body .adv-q { background:#1a1640; }
 @media (max-width: 640px) {
   .adv-step + .adv-step { margin-left:18px; }
   .adv-avatar { width:36px; height:36px; font-size:16px; }
@@ -1554,7 +1570,8 @@ var ADV_PERSONAS = [
       + '- 좋은 보고 기준: 결론 1줄 + 근거 2~3개 + 요청사항 1줄. 이 구조로 다듬어주는 걸 잘함\n'
       + '- 말투: 짧고 명확. 불필요한 수식어 없음. "핵심만 다시 정리해봅시다" 스타일\n'
       + '- 판단이 서면 "이 정도면 실장님께 올려도 되겠다"고 명시적으로 승인 의사를 밝힘',
-    greeting: '팀장입니다. 오늘 뉴스랑 법안 현황은 봤어요.\n보고는 심플하게 부탁해요. 결론부터, 깔끔하게.'
+    greeting: '팀장입니다. 오늘 뉴스랑 법안 현황은 봤어요.\n보고는 심플하게 부탁해요. 결론부터, 깔끔하게.',
+    thinkingLines: ['보고 내용을 읽고 있습니다','핵심을 추리는 중입니다','구조를 다듬는 중입니다']
   },
   {
     id: 'sj', lv: 2, name: '실장님', role: '정책개발실', emoji: '👩‍💼', color: '#7C3AED',
@@ -1564,7 +1581,8 @@ var ADV_PERSONAS = [
       + '- 좋아하는 것: 업계 최초 시도, 규제를 기회로 뒤집는 발상, 선제적 어젠다 세팅\n'
       + '- 말투: 에너지 있고 추진력 있는 톤. 다만 무모한 것과 과감한 것은 구분함 — 근거 없는 도전은 반려\n'
       + '- 판단이 서면 "센터장님 보고 올리시죠"라고 명시적으로 승인 의사를 밝힘',
-    greeting: '실장입니다. 팀장 검토는 거쳤죠?\n수비적인 얘기 말고, 우리가 먼저 움직일 수 있는 그림이 있는지부터 들어봅시다.'
+    greeting: '실장입니다. 팀장 검토는 거쳤죠?\n수비적인 얘기 말고, 우리가 먼저 움직일 수 있는 그림이 있는지부터 들어봅시다.',
+    thinkingLines: ['보고를 훑어보는 중입니다','더 과감한 그림을 그려보는 중입니다','기회 요인을 찾는 중입니다']
   },
   {
     id: 'cj', lv: 3, name: '센터장님', role: 'Comm센터', emoji: '🎩', color: '#B45309',
@@ -1574,7 +1592,8 @@ var ADV_PERSONAS = [
       + '- 이전 보고 내용을 정확히 기억하고 있어서, 앞뒤가 다르면 반드시 짚음. 대화 이력에 있는 내용과 모순되는 발언은 그냥 넘어가지 않음\n'
       + '- 압박하려는 게 아니라 정확히 이해하려는 질문임. 답변이 탄탄하면 명확하게 인정하고 힘을 실어줌\n'
       + '- 답변마다 확인 질문을 2~3개 포함할 것. 모든 질문에 근거 있는 답이 나오면 최종 승인. 중대 사안은 "이건 CEO 어젠다"라고 상위 협의 필요성을 인지',
-    greeting: '센터장입니다. 여기까지 올라왔으면 실무 검토는 끝났을 테고.\n천천히 들어봅시다. 궁금한 건 문장마다 물어볼 겁니다.'
+    greeting: '센터장입니다. 여기까지 올라왔으면 실무 검토는 끝났을 테고.\n천천히 들어봅시다. 궁금한 건 문장마다 물어볼 겁니다.',
+    thinkingLines: ['문장 하나하나 검토 중입니다','수치의 출처를 확인하는 중입니다','이전 보고와 대조하는 중입니다','질문을 정리하는 중입니다']
   }
 ];
 
@@ -1687,12 +1706,42 @@ function advSystemPrompt(){
   return p.persona.replace(/\\n/g, '\n')
     + '\n\n[공통 원칙]\n'
     + '- 제공된 배경 데이터(뉴스·법안·국제비교)를 근거로 활용하되, 데이터에 없는 내용은 추측하지 말고 확인 필요라고 명시\n'
-    + '- 답변은 간결하게 (보통 5~10문장), 결론 먼저\n'
+    + '- 답변은 간결하게 (보통 5~10문장), 결론 먼저. 마크다운(굵게, 목록)을 활용해 읽기 쉽게\n'
+    + '- 매우 중요: 진짜 리더처럼, 보고에서 부족한 부분·이해가 안 가는 부분·추가로 필요한 정보를 적극적으로 되물을 것. 매 답변의 마지막에 반드시 "❓ 확인 필요" 섹션을 두고 보고자에게 구체적인 질문 1~3개를 던질 것 (예: 예산은 얼마나 필요한가요? 유관부서 협의는 됐나요? 이 수치의 기준 시점은?)\n'
+    + '- 보고자가 질문에 답하면 그 답을 반영해 판단을 업데이트하고, 여전히 부족하면 다시 질문할 것\n'
     + '- 당신의 의견은 참고용이며 최종 결정 권한은 실제 담당자에게 있음\n'
     + '\n===== 오늘의 배경 데이터 =====\n' + advBuildContext();
 }
 
-function advAppend(role, text){
+// 미니 마크다운 렌더러: **굵게**, `코드`, ### 제목, - 목록, ❓확인 필요 박스
+function advMd(text){
+  var esc = e(text);
+  // 굵게 / 코드
+  esc = esc.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  esc = esc.replace(/`([^`]+)`/g, '<code>$1</code>');
+  var lines = esc.split('\n');
+  var out = [], inList = false, inQ = false;
+  lines.forEach(function(ln){
+    var t = ln.trim();
+    var isHead = /^#{1,4}\s+/.test(t);
+    var isLi = /^[-•*]\s+/.test(t);
+    if(!isLi && inList){ out.push('</ul>'); inList = false; }
+    // ❓ 확인 필요 섹션 → 강조 박스
+    if(/^(❓|Q[.:]|확인 필요)/.test(t.replace(/<[^>]+>/g,'')) && !inQ){ out.push('<div class="adv-q">'); inQ = true; }
+    if(isHead){ out.push('<h4>'+t.replace(/^#{1,4}\s+/,'')+'</h4>'); return; }
+    if(isLi){
+      if(!inList){ out.push('<ul>'); inList = true; }
+      out.push('<li>'+t.replace(/^[-•*]\s+/,'')+'</li>'); return;
+    }
+    if(t==='') { out.push('<div style="height:6px;"></div>'); return; }
+    out.push('<div>'+ln+'</div>');
+  });
+  if(inList) out.push('</ul>');
+  if(inQ) out.push('</div>');
+  return out.join('');
+}
+
+function advAppend(role, text, isMd){
   var log = document.getElementById('advLog');
   var p = ADV_PERSONAS[ADV_CUR];
   var div = document.createElement('div');
@@ -1702,12 +1751,33 @@ function advAppend(role, text){
     nm.textContent = p.emoji+' '+p.name; nm.style.color = p.color;
     div.appendChild(nm);
   }
-  var body = document.createElement('div'); body.textContent = text;
+  var body = document.createElement('div'); body.className='adv-body';
+  if(role!=='user' && isMd!==false){ body.innerHTML = advMd(text); }
+  else { body.textContent = text; }
   div.appendChild(body);
   log.appendChild(div);
   log.scrollTop = log.scrollHeight;
   return body;
 }
+
+// 페르소나별 인터랙티브 로딩 (문구가 2.2초마다 바뀌는 타이핑 인디케이터)
+var ADV_TYPING_TIMER = null;
+function advShowTyping(){
+  var p = ADV_PERSONAS[ADV_CUR];
+  var body = advAppend('ai', '', false);
+  var lines = p.thinkingLines || ['검토 중입니다'];
+  var i = 0;
+  function render(){
+    body.innerHTML = '<div class="adv-typing">'
+      + '<span class="adv-typing-dots"><span></span><span></span><span></span></span>'
+      + '<span class="adv-typing-label">'+e(lines[i % lines.length])+'</span></div>';
+  }
+  render();
+  clearInterval(ADV_TYPING_TIMER);
+  ADV_TYPING_TIMER = setInterval(function(){ i++; render(); }, 2200);
+  return body;
+}
+function advStopTyping(){ clearInterval(ADV_TYPING_TIMER); ADV_TYPING_TIMER = null; }
 
 function advAsk(q){ document.getElementById('advInput').value = q; advSend(); }
 
@@ -1727,7 +1797,7 @@ function advCallApi(){
   var key = localStorage.getItem('tw_apikey')||'';
   var btn = document.getElementById('advSendBtn');
   btn.disabled = true; btn.textContent = '검토 중...';
-  var thinking = advAppend('ai', '…');
+  var thinking = advShowTyping();
 
   fetch('https://api.anthropic.com/v1/messages', {
     method:'POST',
@@ -1744,17 +1814,19 @@ function advCallApi(){
       messages: ADV_CHATS[ADV_CUR].slice(-12)
     })
   }).then(function(r){return r.json();}).then(function(d){
+    advStopTyping();
     btn.disabled=false; btn.textContent='보고';
     if(d.error){
       thinking.textContent = '오류: '+(d.error.message||'').slice(0,120);
       return;
     }
     var text = (d.content&&d.content[0]&&d.content[0].text)||'응답을 받지 못했습니다.';
-    thinking.textContent = text;
+    thinking.innerHTML = advMd(text);
     ADV_CHATS[ADV_CUR].push({role:'assistant', content:text});
     advUpdateEscalate();
     document.getElementById('advLog').scrollTop = 1e9;
   }).catch(function(){
+    advStopTyping();
     btn.disabled=false; btn.textContent='보고';
     thinking.textContent = '네트워크 오류가 발생했습니다. 다시 시도해주세요.';
   });
