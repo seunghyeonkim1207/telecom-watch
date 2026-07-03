@@ -1164,7 +1164,8 @@ function openModal(id){
   var stars='';
   for(var i=1;i<=5;i++) stars+='<span class="modal-head-star" style="color:'+(i<=imp?'rgba(255,255,255,0.9)':'rgba(255,255,255,0.25)')+'">★</span>';
   document.getElementById('mImp').innerHTML=stars;
-  var summary=a.summary||'';
+  // 상세 요약(summary_long)이 있으면 우선 표시 — 없으면 짧은 요약으로 폴백
+  var summary=a.summary_long||a.summary||'';
   var paras=summary.split(/(?<=\.) (?=[가-힣A-Z])/);
   if(paras.length===1) paras=summary.split('. ').filter(function(s){return s.trim();});
   var parasHtml=paras.map(function(p){

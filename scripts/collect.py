@@ -143,20 +143,46 @@ def load_existing() -> dict:
 
 # ── Claude API 처리 ────────────────────────────────────────────────────────────
 
-def process_with_claude(title: str, summary: str, country: str) -> dict | None:
+def fetch_article_text(url: str) -> str:
+    """기사 페이지에서 본문 텍스트 추출 (요약 생성용 입력으로만 사용 — 저장·게시하지 않음)."""
+    import requests as req, re
+    if not url:
+        return ''
+    try:
+        r = req.get(url, timeout=8, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'})
+        if not r.ok:
+            return ''
+        html = r.text
+        txt = re.sub(r'<script[\s\S]*?</script>', '', html, flags=re.IGNORECASE)
+        txt = re.sub(r'<style[\s\S]*?</style>', '', txt, flags=re.IGNORECASE)
+        # 본문 영역 우선 추출 (article 태그가 있으면)
+        m = re.search(r'<article[\s\S]*?</article>', txt, flags=re.IGNORECASE)
+        if m:
+            txt = m.group(0)
+        txt = re.sub(r'<[^>]+>', ' ', txt)
+        txt = txt.replace('&nbsp;', ' ').replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
+        txt = re.sub(r'\s+', ' ', txt).strip()
+        return txt[:4000]
+    except Exception:
+        return ''
+
+
+def process_with_claude(title: str, summary: str, country: str, body: str = '') -> dict | None:
     carriers = ', '.join(CARRIER_MAP.get(country, []))
     tags_str = ', '.join(VALID_TAGS)
 
+    body_section = f'\n본문(발췌): {body[:3000]}' if body else ''
     prompt = f"""통신산업 뉴스 기사를 분석하고 아래 JSON 형식으로만 응답해. 다른 텍스트 없이 JSON만 출력.
 
 제목: {title}
-내용: {summary[:600]}
+내용: {summary[:600]}{body_section}
 국가코드: {country}
 
 {{
   "relevant": true 또는 false,
   "title_ko": "한국어 제목. 원문이 한국어면 그대로. 영어/일어면 자연스러운 한국어로 번역.",
   "summary_ko": "한국어 요약 2~3문장. 핵심 수치와 통신업계 시사점 포함.",
+  "summary_long": "한국어 상세 요약 5~7문장. 본문의 핵심 수치·일정·관계자 발언 요지·배경·통신업계 시사점을 포함해 기사를 안 읽어도 내용을 파악할 수 있게. 반드시 자신의 문장으로 재서술하고 본문 문장을 그대로 베끼지 마.",
   "tags": ["태그1"],
   "carrier": "통신사명 또는 빈문자열",
   "importance": 3
@@ -177,7 +203,7 @@ def process_with_claude(title: str, summary: str, country: str) -> dict | None:
     try:
         msg = client.messages.create(
             model='claude-haiku-4-5-20251001',
-            max_tokens=700,
+            max_tokens=1200,
             messages=[{'role': 'user', 'content': prompt}]
         )
         text = msg.content[0].text.strip()
@@ -223,8 +249,9 @@ def collect():
 
                 print(f'  ✅ 처리 중: {title[:50]}')
 
-                # Claude AI 처리
-                result = process_with_claude(title, summary, feed_info['country'])
+                # 본문 크롤링 (상세 요약 생성용) + Claude AI 처리
+                body = fetch_article_text(link)
+                result = process_with_claude(title, summary, feed_info['country'], body)
                 if not result or not result.get('relevant'):
                     print(f'  ❌ 관련 없음 — 제외')
                     continue
@@ -233,6 +260,7 @@ def collect():
                     'id':          aid,
                     'title':       result.get('title_ko', title),
                     'summary':     result.get('summary_ko', summary[:300]),
+                    'summary_long': result.get('summary_long', ''),
                     'tags':        [t for t in result.get('tags', []) if t in VALID_TAGS],
                     'region':      feed_info['region'],
                     'country':     feed_info['country'],
