@@ -366,6 +366,30 @@ table.data-tbl td[contenteditable="true"]:focus { outline: 2px solid var(--blue)
 .intl-memo:focus { border-color:var(--blue); }
 .intl-link-btn { display:inline-flex; align-items:center; gap:5px; padding:6px 14px; background:var(--blue); color:#fff; border-radius:8px; font-size:11px; font-weight:500; text-decoration:none; white-space:nowrap; transition:background 0.12s; }
 .intl-link-btn:hover { background:var(--blue-dark); }
+/* 리더 보고 라인 — 결재 사다리 */
+.adv-ladder { display:flex; align-items:stretch; gap:0; margin-bottom:16px; }
+.adv-step { flex:1; position:relative; background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:14px 10px 12px; text-align:center; cursor:pointer; transition:all 0.15s; }
+.adv-step + .adv-step { margin-left:26px; }
+.adv-step + .adv-step::before { content:'▶'; position:absolute; left:-20px; top:50%; transform:translateY(-50%); font-size:11px; color:var(--text-3); }
+.adv-step:hover { border-color: var(--blue-mid); transform:translateY(-2px); }
+.adv-step.active { border-color: var(--step-color, var(--blue)); box-shadow:0 6px 18px rgba(43,30,222,0.14); transform:translateY(-2px); }
+.adv-step.done::after { content:'보고 완료 ✓'; position:absolute; top:-9px; right:8px; font-size:9px; font-weight:700; background:#16a34a; color:#fff; padding:2px 8px; border-radius:10px; }
+.adv-lv { display:inline-block; font-size:9px; font-weight:800; letter-spacing:0.08em; color:#fff; background:var(--step-color, var(--blue)); border-radius:8px; padding:2px 8px; margin-bottom:7px; }
+.adv-avatar { width:44px; height:44px; border-radius:50%; margin:0 auto 7px; display:flex; align-items:center; justify-content:center; font-size:20px; background:var(--blue-lite); border:2px solid var(--step-color, var(--blue)); }
+.adv-step-name { font-size:13.5px; font-weight:700; color:var(--text); }
+.adv-step-role { font-size:10px; color:var(--text-3); margin-top:2px; }
+.adv-esc-btn { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, var(--blue), var(--blue-dark)); color:#fff; border:none; border-radius:20px; padding:9px 20px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; box-shadow:0 4px 14px rgba(43,30,222,0.3); animation:advPulse 2s infinite; }
+@keyframes advPulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.04);} }
+/* 채팅 말풍선 */
+.adv-msg { max-width: 85%; padding: 11px 15px; border-radius: 14px; font-size: 13px; line-height: 1.75; white-space: pre-wrap; word-break: break-word; }
+.adv-msg.user { align-self: flex-end; background: var(--blue); color: #fff; border-bottom-right-radius: 4px; }
+.adv-msg.ai { align-self: flex-start; background: var(--surface); border: 0.5px solid var(--border); color: var(--text-2); border-bottom-left-radius: 4px; }
+.adv-msg.ai .adv-name { font-size: 10px; font-weight: 700; margin-bottom: 4px; }
+@media (max-width: 640px) {
+  .adv-step + .adv-step { margin-left:18px; }
+  .adv-avatar { width:36px; height:36px; font-size:16px; }
+  .adv-step-name { font-size:12px; }
+}
 .intl-link-btn svg { width:11px; height:11px; fill:none; stroke:#fff; stroke-width:2; }
 
 /* ── BILL TRACKER (regulatory calendar) ── */
@@ -736,7 +760,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
       </div>
       <div class="sb-item" onclick="navTo('advisor',this)" data-page="advisor">
         <svg viewBox="0 0 20 20"><circle cx="10" cy="7" r="4"/><path d="M3 18a7 7 0 0 1 14 0"/><path d="M15 3l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg>
-        <span class="sb-label">AI 어드바이저</span>
+        <span class="sb-label">리더 보고 라인</span>
       </div>
       <div class="sb-item" onclick="navTo('report',this)" data-page="report">
         <svg viewBox="0 0 20 20"><path d="M5 2h8l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><polyline points="13,2 13,7 18,7"/><line x1="7" y1="11" x2="13" y2="11"/><line x1="7" y1="14" x2="11" y2="14"/></svg>
@@ -915,27 +939,32 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
     </div><!-- /page-intl -->
 
     <!-- ── PAGE: REPORT ── -->
-    <!-- ── PAGE: AI ADVISOR ── -->
+    <!-- ── PAGE: AI ADVISOR (리더 보고 라인) ── -->
     <div id="page-advisor" class="page" hidden>
       <div class="page-inner">
-        <div class="page-title">AI 어드바이저</div>
-        <div class="page-desc">오늘의 뉴스·법안·국제비교 데이터를 파악하고 있는 팀 의사결정 어드바이저입니다. 판단이 필요한 사안을 물어보세요.</div>
+        <div class="page-title">리더 보고 라인</div>
+        <div class="page-desc">오늘의 뉴스·법안·국제비교 데이터를 파악하고 있는 리더들입니다. 팀장님부터 보고를 시작해 위로 올려보세요.</div>
         <div id="advNoKey" style="display:none;background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:28px;text-align:center;">
-          <div style="font-size:13px;color:var(--text-2);margin-bottom:12px;">설정에서 Claude API 키를 입력하면 어드바이저와 대화할 수 있습니다.</div>
+          <div style="font-size:13px;color:var(--text-2);margin-bottom:12px;">설정에서 Claude API 키를 입력하면 리더들과 대화할 수 있습니다.</div>
           <button class="btn-primary" onclick="openSettings()">설정 열기</button>
         </div>
         <div id="advWrap" style="display:none;">
+          <!-- 보고 라인 (결재 사다리) -->
+          <div class="adv-ladder" id="advLadder"></div>
+          <!-- 빠른 질문 -->
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;" id="advQuick">
-            <button class="btn-outline" style="font-size:11px;" onclick="advAsk('오늘 뉴스 중 우리 팀이 가장 먼저 대응해야 할 사안과 이유를 알려줘.')">오늘 대응 우선순위</button>
-            <button class="btn-outline" style="font-size:11px;" onclick="advAsk('추적 중인 법안 중 규제 리스크가 가장 큰 것과 대응 방향을 제안해줘.')">법안 리스크 판단</button>
-            <button class="btn-outline" style="font-size:11px;" onclick="advAsk('이번 주 팀 위클리에서 공유할 핵심 아젠다 3가지를 정리해줘.')">위클리 아젠다</button>
+            <button class="btn-outline" style="font-size:11px;" onclick="advAsk('오늘 뉴스 중 우리 팀이 가장 먼저 대응해야 할 사안과 이유를 알려주세요.')">오늘 대응 우선순위</button>
+            <button class="btn-outline" style="font-size:11px;" onclick="advAsk('추적 중인 법안 중 규제 리스크가 가장 큰 것과 대응 방향을 제안해주세요.')">법안 리스크 판단</button>
+            <button class="btn-outline" style="font-size:11px;" onclick="advAsk('이번 주 팀 위클리에서 공유할 핵심 아젠다 3가지를 정리해주세요.')">위클리 아젠다</button>
           </div>
-          <div id="advLog" style="display:flex;flex-direction:column;gap:12px;min-height:200px;max-height:55vh;overflow-y:auto;padding:4px 2px;margin-bottom:12px;"></div>
+          <div id="advLog" style="display:flex;flex-direction:column;gap:12px;min-height:200px;max-height:50vh;overflow-y:auto;padding:4px 2px;margin-bottom:10px;"></div>
+          <!-- 에스컬레이션 -->
+          <div id="advEscalate" style="display:none;margin-bottom:10px;text-align:center;"></div>
           <div style="display:flex;gap:8px;">
-            <textarea id="advInput" placeholder="판단이 필요한 사안을 입력하세요..." style="flex:1;min-height:44px;max-height:120px;padding:11px 14px;border:0.5px solid var(--border);border-radius:12px;font-family:inherit;font-size:13px;background:var(--surface);color:var(--text);resize:none;outline:none;" onkeydown="if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();advSend();}"></textarea>
-            <button class="btn-primary" id="advSendBtn" onclick="advSend()" style="align-self:flex-end;">전송</button>
+            <textarea id="advInput" placeholder="보고할 사안을 입력하세요..." style="flex:1;min-height:44px;max-height:120px;padding:11px 14px;border:0.5px solid var(--border);border-radius:12px;font-family:inherit;font-size:13px;background:var(--surface);color:var(--text);resize:none;outline:none;" onkeydown="if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();advSend();}"></textarea>
+            <button class="btn-primary" id="advSendBtn" onclick="advSend()" style="align-self:flex-end;">보고</button>
           </div>
-          <div style="font-size:10px;color:var(--text-3);margin-top:8px;">⚠️ AI의 의견은 의사결정 참고용입니다. 최종 판단과 책임은 담당자에게 있습니다.</div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:8px;">⚠️ AI 리더의 의견은 의사결정 참고용입니다. 최종 판단과 책임은 담당자에게 있습니다.</div>
         </div>
       </div>
     </div><!-- /page-advisor -->
@@ -1510,68 +1539,161 @@ function intlSaveMemo(id, val){
 }
 
 /* ════════════════════════════════════
-   PAGE: AI ADVISOR (팀 의사결정 어드바이저)
+   PAGE: 리더 보고 라인 (팀장님 → 실장님 → 센터장님)
 ════════════════════════════════════ */
-var ADV_MSGS = [];   // 대화 이력 (세션 한정)
+/* ─────────────────────────────────────────────────────────
+ * [페르소나 정의] 각 리더의 성향 프롬프트는 아래 persona 필드만
+ * 수정하면 됩니다. (사용자가 나중에 실제 성향으로 교체 예정)
+ * ───────────────────────────────────────────────────────── */
+var ADV_PERSONAS = [
+  {
+    id: 'tj', lv: 1, name: '팀장님', role: '서비스제도팀', emoji: '🧑‍💼', color: '#3617CE',
+    persona: '당신은 SKT 서비스제도팀 팀장입니다. 실무를 가장 잘 아는 리더로, 디테일과 실행 가능성을 중시합니다.\n'
+      + '- 보고를 받으면: 실무 관점에서 빠진 부분·리스크를 짚고, 구체적인 실행 방안까지 다듬어줌\n'
+      + '- 말투: 친근하지만 꼼꼼함. "이 부분은 이렇게 보완하면 좋겠어요" 스타일\n'
+      + '- 판단이 서면 "이 정도면 실장님께 올려도 되겠다"고 명시적으로 승인 의사를 밝힘',
+    greeting: '팀장입니다. 오늘 수집된 뉴스랑 법안 현황은 파악하고 있어요.\n보고할 사안 편하게 말씀해주세요. 같이 다듬어서 위에 올릴 만하게 만들어봅시다.'
+  },
+  {
+    id: 'sj', lv: 2, name: '실장님', role: '제도혁신실', emoji: '👩‍💼', color: '#7C3AED',
+    persona: '당신은 SKT 제도혁신실 실장입니다. 팀 간 조율과 사업 임팩트를 보는 중간 리더입니다.\n'
+      + '- 보고를 받으면: 유관 부서 영향, 일정·자원, 경영진 보고 관점에서 검토. 논리 구멍을 날카롭게 질문\n'
+      + '- 말투: 간결하고 핵심 위주. "그래서 결론이 뭐예요?" 스타일. 근거가 약하면 반려\n'
+      + '- 판단이 서면 "센터장님 보고 올리시죠"라고 명시적으로 승인 의사를 밝힘',
+    greeting: '실장입니다. 팀장 검토는 거친 건가요?\n핵심만 간단히 보고해주세요. 결론부터.'
+  },
+  {
+    id: 'cj', lv: 3, name: '센터장님', role: 'CR센터', emoji: '🎩', color: '#B45309',
+    persona: '당신은 SKT CR센터 센터장입니다. 회사 전체 전략과 대외 관계(규제기관·국회·언론)를 보는 최종 의사결정권자입니다.\n'
+      + '- 보고를 받으면: 회사 전략 정합성, 대외 리스크, 장기 방향성 관점에서 크게 봄. 사소한 디테일보다 방향의 옳고 그름을 판단\n'
+      + '- 말투: 여유 있고 통찰 중심. 좋은 보고엔 명확하게 힘을 실어줌\n'
+      + '- 최종 결정을 내리되, 중대 사안은 "이건 CEO 어젠다" 등 상위 협의가 필요함을 인지',
+    greeting: '센터장입니다. 여기까지 올라온 안건이면 실무 검토는 끝났겠지요.\n어디 들어봅시다.'
+  }
+];
+
+var ADV_CUR = 0;                          // 현재 대화 중인 리더 인덱스
+var ADV_CHATS = [[], [], []];             // 리더별 대화 이력
+var ADV_DONE = [false, false, false];     // 리더별 '보고 완료(승인)' 여부
 
 function advInit(){
   var key = localStorage.getItem('tw_apikey') || '';
   document.getElementById('advNoKey').style.display = key ? 'none' : 'block';
   document.getElementById('advWrap').style.display = key ? 'block' : 'none';
-  // 법안 코퍼스가 아직 없으면 배경 로드 (컨텍스트 구성용)
-  if(key && !BILLS_CORPUS.length) billsLoadCorpus(function(){});
-  if(key && !INTL_LOADED) intlLoad(function(){});
-  if(key && !ADV_MSGS.length){
-    advAppend('ai', '안녕하세요. 서비스제도팀 AI 어드바이저입니다.\n오늘 수집된 뉴스와 추적 중인 법안 현황을 파악하고 있습니다. 판단이 필요한 사안을 말씀해주시면 대응 관점에서 의견을 드리겠습니다.\n\n위 버튼으로 바로 시작하셔도 됩니다.');
+  if(!key) return;
+  if(!BILLS_CORPUS.length) billsLoadCorpus(function(){});
+  if(!INTL_LOADED) intlLoad(function(){});
+  advRenderLadder();
+  advRenderChat();
+}
+
+function advRenderLadder(){
+  var box = document.getElementById('advLadder');
+  box.innerHTML = ADV_PERSONAS.map(function(p, i){
+    var cls = 'adv-step' + (i===ADV_CUR?' active':'') + (ADV_DONE[i]?' done':'');
+    return '<div class="'+cls+'" style="--step-color:'+p.color+';" onclick="advSwitch('+i+')">'
+      + '<span class="adv-lv">LV.'+p.lv+'</span>'
+      + '<div class="adv-avatar" style="border-color:'+p.color+';">'+p.emoji+'</div>'
+      + '<div class="adv-step-name">'+p.name+'</div>'
+      + '<div class="adv-step-role">'+p.role+'</div>'
+      + '</div>';
+  }).join('');
+}
+
+function advSwitch(i){
+  ADV_CUR = i;
+  advRenderLadder();
+  advRenderChat();
+}
+
+function advRenderChat(){
+  var log = document.getElementById('advLog');
+  log.innerHTML = '';
+  var p = ADV_PERSONAS[ADV_CUR];
+  if(!ADV_CHATS[ADV_CUR].length){
+    advAppend('ai', p.greeting.replace(/\\n/g, '\n'));
+  } else {
+    ADV_CHATS[ADV_CUR].forEach(function(m){
+      advAppend(m.role==='user'?'user':'ai', m.content);
+    });
+  }
+  advUpdateEscalate();
+}
+
+// 대화 2턴 이상 진행 시 다음 리더로 에스컬레이션 버튼 노출
+function advUpdateEscalate(){
+  var box = document.getElementById('advEscalate');
+  var next = ADV_CUR + 1;
+  var hasChat = ADV_CHATS[ADV_CUR].filter(function(m){return m.role==='assistant';}).length >= 1;
+  if(next < ADV_PERSONAS.length && hasChat){
+    var np = ADV_PERSONAS[next];
+    box.style.display = 'block';
+    box.innerHTML = '<button class="adv-esc-btn" onclick="advEscalate()">⬆ '+np.name+'께 보고 올리기 (LV.'+np.lv+')</button>';
+  } else {
+    box.style.display = 'none';
   }
 }
 
-// 사이트 데이터를 어드바이저의 배경지식으로 구성
+// 현재 대화 내용을 요약 컨텍스트로 들고 다음 리더에게 이동
+function advEscalate(){
+  var cur = ADV_CUR;
+  var next = cur + 1;
+  if(next >= ADV_PERSONAS.length) return;
+  ADV_DONE[cur] = true;
+  var summary = ADV_CHATS[cur].map(function(m){
+    return (m.role==='user'?'[보고자] ':'['+ADV_PERSONAS[cur].name+'] ') + m.content;
+  }).join('\n').slice(0, 3000);
+  ADV_CUR = next;
+  // 다음 리더의 첫 대화에 이전 보고 내용 주입
+  ADV_CHATS[next] = [{role:'user', content:'('+ADV_PERSONAS[cur].name+' 검토를 마치고 올라온 보고입니다)\n\n===== 이전 보고 내용 =====\n'+summary+'\n\n위 내용을 검토해주시고 의견 부탁드립니다.'}];
+  advRenderLadder();
+  document.getElementById('advLog').innerHTML = '';
+  advAppend('user', '📋 '+ADV_PERSONAS[cur].name+' 검토 완료 건 보고 올립니다.');
+  toast('🎉 '+ADV_PERSONAS[cur].name+' 보고 완료! '+ADV_PERSONAS[next].name+'께 올라갑니다.');
+  advCallApi();
+}
+
+// 사이트 데이터를 배경지식으로 구성
 function advBuildContext(){
-  var today = TODAY_STR;
-  var lines = ['[오늘 날짜] ' + today];
-  // 최근 중요 뉴스 (중요도순 상위 12건)
+  var lines = ['[오늘 날짜] ' + TODAY_STR];
   var arts = ALL.slice().sort(function(a,b){
     if((b.date||'')!==(a.date||'')) return (b.date||'').localeCompare(a.date||'');
     return (b.importance||3)-(a.importance||3);
   }).slice(0,12);
   if(arts.length){
     lines.push('\n[최근 주요 뉴스]');
-    arts.forEach(function(a){
-      lines.push('- ('+a.date+', 중요도'+(a.importance||3)+') '+a.title+' — '+(a.summary||'').slice(0,120));
-    });
+    arts.forEach(function(a){ lines.push('- ('+a.date+', 중요도'+(a.importance||3)+') '+a.title+' — '+(a.summary||'').slice(0,120)); });
   }
-  // 추적 법안 (요약 있는 것 위주 상위 8건)
   var bills = BILLS_CORPUS.filter(function(b){return b.SUMMARY;}).slice(0,8);
   if(bills.length){
     lines.push('\n[추적 중인 주요 법안]');
-    bills.forEach(function(b){
-      lines.push('- '+b.BILL_NAME+(b.IMPACT?' (영향도 '+b.IMPACT+')':'')+': '+(b.SUMMARY||'').slice(0,140));
-    });
+    bills.forEach(function(b){ lines.push('- '+b.BILL_NAME+(b.IMPACT?' (영향도 '+b.IMPACT+')':'')+': '+(b.SUMMARY||'').slice(0,140)); });
   }
-  // 국제비교 최신 현황
   if(INTL_DATA.length){
     lines.push('\n[국제 요금비교 최신 현황]');
-    INTL_DATA.slice(0,6).forEach(function(d){
-      lines.push('- '+d.org+' '+d.name+' ('+d.latest+'): '+(d.result||'').slice(0,100));
-    });
+    INTL_DATA.slice(0,6).forEach(function(d){ lines.push('- '+d.org+' '+d.name+' ('+d.latest+'): '+(d.result||'').slice(0,100)); });
   }
   return lines.join('\n');
 }
 
-var ADV_SYSTEM = '당신은 한국 이동통신사 SKT 서비스제도팀의 시니어 의사결정 어드바이저입니다.\n'
-  + '- 역할: 요금제·이용약관·규제 대응·법안 모니터링에 대해 팀장 관점에서 판단과 우선순위를 제시\n'
-  + '- 성격: 신중하고 근거 중심. 규제 리스크와 이용자 보호 관점을 항상 먼저 검토. 모호할 땐 모른다고 말함\n'
-  + '- 답변 형식: 결론 먼저, 그다음 근거 2~3개, 필요시 권고 액션. 간결하게 (보통 5~10문장)\n'
-  + '- 제공된 배경 데이터(뉴스·법안·국제비교)를 근거로 활용하되, 데이터에 없는 내용은 추측하지 말고 확인 필요라고 명시\n'
-  + '- 중요: 당신의 의견은 참고용이며 최종 결정 권한은 팀원에게 있음을 인지. 중대한 사안(대외 발표, 법적 대응 등)은 반드시 관련 부서 협의를 권고할 것';
+function advSystemPrompt(){
+  var p = ADV_PERSONAS[ADV_CUR];
+  return p.persona.replace(/\\n/g, '\n')
+    + '\n\n[공통 원칙]\n'
+    + '- 제공된 배경 데이터(뉴스·법안·국제비교)를 근거로 활용하되, 데이터에 없는 내용은 추측하지 말고 확인 필요라고 명시\n'
+    + '- 답변은 간결하게 (보통 5~10문장), 결론 먼저\n'
+    + '- 당신의 의견은 참고용이며 최종 결정 권한은 실제 담당자에게 있음\n'
+    + '\n===== 오늘의 배경 데이터 =====\n' + advBuildContext();
+}
 
 function advAppend(role, text){
   var log = document.getElementById('advLog');
+  var p = ADV_PERSONAS[ADV_CUR];
   var div = document.createElement('div');
   div.className = 'adv-msg ' + (role==='user'?'user':'ai');
   if(role!=='user'){
-    var nm = document.createElement('div'); nm.className='adv-name'; nm.textContent='✦ AI 어드바이저';
+    var nm = document.createElement('div'); nm.className='adv-name';
+    nm.textContent = p.emoji+' '+p.name; nm.style.color = p.color;
     div.appendChild(nm);
   }
   var body = document.createElement('div'); body.textContent = text;
@@ -1581,10 +1703,7 @@ function advAppend(role, text){
   return body;
 }
 
-function advAsk(q){
-  document.getElementById('advInput').value = q;
-  advSend();
-}
+function advAsk(q){ document.getElementById('advInput').value = q; advSend(); }
 
 function advSend(){
   var inp = document.getElementById('advInput');
@@ -1594,12 +1713,16 @@ function advSend(){
   if(!key){ toast('설정에서 Claude API 키를 먼저 입력해주세요.'); return; }
   inp.value='';
   advAppend('user', q);
-  ADV_MSGS.push({role:'user', content:q});
-  var btn = document.getElementById('advSendBtn');
-  btn.disabled = true; btn.textContent = '생각 중...';
-  var thinking = advAppend('ai', '검토 중입니다...');
+  ADV_CHATS[ADV_CUR].push({role:'user', content:q});
+  advCallApi();
+}
 
-  var sys = ADV_SYSTEM + '\n\n===== 오늘의 배경 데이터 =====\n' + advBuildContext();
+function advCallApi(){
+  var key = localStorage.getItem('tw_apikey')||'';
+  var btn = document.getElementById('advSendBtn');
+  btn.disabled = true; btn.textContent = '검토 중...';
+  var thinking = advAppend('ai', '…');
+
   fetch('https://api.anthropic.com/v1/messages', {
     method:'POST',
     headers:{
@@ -1611,27 +1734,25 @@ function advSend(){
     body: JSON.stringify({
       model:'claude-haiku-4-5-20251001',
       max_tokens:1200,
-      system: sys,
-      messages: ADV_MSGS.slice(-12)   // 최근 12턴만 전송 (비용 관리)
+      system: advSystemPrompt(),
+      messages: ADV_CHATS[ADV_CUR].slice(-12)
     })
   }).then(function(r){return r.json();}).then(function(d){
-    btn.disabled=false; btn.textContent='전송';
+    btn.disabled=false; btn.textContent='보고';
     if(d.error){
       thinking.textContent = '오류: '+(d.error.message||'').slice(0,120);
-      ADV_MSGS.pop();
       return;
     }
     var text = (d.content&&d.content[0]&&d.content[0].text)||'응답을 받지 못했습니다.';
     thinking.textContent = text;
-    ADV_MSGS.push({role:'assistant', content:text});
+    ADV_CHATS[ADV_CUR].push({role:'assistant', content:text});
+    advUpdateEscalate();
     document.getElementById('advLog').scrollTop = 1e9;
-  }).catch(function(err){
-    btn.disabled=false; btn.textContent='전송';
+  }).catch(function(){
+    btn.disabled=false; btn.textContent='보고';
     thinking.textContent = '네트워크 오류가 발생했습니다. 다시 시도해주세요.';
-    ADV_MSGS.pop();
   });
 }
-
 
 /* ════════════════════════════════════
    PAGE: CALENDAR
