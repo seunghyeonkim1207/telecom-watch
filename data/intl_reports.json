@@ -1,5 +1,23 @@
 [
   {
+    "date": "2026-07-06",
+    "source_id": "cable-uk",
+    "org": "Cable.co.uk (영국)",
+    "name": "Worldwide Mobile Data Pricing",
+    "latest": "2026년판 (2026년 공표)",
+    "report": "Cable.co.uk이 2026년 Worldwide Mobile Data Pricing 보고서를 신규 발표했으며, 국내는 214위로 평가됨. 미국(219위), 캐나다(216위), 뉴질랜드(218위) 등 선진국들과 함께 상대적으로 높은 요금 수준을 유지하고 있는 것으로 분석됨. 글로벌 평균 대비 경쟁력 약화 추이를 주시할 필요가 있으며, 해외 비교 시 가격 경쟁력 강화 전략 수립이 필요함.",
+    "url": "https://cellesim.com/en/mobile-data-prices-worldwide-2026"
+  },
+  {
+    "date": "2026-07-06",
+    "source_id": "rewheel",
+    "org": "Rewheel (핀란드)",
+    "name": "Rewheel Digital Fuel Monitor",
+    "latest": "2026년판 (52개 시장 - 공표일 미확인, 2024년 기준 173개 사업자 데이터 포함)",
+    "report": "Rewheel이 2026년 52개 EU & OECD 시장의 5G & 4G 가격 비교 데이터를 공표했으며, 2024년 기준 173개 사업자를 포함한 대규모 데이터셋 구성. 공개 자료는 시장 경쟁도(3-MNO vs 4-MNO)에 따른 가격 격차 심화 추세를 강조하고 있음. 한국 순위/평가 상세 정보는 유료 보고서 내에 포함되어 있을 것으로 예상되어 전체 보고서 구입 검토 필요.",
+    "url": "https://rewheel.fi/research"
+  },
+  {
     "date": "2026-07-03",
     "source_id": "kisdi-competition",
     "org": "KISDI / 과기정통부",
