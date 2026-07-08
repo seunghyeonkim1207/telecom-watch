@@ -418,7 +418,8 @@ def summarize_from_text(raw_text: str) -> dict | None:
 {{
   "summary": "통신업계 실무자 관점 2~3문장 요약 (안내 문구 금지)",
   "impact": "높음" 또는 "중간" 또는 "낮음",
-  "impact_reason": "SKT 등 이동통신사 사업 관점에서 왜 그 영향도인지 한 문장"
+  "impact_reason": "SKT 등 이동통신사 사업 관점에서 왜 그 영향도인지 한 문장",
+  "topic": "법안의 핵심 주제 한 단어~두 단어 (예: 다크패턴 금지, 위약금 상한, 불법촬영물, 대포폰 근절, 알뜰폰, 생체정보, 보이스피싱, 플랫폼 규제 등 — 같은 취지 법안이면 같은 주제명이 나오도록 일반적인 표현 사용)"
 }}
 
 [영향도 기준]
@@ -526,6 +527,7 @@ def bill_corpus_collect():
         summary = (prev or {}).get('SUMMARY', '')
         impact = (prev or {}).get('IMPACT', '')
         impact_reason = (prev or {}).get('IMPACT_REASON', '')
+        topic = (prev or {}).get('TOPIC', '')
 
         # 본문이 아직 없으면 크롤링
         if not reason:
@@ -533,14 +535,15 @@ def bill_corpus_collect():
             if reason:
                 new_crawls += 1
                 time.sleep(0.4)
-        # 요약 또는 영향도가 비어 있으면 생성/백필 (본문 있을 때)
-        if reason and has_claude and (not summary or not impact):
-            print(f'  ✅ 요약·영향도 생성: {b.get("BILL_NAME","")[:40]}')
+        # 요약·영향도·주제 중 비어 있는 게 있으면 생성/백필 (본문 있을 때)
+        if reason and has_claude and (not summary or not impact or not topic):
+            print(f'  ✅ 요약·영향도·주제 생성: {b.get("BILL_NAME","")[:40]}')
             res = summarize_from_text(reason)
             if res:
                 summary = res.get('summary', '')
                 impact = res.get('impact', '')
                 impact_reason = res.get('impact_reason', '')
+                topic = res.get('topic', '') or topic
             time.sleep(0.4)
 
         entry = dict(b)              # API 원본 필드 전부 패스스루
@@ -548,6 +551,7 @@ def bill_corpus_collect():
         entry['SUMMARY'] = summary
         entry['IMPACT'] = impact
         entry['IMPACT_REASON'] = impact_reason
+        entry['TOPIC'] = topic
         corpus.append(entry)
         if summary:
             summaries[bill_id] = {

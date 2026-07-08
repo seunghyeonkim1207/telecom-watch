@@ -935,6 +935,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
             <button class="bills-filter-chip" onclick="billsSetFilter('가결',this)">가결</button>
             <button class="bills-filter-chip" onclick="billsSetFilter('폐기',this)">폐기·부결</button>
           </div>
+          <div id="billsTopicRow" style="display:none;gap:6px;flex-wrap:wrap;margin-top:8px;"></div>
           <button id="billsShowHiddenBtn" onclick="billsToggleHidden()" style="display:none;font-size:11px;padding:4px 10px;background:none;border:0.5px solid var(--border);border-radius:6px;color:var(--text-3);cursor:pointer;font-family:inherit;"></button>
         </div>
         <div id="billsList"></div>
@@ -997,7 +998,10 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
       <div class="page-inner">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:4px;">
           <div class="page-title">주간 인사이트 리포트</div>
-          <button class="btn-outline" onclick="window.print()">🖨 인쇄</button>
+          <div style="display:flex;gap:8px;">
+            <button class="btn-outline" onclick="reportDoc()">📎 워드 다운로드</button>
+            <button class="btn-outline" onclick="window.print()">🖨 인쇄</button>
+          </div>
         </div>
         <div class="page-desc">이번 주 수집 기사 자동 집계 + Claude AI 주간 요약</div>
 
@@ -1243,6 +1247,55 @@ function cp(t){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.
 function fb(t){var ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');toast('클립보드에 복사했어요.');}catch(er){toast('직접 선택 후 복사해 주세요.');}document.body.removeChild(ta);}
 
 /* ─── MODAL ─── */
+// 기사 제목에서 의미 있는 토큰 추출 (관련 기사/법안 매칭용)
+function modalTokens(t){
+  var stop = {'통신':1,'이동통신':1,'기자':1,'뉴스':1,'서비스':1,'발표':1,'출시':1,'관련':1,'대한':1,'위한':1};
+  return (t||'').replace(/[\[\](){}'"…·,\.]/g,' ').split(/\s+/)
+    .filter(function(w){ return w.length>=3 && !stop[w]; });
+}
+
+// 관련 추적 법안 + 관련 보도 섹션 HTML
+function modalRelatedHtml(a){
+  var out = '';
+  // ⚖️ 관련 법안: 법안 주제(TOPIC)나 괄호 키워드가 기사 텍스트에 등장하면 연결
+  var artText = ((a.title||'')+' '+(a.summary||'')).toLowerCase();
+  var relBills = BILLS_CORPUS.filter(function(b){
+    var kw = billsExtractKeyword(b.BILL_NAME||'');
+    var tp = b.TOPIC||'';
+    return (kw && kw.length>=3 && artText.indexOf(kw.toLowerCase())>=0)
+        || (tp && tp.length>=3 && artText.indexOf(tp.toLowerCase())>=0);
+  }).slice(0,3);
+  if(relBills.length){
+    out += '<div style="margin-top:14px;padding:12px 14px;background:var(--blue-lite);border-radius:10px;">'
+      + '<div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px;">⚖️ 관련 추적 법안</div>'
+      + relBills.map(function(b){
+          return '<div style="font-size:12px;color:var(--text-2);padding:3px 0;cursor:pointer;" onclick="closeModal();navTo(\'bills\',document.querySelector(\'[data-page=bills]\'));setTimeout(function(){openBillDetail(\''+e(b.BILL_ID)+'\')},600);">'
+            + '→ '+e(b.BILL_NAME)+(b.IMPACT?' <span style="color:var(--red);font-weight:600;">(영향도 '+e(b.IMPACT)+')</span>':'')+'</div>';
+        }).join('')
+      + '</div>';
+  }
+  // 🧵 관련 보도: 제목 토큰 2개 이상 공유 + 날짜 ±3일
+  var toks = modalTokens(a.title);
+  var aTime = new Date(a.date).getTime();
+  var rel = ALL.filter(function(x){
+    if(x.id===a.id) return false;
+    if(Math.abs(new Date(x.date).getTime()-aTime) > 3*86400000) return false;
+    var xt = (x.title||'');
+    var shared = toks.filter(function(w){ return xt.indexOf(w)>=0; });
+    return shared.length >= 2;
+  }).slice(0,4);
+  if(rel.length){
+    out += '<div style="margin-top:12px;padding:12px 14px;background:var(--bg);border:0.5px solid var(--border);border-radius:10px;">'
+      + '<div style="font-size:11px;font-weight:700;color:var(--text-3);margin-bottom:6px;">🧵 관련 보도 '+rel.length+'건</div>'
+      + rel.map(function(x){
+          return '<div style="font-size:12px;color:var(--text-2);padding:3px 0;cursor:pointer;" onclick="openModal(\''+x.id+'\')">'
+            + '→ '+e(x.title)+' <span style="color:var(--text-3);font-size:10px;">('+(x.source_name||'')+' '+x.date.slice(5)+')</span></div>';
+        }).join('')
+      + '</div>';
+  }
+  return out;
+}
+
 function openModal(id){
   var a=ALL.find(function(x){return x.id===id;});if(!a)return;
   MA=a;
@@ -1266,7 +1319,7 @@ function openModal(id){
     if(!t.endsWith('.')) t+='.';
     return '<div class="modal-para">'+e(t)+'</div>';
   }).join('');
-  document.getElementById('mParas').innerHTML=parasHtml||'<div class="modal-para">'+e(summary)+'</div>';
+  document.getElementById('mParas').innerHTML=(parasHtml||'<div class="modal-para">'+e(summary)+'</div>')+modalRelatedHtml(a);
   var srcHtml='<div class="modal-source-info"><strong>출처</strong>'+(a.source_name?e(a.source_name):'알 수 없음')+(a.date?' &nbsp;·&nbsp; '+a.date:'')+'</div>';
   if(a.source_url){
     srcHtml+='<a class="modal-source-link" href="'+e(a.source_url)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+'<svg viewBox="0 0 14 14"><path d="M6 2H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V8M8 1h5v5M13 1l-6 6"/></svg>'+'원문 보기</a>';
@@ -1479,7 +1532,7 @@ function setTopic(val,btn){
 /* ─── LOAD articles.json ─── */
 fetch('data/articles.json')
   .then(function(r){return r.json();})
-  .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();render();})
+  .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();render();billsLoadCorpus(function(){});})
   .catch(function(){document.getElementById('feedList').innerHTML='<div style="padding:40px 0;text-align:center;font-size:13px;color:var(--text-3);">데이터를 불러올 수 없습니다.</div>';});
 
 
@@ -1599,6 +1652,91 @@ function intlReportToLeaders(sid){
     if(inp){ inp.value = draft; inp.focus(); inp.style.height='120px'; }
     toast('보고 초안을 입력창에 담았어요. 검토 후 [보고]를 누르세요.');
   }, 250);
+}
+
+// 공용: HTML 본문을 워드(.doc) 파일로 다운로드
+function downloadDoc(title, bodyHtml, filename){
+  var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'
+    + '<head><meta charset="utf-8"><title>'+e(title)+'</title>'
+    + '<style>'
+    + 'body{font-family:"맑은 고딕",sans-serif;font-size:11pt;color:#222;margin:2.2cm 2cm;line-height:1.7;}'
+    + 'h1{font-size:16pt;color:#3617CE;border-bottom:2.5pt solid #3617CE;padding-bottom:6pt;margin-bottom:4pt;}'
+    + '.meta{font-size:9pt;color:#777;margin-bottom:14pt;}'
+    + 'h2{font-size:12pt;color:#3617CE;margin:14pt 0 5pt;border-left:3.5pt solid #3617CE;padding-left:7pt;}'
+    + 'table{border-collapse:collapse;width:100%;font-size:10.5pt;}'
+    + 'td,th{border:0.5pt solid #ccc;padding:5pt 9pt;text-align:left;}'
+    + 'td.k,th{background:#EEECFB;font-weight:bold;}'
+    + 'ul{margin:4pt 0;padding-left:16pt;font-size:10pt;color:#444;}'
+    + '.foot{margin-top:18pt;font-size:8.5pt;color:#999;border-top:0.5pt solid #ddd;padding-top:6pt;}'
+    + '</style></head><body>' + bodyHtml
+    + '<div class="foot">본 문서는 Telecom Watch가 자동 생성한 참고 자료입니다. 대외 인용 전 원문 확인이 필요합니다.</div>'
+    + '</body></html>';
+  var blob = new Blob(['\ufeff'+html], {type:'application/msword'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  toast('워드 문서를 다운로드했어요.');
+}
+
+// 법안 1페이지 워드 보고서
+function billsReportDoc(billId){
+  var b = BILLS_CORPUS.find(function(x){return x.BILL_ID===billId;});
+  if(!b) return;
+  var cache = billsSummaryLoad();
+  var sd = cache[billId] || {};
+  var sum = sd.text || sd.summary || b.SUMMARY || '';
+  var stages = BILL_STAGES.map(function(s){
+    var v = billsStageVal(b, s.key);
+    var ds = billsStageDateStr(v);
+    return '<tr><td class="k">'+s.label+'</td><td>'+(v ? (ds ? billsFmtDate(ds) : '완료') : '—')+'</td></tr>';
+  }).join('');
+  var chg = BILL_CHANGES[billId];
+  var body = '<h1>법안 검토 보고서</h1>'
+    + '<div class="meta">작성일: '+TODAY_STR+' · 작성: Telecom Watch (서비스제도팀 모니터링 시스템)</div>'
+    + '<table>'
+    + '<tr><td class="k">법안명</td><td>'+e(b.BILL_NAME||'')+'</td></tr>'
+    + '<tr><td class="k">대표발의</td><td>'+e(b.PROPOSER||b.RST_PROPOSER||'—')+'</td></tr>'
+    + '<tr><td class="k">발의일</td><td>'+(billsFmtDate(b.PROPOSE_DT)||'—')+'</td></tr>'
+    + '<tr><td class="k">소관위원회</td><td>'+e(b.COMMITTEE||b.CURR_COMMITTEE||'—')+'</td></tr>'
+    + '<tr><td class="k">처리 상태</td><td>'+e(b.PROC_RESULT||'계류중')+'</td></tr>'
+    + (b.IMPACT?'<tr><td class="k">사업 영향도</td><td><strong>'+e(b.IMPACT)+'</strong>'+(b.IMPACT_REASON?' — '+e(b.IMPACT_REASON):'')+'</td></tr>':'')
+    + (b.TOPIC?'<tr><td class="k">주제 분류</td><td>'+e(b.TOPIC)+'</td></tr>':'')
+    + '</table>'
+    + (chg?'<h2>⚠ 최근 진행 변동</h2><div>'+e(chg.detected)+' — <strong>'+e(chg.label)+'</strong> 단계로 진행 ('+e(chg.new)+')</div>':'')
+    + (sum?'<h2>1. AI 요약</h2><div>'+e(sum)+'</div>':'')
+    + '<h2>'+(sum?'2':'1')+'. 입법 진행 현황</h2><table>'+stages+'</table>'
+    + (b.REASON_TEXT?'<h2>'+(sum?'3':'2')+'. 제안이유·주요내용 (발췌)</h2><div style="font-size:10pt;color:#444;">'+e(b.REASON_TEXT.slice(0,1500))+(b.REASON_TEXT.length>1500?'…(이하 생략, 원문 참조)':'')+'</div>':'');
+  downloadDoc('법안 검토 보고서', body, '법안보고서_'+(b.BILL_NAME||'').slice(0,20).replace(/[\/\\:*?"<>| ]/g,'_')+'_'+TODAY_STR+'.doc');
+}
+
+// 주간 리포트 워드 다운로드
+function reportDoc(){
+  var week = getThisWeekArts();
+  if(!week.length && ALL.length) week = ALL.slice(0,20);
+  var dom = week.filter(function(a){return a.region==='domestic';});
+  var ovr = week.filter(function(a){return a.region==='overseas';});
+  var tagCount={};
+  week.forEach(function(a){(a.tags||[]).forEach(function(t){tagCount[t]=(tagCount[t]||0)+1;});});
+  var tagRows = Object.keys(tagCount).map(function(k){return {k:k,v:tagCount[k]};})
+    .sort(function(a,b){return b.v-a.v;}).slice(0,8)
+    .map(function(t){return '<tr><td>'+e(t.k)+'</td><td>'+t.v+'건</td></tr>';}).join('');
+  var top5 = week.slice().sort(function(a,b){return (b.importance||3)-(a.importance||3);}).slice(0,5)
+    .map(function(a){return '<li><strong>'+e(a.title)+'</strong> ('+a.date+', 중요도 '+(a.importance||3)+')<br>'+e(a.summary||'')+'</li>';}).join('');
+  var chgRows = Object.keys(BILL_CHANGES).map(function(id){
+    var c=BILL_CHANGES[id];
+    return '<tr><td>'+e(c.bill_name)+'</td><td>'+e(c.label)+'</td><td>'+e(c.detected)+'</td></tr>';
+  }).join('');
+  var body = '<h1>주간 인사이트 리포트</h1>'
+    + '<div class="meta">작성일: '+TODAY_STR+' · 작성: Telecom Watch (서비스제도팀 모니터링 시스템)</div>'
+    + '<h2>1. 이번 주 수집 현황</h2>'
+    + '<table><tr><td class="k">전체 기사</td><td>'+week.length+'건</td></tr>'
+    + '<tr><td class="k">국내 / 해외</td><td>'+dom.length+'건 / '+ovr.length+'건</td></tr></table>'
+    + (tagRows ? '<h2>2. 주제별 분포</h2><table><tr><th>태그</th><th>건수</th></tr>'+tagRows+'</table>' : '')
+    + '<h2>3. 주요 기사 TOP 5</h2><ul>'+(top5||'<li>해당 없음</li>')+'</ul>'
+    + (chgRows ? '<h2>4. 법안 진행 변동 (최근 7일)</h2><table><tr><th>법안명</th><th>변경 단계</th><th>감지일</th></tr>'+chgRows+'</table>' : '');
+  downloadDoc('주간 인사이트 리포트', body, '주간리포트_'+TODAY_STR+'.doc');
 }
 
 // 발표 요약 보고서를 워드 파일(.doc)로 다운로드 — 1페이지 보고서 양식
@@ -1759,7 +1897,7 @@ function advRenderChat(){
   advUpdateEscalate();
 }
 
-// 대화 2턴 이상 진행 시 다음 리더로 에스컬레이션 버튼 노출
+// 대화 진행 시 다음 리더 에스컬레이션 / 최종 결재 문서 버튼 노출
 function advUpdateEscalate(){
   var box = document.getElementById('advEscalate');
   var next = ADV_CUR + 1;
@@ -1768,9 +1906,61 @@ function advUpdateEscalate(){
     var np = ADV_PERSONAS[next];
     box.style.display = 'block';
     box.innerHTML = '<button class="adv-esc-btn" onclick="advEscalate()">⬆ '+np.name+'께 보고 올리기 (LV.'+np.lv+')</button>';
+  } else if(ADV_CUR === ADV_PERSONAS.length-1 && hasChat){
+    // 센터장 단계까지 도달 — 최종 결재 문서 생성 가능
+    box.style.display = 'block';
+    box.innerHTML = '<button class="adv-esc-btn" style="background:linear-gradient(135deg,#B45309,#92400E);box-shadow:0 4px 14px rgba(180,83,9,0.35);" onclick="advFinalDoc()">📄 최종 결재 문서 생성 (.doc)</button>';
   } else {
     box.style.display = 'none';
   }
+}
+
+// 3단계 검토 대화 전체를 종합해 최종 결재 문서(.doc) 생성
+function advFinalDoc(){
+  var key = localStorage.getItem('tw_apikey')||'';
+  if(!key){ toast('설정에서 Claude API 키를 먼저 입력해주세요.'); return; }
+  var transcript = '';
+  ADV_PERSONAS.forEach(function(p, i){
+    if(!ADV_CHATS[i].length) return;
+    transcript += '\n===== '+p.name+' ('+p.role+') 검토 =====\n';
+    ADV_CHATS[i].forEach(function(m){
+      transcript += (m.role==='user'?'[보고자] ':'['+p.name+'] ') + m.content + '\n';
+    });
+  });
+  var btn = document.querySelector('#advEscalate button');
+  if(btn){ btn.disabled = true; btn.textContent = '문서 작성 중...'; }
+  fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body: JSON.stringify({
+      model:'claude-haiku-4-5-20251001',
+      max_tokens:1500,
+      messages:[{role:'user', content:'다음은 팀장→실장→센터장 3단계 검토를 거친 보고 대화 전체입니다. 이를 종합해 최종 결재 문서를 작성해주세요. 아래 JSON으로만 응답:\n\n{"title":"보고 제목 한 줄","overview":"보고 개요 2~3문장","conclusion":"최종 결론 2~3문장","comments":[{"leader":"팀장","point":"핵심 코멘트 한 문장"},{"leader":"실장","point":"..."},{"leader":"센터장","point":"..."}],"actions":["후속 액션 1","후속 액션 2","후속 액션 3"]}\n\n'+transcript.slice(0,8000)}]
+    })
+  }).then(function(r){return r.json();}).then(function(d){
+    if(btn){ btn.disabled = false; btn.textContent = '📄 최종 결재 문서 생성 (.doc)'; }
+    if(d.error){ toast('오류: '+(d.error.message||'').slice(0,80)); return; }
+    var text = (d.content&&d.content[0]&&d.content[0].text)||'';
+    try{
+      if(text.indexOf('```')>=0){ text = text.split('```')[1]; if(text.indexOf('json')===0) text = text.slice(4); }
+      var s = text.indexOf('{'), en = text.lastIndexOf('}');
+      var doc = JSON.parse(text.slice(s, en+1));
+      var comments = (doc.comments||[]).map(function(c){
+        return '<tr><td class="k">'+e(c.leader||'')+'</td><td>'+e(c.point||'')+'</td></tr>';
+      }).join('');
+      var actions = (doc.actions||[]).map(function(a){ return '<li>'+e(a)+'</li>'; }).join('');
+      var body = '<h1>'+e(doc.title||'최종 결재 문서')+'</h1>'
+        + '<div class="meta">작성일: '+TODAY_STR+' · 결재라인: 팀장(서비스제도팀) → 실장(정책개발실) → 센터장(Comm센터) 검토 완료</div>'
+        + '<h2>1. 보고 개요</h2><div>'+e(doc.overview||'')+'</div>'
+        + '<h2>2. 최종 결론</h2><div><strong>'+e(doc.conclusion||'')+'</strong></div>'
+        + (comments?'<h2>3. 단계별 검토 의견</h2><table><tr><th>검토자</th><th>핵심 의견</th></tr>'+comments+'</table>':'')
+        + (actions?'<h2>4. 후속 액션</h2><ul>'+actions+'</ul>':'');
+      downloadDoc('최종 결재 문서', body, '최종결재문서_'+TODAY_STR+'.doc');
+    }catch(ex){ toast('문서 생성에 실패했어요. 다시 시도해주세요.'); }
+  }).catch(function(){
+    if(btn){ btn.disabled = false; btn.textContent = '📄 최종 결재 문서 생성 (.doc)'; }
+    toast('네트워크 오류가 발생했습니다.');
+  });
 }
 
 // 현재 대화 내용을 요약 컨텍스트로 들고 다음 리더에게 이동
@@ -2058,6 +2248,7 @@ var BILL_STAGES=[
   {key:'PROM_DT',       label:'공포'}
 ];
 var BILLS_FILTER='all';
+var BILLS_TOPIC='all';   // 주제(TOPIC) 필터
 var BILLS_KW_KEY='tw_bill_keywords';
 var BILLS_DEFAULT_KW=['전기통신사업법'];
 
@@ -2417,6 +2608,8 @@ function billsCurrentStage(b){
   return last;
 }
 
+function billsSetTopic(t){ BILLS_TOPIC=t; billsRender(); }
+
 function billsRender(){
   var filterRow=document.getElementById('billsFilterRow');
   var kwBox=document.getElementById('billsKeywordBox');
@@ -2441,12 +2634,30 @@ function billsRender(){
   }
   var base=BILLS_SHOW_HIDDEN?list:visibleList;
   var filtered=base.filter(function(b){
+    if(BILLS_TOPIC!=='all' && (b.TOPIC||'')!==BILLS_TOPIC) return false;
     if(BILLS_FILTER==='all') return true;
     if(BILLS_FILTER==='계류중') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='pending';
     if(BILLS_FILTER==='가결') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='passed';
     if(BILLS_FILTER==='폐기') return billsProcClass(b.PROC_RESULT||b.PROC_RESULT_CD)==='rejected';
     return true;
   });
+
+  // 주제 칩: 같은 주제 법안 2건 이상이면 '동일 취지 묶음'으로 노출
+  var topicCount={};
+  base.forEach(function(b){ if(b.TOPIC) topicCount[b.TOPIC]=(topicCount[b.TOPIC]||0)+1; });
+  var topics=Object.keys(topicCount).filter(function(t){return topicCount[t]>=2;})
+    .sort(function(a,b){return topicCount[b]-topicCount[a];}).slice(0,10);
+  var tbox=document.getElementById('billsTopicRow');
+  if(tbox){
+    if(topics.length){
+      tbox.style.display='flex';
+      tbox.innerHTML='<span style="font-size:10px;color:var(--text-3);align-self:center;">유사 법안 묶음:</span>'
+        + '<button class="bills-filter-chip'+(BILLS_TOPIC==='all'?' active':'')+'" onclick="billsSetTopic(\'all\')">전체</button>'
+        + topics.map(function(t){
+            return '<button class="bills-filter-chip'+(BILLS_TOPIC===t?' active':'')+'" onclick="billsSetTopic(\''+e(t)+'\')">'+e(t)+' ('+topicCount[t]+')</button>';
+          }).join('');
+    } else { tbox.style.display='none'; }
+  }
 
   var box=document.getElementById('billsList');
   if(!list.length){
@@ -2494,6 +2705,7 @@ function billsRender(){
       +(age?'<span class="bills-age">'+age+'</span>':'')
       +'<span class="bills-proc-chip '+procCls+'">'+e(procResult)+'</span>'
       +(chg?'<span style="font-size:10px;font-weight:700;color:#fff;background:var(--red);border-radius:10px;padding:2px 9px;animation:advPulse 2s infinite;">🔔 '+e(chg.label)+' ('+e((chg.detected||'').slice(5).replace('-','.'))+')</span>':'')
+      +(b.TOPIC?'<span style="font-size:10px;color:var(--blue);background:var(--blue-lite);border-radius:10px;padding:2px 9px;cursor:pointer;" onclick="event.stopPropagation();billsSetTopic(\''+e(b.TOPIC)+'\')">#'+e(b.TOPIC)+'</span>':'')
       +(isHidden?'<span style="font-size:10px;color:var(--text-3);">숨김</span>':'')
       +'</div>'
       +(function(){var nm=b.BILL_NAME||'';var m=nm.match(/^([\s\S]*?)\(([^)]+)\)\s*$/);return m?'<div class="bills-card-title">'+e(m[1])+'<span style="color:var(--blue);font-weight:500;">('+e(m[2])+')</span></div>':'<div class="bills-card-title">'+e(nm)+'</div>';})()
@@ -2709,7 +2921,8 @@ function openBillDetail(billId){
     +'발의 원문 보기</a>'
     +'<a class="bdm-btn bdm-btn-secondary" href="'+e(searchUrl)+'" target="_blank" rel="noopener">'
     +'<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg>'
-    +'국회 검색</a>';
+    +'국회 검색</a>'
+    +'<button class="bdm-btn bdm-btn-secondary" onclick="billsReportDoc(\''+e(b.BILL_ID||'')+'\')">📎 워드 보고서</button>';
 
   document.getElementById('billDetailModal').classList.add('open');
   document.body.style.overflow='hidden';
