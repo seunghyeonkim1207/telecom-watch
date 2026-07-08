@@ -1,5 +1,14 @@
 [
   {
+    "bill_id": "PRC_B2B6Y0Y3W0X6V1W5U1C3C1B2B7A9A7",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-07-06",
+    "detected": "2026-07-08"
+  },
+  {
     "bill_id": "PRC_Q2Z6Y0F6D0D4B1Y6X0W7U4E9M5L4I3",
     "bill_name": "전기통신사업법 일부개정법률안",
     "field": "COMMITTEE_DT",
