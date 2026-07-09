@@ -167,11 +167,41 @@ def fetch_article_text(url: str) -> str:
         return ''
 
 
+def batch_relevance(items: list) -> list:
+    """기사 여러 건의 관련성을 한 번의 호출로 판별 (비용 절감 — 본문 없이 제목+RSS요약만).
+    items: [{'title':..., 'summary':...}] → 관련 있는 인덱스 리스트 반환."""
+    lines = []
+    for i, it in enumerate(items):
+        lines.append(f"[{i}] {it['title']} — {it['summary'][:150]}")
+    prompt = ("아래 뉴스 목록에서 한국 이동통신사(SKT·KT·LGU+·알뜰폰) 실무팀에 관련 있는 기사의 번호만 골라줘.\n"
+        "관련 기준: 요금·요금제·약관·결합·리텐션 / 이통사 정책·서비스·실적 / 통신 규제·법률(방통위·과기정통부) / "
+        "5G·네트워크 / 단말 유통 / 해외 이통사 벤치마킹 가치.\n"
+        "단순 IT기기 리뷰, 통신과 무관한 기업 소식, 주가 단신은 제외.\n\n"
+        + "\n".join(lines)
+        + '\n\nJSON만 출력: {"relevant": [번호, 번호, ...]}')
+    try:
+        msg = client.messages.create(
+            model='claude-haiku-4-5-20251001',
+            max_tokens=200,
+            messages=[{'role': 'user', 'content': prompt}]
+        )
+        text = msg.content[0].text.strip()
+        if '```' in text:
+            text = text.split('```')[1]
+            if text.startswith('json'):
+                text = text[4:]
+        data = json.loads(text.strip())
+        return [i for i in data.get('relevant', []) if isinstance(i, int) and 0 <= i < len(items)]
+    except Exception as ex:
+        print(f'  ⚠️  배치 판별 오류: {ex} — 전체 통과 처리')
+        return list(range(len(items)))
+
+
 def process_with_claude(title: str, summary: str, country: str, body: str = '') -> dict | None:
     carriers = ', '.join(CARRIER_MAP.get(country, []))
     tags_str = ', '.join(VALID_TAGS)
 
-    body_section = f'\n본문(발췌): {body[:3000]}' if body else ''
+    body_section = f'\n본문(발췌): {body[:1800]}' if body else ''
     prompt = f"""통신산업 뉴스 기사를 분석하고 아래 JSON 형식으로만 응답해. 다른 텍스트 없이 JSON만 출력.
 
 제목: {title}
@@ -225,57 +255,70 @@ def collect():
     existing_ids = {a['id'] for a in existing['articles']}
     new_articles = []
 
+    # ── 1단계: 후보 수집 (키워드 필터 + 중복 제거 — API 호출 없음) ──
+    candidates = []
     for feed_info in FEEDS:
         print(f'\n📡 {feed_info["url"][:70]}...')
         try:
             feed = feedparser.parse(feed_info['url'])
             entries = feed.entries[:20]  # 소스당 최대 20개
             print(f'  → {len(entries)}건 수신')
-
             for entry in entries:
                 title   = getattr(entry, 'title', '').strip()
                 summary = getattr(entry, 'summary', getattr(entry, 'description', '')).strip()
                 link    = getattr(entry, 'link', '')
-
-                # 1차 관련성 필터
                 if not title or not is_relevant(title + ' ' + summary):
                     continue
-
-                # 중복 확인
                 aid = article_id(title)
                 if aid in existing_ids:
-                    print(f'  ⏭  중복 건너뜀: {title[:40]}')
                     continue
-
-                print(f'  ✅ 처리 중: {title[:50]}')
-
-                # 본문 크롤링 (상세 요약 생성용) + Claude AI 처리
-                body = fetch_article_text(link)
-                result = process_with_claude(title, summary, feed_info['country'], body)
-                if not result or not result.get('relevant'):
-                    print(f'  ❌ 관련 없음 — 제외')
-                    continue
-
-                new_articles.append({
-                    'id':          aid,
-                    'title':       result.get('title_ko', title),
-                    'summary':     result.get('summary_ko', summary[:300]),
-                    'summary_long': result.get('summary_long', ''),
-                    'tags':        [t for t in result.get('tags', []) if t in VALID_TAGS],
-                    'region':      feed_info['region'],
-                    'country':     feed_info['country'],
-                    'carrier':     result.get('carrier', ''),
-                    'importance':  int(result.get('importance', 3)),
-                    'date':        TODAY,
-                    'source_url':  link,
+                existing_ids.add(aid)   # 후보 간 중복도 방지
+                candidates.append({
+                    'id': aid, 'title': title, 'summary': summary, 'link': link,
+                    'region': feed_info['region'], 'country': feed_info['country'],
                     'source_name': feed.feed.get('title', ''),
                 })
-                existing_ids.add(aid)
-                time.sleep(0.8)  # API 레이트 리밋 방지
-
         except Exception as e:
             print(f'  ❌ 피드 수집 오류: {e}')
             continue
+
+    print(f'\n🧮 후보 {len(candidates)}건 — 배치 관련성 판별 시작 (비용 절감 2단계 구조)')
+
+    # ── 2단계: 12건씩 묶어 관련성 판별 (제목+요약만, 저비용) ──
+    relevant_items = []
+    BATCH = 12
+    for i in range(0, len(candidates), BATCH):
+        chunk = candidates[i:i+BATCH]
+        keep = batch_relevance(chunk)
+        for idx in keep:
+            relevant_items.append(chunk[idx])
+        time.sleep(0.5)
+    print(f'  → 관련 판정 {len(relevant_items)}건 / 후보 {len(candidates)}건')
+
+    # ── 3단계: 관련 기사만 본문 크롤링 + 상세 처리 (하루 최대 60건 상한) ──
+    MAX_DETAIL = 60
+    for c in relevant_items[:MAX_DETAIL]:
+        print(f'  ✅ 처리 중: {c["title"][:50]}')
+        body = fetch_article_text(c['link'])
+        result = process_with_claude(c['title'], c['summary'], c['country'], body)
+        if not result or not result.get('relevant'):
+            print(f'  ❌ 상세 검토에서 제외')
+            continue
+        new_articles.append({
+            'id':          c['id'],
+            'title':       result.get('title_ko', c['title']),
+            'summary':     result.get('summary_ko', c['summary'][:300]),
+            'summary_long': result.get('summary_long', ''),
+            'tags':        [t for t in result.get('tags', []) if t in VALID_TAGS],
+            'region':      c['region'],
+            'country':     c['country'],
+            'carrier':     result.get('carrier', ''),
+            'importance':  int(result.get('importance', 3)),
+            'date':        TODAY,
+            'source_url':  c['link'],
+            'source_name': c['source_name'],
+        })
+        time.sleep(0.6)  # API 레이트 리밋 방지
 
     # ── 저장 ──────────────────────────────────────────────────────────────────
     print(f'\n💾 새 기사 {len(new_articles)}건 수집 완료')

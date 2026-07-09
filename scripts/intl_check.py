@@ -54,7 +54,7 @@ def check_source(item: dict) -> dict | None:
             tools=[{
                 'type': 'web_search_20250305',
                 'name': 'web_search',
-                'max_uses': 3,
+                'max_uses': 2,
             }],
             messages=[{'role': 'user', 'content': prompt}],
         )
@@ -99,7 +99,18 @@ def intl_check():
     print(f'🌐 국제비교 소스 자동 검증 시작 ({len(items)}개 소스)')
     updated = 0
     checked = 0
+    skipped = 0
+    from datetime import date
+    today_d = datetime.now(KST).date()
     for item in items:
+        # 최근 5일 내 검증한 소스는 스킵 (수동 재실행 시 중복 비용 방지)
+        v = item.get('verified', '')
+        try:
+            if v and (today_d - date.fromisoformat(v)).days < 5:
+                skipped += 1
+                continue
+        except Exception:
+            pass
         print(f'  🔍 {item.get("name","")[:50]}')
         res = check_source(item)
         time.sleep(1)
@@ -139,7 +150,7 @@ def intl_check():
             json.dump(reports[:MAX_REPORTS], f, ensure_ascii=False, indent=2)
         print(f'✅ 신판 {updated}건 반영 + 팀 보고서 생성 (검증 {checked}건)')
     else:
-        print(f'  신판 없음 — 검증 {checked}건 확인일 갱신')
+        print(f'  신판 없음 — 검증 {checked}건 확인일 갱신 (최근 검증 스킵 {skipped}건)')
 
 
 if __name__ == '__main__':
