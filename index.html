@@ -1167,6 +1167,16 @@ function navTo(page,triggerEl){
 
 /* ─── UTILS ─── */
 function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+// Anthropic API 에러를 사용자 친화적 한국어로 변환
+function apiErrMsg(err){
+  var m = (err && err.message) || '';
+  if(/credit balance/i.test(m)) return 'Claude API 크레딧이 부족합니다. console.anthropic.com > Billing에서 충전해주세요.';
+  if(/invalid x-api-key|authentication/i.test(m)) return 'API 키가 유효하지 않습니다. 설정에서 키를 다시 입력해주세요.';
+  if(/rate limit/i.test(m)) return '요청이 너무 잦습니다. 잠시 후 다시 시도해주세요.';
+  if(/overloaded/i.test(m)) return 'Claude 서버가 혼잡합니다. 잠시 후 다시 시도해주세요.';
+  return '오류: ' + m;
+}
+
 var _tt;
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(_tt);_tt=setTimeout(function(){t.classList.remove('show');},3000);}
 
@@ -1739,46 +1749,92 @@ function reportDoc(){
   downloadDoc('주간 인사이트 리포트', body, '주간리포트_'+TODAY_STR+'.doc');
 }
 
-// 발표 요약 보고서를 워드 파일(.doc)로 다운로드 — 1페이지 보고서 양식
+// 발표 요약 보고서를 워드 파일(.doc)로 다운로드
+// API 키가 있으면: 웹 검색으로 한국 관련 내용을 최대한 상세히 조사한 심층 보고서(최대 5페이지)
+// API 키가 없으면: 기본 1페이지 보고서
 function intlReportDoc(sid){
   var r = INTL_REPORTS.find(function(x){ return x.source_id === sid; });
   var d = INTL_DATA.find(function(x){ return x.id === sid; });
-  if(!r) return;
-  var methods = (d && d.method || []).map(function(m){ return '<li>'+e(m)+'</li>'; }).join('');
-  var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'
-    + '<head><meta charset="utf-8"><title>발표 요약 보고서</title>'
-    + '<style>'
-    + 'body{font-family:"맑은 고딕",sans-serif;font-size:11pt;color:#222;margin:2.2cm 2cm;line-height:1.7;}'
-    + 'h1{font-size:16pt;color:#3617CE;border-bottom:2.5pt solid #3617CE;padding-bottom:6pt;margin-bottom:4pt;}'
-    + '.meta{font-size:9pt;color:#777;margin-bottom:14pt;}'
-    + 'h2{font-size:12pt;color:#3617CE;margin:14pt 0 5pt;border-left:3.5pt solid #3617CE;padding-left:7pt;}'
-    + 'table{border-collapse:collapse;width:100%;font-size:10.5pt;}'
-    + 'td{border:0.5pt solid #ccc;padding:5pt 9pt;}'
-    + 'td.k{background:#EEECFB;font-weight:bold;width:23%;}'
-    + 'ul{margin:4pt 0;padding-left:16pt;font-size:10pt;color:#444;}'
-    + '.foot{margin-top:18pt;font-size:8.5pt;color:#999;border-top:0.5pt solid #ddd;padding-top:6pt;}'
-    + '</style></head><body>'
-    + '<h1>발표 요약 보고서</h1>'
-    + '<div class="meta">작성일: '+e(r.date)+' · 작성: Telecom Watch (서비스제도팀 모니터링 시스템)</div>'
+  if(!r && !d) return;
+  var key = (localStorage.getItem('tw_apikey')||'').trim();
+  if(!key){ intlReportDocBasic(sid); toast('설정에 API 키를 넣으면 심층 보고서로 생성됩니다.'); return; }
+
+  toast('🔎 웹 검색으로 한국 관련 내용을 상세 조사 중입니다... (최대 1분)');
+  var prompt = '당신은 한국 이동통신사 SKT 서비스제도팀의 리서치 어시스턴트입니다.\n'
+    + '아래 국제 통신요금/시장 비교 보고서에 대해 웹 검색을 활용해, 한국 관련 내용을 최대한 자세히 조사한 심층 보고서 자료를 작성해주세요.\n\n'
+    + '[대상]\n발행기관: '+(d?d.org:r.org)+'\n보고서명: '+(d?d.name:r.name)+'\n최신판: '+(d?d.latest:r.latest)+'\n\n'
+    + '[요구사항] 각 섹션을 상세하게(섹션당 2~4문단). 아래 JSON으로만 응답:\n'
+    + '{\n'
+    + ' "korea_detail": "한국 관련 상세 결과 — 순위, 구체 수치, 구간별 결과, 과거 연도 대비 추이까지 최대한 자세히 (4~6문단, 문단은 줄바꿈으로 구분)",\n'
+    + ' "global_context": "주요국(미국·일본·영국·독일·프랑스 등) 결과와 한국의 상대 위치 비교 (2~3문단)",\n'
+    + ' "media": "이 보고서가 한국 언론·정치권에서 어떻게 인용/보도되어 왔는지 동향 (2문단)",\n'
+    + ' "implication": "SKT 등 국내 이통사 관점의 시사점 (2문단)",\n'
+    + ' "response": ["대응 방향 제언 1 (구체적으로)", "제언 2", "제언 3", "제언 4"]\n'
+    + '}\n\n'
+    + '웹 검색으로 확인된 사실만 쓰고, 확인 안 되는 수치는 "확인 필요"로 표기하세요.';
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body: JSON.stringify({
+      model:'claude-haiku-4-5-20251001',
+      max_tokens:4000,
+      tools:[{type:'web_search_20250305', name:'web_search', max_uses:5}],
+      messages:[{role:'user', content:prompt}]
+    })
+  }).then(function(resp){return resp.json();}).then(function(res){
+    if(res.error){ toast(apiErrMsg(res.error)); return; }
+    var text='';
+    (res.content||[]).forEach(function(b){ if(b.type==='text') text+=b.text; });
+    var deep=null;
+    try{
+      if(text.indexOf('```')>=0){ text=text.split('```')[1]; if(text.indexOf('json')===0) text=text.slice(4); }
+      var s=text.indexOf('{'), en=text.lastIndexOf('}');
+      deep=JSON.parse(text.slice(s,en+1));
+    }catch(ex){}
+    intlReportDocBuild(sid, deep);
+  }).catch(function(){ toast('네트워크 오류 — 기본 보고서로 생성합니다.'); intlReportDocBasic(sid); });
+}
+
+// 기본(1페이지) 보고서
+function intlReportDocBasic(sid){ intlReportDocBuild(sid, null); }
+
+// 보고서 조립: deep(심층 조사 결과)이 있으면 5페이지급, 없으면 1페이지
+function intlReportDocBuild(sid, deep){
+  var r = INTL_REPORTS.find(function(x){ return x.source_id === sid; }) || {};
+  var d = INTL_DATA.find(function(x){ return x.id === sid; }) || {};
+  var org = r.org || d.org || '';
+  var name = r.name || d.name || '';
+  var latest = r.latest || d.latest || '';
+  var memo = localStorage.getItem(INTL_MEMO_KEY + sid) || '';
+  function paras(t){ return (t||'').split(/\n+/).filter(function(x){return x.trim();}).map(function(p){return '<div style="margin-bottom:8pt;">'+e(p)+'</div>';}).join(''); }
+  var methods = (d.method||[]).map(function(m){ return '<li>'+e(m)+'</li>'; }).join('');
+  var n = 0;
+  function sec(title){ n++; return '<h2>'+n+'. '+title+'</h2>'; }
+
+  var body = '<h1>'+(deep?'국제 비교 심층 분석 보고서':'발표 요약 보고서')+'</h1>'
+    + '<div class="meta">작성일: '+TODAY_STR+' · 작성: Telecom Watch (서비스제도팀 모니터링 시스템)'+(deep?' · 웹 검색 기반 심층 조사':'')+'</div>'
     + '<table>'
-    + '<tr><td class="k">발행기관</td><td>'+e(r.org)+'</td></tr>'
-    + '<tr><td class="k">보고서명</td><td>'+e(r.name)+'</td></tr>'
-    + '<tr><td class="k">최신판</td><td>'+e(r.latest)+'</td></tr>'
-    + (d ? '<tr><td class="k">발표 주기</td><td>'+e(d.cycle)+'</td></tr>' : '')
-    + '<tr><td class="k">원문</td><td>'+e(r.url||'')+'</td></tr>'
+    + '<tr><td class="k">발행기관</td><td>'+e(org)+'</td></tr>'
+    + '<tr><td class="k">보고서명</td><td>'+e(name)+'</td></tr>'
+    + '<tr><td class="k">최신판</td><td>'+e(latest)+'</td></tr>'
+    + (d.cycle?'<tr><td class="k">발표 주기</td><td>'+e(d.cycle)+'</td></tr>':'')
+    + '<tr><td class="k">원문</td><td>'+e(r.url||d.url||'')+'</td></tr>'
     + '</table>'
-    + '<h2>1. 발표 내용 및 시사점</h2>'
-    + '<div>'+e(r.report).replace(/\n/g,'<br>')+'</div>'
-    + (methods ? '<h2>2. 방법론 참고 사항</h2><ul>'+methods+'</ul>' : '')
-    + '<div class="foot">본 보고서는 AI가 자동 생성한 참고 자료입니다. 대외 인용 전 원문 확인이 필요합니다.</div>'
-    + '</body></html>';
-  var blob = new Blob(['\ufeff'+html], {type:'application/msword'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = '발표요약보고서_'+(r.org||'').replace(/[\/\\:*?"<>| ]/g,'_')+'_'+r.date+'.doc';
-  document.body.appendChild(a); a.click();
-  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
-  toast('워드 보고서를 다운로드했어요.');
+    + (r.report ? sec('발표 개요 및 시사점') + paras(r.report) : (d.result ? sec('발표 개요') + paras(d.result) : ''));
+  if(deep){
+    if(deep.korea_detail)   body += sec('한국 관련 상세 분석') + paras(deep.korea_detail);
+    if(deep.global_context) body += sec('주요국 비교 및 한국의 상대 위치') + paras(deep.global_context);
+    if(deep.media)          body += sec('국내 보도·정치권 인용 동향') + paras(deep.media);
+    if(deep.implication)    body += sec('국내 이통사 관점 시사점') + paras(deep.implication);
+  }
+  if(methods) body += sec('방법론 및 해석 유의사항') + '<ul>'+methods+'</ul>';
+  if(deep && deep.response && deep.response.length){
+    body += sec('대응 방향 제언') + '<ul>'+deep.response.map(function(a){return '<li>'+e(a)+'</li>';}).join('')+'</ul>';
+  }
+  if(memo) body += sec('팀 대응 메모') + paras(memo);
+  downloadDoc('국제 비교 보고서', body,
+    (deep?'심층분석보고서_':'발표요약보고서_')+(org||'').replace(/[\/\\:*?"<>| ]/g,'_')+'_'+TODAY_STR+'.doc');
 }
 
 /* ════════════════════════════════════
@@ -1917,7 +1973,7 @@ function advUpdateEscalate(){
 
 // 3단계 검토 대화 전체를 종합해 최종 결재 문서(.doc) 생성
 function advFinalDoc(){
-  var key = localStorage.getItem('tw_apikey')||'';
+  var key = (localStorage.getItem('tw_apikey')||'').trim();
   if(!key){ toast('설정에서 Claude API 키를 먼저 입력해주세요.'); return; }
   var transcript = '';
   ADV_PERSONAS.forEach(function(p, i){
@@ -1939,7 +1995,7 @@ function advFinalDoc(){
     })
   }).then(function(r){return r.json();}).then(function(d){
     if(btn){ btn.disabled = false; btn.textContent = '📄 최종 결재 문서 생성 (.doc)'; }
-    if(d.error){ toast('오류: '+(d.error.message||'').slice(0,80)); return; }
+    if(d.error){ toast(apiErrMsg(d.error)); return; }
     var text = (d.content&&d.content[0]&&d.content[0].text)||'';
     try{
       if(text.indexOf('```')>=0){ text = text.split('```')[1]; if(text.indexOf('json')===0) text = text.slice(4); }
@@ -2090,7 +2146,7 @@ function advSend(){
   var inp = document.getElementById('advInput');
   var q = (inp.value||'').trim();
   if(!q) return;
-  var key = localStorage.getItem('tw_apikey')||'';
+  var key = (localStorage.getItem('tw_apikey')||'').trim();
   if(!key){ toast('설정에서 Claude API 키를 먼저 입력해주세요.'); return; }
   inp.value='';
   advAppend('user', q);
@@ -2100,7 +2156,7 @@ function advSend(){
 }
 
 function advCallApi(){
-  var key = localStorage.getItem('tw_apikey')||'';
+  var key = (localStorage.getItem('tw_apikey')||'').trim();
   var btn = document.getElementById('advSendBtn');
   btn.disabled = true; btn.textContent = '검토 중...';
   var thinking = advShowTyping();
@@ -2123,7 +2179,7 @@ function advCallApi(){
     advStopTyping();
     btn.disabled=false; btn.textContent='보고';
     if(d.error){
-      thinking.textContent = '오류: '+(d.error.message||'').slice(0,120);
+      thinking.textContent = apiErrMsg(d.error);
       return;
     }
     var text = (d.content&&d.content[0]&&d.content[0].text)||'응답을 받지 못했습니다.';
@@ -2683,8 +2739,9 @@ function billsRender(){
     var pipeline=BILL_STAGES.map(function(s,i){
       var v=billsStageVal(b,s.key);
       var ds=billsStageDateStr(v);
-      var cls=v?'done':'';
-      if(i===cur&&v) cls='done current';
+      // 뒤 단계가 완료됐으면 앞 단계는 날짜가 없어도 통과한 것 (순차 진행)
+      var cls=(i<=cur)?'done':'';
+      if(i===cur) cls='done current';
       return '<div class="bills-stage '+cls+'">'
         +'<div class="bills-stage-dot"></div>'
         +'<div class="bills-stage-name">'+s.label+'</div>'
@@ -3015,7 +3072,7 @@ function renderReport(){
 
 /* ─── AI SUMMARY ─── */
 function startAiSummary(){
-  var key=localStorage.getItem('tw_apikey')||'';
+  var key=(localStorage.getItem('tw_apikey')||'').trim();
   if(!key){
     document.getElementById('apiKeyModal').classList.add('open');
     return;
@@ -3060,7 +3117,7 @@ function callClaudeApi(key){
   .then(function(r){return r.json();})
   .then(function(d){
     document.getElementById('aiSumBtn').disabled=false;
-    if(d.error){outEl.innerHTML='<span style="color:#ef4444;">오류: '+e(d.error.message)+'</span>';return;}
+    if(d.error){outEl.innerHTML='<span style="color:#ef4444;">'+e(apiErrMsg(d.error))+'</span>';return;}
     var text=(d.content&&d.content[0]&&d.content[0].text)||'응답 없음';
     outEl.innerHTML=mdToHtml(text);
   })
