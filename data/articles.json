@@ -1,6 +1,129 @@
 {
-  "updated": "2026-07-10T19:37:18.328243+09:00",
+  "updated": "2026-07-11T16:19:51.767648+09:00",
   "articles": [
+    {
+      "id": "dd20cba65824",
+      "title": "통신3사 보안투자 3675억···SKT '규모'·LGU+ '비중' 1위",
+      "summary": "국내 통신3사의 작년 정보보호 투자액이 3675억원으로 전년 대비 22% 증가했다. 절대 투자규모는 SK텔레콤(SK브로드밴드 포함)이 1위, 전체 IT 투자 대비 정보보호 투자 비중은 LG유플러스가 1위를 기록했다.",
+      "summary_long": "한국인터넷진흥원의 정보보호 공시 종합포털 자료에 따르면, SK텔레콤, KT, LG유플러스 통신3사의 지난해 정보보호 분야 투자 총액이 3675억원으로 집계되어 전년도 3012억원 대비 22% 증가하는 추세를 보였다. 이는 통신사업자들이 증가하는 사이버 위협에 대응하기 위해 보안 투자를 확대하고 있음을 보여준다. 투자 규모 측면에서는 SK텔레콤이 최대 투자자인 반면, 상대적 투자 비중으로는 LG유플러스가 IT 예산 내에서 정보보호에 할당하는 비율이 가장 높은 것으로 나타났다. 통신사들의 이러한 보안 투자 증가는 고객 정보 보호의 중요성이 높아지고 있는 사업 환경을 반영하는 결과로 해석된다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT, KT, LG U+",
+      "importance": 3,
+      "date": "2026-07-11",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422330",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "78923b5ef09a",
+      "title": "베라이즌, BMW와의 거래로 5G 커넥티드카 시장 공략",
+      "summary": "베라이즌이 BMW 그룹과의 5G 연결성 공급 계약을 체결하며 AT&T가 지배해온 미국 커넥티드카 시장에 본격 진출했다. BMW, 미니 등 BMW 그룹의 모든 신차에 5G/LTE 연결성을 제공하며 스탠드얼론 5G 네트워크의 자동차 산업 적용을 확대하고 있다.",
+      "summary_long": "베라이즌이 BMW 그룹과의 5G 연결성 공급 계약을 체결하며 미국 커넥티드카 시장에서 AT&T의 오랜 독점 지위에 도전하고 있다. 계약에 따라 베라이즌은 미국에서 판매되는 모든 신규 BMW, 미니 및 BMW 그룹 차량에 5G 및 LTE 연결성을 제공하게 된다. KDDI America가 플랫폼을 제공해 BMW가 베라이즌 네트워크를 통한 연결성과 데이터 흐름을 관리할 수 있도록 지원한다. 베라이즌은 이미 폭스바겐 그룹과의 거래로 아우디 등 여러 브랜드에 연결성을 공급 중이며, BMW 거래는 이러한 확장 추세를 계속하는 것이다. 베라이즌 임원은 5G가 커넥티드카 실현의 핵심 가속화 요소임을 강조했다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-07-11",
+      "source_url": "https://www.fierce-network.com/wireless/verizon-puts-5g-drivers-seat-bmw-deal",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "98f6e7b355f2",
+      "title": "의견: 기계 속의 유령 — 세계가 2G를 버리지 못하는 이유",
+      "summary": "전 세계의 핵심 인프라가 35년 된 2G 네트워크에 여전히 의존하고 있으며, 독일 철도의 2시간 전면 마비 사건은 정기 유지보수 오류로 인한 2G 라디오 결함에서 비롯되었다. 이는 AI 혁명이 오래된 셀룰러 네트워크 위에 구축되어 있으며 한 번의 유지보수 실수가 시스템 전체 장애를 초래할 수 있음을 시사한다.",
+      "summary_long": "기사는 현대의 스마트 머신들이 여전히 35년 전의 2G 셀룰러 네트워크에 의존하고 있다는 모순을 지적한다. 2026년 6월 23일 독일 철도청(Deutsche Bahn)의 전국 네트워크가 2시간 동안 완전히 마비된 사건은 사이버 공격이나 고의적 파괴가 아닌 2G 라디오와 관련된 정기 유지보수 중 발생한 단순 오류에서 비롯되었다. 저자는 AI 혁명이 빠르게 발전하는 반면 유럽 규제는 느린 속도로 진행되고 있으며, 이러한 시간 차이가 위험을 초래할 수 있다고 주장한다. 기사는 세계의 가장 똑똑한 기계들이 가장 오래된 네트워크 기술에 의존하는 현실을 비판하며, 시스템 전체 장애 직전에 있을 수 있음을 경고한다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-11",
+      "source_url": "https://www.fierce-network.com/wireless/opinion-ghost-machines-why-world-cant-quit-2g",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "b137c940c70a",
+      "title": "보다폰의 최대 주주로 떠오르는 프랑스 통신기업가 닐, e& 지분 59억 달러에 인수",
+      "summary": "프랑스 통신 기업가 자비에 닐이 e&로부터 보다폰 지분을 59억 달러에 인수하여 최대 주주가 될 예정이다. 이번 거래는 유럽 통신업계의 구조 재편을 의미하며 대형 통신사 간의 주도권 변화를 시사한다.",
+      "summary_long": "프랑스의 유명 통신 기업가 자비에 닐이 중동의 통신 그룹 e&로부터 영국 통신사 보다폰의 지분을 59억 달러에 인수하기로 합의했다. 이 거래를 통해 닐은 보다폰의 최대 주주 위치에 오르게 되며, 이는 유럽 통신업계에서 주요 기업들의 지분 구조 변화와 경영진 교체를 예고하고 있다. 닐은 프랑스 통신업계에서 혁신적인 경영으로 알려진 인물로, 이번 인수를 통해 국제 통신 시장에서의 영향력을 확대하려는 의도로 풀이된다. 이러한 대규모 M&A는 유럽 통신 시장의 경쟁 구도가 재편되고 있음을 보여주며, 글로벌 통신사들 간의 경쟁이 심화되고 있는 현실을 반영한다. 국내 통신사들에게는 국제 시장에서의 주도권 경쟁 구도 변화와 대형 인수합병을 통한 사업 전략 수립의 필요성을 시사한다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-11",
+      "source_url": "https://www.rcrwireless.com/20260710/carriers/vodafone-euro-telco-reset-e-iliad",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "7ebcba05a7e5",
+      "title": "유로바이츠: Tele2, 리투아니아에서 5G 스펙트럼 획득",
+      "summary": "리투아니아의 Tele2가 5G 스펙트럼을 확보했으며, 동시에 유럽 지역에서 Telefónica와 Amper의 스페인 공항 통신 업그레이드, Deutsche Telekom과 Ericsson의 항만 네트워크 협력 등이 진행 중이다. 영국의 Vodafone-Three 합병 후에도 5G 서비스 품질이 유럽 최저 수준에 머물러 있다.",
+      "summary_long": "리투아니아의 통신사 Tele2가 5G 스펙트럼을 획득하며 중부 유럽의 5G 인프라 확충이 진행되고 있다. 동시에 스페인의 Telefónica와 Amper는 주요 공항의 통신 서비스를 개선하고 있으며, Deutsche Telekom과 Ericsson은 항만 네트워크 구축에서 기술 협력을 강화하고 있다. 한편 영국에서 진행된 Vodafone과 Three의 합병이 5G 서비스 품질 개선을 목표로 했음에도 불구하고, 최신 Opensignal 분석에 따르면 영국의 5G 네트워크 경험이 유럽에서 가장 낮은 수준으로 평가되고 있다. 이는 단순한 스펙트럼 획득만으로는 충분하지 않으며, 실제 네트워크 품질 개선과 운영 효율성이 중요함을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-11",
+      "source_url": "https://www.lightreading.com/5g/eurobites-tele2-bags-5g-spectrum-in-lithuania",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "2f76d2a35e5c",
+      "title": "Verizon의 5G 네트워크, BMW 텔레매틱스 서비스 지원",
+      "summary": "Verizon Business가 KDDI와 협력하여 BMW의 미국 신차에 5G 텔레매틱스 연결성을 제공하는 계약을 체결했다. 이는 5G 네트워크의 자동차 산업 활용 확대를 보여주는 사례로, 통신사의 엔터프라이즈 사업 영역 확대 전략을 시사한다.",
+      "summary_long": "Verizon Business가 KDDI와의 국제 파트너십을 통해 BMW 신차 모델에 5G 기반 텔레매틱스 연결성 서비스를 제공하는 거래를 성사시켰다. 이 협력은 미국 시장에서 추진되며, 5G 네트워크의 실제 산업 적용 사례를 확대하는 것으로 평가된다. 자동차 제조사와의 통신 인프라 계약은 통신사의 엔터프라이즈 비즈니스 포트폴리오 강화를 의미하며, 특히 저지연·고속 연결이 필요한 차량용 서비스 분야에서의 경쟁력을 입증한다. 통신업계에서 5G의 소비자 서비스 중심에서 벗어나 B2B 산업 응용으로의 전환 추세를 반영하는 전략적 성과이다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-07-11",
+      "source_url": "https://www.lightreading.com/5g/verizon-s-5g-network-drives-telematics-for-bmw",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "65e1cf5d6a67",
+      "title": "유로바이트: Nokia, NestAI와 전장 통신 협력",
+      "summary": "Nokia가 NestAI와 협력하여 전장용 통신 솔루션을 개발하고 있으며, 동시에 유럽 통신업계에서 Telefónica와 Thales의 IoT eSIM 출시, euNetworks의 파리-밀라노 직선 구간 개설, 독일의 5G 성장세 등이 진행 중이다. 특히 영국은 Vodafone과 Three의 합병 1년 후에도 유럽에서 가장 낮은 5G 네트워크 품질을 유지하고 있다.",
+      "summary_long": "Nokia가 NestAI와의 협력을 통해 전장용 통신 기술을 개발하고 있으며, 이는 군사용 통신 인프라 구축의 새로운 방향을 제시하고 있다. 유럽 통신시장에서는 Telefónica와 Thales가 IoT 분야의 eSIM 기반 서비스를 출시했고, euNetworks는 주요 도시 간 직선 통신망을 확대하고 있다. 독일에서는 5G 보급이 가파르게 증가하고 있으나, 영국은 Vodafone과 Three의 2023년 합병 후 1년이 경과했음에도 불구하고 Opensignal 조사 결과 유럽 내 가장 낮은 5G 네트워크 품질을 기록하고 있다. 이는 대규모 인수합병이 반드시 서비스 품질 개선으로 이어지지 않을 수 있음을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-07-11",
+      "source_url": "https://www.lightreading.com/ai-machine-learning/eurobites-nokia-joins-forces-with-nestai-for-battlefield-comms",
+      "source_name": "lightreading"
+    },
     {
       "id": "9d7c7d25ebee",
       "title": "KT, '세계최초 5G' 주도한 삼성맨 최성호 영입···KT SAT CTO 맡아",
