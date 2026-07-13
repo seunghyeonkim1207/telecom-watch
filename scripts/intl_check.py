@@ -153,11 +153,52 @@ def intl_check():
         print(f'  신판 없음 — 검증 {checked}건 확인일 갱신 (최근 검증 스킵 {skipped}건)')
 
 
+def check_schedules():
+    """국회 과방위·방통위 등 규제기관의 향후 일정을 웹 검색으로 확인해 calendar.json에 병합."""
+    prompt = (f"오늘 날짜는 {TODAY}입니다. 웹 검색으로 다음을 확인해주세요:\n"
+        "1. 국회 과학기술정보방송통신위원회(과방위)의 향후 예정된 전체회의·법안소위 일정\n"
+        "2. 방송통신위원회(방통위) 전체회의 일정\n"
+        "3. 과기정통부의 통신 관련 공청회·의견수렴 일정\n\n"
+        '확인된 미래 일정만 JSON으로 출력: {"events": [{"date": "YYYY-MM-DD", "title": "일정 제목", "org": "기관명"}]}\n'
+        "확실한 날짜가 확인된 것만 포함. 없으면 빈 배열.")
+    try:
+        msg = client.messages.create(
+            model='claude-haiku-4-5-20251001',
+            max_tokens=800,
+            tools=[{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 3}],
+            messages=[{'role': 'user', 'content': prompt}],
+        )
+        text = ''
+        for block in msg.content:
+            if block.type == 'text':
+                text += block.text
+        text = text.strip()
+        if '```' in text:
+            text = text.split('```')[1]
+            if text.startswith('json'):
+                text = text[4:]
+        start = text.find('{')
+        end = text.rfind('}')
+        events = json.loads(text[start:end+1]).get('events', []) if start >= 0 else []
+    except Exception as ex:
+        print(f'  ⚠️  일정 검색 오류: {ex}')
+        return
+    # collect.py의 병합 로직 재사용
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    try:
+        from collect import merge_calendar_events
+        merge_calendar_events(events, '규제기관 일정 검색')
+    except Exception as ex:
+        print(f'  ⚠️  일정 병합 오류: {ex}')
+
+
 if __name__ == '__main__':
     # 매주 월요일 또는 INTL_CHECK=1 수동 실행 시에만 동작 (비용 관리)
     is_monday = datetime.now(KST).weekday() == 0
     forced = os.environ.get('INTL_CHECK') == '1'
     if is_monday or forced:
         intl_check()
+        check_schedules()
     else:
         print('⏭  월요일 아님 — 국제비교 검증 건너뜀 (INTL_CHECK=1 로 강제 실행 가능)')

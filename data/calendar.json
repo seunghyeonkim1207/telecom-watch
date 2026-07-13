@@ -1,10 +1,58 @@
 [
-  {"date":"2026-06-01","title":"LGU+ 5G·LTE 통합요금제 시행","org":"LG U+","country":"국내","imp":"high"},
-  {"date":"2026-06-25","title":"SKT 기존 요금제 67종 신규가입 중단","org":"SKT","country":"국내","imp":"high"},
-  {"date":"2026-07-01","title":"KT 통합요금제 출시·기존 105종 신규가입 중단","org":"KT","country":"국내","imp":"high"},
-  {"date":"2026-07-01","title":"전 LTE 요금제 안심데이터(400kbps) 의무 적용","org":"과기정통부","country":"국내","imp":"high"},
-  {"date":"2026-07-02","title":"SKT 베스트·라이트 통합요금제 출시","org":"SKT","country":"국내","imp":"mid"},
-  {"date":"2026-07-22","title":"단통법 폐지 1주년","org":"과기정통부","country":"국내","imp":"mid"},
-  {"date":"2026-10-01","title":"통신 이용약관 최적요금제 안내 의무화 시행 예정","org":"과기정통부","country":"국내","imp":"high"},
-  {"date":"2026-12-31","title":"EU 디지털네트워크법(DNA) 의견수렴 종료","org":"EU 집행위","country":"해외","imp":"mid"}
+  {
+    "date": "2026-06-01",
+    "title": "LGU+ 5G·LTE 통합요금제 시행",
+    "org": "LG U+",
+    "country": "국내",
+    "imp": "high"
+  },
+  {
+    "date": "2026-06-25",
+    "title": "SKT 기존 요금제 67종 신규가입 중단",
+    "org": "SKT",
+    "country": "국내",
+    "imp": "high"
+  },
+  {
+    "date": "2026-07-01",
+    "title": "KT 통합요금제 출시·기존 105종 신규가입 중단",
+    "org": "KT",
+    "country": "국내",
+    "imp": "high"
+  },
+  {
+    "date": "2026-07-01",
+    "title": "전 LTE 요금제 안심데이터(400kbps) 의무 적용",
+    "org": "과기정통부",
+    "country": "국내",
+    "imp": "high"
+  },
+  {
+    "date": "2026-07-02",
+    "title": "SKT 베스트·라이트 통합요금제 출시",
+    "org": "SKT",
+    "country": "국내",
+    "imp": "mid"
+  },
+  {
+    "date": "2026-07-22",
+    "title": "단통법 폐지 1주년",
+    "org": "과기정통부",
+    "country": "국내",
+    "imp": "mid"
+  },
+  {
+    "date": "2026-10-01",
+    "title": "통신 이용약관 최적요금제 안내 의무화 시행 예정",
+    "org": "과기정통부",
+    "country": "국내",
+    "imp": "high"
+  },
+  {
+    "date": "2026-12-31",
+    "title": "EU 디지털네트워크법(DNA) 의견수렴 종료",
+    "org": "EU 집행위",
+    "country": "해외",
+    "imp": "mid"
+  }
 ]

@@ -625,6 +625,73 @@ def bill_corpus_collect():
     print(f'✅ bills.json 저장 ({len(corpus)}건, 신규 크롤링 {new_crawls}건) / 요약 {len(summaries)}건')
 
 
+# ── 규제 일정 자동 추출 ─────────────────────────────────────────────────────────
+
+CALENDAR_FILE = 'data/calendar.json'
+MAX_CAL_EVENTS = 80
+
+
+def extract_calendar_events(new_articles: list):
+    """오늘 수집 기사에서 미래의 규제·통신 일정을 추출해 calendar.json에 병합."""
+    if not new_articles or not os.environ.get('ANTHROPIC_API_KEY', ''):
+        return
+    lines = [f"- {a.get('title','')} :: {a.get('summary','')[:150]}" for a in new_articles[:40]]
+    prompt = (f"오늘 날짜는 {TODAY}입니다. 아래 통신산업 뉴스들에서 '앞으로 예정된 구체적 일정'만 추출해줘.\n"
+        "대상: 제도/요금제 시행일, 신규가입 중단일, 공청회·간담회, 국회/방통위/과기정통부 일정, 의견수렴 마감일 등.\n"
+        "이미 지난 일정, 날짜가 불명확한 것('조만간', '하반기 중')은 제외. 연도가 없으면 문맥상 가장 가까운 미래로 판단.\n\n"
+        + "\n".join(lines)
+        + '\n\nJSON만 출력: {"events": [{"date": "YYYY-MM-DD", "title": "일정 제목 (간결하게)", "org": "주체 기관/회사"}]}\n'
+        "확실한 일정이 없으면 events는 빈 배열.")
+    try:
+        msg = client.messages.create(
+            model='claude-haiku-4-5-20251001',
+            max_tokens=800,
+            messages=[{'role': 'user', 'content': prompt}]
+        )
+        text = msg.content[0].text.strip()
+        if '```' in text:
+            text = text.split('```')[1]
+            if text.startswith('json'):
+                text = text[4:]
+        events = json.loads(text.strip()).get('events', [])
+    except Exception as ex:
+        print(f'  ⚠️  일정 추출 오류: {ex}')
+        return
+
+    merge_calendar_events(events, '뉴스 자동추출')
+
+
+def merge_calendar_events(events: list, source_label: str):
+    """추출된 일정을 calendar.json에 중복 없이 병합 (미래 일정만)."""
+    if not events:
+        return
+    cal = []
+    if os.path.exists(CALENDAR_FILE):
+        try:
+            with open(CALENDAR_FILE, 'r', encoding='utf-8') as f:
+                cal = json.load(f)
+        except Exception:
+            cal = []
+    existing = {(e.get('date',''), e.get('title','')) for e in cal}
+    added = 0
+    for ev in events:
+        d, t = ev.get('date',''), ev.get('title','')
+        if not d or not t or d < TODAY:
+            continue
+        # 같은 날짜에 비슷한 제목이 이미 있으면 스킵 (앞 10자 비교)
+        if (d, t) in existing or any(x[0]==d and x[1][:10]==t[:10] for x in existing):
+            continue
+        cal.append({'date': d, 'title': t, 'org': ev.get('org',''), 'country': '국내',
+                    'imp': 'mid', 'source': 'auto'})
+        existing.add((d, t))
+        added += 1
+    if added:
+        cal.sort(key=lambda e: e.get('date',''))
+        with open(CALENDAR_FILE, 'w', encoding='utf-8') as f:
+            json.dump(cal[-MAX_CAL_EVENTS:], f, ensure_ascii=False, indent=2)
+        print(f'📅 규제 일정 {added}건 자동 추가 ({source_label})')
+
+
 # ── 오늘의 브리핑 (TOP 3) ──────────────────────────────────────────────────────
 
 BRIEFING_FILE = 'data/briefing.json'
@@ -792,5 +859,6 @@ def send_telegram_alert(new_articles: list):
 if __name__ == '__main__':
     new_articles = collect() or []
     bill_corpus_collect()
+    extract_calendar_events(new_articles)
     generate_briefing(new_articles)
     send_telegram_alert(new_articles)

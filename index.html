@@ -1167,7 +1167,7 @@ function navTo(page,triggerEl){
   // page-specific init
   if(page==='saved') renderSaved();
   if(page==='report') renderReport();
-  if(page==='calendar') calRender();
+  if(page==='calendar'){ if(CAL_SERVER_LOADED) calRender(); else calServerLoad(calRender); }
   if(page==='bills'){
     billsSummaryLoadServer(function(){
       billsLoadCorpus(function(){
@@ -1685,11 +1685,45 @@ var DOW_KR=['일','월','화','수','목','금','토'];
 var IMP_COLORS={high:'#EF4444',mid:'#F59E0B',low:'#6B7280'};
 var TODAY_STR=(function(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
 
-function calLoad(){
-  try{ return JSON.parse(localStorage.getItem('tw_cal'))||CAL_DEFAULT; }
-  catch(err){ return CAL_DEFAULT; }
+/* 캘린더 데이터 구조:
+ * - 서버 일정(CAL_SERVER): data/calendar.json — 뉴스 자동추출 + 규제기관 일정 검색으로 매일/매주 갱신
+ * - 수동 일정: localStorage tw_cal_user — 사용자가 직접 추가한 것
+ * - 숨김 목록: tw_cal_hidden — 서버 일정 중 사용자가 삭제한 것            */
+var CAL_SERVER = [];
+var CAL_SERVER_LOADED = false;
+
+function calServerLoad(onDone){
+  fetch('data/calendar.json?_='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(list){ CAL_SERVER = Array.isArray(list)?list:[]; CAL_SERVER_LOADED = true; if(onDone) onDone(); })
+    .catch(function(){ CAL_SERVER_LOADED = true; if(onDone) onDone(); });
 }
-function calSave(data){ localStorage.setItem('tw_cal',JSON.stringify(data)); }
+
+function calUserLoad(){
+  // 구버전 마이그레이션: 옛 tw_cal에서 사용자 추가분만 추출
+  var legacy = localStorage.getItem('tw_cal');
+  if(legacy){
+    try{
+      var oldList = JSON.parse(legacy)||[];
+      var defKeys = CAL_DEFAULT.map(function(d){return d.date+'|'+d.title;});
+      var userOnly = oldList.filter(function(ev){ return defKeys.indexOf(ev.date+'|'+ev.title)<0; });
+      localStorage.setItem('tw_cal_user', JSON.stringify(userOnly));
+    }catch(e){}
+    localStorage.removeItem('tw_cal');
+  }
+  try{ return JSON.parse(localStorage.getItem('tw_cal_user'))||[]; }
+  catch(err){ return []; }
+}
+function calUserSave(list){ localStorage.setItem('tw_cal_user', JSON.stringify(list)); }
+function calHiddenLoad(){ try{ return JSON.parse(localStorage.getItem('tw_cal_hidden'))||[]; }catch(e){ return []; } }
+
+// 통합 조회: 서버 일정(숨김 제외) + 수동 일정
+function calLoad(){
+  var hidden = calHiddenLoad();
+  var server = CAL_SERVER.filter(function(ev){ return hidden.indexOf(ev.date+'|'+ev.title)<0; });
+  return server.concat(calUserLoad());
+}
+function calSave(data){ /* 하위호환 no-op — calUserSave 사용 */ }
 
 function calDday(dateStr){
   var t=new Date(TODAY_STR);
@@ -1723,7 +1757,7 @@ function calRender(){
       html+='<div class="cal-event">'
         +'<div class="cal-date-col"><div class="cal-date-day">'+ev.date.slice(8)+'</div><div class="cal-date-dow">'+dow+'</div></div>'
         +'<div class="cal-dot" style="background:'+col+';"></div>'
-        +'<div class="cal-body"><div class="cal-title">'+e(ev.title)+'<span class="cal-badge '+dd.cls+'">'+dd.label+'</span></div><div class="cal-org">'+e(ev.org)+(ev.country?' · '+e(ev.country):'')+'</div></div>'
+        +'<div class="cal-body"><div class="cal-title">'+e(ev.title)+'<span class="cal-badge '+dd.cls+'">'+dd.label+'</span>'+(ev.source==='auto'?'<span style="font-size:9px;font-weight:700;color:var(--blue);background:var(--blue-lite);border-radius:8px;padding:1px 7px;margin-left:6px;">🤖 자동</span>':'')+'</div><div class="cal-org">'+e(ev.org)+(ev.country?' · '+e(ev.country):'')+'</div></div>'
         +'<button class="tbl-del" onclick="calDel(\''+ev.date+'\','+JSON.stringify(ev.title).replace(/</g,'\\u003c')+')">삭제</button>'
         +'</div>';
     });
@@ -1733,9 +1767,16 @@ function calRender(){
 }
 
 function calDel(date,title){
-  var events=calLoad();
-  events=events.filter(function(ev){return !(ev.date===date&&ev.title===title);});
-  calSave(events);
+  var user=calUserLoad();
+  var before=user.length;
+  user=user.filter(function(ev){return !(ev.date===date&&ev.title===title);});
+  if(user.length<before){
+    calUserSave(user);   // 수동 일정 → 실제 삭제
+  } else {
+    var hidden=calHiddenLoad();   // 서버 일정 → 숨김 처리
+    hidden.push(date+'|'+title);
+    localStorage.setItem('tw_cal_hidden', JSON.stringify(hidden));
+  }
   calRender();
   toast('일정을 삭제했어요.');
 }
@@ -1751,9 +1792,9 @@ function calAddEvent(){
   var imp=document.getElementById('calFImp').value;
   var country=document.getElementById('calFCountry').value.trim()||'국내';
   if(!date||!title){toast('날짜와 제목을 입력해주세요.');return;}
-  var events=calLoad();
+  var events=calUserLoad();
   events.push({date:date,title:title,org:org,country:country,imp:imp});
-  calSave(events);
+  calUserSave(events);
   // reset form
   document.getElementById('calFDate').value='';
   document.getElementById('calFTitle').value='';
@@ -2483,7 +2524,8 @@ function billsPushToCalendar(billId){
   var list=billsLoad();
   var b=list.filter(function(x){return x.BILL_ID===billId;})[0];
   if(!b) return;
-  var events=calLoad();
+  var existing=calLoad();
+  var events=calUserLoad();
   var added=0;
   BILL_STAGES.forEach(function(s){
     var v=b[s.key];
@@ -2493,12 +2535,12 @@ function billsPushToCalendar(billId){
     if(!/^\d{8}/.test(c)) return;
     var date=c.slice(0,4)+'-'+c.slice(4,6)+'-'+c.slice(6,8);
     var title=(b.BILL_NAME||'')+' — '+s.label;
-    if(!events.some(function(ev){return ev.date===date&&ev.title===title;})){
+    if(!existing.some(function(ev){return ev.date===date&&ev.title===title;})){
       events.push({date:date,title:title,org:'국회',country:'국내',imp:'mid'});
       added++;
     }
   });
-  calSave(events);
+  calUserSave(events);
   toast(added?added+'건 캘린더에 추가했어요.':'추가할 새 일정이 없어요.');
 }
 
