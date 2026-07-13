@@ -847,16 +847,7 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
       <!-- TAB BAR -->
       <!-- 조직별 스코프 (중요도 순) -->
       <div id="scopeBar" style="display:flex;gap:8px;padding:12px 24px 4px;background:var(--surface);"></div>
-      <div class="tab-bar">
-        <button class="tab-btn active" onclick="setTopic('all',this)">전체</button>
-        <button class="tab-btn" onclick="setTopic('요금제',this)">요금제</button>
-        <button class="tab-btn" onclick="setTopic('최적요금제',this)">최적요금제</button>
-        <button class="tab-btn" onclick="setTopic('리텐션',this)">리텐션</button>
-        <button class="tab-btn" onclick="setTopic('결합상품',this)">결합상품</button>
-        <button class="tab-btn" onclick="setTopic('이용약관',this)">이용약관</button>
-        <button class="tab-btn" onclick="setTopic('안면인증',this)">안면인증</button>
-        <button class="tab-btn" onclick="setTopic('규제·정책',this)">규제·정책</button>
-      </div>
+      <div class="tab-bar" id="topicBar"></div>
       <!-- FEED -->
       <div class="feed-wrap">
         <div id="feedList">
@@ -1069,9 +1060,27 @@ function scopeMatch(a, scopeId){
 function setScope(id, btn){
   S.scope = id;
   localStorage.setItem('tw_scope', id);
+  S.topic = 'all';   // 스코프가 바뀌면 하위 키워드 탭 초기화
   FEED_SHOW = 60;
   renderScopeBar();
+  renderTopicBar();
   render();
+}
+
+// Comm센터용 기본 태그 탭 (서버 태그 기반)
+var COMM_TOPIC_TAGS = ['요금제','최적요금제','리텐션','결합상품','이용약관','안면인증','규제·정책','통신사동향','시장경쟁'];
+
+// 스코프에 맞는 하위 키워드 탭 렌더
+function renderTopicBar(){
+  var bar = document.getElementById('topicBar');
+  if(!bar) return;
+  var items = S.scope==='team' ? SCOPE_TEAM_KW
+            : S.scope==='office' ? SCOPE_OFFICE_KW
+            : COMM_TOPIC_TAGS;
+  bar.innerHTML = '<button class="tab-btn'+(S.topic==='all'?' active':'')+'" onclick="setTopic(\'all\',this)">전체</button>'
+    + items.map(function(k){
+        return '<button class="tab-btn'+(S.topic===k?' active':'')+'" onclick="setTopic(\''+e(k)+'\',this)">'+e(k)+'</button>';
+      }).join('');
 }
 
 function renderScopeBar(){
@@ -1239,7 +1248,7 @@ function doRefresh(){
   closeSettings();
   fetch('data/articles.json?_='+Date.now())
     .then(function(r){return r.json();})
-    .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();renderScopeBar();render();toast('새로 불러왔어요.');})
+    .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();renderScopeBar();renderTopicBar();render();toast('새로 불러왔어요.');})
     .catch(function(){toast('새로고침 실패 — 잠시 후 다시 시도해주세요.');});
 }
 
@@ -1474,7 +1483,10 @@ function filtered(){
   var r=ALL.filter(function(a){
     if(S.region==='bookmarks')return BM.indexOf(a.id)!==-1;
     var rOk=S.region==='all'||S.region==='archive'||a.region===S.region;
-    var tOk=S.topic==='all'||(a.tags||[]).indexOf(S.topic)!==-1;
+    var tOk = S.topic==='all'
+      || (S.scope==='comm'
+          ? (a.tags||[]).indexOf(S.topic)!==-1
+          : ((a.title||'')+' '+(a.summary||'')+' '+(a.tags||[]).join(' ')).toLowerCase().indexOf(S.topic.toLowerCase())!==-1);
     var cOk=S.carrier==='all'||a.carrier===S.carrier;
     var dOk=S.date==='all'||a.date===S.date;
     var sOk=!q||(a.title+' '+a.summary).toLowerCase().indexOf(q)!==-1;
@@ -1549,7 +1561,7 @@ function setTopic(val,btn){
 /* ─── LOAD articles.json ─── */
 fetch('data/articles.json')
   .then(function(r){return r.json();})
-  .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();renderScopeBar();render();billsLoadCorpus(function(){});})
+  .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();renderScopeBar();renderTopicBar();render();billsLoadCorpus(function(){});})
   .catch(function(){document.getElementById('feedList').innerHTML='<div style="padding:40px 0;text-align:center;font-size:13px;color:var(--text-3);">데이터를 불러올 수 없습니다.</div>';});
 
 
