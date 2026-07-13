@@ -845,6 +845,8 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
       <!-- 오늘의 브리핑 -->
       <div id="briefingBox" style="display:none;"></div>
       <!-- TAB BAR -->
+      <!-- 조직별 스코프 (중요도 순) -->
+      <div id="scopeBar" style="display:flex;gap:8px;padding:12px 24px 4px;background:var(--surface);"></div>
       <div class="tab-bar">
         <button class="tab-btn active" onclick="setTopic('all',this)">전체</button>
         <button class="tab-btn" onclick="setTopic('요금제',this)">요금제</button>
@@ -1043,6 +1045,51 @@ body.dark .bills-card-summary { background:rgba(255,255,255,0.04); }
 <script>
 /* ─── GLOBAL STATE ─── */
 var ALL=[], S={region:'all',topic:'all',carrier:'all',date:'all',sort:false};
+
+/* ─── 조직별 뉴스 스코프 (중요도 순: 서비스제도팀 > 정책개발실 > Comm센터) ───
+ * team   서비스제도팀: 핵심 키워드에 해당하는 기사만
+ * office 정책개발실: 팀 키워드 + 정책 확장 키워드
+ * comm   Comm센터: 모든 통신 뉴스 (필터 없음)                              */
+var SCOPE_TEAM_KW = ['요금','요금제','최적요금제','무선결합','유무선결합','이용약관','안면인증'];
+var SCOPE_OFFICE_KW = SCOPE_TEAM_KW.concat(['망중립성','디지털플랫폼','알뜰폰','MVNO','도매대가','접속','스팸','보편역무','요금감면']);
+var SCOPES = [
+  {id:'team',   name:'서비스제도팀', color:'#3617CE', kw:SCOPE_TEAM_KW},
+  {id:'office', name:'정책개발실',   color:'#7C3AED', kw:SCOPE_OFFICE_KW},
+  {id:'comm',   name:'Comm센터',     color:'#B45309', kw:null}
+];
+S.scope = localStorage.getItem('tw_scope') || 'team';
+
+function scopeMatch(a, scopeId){
+  var sc = SCOPES.find(function(s){return s.id===scopeId;});
+  if(!sc || !sc.kw) return true;   // Comm센터 = 전체
+  var hay = ((a.title||'')+' '+(a.summary||'')+' '+(a.tags||[]).join(' ')).toLowerCase();
+  return sc.kw.some(function(k){ return hay.indexOf(k.toLowerCase())>=0; });
+}
+
+function setScope(id, btn){
+  S.scope = id;
+  localStorage.setItem('tw_scope', id);
+  FEED_SHOW = 60;
+  renderScopeBar();
+  render();
+}
+
+function renderScopeBar(){
+  var box = document.getElementById('scopeBar');
+  if(!box) return;
+  box.innerHTML = SCOPES.map(function(s){
+    var cnt = ALL.filter(function(a){ return scopeMatch(a, s.id); }).length;
+    var on = S.scope===s.id;
+    return '<button onclick="setScope(\''+s.id+'\',this)" style="flex:1;padding:10px 8px;border-radius:12px;cursor:pointer;font-family:inherit;transition:all .15s;'
+      + 'border:1.5px solid '+(on?s.color:'var(--border)')+';'
+      + 'background:'+(on?s.color:'var(--surface)')+';'
+      + 'color:'+(on?'#fff':'var(--text-2)')+';'
+      + (on?'box-shadow:0 4px 14px rgba(43,30,222,0.18);':'')+'">'
+      + '<div style="font-size:13px;font-weight:700;">'+s.name+'</div>'
+      + '<div style="font-size:10px;opacity:'+(on?'0.85':'0.6')+';margin-top:2px;">'+cnt+'건</div>'
+      + '</button>';
+  }).join('');
+}
 var BM=JSON.parse(localStorage.getItem('tw_bm')||'[]');
 var DARK=localStorage.getItem('tw_dark')==='1';
 var FS_IDX=parseInt(localStorage.getItem('tw_fs')||'1');
@@ -1192,7 +1239,7 @@ function doRefresh(){
   closeSettings();
   fetch('data/articles.json?_='+Date.now())
     .then(function(r){return r.json();})
-    .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();render();toast('새로 불러왔어요.');})
+    .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();renderScopeBar();render();toast('새로 불러왔어요.');})
     .catch(function(){toast('새로고침 실패 — 잠시 후 다시 시도해주세요.');});
 }
 
@@ -1431,7 +1478,8 @@ function filtered(){
     var cOk=S.carrier==='all'||a.carrier===S.carrier;
     var dOk=S.date==='all'||a.date===S.date;
     var sOk=!q||(a.title+' '+a.summary).toLowerCase().indexOf(q)!==-1;
-    return rOk&&tOk&&cOk&&dOk&&sOk;
+    var scOk=scopeMatch(a, S.scope);
+    return rOk&&tOk&&cOk&&dOk&&sOk&&scOk;
   });
   if(S.sort)r=r.slice().sort(function(a,b){return b.importance-a.importance;});
   return r;
@@ -1501,7 +1549,7 @@ function setTopic(val,btn){
 /* ─── LOAD articles.json ─── */
 fetch('data/articles.json')
   .then(function(r){return r.json();})
-  .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();render();billsLoadCorpus(function(){});})
+  .then(function(d){ALL=d.articles||[];renderHero(d);loadBriefing();buildDateChips();buildCarrierFilter();renderScopeBar();render();billsLoadCorpus(function(){});})
   .catch(function(){document.getElementById('feedList').innerHTML='<div style="padding:40px 0;text-align:center;font-size:13px;color:var(--text-3);">데이터를 불러올 수 없습니다.</div>';});
 
 
