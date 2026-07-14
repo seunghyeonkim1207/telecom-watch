@@ -6,6 +6,7 @@ Claude 웹 검색으로 확인하고, 새 발표가 있으면 intl.json 갱신 +
 
 수동 실행: INTL_CHECK=1 python scripts/intl_check.py
 """
+from __future__ import annotations
 import os, json, time
 from datetime import datetime, timezone, timedelta
 
@@ -149,8 +150,68 @@ def intl_check():
         with open(REPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(reports[:MAX_REPORTS], f, ensure_ascii=False, indent=2)
         print(f'✅ 신판 {updated}건 반영 + 팀 보고서 생성 (검증 {checked}건)')
+        notify_new_editions(reports[:updated])
     else:
         print(f'  신판 없음 — 검증 {checked}건 확인일 갱신 (최근 검증 스킵 {skipped}건)')
+
+
+def make_report_doc(r: dict) -> str:
+    """팀 보고서를 워드(.doc) 파일로 생성해 경로 반환."""
+    import html as _html
+    def esc(t): return _html.escape(str(t or ''))
+    body = ('<html><head><meta charset="utf-8"><style>'
+        'body{font-family:"맑은 고딕",sans-serif;font-size:11pt;color:#222;margin:2.2cm 2cm;line-height:1.7;}'
+        'h1{font-size:16pt;color:#3617CE;border-bottom:2.5pt solid #3617CE;padding-bottom:6pt;}'
+        '.meta{font-size:9pt;color:#777;margin-bottom:14pt;}'
+        'table{border-collapse:collapse;width:100%;font-size:10.5pt;}td{border:0.5pt solid #ccc;padding:5pt 9pt;}'
+        'td.k{background:#EEECFB;font-weight:bold;width:23%;}'
+        'h2{font-size:12pt;color:#3617CE;margin:14pt 0 5pt;border-left:3.5pt solid #3617CE;padding-left:7pt;}'
+        '.foot{margin-top:18pt;font-size:8.5pt;color:#999;border-top:0.5pt solid #ddd;padding-top:6pt;}'
+        '</style></head><body>'
+        '<h1>발표 요약 보고서</h1>'
+        f'<div class="meta">작성일: {TODAY} · 작성: Telecom Watch (자동 생성)</div>'
+        '<table>'
+        f'<tr><td class="k">발행기관</td><td>{esc(r.get("org"))}</td></tr>'
+        f'<tr><td class="k">보고서명</td><td>{esc(r.get("name"))}</td></tr>'
+        f'<tr><td class="k">최신판</td><td>{esc(r.get("latest"))}</td></tr>'
+        f'<tr><td class="k">원문</td><td>{esc(r.get("url"))}</td></tr>'
+        '</table>'
+        '<h2>1. 발표 내용 및 시사점</h2>'
+        f'<div>{esc(r.get("report"))}</div>'
+        '<div class="foot">본 문서는 AI가 자동 생성한 참고 자료입니다. 대외 인용 전 원문 확인이 필요합니다.</div>'
+        '</body></html>')
+    import re as _re
+    safe = _re.sub(r'[\\/:*?"<>| ]', '_', r.get('org', 'report'))
+    path = f'/tmp/발표요약보고서_{safe}_{TODAY}.doc'
+    with open(path, 'w', encoding='utf-8-sig') as f:
+        f.write(body)
+    return path
+
+
+def notify_new_editions(new_reports: list):
+    """신판 발견 즉시 텔레그램 통보 (보고서 전문 + 워드 파일 첨부)."""
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    try:
+        from collect import tg_send, tg_send_document, tg_chat_ids
+    except Exception as ex:
+        print(f'  ⚠️  텔레그램 헬퍼 로드 실패: {ex}')
+        return
+    if not os.environ.get('TELEGRAM_BOT_TOKEN', '') or not tg_chat_ids():
+        return
+    for r in new_reports:
+        msg = (f"🆕 *국제비교 신판 발표 감지*\n\n"
+               f"*{r.get('org','')} — {r.get('name','')}*\n"
+               f"최신판: {r.get('latest','')}\n\n"
+               f"{r.get('report','')}\n\n"
+               f"원문: {r.get('url','')}")
+        tg_send(msg)
+        try:
+            path = make_report_doc(r)
+            tg_send_document(path, f"{r.get('org','')} 발표 요약 보고서 (.doc)")
+        except Exception as ex:
+            print(f'  ⚠️  워드 첨부 실패: {ex}')
+    print(f'✅ 신판 통보 발송 ({len(new_reports)}건)')
 
 
 def check_schedules():

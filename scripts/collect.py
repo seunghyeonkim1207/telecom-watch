@@ -3,6 +3,7 @@
 Telecom Watch — Daily News Collection Agent
 매일 오전 8시(KST) 자동 실행: 국내/해외 통신산업 동향 수집 및 Claude AI 처리
 """
+from __future__ import annotations
 import os, json, hashlib, time
 from datetime import datetime, timezone, timedelta
 import feedparser
@@ -744,13 +745,63 @@ def generate_briefing(new_articles: list):
 
 
 # ── 텔레그램 알림 ───────────────────────────────────────────────────────────────
+# TELEGRAM_CHAT_ID 는 콤마로 여러 개 지정 가능 (개인 + 팀 그룹 동시 발송)
+#   예: "123456789,-1001234567890"  (그룹/채널 ID는 음수)
+
+def tg_chat_ids():
+    raw = os.environ.get('TELEGRAM_CHAT_ID', '')
+    return [c.strip() for c in raw.split(',') if c.strip()]
+
+
+def tg_send(text: str) -> bool:
+    """등록된 모든 채팅방으로 텍스트 메시지 발송."""
+    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+    ids = tg_chat_ids()
+    if not token or not ids:
+        return False
+    import requests as req
+    ok = False
+    for cid in ids:
+        try:
+            r = req.post(f'https://api.telegram.org/bot{token}/sendMessage', json={
+                'chat_id': cid, 'text': text, 'parse_mode': 'Markdown',
+                'disable_web_page_preview': True,
+            }, timeout=15)
+            ok = ok or r.ok
+            if not r.ok:
+                print(f'  ⚠️  텔레그램 발송 실패({cid}): {r.status_code} {r.text[:100]}')
+        except Exception as ex:
+            print(f'  ⚠️  텔레그램 오류({cid}): {ex}')
+    return ok
+
+
+def tg_send_document(filepath: str, caption: str = '') -> bool:
+    """등록된 모든 채팅방으로 파일 첨부 발송 (워드 보고서 등)."""
+    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+    ids = tg_chat_ids()
+    if not token or not ids or not os.path.exists(filepath):
+        return False
+    import requests as req
+    ok = False
+    for cid in ids:
+        try:
+            with open(filepath, 'rb') as f:
+                r = req.post(f'https://api.telegram.org/bot{token}/sendDocument',
+                    data={'chat_id': cid, 'caption': caption[:1000]},
+                    files={'document': (os.path.basename(filepath), f, 'application/msword')},
+                    timeout=30)
+            ok = ok or r.ok
+            if not r.ok:
+                print(f'  ⚠️  파일 발송 실패({cid}): {r.status_code} {r.text[:100]}')
+        except Exception as ex:
+            print(f'  ⚠️  파일 발송 오류({cid}): {ex}')
+    return ok
+
 
 def send_telegram_alert(new_articles: list):
     """중요도 5 기사 + 신규 발의 통신 법안을 텔레그램으로 발송.
     TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID 시크릿이 없으면 조용히 건너뜀."""
-    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
-    chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
-    if not token or not chat_id:
+    if not os.environ.get('TELEGRAM_BOT_TOKEN', '') or not tg_chat_ids():
         print('\n⏭  텔레그램 시크릿 없음 — 알림 생략')
         return
 
@@ -810,11 +861,29 @@ def send_telegram_alert(new_articles: list):
     except Exception:
         pass
 
-    if not urgent and not new_bills and not stage_changes and not intl_mentions and not upcoming:
+    # ① 오늘의 브리핑 (있으면 항상 포함)
+    briefing = None
+    try:
+        with open(BRIEFING_FILE, 'r', encoding='utf-8') as f:
+            b = json.load(f)
+        if b.get('date') == TODAY and b.get('summary'):
+            briefing = b
+    except Exception:
+        pass
+
+    if not urgent and not new_bills and not stage_changes and not intl_mentions and not upcoming and not briefing:
         print('\n📭 알릴 내용 없음 — 알림 생략')
         return
 
     parts = [f"📡 *텔레콤워치 일일 알림* ({TODAY})", ""]
+    if briefing:
+        parts.append("🌅 *오늘의 브리핑*")
+        parts.append(briefing.get('summary', ''))
+        for p in briefing.get('picks', [])[:3]:
+            parts.append(f"▸ {p.get('title','')}")
+            if p.get('why'):
+                parts.append(f"   └ {p['why']}")
+        parts.append("")
     if urgent:
         parts.append(f"🔴 *긴급 뉴스 {len(urgent)}건*")
         for a in urgent[:5]:
@@ -842,18 +911,52 @@ def send_telegram_alert(new_articles: list):
             parts.append(f"• ({dd}) {ev.get('title','')}")
     message = "\n".join(parts)
 
+    if tg_send(message):
+        print(f'✅ 텔레그램 알림 발송 (브리핑 {1 if briefing else 0} / 긴급 {len(urgent)} / 변경 {len(stage_changes)} / 신규법안 {len(new_bills)} / 인용 {len(intl_mentions)} / 일정 {len(upcoming)})')
+
+
+def send_weekly_report():
+    """매주 금요일: 주간 요약 리포트를 텔레그램으로 발송."""
+    if datetime.now(KST).weekday() != 4:   # 금요일만
+        return
+    if not os.environ.get('TELEGRAM_BOT_TOKEN', '') or not tg_chat_ids():
+        return
     try:
-        import requests as req
-        r = req.post(f'https://api.telegram.org/bot{token}/sendMessage', json={
-            'chat_id': chat_id, 'text': message, 'parse_mode': 'Markdown',
-            'disable_web_page_preview': True,
-        }, timeout=15)
-        if r.ok:
-            print(f'✅ 텔레그램 알림 발송 (긴급 {len(urgent)} / 변경 {len(stage_changes)} / 신규법안 {len(new_bills)} / 인용 {len(intl_mentions)} / 일정 {len(upcoming)})')
-        else:
-            print(f'  ⚠️  텔레그램 발송 실패: {r.status_code} {r.text[:120]}')
-    except Exception as e:
-        print(f'  ⚠️  텔레그램 발송 오류: {e}')
+        with open(DATA_FILE, 'r', encoding='utf-8') as f:
+            arts = json.load(f).get('articles', [])
+    except Exception:
+        return
+    from datetime import date, timedelta as td
+    today_d = datetime.now(KST).date()
+    monday = today_d - td(days=today_d.weekday())
+    week = [a for a in arts if a.get('date', '') >= monday.isoformat()]
+    dom = [a for a in week if a.get('region') == 'domestic']
+    top5 = sorted(week, key=lambda a: a.get('importance', 3), reverse=True)[:5]
+
+    changes = []
+    try:
+        with open(BILL_CHANGES_FILE, 'r', encoding='utf-8') as f:
+            cutoff = (today_d - td(days=7)).isoformat()
+            changes = [c for c in json.load(f) if c.get('detected', '') >= cutoff]
+    except Exception:
+        pass
+
+    parts = [f"📊 *주간 리포트* ({monday.isoformat()} ~ {TODAY})", ""]
+    parts.append(f"이번 주 수집: 총 {len(week)}건 (국내 {len(dom)} / 해외 {len(week)-len(dom)})")
+    if top5:
+        parts.append("")
+        parts.append("*주요 기사 TOP 5*")
+        for a in top5:
+            parts.append(f"• {a.get('title','')[:50]}")
+    if changes:
+        parts.append("")
+        parts.append(f"*법안 진행 변동 {len(changes)}건*")
+        for c in changes[:5]:
+            parts.append(f"• {c.get('bill_name','')[:35]} → {c.get('label','')}")
+    parts.append("")
+    parts.append("상세: https://telecom-watch-chi.vercel.app")
+    if tg_send("\n".join(parts)):
+        print('✅ 주간 리포트 발송 (금요일)')
 
 
 if __name__ == '__main__':
@@ -862,3 +965,4 @@ if __name__ == '__main__':
     extract_calendar_events(new_articles)
     generate_briefing(new_articles)
     send_telegram_alert(new_articles)
+    send_weekly_report()
