@@ -35,11 +35,35 @@
     "imp": "mid"
   },
   {
+    "date": "2026-07-20",
+    "title": "휴가철 특별 소통 상황실 운영 시작",
+    "org": "SK텔레콤",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
     "date": "2026-07-22",
     "title": "단통법 폐지 1주년",
     "org": "과기정통부",
     "country": "국내",
     "imp": "mid"
+  },
+  {
+    "date": "2026-08-06",
+    "title": "방송국 소유 규제 폐지 투표",
+    "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-31",
+    "title": "휴가철 특별 소통 상황실 운영 종료",
+    "org": "SK텔레콤",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
   },
   {
     "date": "2026-10-01",
