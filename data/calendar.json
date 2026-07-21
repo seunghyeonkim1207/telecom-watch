@@ -82,6 +82,14 @@
     "source": "auto"
   },
   {
+    "date": "2026-08-21",
+    "title": "SKT 2030 고객 로밍 할인 프로모션 종료",
+    "org": "SK텔레콤",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
     "date": "2026-08-31",
     "title": "휴가철 특별 소통 상황실 운영 종료",
     "org": "SK텔레콤",
@@ -93,6 +101,14 @@
     "date": "2026-08-31",
     "title": "세르비아 470-694 MHz 대역 스펙트럼 경매 신청 마감",
     "org": "세르비아 RATEL",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-31",
+    "title": "전파법 시행령·시행규칙 개정안 입법예고 마감",
+    "org": "과기정통부",
     "country": "국내",
     "imp": "mid",
     "source": "auto"
