@@ -66,6 +66,22 @@
     "source": "auto"
   },
   {
+    "date": "2026-08-01",
+    "title": "민관 협의체 구성 (네트워크 투자 및 통신규제 개선 논의)",
+    "org": "과기정통부, 통신3사",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-01",
+    "title": "고객 혜택 강화 방안 추진 (멤버십/제휴할인 확대)",
+    "org": "SKT, KT, LG U+",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
     "date": "2026-08-06",
     "title": "방송국 소유 규제 폐지 투표",
     "org": "미국 FCC",
@@ -142,5 +158,13 @@
     "org": "EU 집행위",
     "country": "해외",
     "imp": "mid"
+  },
+  {
+    "date": "2027-07-31",
+    "title": "상향 C-대역 스펙트럼 경매 규칙 채택",
+    "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
   }
 ]
