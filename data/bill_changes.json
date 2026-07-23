@@ -1,5 +1,23 @@
 [
   {
+    "bill_id": "PRC_G2G6E0D6E2L5M1K7L4J8K1I0Q5R1P0",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "PROC_DT",
+    "label": "본회의 의결",
+    "old": "",
+    "new": "2026-07-20",
+    "detected": "2026-07-23"
+  },
+  {
+    "bill_id": "PRC_G2G6E0D6E2L5M1K7L4J8K1I0Q5R1P0",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "PROC_RESULT",
+    "label": "처리 결과",
+    "old": "",
+    "new": "철회",
+    "detected": "2026-07-23"
+  },
+  {
     "bill_id": "PRC_B2B6Y0Y3W0X6V1W5U1C3C1B2B7A9A7",
     "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
     "field": "COMMITTEE_DT",
