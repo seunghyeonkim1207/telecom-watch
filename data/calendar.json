@@ -82,6 +82,14 @@
     "source": "auto"
   },
   {
+    "date": "2026-08-03",
+    "title": "갤럭시 Z8 시리즈 사전예약 마감",
+    "org": "롯데하이마트",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
     "date": "2026-08-06",
     "title": "방송국 소유 규제 폐지 투표",
     "org": "미국 FCC",
@@ -163,6 +171,14 @@
     "date": "2027-07-31",
     "title": "상향 C-대역 스펙트럼 경매 규칙 채택",
     "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2028-01-01",
+    "title": "2.7GHz 스펙트럼 경매",
+    "org": "FCC",
     "country": "국내",
     "imp": "mid",
     "source": "auto"
