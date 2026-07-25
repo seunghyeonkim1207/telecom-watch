@@ -168,6 +168,14 @@
     "imp": "mid"
   },
   {
+    "date": "2027-01-01",
+    "title": "상향 C-band 경매",
+    "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
     "date": "2027-07-31",
     "title": "상향 C-대역 스펙트럼 경매 규칙 채택",
     "org": "미국 FCC",
@@ -179,6 +187,14 @@
     "date": "2028-01-01",
     "title": "2.7GHz 스펙트럼 경매",
     "org": "FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2028-01-01",
+    "title": "2.7 GHz 대역 경매",
+    "org": "미국 FCC",
     "country": "국내",
     "imp": "mid",
     "source": "auto"
