@@ -21,6 +21,13 @@ MAX_REPORTS = 30   # 보고서 최대 보관 수
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 
 
+def report_signature(source_id: str, latest: str) -> str:
+    """소스ID + 최신판 표기 속 연도로 서명 생성 (표현 변화에도 안정적인 중복 판별용)."""
+    import re as _re
+    years = ''.join(sorted(set(_re.findall(r'(?:19|20)\d{2}', latest or ''))))
+    return f'{source_id}|{years}'
+
+
 def check_source(item: dict) -> dict | None:
     """웹 검색으로 해당 소스의 신판 발표 여부 확인. 새 발표 시 dict 반환."""
     prompt = f"""당신은 한국 이동통신사(SKT) 서비스제도팀의 리서치 어시스턴트입니다.
@@ -97,6 +104,10 @@ def intl_check():
         except Exception:
             reports = []
 
+    # 기존 보고서로부터 이미 통보한 (소스+연도) 서명 집합 구성
+    reported_sigs = {report_signature(r.get('source_id', ''), r.get('latest', ''))
+                     for r in reports}
+
     print(f'🌐 국제비교 소스 자동 검증 시작 ({len(items)}개 소스)')
     updated = 0
     checked = 0
@@ -124,6 +135,15 @@ def intl_check():
         new_latest = res.get('latest', '')
         if not new_latest or new_latest == item.get('latest'):
             continue
+
+        # 재발송 방지: 같은 소스의 같은 연도 판을 이미 보고했으면 건너뜀
+        # (AI가 표현만 살짝 바꿔 '신판'으로 재감지하는 경우 방지)
+        sig = report_signature(item.get('id', ''), new_latest)
+        if sig in reported_sigs:
+            print(f'  ↩︎ 이미 보고된 판 — 재발송 생략: {new_latest}')
+            item['latest'] = new_latest   # 표기만 갱신, 알림은 생략
+            continue
+        reported_sigs.add(sig)
 
         print(f'  🆕 신판 확인: {new_latest}')
         item['latest'] = new_latest
@@ -156,35 +176,57 @@ def intl_check():
 
 
 def make_report_doc(r: dict) -> str:
-    """팀 보고서를 워드(.doc) 파일로 생성해 경로 반환."""
-    import html as _html
-    def esc(t): return _html.escape(str(t or ''))
-    body = ('<html><head><meta charset="utf-8"><style>'
-        'body{font-family:"맑은 고딕",sans-serif;font-size:11pt;color:#222;margin:2.2cm 2cm;line-height:1.7;}'
-        'h1{font-size:16pt;color:#3617CE;border-bottom:2.5pt solid #3617CE;padding-bottom:6pt;}'
-        '.meta{font-size:9pt;color:#777;margin-bottom:14pt;}'
-        'table{border-collapse:collapse;width:100%;font-size:10.5pt;}td{border:0.5pt solid #ccc;padding:5pt 9pt;}'
-        'td.k{background:#EEECFB;font-weight:bold;width:23%;}'
-        'h2{font-size:12pt;color:#3617CE;margin:14pt 0 5pt;border-left:3.5pt solid #3617CE;padding-left:7pt;}'
-        '.foot{margin-top:18pt;font-size:8.5pt;color:#999;border-top:0.5pt solid #ddd;padding-top:6pt;}'
-        '</style></head><body>'
-        '<h1>발표 요약 보고서</h1>'
-        f'<div class="meta">작성일: {TODAY} · 작성: Telecom Watch (자동 생성)</div>'
-        '<table>'
-        f'<tr><td class="k">발행기관</td><td>{esc(r.get("org"))}</td></tr>'
-        f'<tr><td class="k">보고서명</td><td>{esc(r.get("name"))}</td></tr>'
-        f'<tr><td class="k">최신판</td><td>{esc(r.get("latest"))}</td></tr>'
-        f'<tr><td class="k">원문</td><td>{esc(r.get("url"))}</td></tr>'
-        '</table>'
-        '<h2>1. 발표 내용 및 시사점</h2>'
-        f'<div>{esc(r.get("report"))}</div>'
-        '<div class="foot">본 문서는 AI가 자동 생성한 참고 자료입니다. 대외 인용 전 원문 확인이 필요합니다.</div>'
-        '</body></html>')
+    """팀 보고서를 정식 워드(.docx) 파일로 생성해 경로 반환 (폰·PC 모두 열림)."""
+    import sys, os as _os
+    sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from docx import Document
+    from docx.shared import Pt, RGBColor, Cm
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+
+    try:
+        from collect import tg_clean_body as _clean
+    except Exception:
+        def _clean(t): return str(t or '').strip()
+
+    ACCENT = RGBColor(0x36, 0x17, 0xCE)
+    doc = Document()
+    # 기본 글꼴
+    normal = doc.styles['Normal']
+    normal.font.name = '맑은 고딕'
+    normal.font.size = Pt(11)
+
+    title = doc.add_heading('발표 요약 보고서', level=0)
+    for run in title.runs:
+        run.font.color.rgb = ACCENT
+
+    meta = doc.add_paragraph()
+    mrun = meta.add_run(f'작성일: {TODAY}  ·  작성: Telecom Watch (자동 생성)')
+    mrun.font.size = Pt(9)
+    mrun.font.color.rgb = RGBColor(0x77, 0x77, 0x77)
+
+    # 기본 정보 표
+    rows = [('발행기관', r.get('org')), ('보고서명', r.get('name')),
+            ('최신판', _clean(r.get('latest'))), ('원문', r.get('url'))]
+    table = doc.add_table(rows=len(rows), cols=2)
+    table.style = 'Light Grid Accent 1'
+    for i, (k, v) in enumerate(rows):
+        table.rows[i].cells[0].text = k
+        table.rows[i].cells[1].text = str(v or '')
+
+    h = doc.add_heading('1. 발표 내용 및 시사점', level=1)
+    for run in h.runs:
+        run.font.color.rgb = ACCENT
+    doc.add_paragraph(_clean(r.get('report')))
+
+    foot = doc.add_paragraph()
+    frun = foot.add_run('본 문서는 AI가 자동 생성한 참고 자료입니다. 대외 인용 전 원문 확인이 필요합니다.')
+    frun.font.size = Pt(8.5)
+    frun.font.color.rgb = RGBColor(0x99, 0x99, 0x99)
+
     import re as _re
     safe = _re.sub(r'[\\/:*?"<>| ]', '_', r.get('org', 'report'))
-    path = f'/tmp/발표요약보고서_{safe}_{TODAY}.doc'
-    with open(path, 'w', encoding='utf-8-sig') as f:
-        f.write(body)
+    path = f'/tmp/발표요약보고서_{safe}_{TODAY}.docx'
+    doc.save(path)
     return path
 
 
@@ -193,22 +235,23 @@ def notify_new_editions(new_reports: list):
     import sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     try:
-        from collect import tg_send, tg_send_document, tg_chat_ids
+        from collect import tg_send, tg_send_document, tg_chat_ids, tg_clean_body, tg_link
     except Exception as ex:
         print(f'  ⚠️  텔레그램 헬퍼 로드 실패: {ex}')
         return
     if not os.environ.get('TELEGRAM_BOT_TOKEN', '') or not tg_chat_ids():
         return
     for r in new_reports:
+        link = tg_link('원문 보기', r.get('url', ''))
         msg = (f"🆕 *국제비교 신판 발표 감지*\n\n"
                f"*{r.get('org','')} — {r.get('name','')}*\n"
-               f"최신판: {r.get('latest','')}\n\n"
-               f"{r.get('report','')}\n\n"
-               f"원문: {r.get('url','')}")
+               f"최신판: {tg_clean_body(r.get('latest',''))}\n\n"
+               f"{tg_clean_body(r.get('report',''))}"
+               + (f"\n\n{link}" if link else ""))
         tg_send(msg)
         try:
             path = make_report_doc(r)
-            tg_send_document(path, f"{r.get('org','')} 발표 요약 보고서 (.doc)")
+            tg_send_document(path, f"{r.get('org','')} 발표 요약 보고서")
         except Exception as ex:
             print(f'  ⚠️  워드 첨부 실패: {ex}')
     print(f'✅ 신판 통보 발송 ({len(new_reports)}건)')

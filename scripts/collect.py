@@ -753,6 +753,27 @@ def tg_chat_ids():
     return [c.strip() for c in raw.split(',') if c.strip()]
 
 
+def tg_clean_body(text: str) -> str:
+    """AI 생성 본문에서 인용 태그·각주 마커·마크다운 특수문자 등 지저분한 요소 제거."""
+    if not text:
+        return ''
+    import re as _re
+    t = str(text)
+    t = _re.sub(r'<[^>]+>', '', t)        # <cite ...> 등 HTML/인용 태그 제거
+    t = _re.sub(r'【[^】]*】', '', t)       # 【1】 식 인용 마커 제거
+    t = _re.sub(r'\[\d+\]', '', t)         # [1] 식 각주 마커 제거
+    t = t.replace('*', '').replace('_', '').replace('`', '')  # 마크다운 특수문자 제거
+    t = _re.sub(r'[ \t]+', ' ', t)
+    return t.strip()
+
+
+def tg_link(label: str, url: str) -> str:
+    """긴 URL을 '원문 보기' 같은 깔끔한 클릭 링크로 변환 (Markdown)."""
+    if not url:
+        return ''
+    return f'[{label}]({url})'
+
+
 def tg_send(text: str) -> bool:
     """등록된 모든 채팅방으로 텍스트 메시지 발송."""
     token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
@@ -788,7 +809,8 @@ def tg_send_document(filepath: str, caption: str = '') -> bool:
             with open(filepath, 'rb') as f:
                 r = req.post(f'https://api.telegram.org/bot{token}/sendDocument',
                     data={'chat_id': cid, 'caption': caption[:1000]},
-                    files={'document': (os.path.basename(filepath), f, 'application/msword')},
+                    files={'document': (os.path.basename(filepath), f,
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document')},
                     timeout=30)
             ok = ok or r.ok
             if not r.ok:
@@ -878,11 +900,11 @@ def send_telegram_alert(new_articles: list):
     parts = [f"📡 *텔레콤워치 일일 알림* ({TODAY})", ""]
     if briefing:
         parts.append("🌅 *오늘의 브리핑*")
-        parts.append(briefing.get('summary', ''))
+        parts.append(tg_clean_body(briefing.get('summary', '')))
         for p in briefing.get('picks', [])[:3]:
-            parts.append(f"▸ {p.get('title','')}")
+            parts.append(f"▸ {tg_clean_body(p.get('title',''))}")
             if p.get('why'):
-                parts.append(f"   └ {p['why']}")
+                parts.append(f"   └ {tg_clean_body(p['why'])}")
         parts.append("")
     if urgent:
         parts.append(f"🔴 *긴급 뉴스 {len(urgent)}건*")
