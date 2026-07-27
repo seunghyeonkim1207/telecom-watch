@@ -21,6 +21,38 @@ MAX_REPORTS = 30   # 보고서 최대 보관 수
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 
 
+# 소스별 발표 예상 월 (이 달 ±1개월엔 자주 확인, 그 외엔 뜸하게 확인)
+EXPECTED_MONTHS = {
+    'oecd-digital':      [10, 11, 12],       # 격년, 하반기 예상
+    'oecd-broadband':    [3, 4, 9, 10],      # 연 2회(반기)
+    'miac-jp':           [5, 6],             # 매년 5~6월
+    'itu-price':         [9, 10, 11],        # 하반기
+    'kisdi-competition': [4, 5, 6, 12, 1],   # 연말~상반기
+    'kisdi-kindex':      [2, 5, 8, 11],      # 분기
+    'kcc-competitive':   [5, 6, 7, 8],       # 하반기 초
+    'msit-price':        [4, 5, 6, 7],       # 상반기
+    'rewheel':           [3, 4, 9, 10],      # 반기
+    'cable-uk':          [1, 2, 3],          # 연초
+    'kostat-hh':         [2, 5, 8, 11],      # 분기
+    'bok-cpi':           list(range(1, 13)), # 월간
+}
+FREQ_DAYS = 2    # 발표철: 이 간격 안에 검증했으면 스킵
+RARE_DAYS = 25   # 비발표철: 이 간격 안에 검증했으면 스킵
+DEFAULT_DAYS = 7 # 발표철 정보 없는 소스 기본값
+
+
+def skip_interval_days(source_id: str, cur_month: int) -> int:
+    """소스의 발표철 여부에 따라 재검증 최소 간격(일) 결정."""
+    months = EXPECTED_MONTHS.get(source_id)
+    if not months:
+        return DEFAULT_DAYS
+    # 발표 예상월 ±1개월을 '발표철'로 간주
+    window = set()
+    for m in months:
+        window.update({m, 12 if m == 1 else m - 1, 1 if m == 12 else m + 1})
+    return FREQ_DAYS if cur_month in window else RARE_DAYS
+
+
 def report_signature(source_id: str, latest: str) -> str:
     """소스ID + 최신판 표기 속 연도로 서명 생성 (표현 변화에도 안정적인 중복 판별용)."""
     import re as _re
@@ -115,10 +147,11 @@ def intl_check():
     from datetime import date
     today_d = datetime.now(KST).date()
     for item in items:
-        # 최근 5일 내 검증한 소스는 스킵 (수동 재실행 시 중복 비용 방지)
+        # 발표철엔 자주(2일), 비발표철엔 뜸하게(25일) 재검증 — 발표 시기 예측 기반 비용 절감
+        interval = skip_interval_days(item.get('id', ''), today_d.month)
         v = item.get('verified', '')
         try:
-            if v and (today_d - date.fromisoformat(v)).days < 5:
+            if v and (today_d - date.fromisoformat(v)).days < interval:
                 skipped += 1
                 continue
         except Exception:
