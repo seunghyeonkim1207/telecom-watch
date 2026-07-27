@@ -298,11 +298,12 @@ def check_schedules():
 
 
 if __name__ == '__main__':
-    # 매주 월요일 또는 INTL_CHECK=1 수동 실행 시에만 동작 (비용 관리)
-    is_monday = datetime.now(KST).weekday() == 0
+    # 평일(월~금) 또는 INTL_CHECK=1 수동 실행 시 동작.
+    # 각 소스는 5일 내 재검증을 건너뛰므로, 평일 실행해도 비용은 소스별 주 1회 수준 유지.
+    is_weekday = datetime.now(KST).weekday() < 5   # 0=월 ~ 4=금
     forced = os.environ.get('INTL_CHECK') == '1'
-    if is_monday or forced:
+    if is_weekday or forced:
         intl_check()
         check_schedules()
     else:
-        print('⏭  월요일 아님 — 국제비교 검증 건너뜀 (INTL_CHECK=1 로 강제 실행 가능)')
+        print('⏭  주말 — 국제비교 검증 건너뜀 (INTL_CHECK=1 로 강제 실행 가능)')
