@@ -1,5 +1,50 @@
 [
   {
+    "date": "2026-07-27",
+    "source_id": "cable-uk",
+    "org": "Cable.co.uk (영국)",
+    "name": "Worldwide Mobile Data Pricing",
+    "latest": "2026년판 (2026년 6월 공표)",
+    "report": "Cable.co.uk의 Worldwide Mobile Data Pricing 2026년판이 2026년 6월에 발표되었으며, 전 세계 237개 국가 5,603개 플랜을 조사한 결과를 제시하고 있다. 다만 현재 공개된 자료에서는 한국의 구체적인 순위와 1GB당 가격 정보가 명시되지 않아 추가 확인이 필요하다. SKT는 공식 보고서에 접근하여 한국의 국제 비교 순위와 가격 데이터를 직접 확인할 필요가 있다.",
+    "url": "https://www.mappr.co/mobile-data-pricing-by-country/"
+  },
+  {
+    "date": "2026-07-27",
+    "source_id": "miac-jp",
+    "org": "일본 총무성",
+    "name": "電気通信サービスに係る内外価格差調査 (내외가격차 조사)",
+    "latest": "令和7年度 (2026年6月公表)",
+    "report": "총무성은 6월 30일 令和7年度(2025년 12월 조사 기준) 내외가격차 조사를 공표했습니다. 일본은 중용량(5GB~20GB) 스마트폰 플랜에서 6개 도시(서울 포함) 중 저가 수준을 유지하고 있으나, 무제한·대용량(50GB) 플랜에서는 오히려 고가 경향입니다. 한국(서울)은 계속 비교 대상 도시로 포함되고 있으며, 중용량 경쟁력 분석과 대용량 플랜 경쟁력 강화 전략이 필요합니다.",
+    "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban03_02000990.html"
+  },
+  {
+    "date": "2026-07-27",
+    "source_id": "oecd-broadband",
+    "org": "OECD",
+    "name": "OECD Broadband Statistics (요금 바구니)",
+    "latest": "2025년판 (2025.10 공표)",
+    "report": "<cite index=\"4-1\">OECD는 2025년 10월 30일 Broadband Statistics를 발표했으며, OECD 전체의 고정 광대역 침투율이 2024년 말 기준 1인당 36.5 가입 건수로 2019년의 32에서 증가</cite>했습니다. <cite index=\"17-1\">한국은 고정 광대역의 90.5%를 광섬유로 제공하고 있어 아이슬란드(93%) 다음으로 OECD에서 2위를 차지</cite>하고 있습니다. <cite index=\"12-9\">고정 광대역 침투율에서는 프랑스(47.5)가 1위이고 한국(47.3)이 2위</cite>입니다. <cite index=\"14-3\">5G 채택에서도 한국은 덴마크, 헝가리와 함께 선도국으로 평가</cite>되고 있으며, 인프라 측면의 강점이 지속되고 있습니다.",
+    "url": "https://www.oecd.org/en/data/insights/statistical-releases/2025/10/fibre-and-5g-drive-oecd-digital-transformation-as-broadband-markets-mature.html"
+  },
+  {
+    "date": "2026-07-20",
+    "source_id": "miac-jp",
+    "org": "일본 총무성",
+    "name": "電気通信サービスに係る内外価格差調査 (내외가격차 조사)",
+    "latest": "令和6年度 (2024年度、2025年5月~6月公表予정)",
+    "report": "총무성이 令和6년도(2024년도) 내외가격차 조사결과를 공표했습니다. 이는 2025년 5월~6월에 발표된 최신판으로, 조사 대상은 동경·뉴욕·런던·파리·뒤셀도르프·서울의 6개 도시이며 휴대폰·FTTH·고정전화 요금을 비교했습니다. 현재 한국 관련 구체적인 순위나 평가는 상세 보고서가 공개되지 않아 확인이 제한적이나, 이전 발표들에서 한국(서울)은 휴대폰과 FTTH 서비스에서 가격 경쟁력이 높은 국가로 평가되어 왔습니다. 향후 상세 보고서 공개 시 한국 통신 서비스의 상대적 가격 위치 변화를 주시할 필요가 있습니다.",
+    "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban03_02000990.html"
+  },
+  {
+    "date": "2026-07-20",
+    "source_id": "oecd-broadband",
+    "org": "OECD",
+    "name": "OECD Broadband Statistics (요금 바구니)",
+    "latest": "2024년판 (2025.10 공표)",
+    "report": "OECD는 2024년 광대역 통계를 2025년 10월 발표했으며, 한국은 광섬유(90.5%)와 5G(55%) 점유에서 OECD 상위권을 유지 중. 고정 광대역 침투율(48/100명)과 기술 고도화 측면에서 국제 경쟁력이 강한 상태이나, 이동통신 요금 경쟁력은 추가 벤치마킹 필요. OECD 가격 바구니 최신 데이터는 2023년 9월 기준(고정 광대역)과 2023년 8월 기준(이동통신 음성/데이터)으로, 이 부분에 대한 2024년 이후 최신 가격 비교 자료 수집이 필요함.",
+    "url": "https://www.oecd.org/en/data/insights/statistical-releases/2025/10/fibre-and-5g-drive-oecd-digital-transformation-as-broadband-markets-mature.html"
+  },
+  {
     "date": "2026-07-13",
     "source_id": "kcc-competitive",
     "org": "방통위",

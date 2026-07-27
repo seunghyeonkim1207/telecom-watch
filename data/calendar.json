@@ -35,11 +35,107 @@
     "imp": "mid"
   },
   {
+    "date": "2026-07-20",
+    "title": "휴가철 특별 소통 상황실 운영 시작",
+    "org": "SK텔레콤",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
     "date": "2026-07-22",
     "title": "단통법 폐지 1주년",
     "org": "과기정통부",
     "country": "국내",
     "imp": "mid"
+  },
+  {
+    "date": "2026-07-22",
+    "title": "비정상 APN 접속 차단 및 데이터 전송속도 제한 시행",
+    "org": "LG유플러스",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-07-29",
+    "title": "KT 개인정보 유출 사건 최종 제재 심의",
+    "org": "개인정보보호위원회",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-01",
+    "title": "민관 협의체 구성 (네트워크 투자 및 통신규제 개선 논의)",
+    "org": "과기정통부, 통신3사",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-01",
+    "title": "고객 혜택 강화 방안 추진 (멤버십/제휴할인 확대)",
+    "org": "SKT, KT, LG U+",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-03",
+    "title": "갤럭시 Z8 시리즈 사전예약 마감",
+    "org": "롯데하이마트",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-06",
+    "title": "방송국 소유 규제 폐지 투표",
+    "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-16",
+    "title": "버라이즌 소매점 매각 및 인원 감원 시행",
+    "org": "버라이즌",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-21",
+    "title": "SKT 2030 고객 로밍 할인 프로모션 종료",
+    "org": "SK텔레콤",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-31",
+    "title": "휴가철 특별 소통 상황실 운영 종료",
+    "org": "SK텔레콤",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-31",
+    "title": "세르비아 470-694 MHz 대역 스펙트럼 경매 신청 마감",
+    "org": "세르비아 RATEL",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-08-31",
+    "title": "전파법 시행령·시행규칙 개정안 입법예고 마감",
+    "org": "과기정통부",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
   },
   {
     "date": "2026-10-01",
@@ -49,10 +145,58 @@
     "imp": "high"
   },
   {
+    "date": "2026-11-00",
+    "title": "AI-RAN얼라이언스 총회",
+    "org": "AI네트워크얼라이언스(AINA)",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2026-12-01",
+    "title": "이동통신 주파수 재할당 세부 정책방안 공개설명회",
+    "org": "과학기술정보통신부",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
     "date": "2026-12-31",
     "title": "EU 디지털네트워크법(DNA) 의견수렴 종료",
     "org": "EU 집행위",
     "country": "해외",
     "imp": "mid"
+  },
+  {
+    "date": "2027-01-01",
+    "title": "상향 C-band 경매",
+    "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2027-07-31",
+    "title": "상향 C-대역 스펙트럼 경매 규칙 채택",
+    "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2028-01-01",
+    "title": "2.7GHz 스펙트럼 경매",
+    "org": "FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
+  },
+  {
+    "date": "2028-01-01",
+    "title": "2.7 GHz 대역 경매",
+    "org": "미국 FCC",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
   }
 ]
