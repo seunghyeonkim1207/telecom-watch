@@ -1,6 +1,218 @@
 {
-  "updated": "2026-07-31T09:00:23.355048+09:00",
+  "updated": "2026-08-01T09:00:06.820962+09:00",
   "articles": [
+    {
+      "id": "66e38c42f4c5",
+      "title": "알뜰폰업계 \"정부 활성화 대책 환영…혁신·투자로 부응하겠다\"",
+      "summary": "한국알뜰통신사업자협회가 과학기술정보통신부의 '알뜰폰 2.0 도약' 종합대책을 환영했다. RS 요금제 도매대가 인하, QoS 무료 제공, 부분·풀MVNO 제도 기반 마련 등을 통해 알뜰폰이 단순 저가 서비스에서 시장의 실질적 경쟁 주체로 도약할 것으로 기대했다.",
+      "summary_long": "한국알뜰통신사업자협회는 31일 정부가 발표한 알뜰폰 활성화 종합대책에 대해 긍정적 입장을 표명했다. 협회는 전파사용료 감면 확대와 이번 대책을 통해 알뜰폰 사업자들이 요금 경쟁력을 강화하고 새로운 성장 동력을 확보하게 됐다고 평가했다. 특히 RS 요금제 도매대가 인하와 데이터 안심옵션 무료 제공으로 소비자의 통신비 절감 효과가 확대될 것으로 내다봤으며, 중저가 자급제 단말 활성화와 eSIM 환경 개선이 시장 진입 장벽을 낮출 것으로 기대했다. 부분MVNO와 풀MVNO 제도 기반 마련으로 단순 재판매를 넘어 자체 설비와 기술을 바탕으로 차별화된 서비스를 제공할 수 있는 환경이 조성됐다고 평가했다. 협회는 정부 지원에 부응해 통신비 부담 완화, 서비스 혁신, 투자 확대에 적극 나서겠다고 약속했다.",
+      "tags": [
+        "규제·정책",
+        "요금제",
+        "통신사동향",
+        "시장경쟁",
+        "단말기·유통"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "알뜰폰",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.etnews.com/20260731000268",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "1fae5016b5c8",
+      "title": "SKT 과장광고 판결-上] 법원, '고객 84% 5G 잘 모른다' SKT 문건 인용해 '과장광고 맞다' 인정",
+      "summary": "법원이 공정거래위원회의 통신3사 5G 과장광고 과징금 처분을 대부분 인정했다. SK텔레콤은 자사 내부 문건에서 '고객의 84%가 5G를 잘 모른다'는 내용이 과장광고의 근거로 활용되며 일부 승소(과징금 감액)하였으나, 5G 광고 자체의 거짓·과장성은 확정되었다.",
+      "summary_long": "SK텔레콤을 포함한 통신3사가 공정거래위원회의 5G 과장광고 과징금 처분을 불복하며 제기한 행정소송에 대해 3년여 만에 법원 판결이 내려졌다. 법원은 통신3사의 5G 광고가 거짓·과장 및 기만적 표현을 포함했다는 공정위의 판단을 전반적으로 인정했다. 특히 SK텔레콤이 제출한 내부 문건에서 '고객의 84%가 5G를 제대로 이해하지 못한다'는 내용이 과장광고의 증거로 활용되었다. SK텔레콤은 법원으로부터 과징금이 부당하게 산정되었다는 일부 승소 판결을 받았으나, 5G 광고의 기만성 자체는 인정되었다는 점에서 통신업계에 상당한 파장이 예상된다. 대법원 공방이 예상되며, 통신사의 광고 표현 규제 강화 추세를 보여주는 판결이다.",
+      "tags": [
+        "규제·정책",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422805",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "2222e9b6d4aa",
+      "title": "NTIA, 6G 연구용 4.4GHz 대역 승인 추진",
+      "summary": "미국 NTIA(국가통신정보청)가 트럼프 행정부의 승인 하에 4.4GHz 대역을 6G 무선통신용으로 활용할 수 있도록 연구를 진행하기로 발표했다. 1.6GHz, 2.7GHz, 7GHz 등 연방 스펙트럼 3개 대역도 함께 검토 중이며, 미국의 6G 기술 경쟁력 확보를 위한 주요 전략이다.",
+      "summary_long": "미국 NTIA(국가통신정보청)가 4.4GHz 대역에 대한 6G 활용 연구를 추진하기 위해 트럼프 행정부의 승인을 받았다. 현재 연구 단계이지만 향후 통신사들이 6G 서비스에 활용할 수 있는 스펙트럼으로 할당될 가능성이 있다. NTIA 행정관 아리엘 로스는 의회와 트럼프 대통령의 요청에 응해 미국이 6G 분야에서 세계 선도국가 지위를 유지할 수 있도록 연방 스펙트럼의 상업적 활용을 재정비하는 데 긴급 대응하겠다고 밝혔다. 1.6GHz, 2.7GHz, 7GHz 등 3개의 추가 연방 스펙트럼 대역도 함께 검토 중이며, 4개 대역이 동시에 진행되는 것은 역사적 첫 사례라고 강조했다. 이는 미국이 6G 기술 표준화와 상용화 경쟁에서 주도권을 확보하기 위한 스펙트럼 전략의 핵심 부분이다.",
+      "tags": [
+        "규제·정책",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.fierce-network.com/wireless/ntia-tees-44-ghz-band-6g-study",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "07a92c3899aa",
+      "title": "AT&T, 공공안전 부문을 위한 5G SA 코어 론칭",
+      "summary": "AT&T가 공공안전 전용 5G 독립형(SA) 네트워크 코어를 미국 최초로 선보였다. 상용망과 물리적으로 분리된 전용 코어로 소방관·경찰 등 긴급대응팀에게 강화된 보안, 신뢰성, 운영 통제력을 제공한다.",
+      "summary_long": "AT&T는 공공안전 부문을 위해 미국 최초이자 유일한 전국 규모 5G 독립형(5G SA) 전용 네트워크 코어를 FirstNet 플랫폼에 구축했다. 이 전용 코어는 공공안전 기관의 직접적인 피드백을 반영해 긴급대응팀의 고유한 운영·기술 요구사항을 충족하도록 개발되었다. 상용망 코어와 물리적으로 분리함으로써 공공안전 트래픽과 상용 트래픽을 구분하고 향상된 보안과 신뢰성을 확보했다. 이 네트워크는 네트워크의 '뇌'와 '신경계' 역할을 수행하며 지리적으로 분산된 다중 코어 구조로 우수한 신뢰성을 갖추고 있다. 향후 신체착용 카메라, 미션크리티컬 통신, 라이브 영상 등 응용분야 최적화를 위한 토대를 마련했으며, 공공안전 분야의 새로운 5G SA 기술 적용 모델을 제시한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.fierce-network.com/newswire/firstnet-launches-5g-sa-core-built-att-public-safety-sector",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "74bc18657a35",
+      "title": "이초스타, 5G 신탁기금으로 자금 조달 불가능 - FCC 판단",
+      "summary": "FCC는 이초스타가 디시 와이어리스 5G 네트워크 구축을 위해 설립된 24억 달러 신탁기금으로 자신이나 계열사에 지급할 수 없다고 명시했다. 이 신탁기금은 네트워크 구축에 참여한 계약업체, 타워회사, 인프라 파트너들에게만 지급되도록 제한된다.",
+      "summary_long": "FCC 무선통신국장 조엘 타우벤블랫이 7월 30일 발표한 통신명령서(Memorandum Opinion and Order)에서 이초스타와 그 계열사가 디시 와이레스의 5G 네트워크 구축을 위해 설립된 24억 달러 신탁기금으로부터 지급받을 자격이 없다고 명확히 규정했다. FCC는 스펙트럼 라이선스 판매 승인 시 신탁기금 설치를 조건으로 부과했으며, 이 기금은 실제 네트워크 구축에 참여한 계약업체, 타워회사, 인프라 파트너들의 비용 상환을 위해서만 사용되어야 한다. 타워회사와 계약업체들의 단체들은 디시가 신탁기금을 자신의 자금 조달처로 전환하려 했다고 우려했었다. 이 결정은 이초스타의 파산 절차 중 자산 관리에 대한 FCC의 규제 입장을 명확히 했으며, 통신사업자의 신탁기금 남용 방지를 위한 규제 기준을 설정하는 중요한 선례가 될 것으로 보인다.",
+      "tags": [
+        "규제·정책",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-01",
+      "source_url": "https://www.fierce-network.com/wireless/echostar-cant-pay-itself-5g-trust-fund-fcc-says",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "c2e71d8f444d",
+      "title": "미국, 6G 표준화 및 보안 강화를 위해 20개 이상 동맹국과 협력 추진",
+      "summary": "미국이 20개 이상의 동맹국과 함께 6G 리더십, 보안, 표준화를 중심으로 한 '6G 리더십 및 보안 행동 강령'을 출범했다. AT&T를 포함한 업계는 6G가 소프트웨어, 오픈 네트워크, AI 기반의 지속적 혁신으로 5G의 미흡했던 부분을 개선해야 함을 강조했다.",
+      "summary_long": "미국 국무부가 주도한 6G 관련 행사에서 미국과 20개 이상의 국가가 '6G 리더샵 및 보안 행동 강령'이라는 공동 이니셔티브를 출범했다. 트럼프 대통령의 2025년 6G 경쟁 우위 확보 대통령 메모랜덤과 연계된 이번 협력은 기술 표준화와 보안 기초 마련에 집중하고 있다. AT&T는 6G가 10년 주기의 세대별 발전에서 벗어나 소프트웨어와 AI 기반의 지속적 혁신으로 진화해야 한다고 주장했다. 업계 전문가들은 5G 도입 초기의 NSA에서 SA로의 전환 같은 실수를 6G에서는 반복하지 않아야 함을 강조했다. 이번 움직임은 국내 통신업계에서도 6G 국제 표준화 전략과 정부의 정책 방향 수립 시 벤치마킹할 필요가 있는 사례이다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.fierce-network.com/wireless/us-calls-allies-rally-around-6g",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "01b6bb203b3c",
+      "title": "AI 인프라 구축 경쟁, 수익화는 뒤처질 우려",
+      "summary": "Verizon, AT&T, SK Telecom 등이 AI 인프라에 대규모 투자를 단행하고 있으나, Omdia는 발표된 수치가 최대치이며 실제 수익 성장이 용량 증설 속도를 따라가지 못할 것으로 경고하고 있다. 통신사들의 AI 인프라 투자 계획과 실제 수익화 간 갭에 대한 업계 우려가 고조되는 상황이다.",
+      "summary_long": "글로벌 주요 통신사들이 AI 시대에 대비한 네트워크 인프라 고도화에 적극 나서고 있다. Verizon, AT&T, SK Telecom 등은 AI 지원 역량을 강화하기 위해 상당한 규모의 자본을 투입하고 있으며, 이는 미래 경쟁력 확보를 위한 전략적 투자로 평가받고 있다. 그러나 기술 자문 그룹 Omdia는 통신사들이 발표한 투자 규모와 용량 확충 계획이 실현 가능한 최대 수준일 수 있다고 지적했다. 더욱 중요한 지적은 AI 인프라 확충 속도에 비해 이로 인한 실제 수익 증대가 미미할 가능성이 높다는 것이다. 이는 통신업계가 대규모 자본 투자 대비 수익성 악화 위험에 노출되어 있음을 시사하며, 통신사들의 AI 사업 수익화 전략 재점검이 필요한 상황을 반영한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T, Verizon",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.rcrwireless.com/20260731/network-infrastructure/ai-backbone-billions-telcos",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "742a1c6c5c11",
+      "title": "목요일 통신사 뉴스(통신일기) | 보다폰 재편, AT&T 스펙트럼 확보",
+      "summary": "보다폰이 영국에서 VodafoneThree 인수를 위해 43억 파운드를 투자하고, AT&T는 이콜로스타 스펙트럼 확보를 위해 230억 달러를 지출한다. 양사의 대규모 M&A와 스펙트럼 투자는 글로벌 통신시장의 구조 재편 추세를 보여준다.",
+      "summary_long": "영국 통신시장에서 보다폰이 VodafoneThree를 완전 인수하기 위해 43억 파운드 규모의 자본을 투입하는 대규모 인수합병을 진행 중이다. 동시에 미국 시장에서 AT&T는 이콜로스타로부터 무선 스펙트럼을 확보하기 위해 230억 달러 규모의 거래를 체결했다. 이러한 움직임들은 글로벌 통신사들이 경쟁 강화 속에서 네트워크 역량 강화와 사업 통합을 적극 추진하고 있음을 시사한다. 스펙트럼 확보와 사업 통합은 향후 음성·데이터 서비스 품질 경쟁과 사용자 요금 정책에 영향을 미칠 수 있다. 국내 통신사들도 글로벌 추세를 반영하여 네트워크 투자 우선순위와 중장기 사업 전략을 검토할 필요가 있다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 3,
+      "date": "2026-08-01",
+      "source_url": "https://www.rcrwireless.com/20260731/carriers/telco-diary-vodafone-resets-att-reloads",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "0b62e854f6a0",
+      "title": "각 통신사가 2분기 목표는 달성했지만 비용 증가를 숨기고 있다",
+      "summary": "미국 무선통신 산업이 2025년 말 고객 지표를 폐지한 후 5개 통신사가 비호환적인 4가지 단위로 성장 구성을 은폐하고 있다. AT&T와 베라이즌이 AI 역풍 속에서 수천 명의 직원을 감원하고 있으며, 통신업계가 다른 산업보다 뒤처져 인력 감축을 AI와 연결하고 있다.",
+      "summary_long": "미국 무선통신산업은 2025년 말 기존 고객 측정 지표 체계를 폐지하고 새로운 기준을 도입했다. 이후 5개 주요 통신사가 실적 발표에서 각각 다른 4가지 호환되지 않는 단위로 고객 성장의 내용을 표현하고 있어 투명성 문제가 제기되고 있다. 특히 AT&T와 베라이즌은 인공지능 기술 도입 비판 여론이 고조되는 가운데 수천 명의 일자리를 감원하기로 발표했다. 통신업계는 일반적으로 다른 산업 대비 기술 트렌드에 뒤처진 경향을 보이며, 인공지능의 실제 역량에 대한 우려가 커지는 상황에서도 감원 결정을 AI와 연결시키고 있는 점이 특징이다. 이는 업계의 투명성 부족과 기술 활용의 일관성 문제를 동시에 드러내는 사례로 평가된다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁",
+        "서비스정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T, Verizon",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.lightreading.com/wireless/each-carrier-nailed-its-q2-plan-but-buried-the-number-that-shows-the-cost",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "90f257f51802",
+      "title": "FCC: Dish의 240억 달러 신탁기금은 5G 네트워크 구축 외부업체 전용",
+      "summary": "FCC가 EchoStar의 스펙트럼 매각(AT&T, SpaceX 대상)과 연계된 240억 달러 규모의 신탁기금이 Dish 5G 네트워크 구축에 참여한 외부 기업과 파트너에게만 제한된다고 확인했다. 이는 EchoStar 자회사 대출 상환에는 사용될 수 없다.",
+      "summary_long": "미국 통신규제 당국인 FCC는 EchoStar가 보유한 스펙트럼을 AT&T와 SpaceX에 매각하는 과정에서 설정된 240억 달러 규모의 신탁기금의 사용 범위를 명확히 했다. 해당 신탁기금은 Dish의 5G 네트워크 구축에 직접 참여한 외부 업체와 협력사들에게만 배분되며, EchoStar 자회사의 기존 대출금 상환 용도로는 사용될 수 없다는 점을 규정했다. 이 결정은 Dish의 5G 네트워크 투자 의무를 강화하고 스펙트럼 거래 조건을 엄격히 하려는 FCC의 규제 기조를 반영한 것이다. 한편 기사에서는 AT&T와 Verizon이 AI 백래시 속에서 대규모 인원감축을 단행 중이라는 별도 동향도 보도하고 있으며, 이는 통신업계의 AI 도입 관련 고용 영향을 시사한다.",
+      "tags": [
+        "규제·정책",
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.lightreading.com/regulatory-politics/fcc-dish-2-4b-trust-fund-only-for-outsiders-that-built-its-5g-network",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "994c4dceaadd",
+      "title": "Telus, 신임 CEO 체제서 배당금 55% 삭감; 주가 2011년 수준까지 하락",
+      "summary": "캐나다 통신사 Telus가 신임 CEO Victor Dodig 주도 하에 배당금을 55% 삭감하고 헬스 사업부 등 자산 매각을 추진하면서 재무 구조 개선에 나섰다. 주가는 2011년 수준까지 급락한 상태다.",
+      "summary_long": "캐나다의 주요 통신사인 Telus Corp.가 신임 CEO Victor Dodig 체제에서 공격적인 구조 조정을 시작했다. 회사는 배당금을 55%나 대폭 삭감하면서 재무 건전성 개선에 우선순위를 두기로 결정했으며, 이를 위해 헬스 부문을 포함한 비핵심 자산 매각을 추진 중이다. 이러한 급격한 정책 변화는 시장에 부정적으로 반영되어 Telus의 주가가 2011년 이후 최저 수준까지 하락했다. 배당 정책의 급변은 기존 배당주에 의존하던 투자자들에게 충격을 준 반면, 재무 구조 정상화 필요성은 시장에서도 인정되는 상황이다. 이는 통신업체들이 경쟁 심화와 수익성 악화 속에서 감당해야 하는 전략적 딜레마를 보여주는 사례다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-01",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-07-31/telus-more-than-halves-dividend-after-pressure-to-cut-debt",
+      "source_name": "Bloomberg Technology"
+    },
+    {
+      "id": "54b3ab6f83a4",
+      "title": "LG AI연구원·SKT, 독파모 2단계 '격돌'...AI 신모델 공개·우군 확대",
+      "summary": "LG AI연구원과 SK텔레콤이 정부의 독자 AI 파운데이션 모델(독파모) 2단계 심사를 앞두고 각각 신규 모델을 공개했다. LG AI연구원은 'K-엑사원 2.0'을 발표하며 상용 라이선스를 아파치 2.0으로 전환해 국내외 시장 공략에 나섰다.",
+      "summary_long": "통신업계 주요 플레이어인 LG AI연구원과 SK텔레콤이 국가 주도 AI 파운데이션 모델 개발 사업의 2단계 심사를 앞두고 경쟁을 심화시키고 있다. 양사는 31일 각각 차세대 AI 모델을 오픈소스 커뮤니티인 허깅페이스에 공개하며 기술 우위를 확보하려 노력 중이다. LG AI연구원은 'K-엑사원 2.0'을 발표하고 라이선스를 아파치 2.0으로 전환해 누구나 상업적으로 활용 가능하게 개방했으며, 국내 시장뿐 아니라 해외 진출을 동시에 추진하고 있다. 양사는 자사의 생태계 확산을 위해 그룹사 및 스타트업 네트워크를 적극 활용하고 있어, 독파모 사업이 단순한 기술 개발을 넘어 AI 산업 생태계 주도권 경쟁으로 진화하고 있음을 보여준다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-08-01",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153890",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "88559635f11b",
       "title": "알뜰폰 가격경쟁력 높인다…정부, 도매대가·전파사용료 인하 추진",
@@ -4926,190 +5138,6 @@
       "date": "2026-06-30",
       "source_url": "https://www.techm.kr/news/articleView.html?idxno=152999",
       "source_name": "테크M - 전체기사"
-    },
-    {
-      "id": "kt05hack",
-      "title": "KT, 소액결제 해킹 피해자에 위약금 면제 및 100GB·15만원 상당 보상",
-      "summary": "KT는 무단 소액결제 침해 사고 피해 고객을 대상으로 위약금 면제와 함께 5개월간 100GB 무료 데이터, 15만원 상당 통신비·단말 교체 할인, 피싱·사기 피해 보험 2년 무료 제공 등 보상 패키지를 발표했다. 피해 고객 이탈을 방어하기 위한 종합 리텐션 대책으로, 보안 사고 시 약관상 위약금 면제 범위와 보상 설계 기준을 선례로 참고할 만하다. 이용약관 개정 없이 개별 보상 결정 방식을 취한 점도 규제 대응 측면에서 주목된다.",
-      "tags": [
-        "이용약관",
-        "리텐션"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "KT",
-      "importance": 4,
-      "date": "2026-06-10",
-      "source_url": "https://m.boannews.com/html/detail.html?idx=139871",
-      "source_name": "보안뉴스"
-    },
-    {
-      "id": "lgu01unified",
-      "title": "LG유플러스, 5G·LTE 통합요금제 6월 출시 — 53종→18종 대폭 단순화",
-      "summary": "LG유플러스가 통신3사 중 최초로 5G·LTE 구분 없는 통합요금제 18종을 6월 1일 출시했다. 기존 53종을 데이터 용량 기반 단순 구조로 개편했으며, 전 요금제에 데이터 소진 후 최대 400kbps 속도 제공(QoS)을 기본 적용했다. 요금제 개편에 따라 결합·번호이동 조건 재점검이 필요하며, SKT·KT 통합요금제 출시(7월 예정)에 앞서 경쟁 우위 선점 전략으로 분석된다.",
-      "tags": [
-        "요금제"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "LG U+",
-      "importance": 5,
-      "date": "2026-06-01",
-      "source_url": "https://v.daum.net/v/20260529095401445",
-      "source_name": "다음뉴스"
-    },
-    {
-      "id": "jp01disaster",
-      "title": "NTT·KDDI·SoftBank·Rakuten Mobile, 재해 대비 이동형 전력 협력 협정 체결",
-      "summary": "일본 4대 통신사가 2026년 6월 1일 대규모 재해 시 대피소에 이동식 배터리 전원을 공동 공급하는 협력 협정을 발표했다. 평상시 경쟁사 간 인프라 협력 모델을 통해 사회 안전망 역할을 강화하는 사례로, 국내 재해·장애 상황 대응 통신망 복원력(Resilience) 가이드라인 수립에 참고가 된다.",
-      "tags": [
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "jp",
-      "carrier": "NTT Docomo",
-      "importance": 2,
-      "date": "2026-06-01",
-      "source_url": "https://www.thefastmode.com/technology-solutions/48565-ntt-kddi-softbank-rakuten-mobile-launch-disaster-power-supply-partnership",
-      "source_name": "The Fast Mode"
-    },
-    {
-      "id": "skt02unified",
-      "title": "SKT, 5G·LTE 통합요금제 '베스트·라이트' 7월 2일 출시 — 기존 67종 신규가입 중단",
-      "summary": "SK텔레콤이 7월 2일 5G·LTE 통합요금제 '베스트·라이트' 16종을 출시한다고 발표했다. 무제한 '베스트' 5종(월 8만9000원~12만9000원)과 6~250GB '라이트' 11종(월 3만9000원~7만9000원)으로 구성되며, 기존 요금제 67종 신규가입은 중단된다. 7월 1일부터 전 LTE 요금제에도 '안심 데이터(400kbps 무제한)' 무료 적용되며, 리텐션 전략으로서 기존 가입자 유지 방안 검토가 필요하다.",
-      "tags": [
-        "요금제"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "SKT",
-      "importance": 5,
-      "date": "2026-05-29",
-      "source_url": "https://news.sktelecom.com/225487",
-      "source_name": "SK텔레콤 뉴스룸"
-    },
-    {
-      "id": "kt03unified",
-      "title": "KT, 5G·LTE 통합요금제 7월 1일 출시 — 105종 접고 '초이스·베이직' 18종 개편",
-      "summary": "KT가 7월 1일 기존 5G·LTE 요금제 105종을 폐지하고 완전 무제한 '초이스'와 데이터 구간별 '베이직' 총 18종으로 재편한다. 단말 종류·네트워크 세대 구분 없이 요금제 선택이 가능해지며, 기존 가입 고객은 현 요금제를 그대로 유지할 수 있다. 3사 통합요금제 경쟁 구도 속에서 기존 고객 이탈 방지를 위한 리텐션 혜택 설계가 시급하다.",
-      "tags": [
-        "요금제"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "KT",
-      "importance": 5,
-      "date": "2026-05-29",
-      "source_url": "https://inside.kt.com/html/notice/notice_detail.html?bno=13163",
-      "source_name": "KT 공식"
-    },
-    {
-      "id": "isp01retention",
-      "title": "이통3사, 장기고객 대상 체험형 프로모션 확대 — SKT 숲캉스·LGU+ 레고랜드·KT 야구장",
-      "summary": "SK텔레콤, KT, LG유플러스가 요금제 개편 시기에 맞춰 장기 가입 고객 대상 오프라인 체험 이벤트를 동시 강화했다. 단순 요금 할인을 넘어 감성적 경험 제공으로 리텐션 프로그램 차별화를 꾀하는 전략으로, 통합요금제 전환에 따른 고객 이탈 방어를 위한 선제적 조치로 풀이된다. 리텐션 프로그램 설계 시 단기 혜택 외 장기 충성 경험 요소의 중요성이 부각되고 있는 시점이다.",
-      "tags": [
-        "리텐션"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "SKT",
-      "importance": 3,
-      "date": "2026-05-21",
-      "source_url": "https://www.g-enews.com/article/ICT/2026/05/2026052111390274823d7a510102_1",
-      "source_name": "글로벌이코노믹"
-    },
-    {
-      "id": "docomo01sat",
-      "title": "NTT Docomo, 2026 회계연도 상반기 내 위성-스마트폰 직접 연결 서비스 출시",
-      "summary": "NTT Docomo가 별도 위성 단말 없이 일반 스마트폰으로 위성 신호를 직접 수신하는 서비스를 2026 회계연도 상반기(2026년 4~9월) 내 출시한다. KDDI가 2025년 4월 'au Starlink Direct' 서비스를 먼저 선보인 데 이어 Docomo·SoftBank·Rakuten도 위성 직접 서비스 진입을 예고하며 음영 지역 커버리지 경쟁이 본격화됐다. 국내 통신사의 위성 연동 커버리지 전략 및 요금 구조 설계에 참조할 선행 사례다.",
-      "tags": [
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "jp",
-      "carrier": "NTT Docomo",
-      "importance": 3,
-      "date": "2026-05-20",
-      "source_url": "https://www.telecomreviewasia.com/news/network-news/28362-ntt-docomo-to-launch-direct-satellite-to-smartphone-service-in-early-fy2026/",
-      "source_name": "Telecom Review Asia"
-    },
-    {
-      "id": "galaxy26sub",
-      "title": "갤럭시S26 '공짜폰' 등장 — 단통법 폐지 후 이통3사 보조금 경쟁 재점화",
-      "summary": "단말기유통법 폐지 이후 LGU+(최대 70만원), KT(60만원), SKT(58만원) 순으로 갤럭시S26 공통지원금을 올리며 일부 유통채널에서 실질 0원 단말이 등장했다. 단통법 폐지 이후 최대 규모의 지원금 경쟁으로 번호이동 유인이 높아지고 있다. 공짜폰에는 고가 요금제 의무 약정·위약금 조건이 걸려 있어, 리텐션 관점에서 약정 구조와 해지 방어 전략 재점검이 필요하다.",
-      "tags": [
-        "요금제",
-        "리텐션"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "SKT",
-      "importance": 4,
-      "date": "2026-05-15",
-      "source_url": "https://www.hankyung.com/article/2026051581827",
-      "source_name": "한국경제"
-    },
-    {
-      "id": "attmvz01jv",
-      "title": "AT&T·T-Mobile·Verizon, 위성 직접통신 합작법인 설립 추진 — 음영 지역 해소 목표",
-      "summary": "미국 통신3사가 2026년 5월 14일 위성 직접 연결(Direct-to-Device) 기술을 활용해 음영 지역 해소를 목표로 하는 합작법인(JV) 설립에 합의했다. 스타링크·AST SpaceMobile과의 기존 개별 위성 협약은 유지하면서 공동 인프라를 구축하는 방식으로, 경쟁사 간 협력 모델이 국내 농어촌 커버리지 확대 전략에도 시사점을 준다. 규제 당국 최종 승인 절차가 남아 있으며, 국내 통신사 위성 서비스 동향과 함께 모니터링이 필요하다.",
-      "tags": [
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "AT&T",
-      "importance": 4,
-      "date": "2026-05-14",
-      "source_url": "https://about.att.com/story/2026/new-joint-venture.html",
-      "source_name": "AT&T"
-    },
-    {
-      "id": "skt04security",
-      "title": "SKT, 유심 해킹 사태 이후 CISO 대표이사 직속 격상 — 보안 조직 전면 혁신",
-      "summary": "SKT는 지난해 유심 해킹 사태 이후 정보보호최고책임자(CISO)를 대표이사 직속 조직으로 격상하고 IT·네트워크 보안 기능을 통합했다. 사고 직후 약 7일간 경쟁사로 26만 명 이상 번호이동이 발생한 것을 계기로 전면적인 보안 체계 재정비가 단행됐다. 유심 교체 무료 제공 등 사후 대응이 리텐션 이탈 방어에 일부 효과를 보였으나, 보안 사고가 리텐션에 미치는 리스크 관리 체계 수립이 업계 과제로 부상했다.",
-      "tags": [
-        "이용약관",
-        "리텐션"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "SKT",
-      "importance": 4,
-      "date": "2026-04-20",
-      "source_url": "https://www.ajunews.com/view/20260420143257750",
-      "source_name": "아주경제"
-    },
-    {
-      "id": "eu02mwcedge",
-      "title": "유럽 5개 통신사, MWC 2026서 팬유럽 엣지 컨티뉴엄 첫 실증 — 통신사 간 엣지 연동 실현",
-      "summary": "Deutsche Telekom·Orange·Telefónica·TIM·Vodafone 등 유럽 5개 통신사가 MWC 2026에서 국경 없는 멀티 오퍼레이터 엣지 컴퓨팅 플랫폼을 최초 시연했다. 단일 사업자 범위를 넘는 저지연 엣지 서비스 제공이 가능해져 B2B 기업 고객 대상 결합 서비스 영역이 크게 확대될 전망이다. 국내 통신사 엣지 클라우드 전략 및 기업 결합상품 설계 시 유럽 협력 모델을 벤치마크할 수 있다.",
-      "tags": [
-        "결합상품",
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "eu",
-      "carrier": "Deutsche Telekom",
-      "importance": 2,
-      "date": "2026-03-03",
-      "source_url": "https://www.vodafone.com/news/newsroom/technology/pan-european-federated-edge-continuum",
-      "source_name": "Vodafone"
-    },
-    {
-      "id": "eu01dna",
-      "title": "EU, 디지털네트워크법(DNA) 제안 — 스펙트럼 통합·구리망 전환 의무화 포함",
-      "summary": "유럽위원회가 2026년 1월 EU 통신 규제 체계를 전면 재편하는 디지털네트워크법(Digital Networks Act) 초안을 발표했다. 주파수(스펙트럼) 관리 통합, 구리망 철거 공조 의무화, 5G·광케이블 투자 인센티브 확대가 핵심이며, EU 전역 단일 통신 시장 조성을 목표로 한다. 국내 주파수 재할당 및 구리망 회선 전환 정책 방향 수립 시 EU 규제 트렌드를 참조할 필요가 있다.",
-      "tags": [
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "eu",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-01-21",
-      "source_url": "https://techblog.comsoc.org/2026/01/14/european-commissions-digital-networks-act-to-restructure-european-telecom-spectrum-regulation/",
-      "source_name": "IEEE ComSoc"
     }
   ]
 }
