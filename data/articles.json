@@ -1,6 +1,74 @@
 {
-  "updated": "2026-08-02T09:01:07.460006+09:00",
+  "updated": "2026-08-03T08:56:16.185242+09:00",
   "articles": [
+    {
+      "id": "bb571b58c2c0",
+      "title": "KT, 공식 온라인몰 'KT다이렉트샵'으로 리브랜딩",
+      "summary": "KT가 기존 'KT샵'을 'KT다이렉트샵'으로 리브랜딩하며 본사 직영 온라인몰임을 강조했다. 갤럭시 Z 시리즈 사전예약 프로모션으로 번호이동 고객에게 무선 충전기 등을 제공하며 온라인 채널 강화 전략을 추진 중이다.",
+      "summary_long": "KT는 공식 온라인몰의 명칭을 'KT샵'에서 'KT다이렉트샵'으로 변경하고 리뉴얼을 단행했다. 이번 리브랜딩은 KT 본사가 직접 운영하는 공식 직영 온라인몰이라는 정체성을 명확히 하기 위한 전략으로, 고객이 온라인 전용 혜택을 쉽게 확인하도록 사용 환경도 개선했다. 첫 프로모션으로는 갤럭시 Z 시리즈 사전예약 전용 이벤트를 진행하는데, 번호이동으로 예약 및 개통하는 선착순 1000명에게 무선 충전기를 제공하고 추첨을 통해 순금 코인 등의 경품도 제공한다. KT 커스터머사업본부장은 고객이 안심하고 통신상품을 비교·구매할 수 있는 플랫폼으로 포지셔닝하겠다고 밝혔다. 이는 온라인 직판 채널을 통한 고객 접근성 강화 및 판매 효율화 전략의 일환으로 평가된다.",
+      "tags": [
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 3,
+      "date": "2026-08-03",
+      "source_url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=689092",
+      "source_name": "디지털투데이 (DigitalToday) - 전체기사"
+    },
+    {
+      "id": "dc917fd91d95",
+      "title": "딥엑스, KT·세솔과 차세대 AI 엣지 박스 공동 개발",
+      "summary": "딥엑스가 KT, 세솔과 신경망프로세서(NPU) 기반 온디바이스 AIoT 사업 협력을 체결하고 차세대 AI 엣지 박스 공동 개발에 나선다. EV 충전소, 이동식 CCTV, 교통 인프라 등 다양한 산업 현장에서 실시간 AI 영상분석 서비스를 확대할 계획이다.",
+      "summary_long": "딥엑스와 KT, 세솔이 저전력·저발열 NPU를 탑재한 차세대 AI 엣지 박스 공동 개발을 추진한다. AI 엣지 박스는 현장에서 데이터를 실시간으로 분석·처리할 수 있는 소형 AI컴퓨팅 장치로, 온디바이스 AI 기술을 활용해 중앙 서버 없이 로컬에서 즉각적인 데이터 처리가 가능하다. 이번 협력을 통해 3사는 실시간 AI 영상분석이 필요한 EV 충전소, 이동식 CCTV, 교통 인프라 등 다양한 산업 현장으로 온디바이스AI 서비스를 확대할 예정이다. KT는 자사의 통신 인프라와 고객 네트워크를 활용하여 실제 산업 현장 적용을 가속화할 수 있을 것으로 기대된다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 3,
+      "date": "2026-08-03",
+      "source_url": "https://www.itbiznews.com/news/articleView.html?idxno=220650",
+      "source_name": "IT비즈뉴스 - 전체기사"
+    },
+    {
+      "id": "ad8f1b47822b",
+      "title": "브로드밴드 액세스 및 외부망 장비 수익 증가 예상 – Dell'Oro",
+      "summary": "Dell'Oro Group에 따르면 장비 가격 상승으로 브로드밴드 액세스 수익이 증가할 것으로 예상된다. DOCSIS 4.0 도입을 위해 네트워크 구축이 확대되면서 외부망 장비 수익은 크게 증가할 전망이다.",
+      "summary_long": "통신장비 시장조사 기관인 Dell'Oro Group의 최신 분석에 따르면, 브로드밴드 액세스 부문의 수익은 장비 단가 상승에 따라 점진적으로 증가할 것으로 예상되고 있다. 특히 차세대 케이블 통신 표준인 DOCSIS 4.0 도입을 앞두고 통신사들이 외부망(outside plant) 인프라 구축을 적극 추진하면서, 이 분야의 수익 성장이 더욱 가속화될 것으로 전망된다. 이는 통신사들의 네트워크 현대화 투자 확대 추세를 반영하는 것으로, 관련 장비 제조업체들의 사업 기회 확대를 의미한다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T, Verizon",
+      "importance": 3,
+      "date": "2026-08-03",
+      "source_url": "https://www.lightreading.com/broadband/broadband-access-cable-outside-plant-revenues-set-to-rise-dell-oro",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "4b63c86d7157",
+      "title": "해킹 여진 여전...SKT·KT·LG유플러스, 2분기 실적 전망은?",
+      "summary": "SKT·KT·LG U+가 2026년 2분기 실적을 발표한다. SKT는 작년 4월 USIM 정보 유출 사건을 극복했으나, KT는 작년 9월 펨토셀 불법 접속 사건의 여진이 지속되고 있다. LG U+는 해킹 의혹에도 증거 부족으로 소비자 관심에서 벗어난 상황이다.",
+      "summary_long": "SK텔레콤, KT, LG유플러스 3사가 2026년 2분기 실적 발표와 컨퍼런스콜을 앞두고 있다. 보안 사건의 영향도는 각사별로 상이한데, SK텔레콤은 지난해 4월 발생한 USIM 정보 유출 사고의 터널을 벗어나 회복세를 보이고 있다. 반면 KT는 지난해 9월 드러난 이동통신망을 통한 불법 소형 기지국(펨토셀) 접속 사건의 부정적 영향이 계속되고 있는 상황이다. LG유플러스는 해킹 정황이 있었음에도 구체적인 증거 부족으로 법적 처벌은 받지 않아, 결과적으로 소비자 관심에서는 멀어진 상태다. 이러한 보안 사건들은 향후 각 통신사의 실적과 소비자 신뢰도에 영향을 미칠 것으로 예상된다.",
+      "tags": [
+        "통신사동향",
+        "규제·정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT, KT, LG U+",
+      "importance": 3,
+      "date": "2026-08-03",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153917",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "209fb357f7aa",
       "title": "알뜰폰, '단순 재판매' 수준 벗어나나···알뜰폰 시장 체질 개선 나선 정부",
@@ -5072,72 +5140,6 @@
       "date": "2026-06-30",
       "source_url": "https://www.theverge.com/ai-artificial-intelligence/959033/health-location-data-protection-act-ai-warren-scanlon",
       "source_name": "The Verge"
-    },
-    {
-      "id": "5bb5685ce2d7",
-      "title": "싱텔 CEO 급여 17% 삭감, 네트워크 장애에 따른 책임",
-      "summary": "싱가포르통신(Singtel)이 네트워크 장애로 인한 책임을 지고 CEO 유엔 쿠안 문의 연봉을 17% 인상 대비 5.3백만 달러로 삭감했다. 호주와 싱가포르에서 발생한 긴급서비스 중단 및 네트워크 장애에 대해 최고경영진이 책임을 다하는 사례로, 네트워크 안정성 관리의 중요성을 보여준다.",
-      "tags": [
-        "통신사동향",
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.bloomberg.com/news/articles/2026-06-30/singtel-ceo-s-pay-cut-17-to-5-3-million-after-network-outages",
-      "source_name": "Bloomberg Technology"
-    },
-    {
-      "id": "e95a6a539b03",
-      "title": "아마존, 호주 소비자청으로부터 Prime Video 광고 정책 관련 소송 제기당해",
-      "summary": "아마존이 Prime Video 스트리밍 서비스에 광고를 도입한 후 기존 구독자에게 광고 제거를 위해 추가 요금을 부과한 것에 대해 호주 소비자청이 소송을 제기했다. 광고 도입과 이용약관 변경에 따른 소비자 피해 문제로, 국내 통신·방송 서비스의 요금제 변경 및 이용약관 정책 수립 시 규제 리스크 관리의 벤치마크 사례다.",
-      "tags": [
-        "요금제",
-        "이용약관",
-        "규제·정책",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.bloomberg.com/news/articles/2026-06-29/amazon-sued-by-australian-consumer-watchdog-over-prime-video-ads",
-      "source_name": "Bloomberg Technology"
-    },
-    {
-      "id": "75096d092dd0",
-      "title": "콤캐스트, NBCUniversal 및 Sky 분사 추진 - 10년 전략 방향 전환",
-      "summary": "콤캐스트가 10년 이상 지속해온 미디어·케이블 통합 전략을 포기하고 NBCUniversal과 Sky를 분사하기로 결정했다. 케이블·미디어 통합사업이 주주가치 창출에 실패한 것으로 판단하고 사업 구조 재편을 추진 중으로, 대형 통신미디어 기업의 전략 재평가 추세를 시사한다.",
-      "tags": [
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.bloomberg.com/news/articles/2026-06-29/comcast-plans-to-spin-off-nbcuniversal-and-sky-into-media-unit",
-      "source_name": "Bloomberg Technology"
-    },
-    {
-      "id": "0a8949413169",
-      "title": "기술, 미디어 및 통신 라운드업: 시장 동향",
-      "summary": "퀘벡, 베라이즌, 텍사스인스트루먼츠 등 주요 통신 및 기술 기업들의 최신 시장 동향을 다룬 종합 분석 기사. 통신사 경영 전략과 시장 경쟁 동향을 파악할 수 있는 글로벌 벤치마킹 자료.",
-      "tags": [
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.wsj.com/articles/tech-media-telecom-roundup-market-talk-d3dd8fb0?mod=rss_Technology",
-      "source_name": "WSJ.com: WSJD"
     }
   ]
 }
