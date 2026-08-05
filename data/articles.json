@@ -1,6 +1,127 @@
 {
-  "updated": "2026-08-05T09:00:59.859686+09:00",
+  "updated": "2026-08-06T08:57:55.408853+09:00",
   "articles": [
+    {
+      "id": "9295184947f8",
+      "title": "머스크 \"스타링크가 전세계 인터넷 과반 제공\"…통신까지 삼킨다",
+      "summary": "스페이스X의 머스크 CEO는 저궤도 위성망 스타링크가 10년 내 전 세계 인터넷 연결의 과반을 차지할 것으로 선언했다. V3 위성 발사량을 10배 늘려 대역폭을 100배 수준으로 확대하고, D2C 모바일 서비스로 기존 이동통신사의 가입자를 흡수하겠다는 전략이다.",
+      "summary_long": "스페이스X는 저궤도 위성망 스타링크를 통해 향후 10년 내 전 세계 인터넷 접속의 과반을 담당할 계획을 공표했다. 차세대 V3 위성은 이전 세대 대비 성능이 10배 높으며, 발사량을 10배 늘릴 예정으로 이를 통해 전송 대역폭은 100배 수준으로 증가할 것으로 예상된다. 모바일 시장 공략 측면에서는 65㎒ 대역폭을 확보하고 모바일 V2 위성을 내년에 발사하여 내년 말부터 D2C 방식으로 스마트폰에 직접 통신 서비스를 제공할 계획이다. 스타링크 안테나에 펨토셀을 결합하는 지상망 구축으로 저대역 주파수 확보 비용 없이 네트워크를 구축하고, AT&T·버라이즌·T모바일 등 미국 3대 통신사의 6000억달러 규모 시장을 공략하겠다는 전략이다. 이 발표 직후 미국 통신 3사 주가는 일제히 2~4% 하락했으며, 스타링크는 올 2분기 순증 가입자 170만명으로 전 세계 가입자가 1200만명에 도달했다.",
+      "tags": [
+        "시장경쟁",
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-06",
+      "source_url": "https://www.etnews.com/20260805000176",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "fdffdff0b2c9",
+      "title": "SKT, AI DC 구축은 수요·외부자금 확보 후 진행···올해 SK하이퍼 3300억 투자",
+      "summary": "SK텔레콤이 2분기 영업이익 67% 성장을 기록했으며, AI 데이터센터 사업 매출이 1년 새 92.5% 증가했다. SKT는 올해 SK하이퍼에 3300억원을 투자하면서 AI DC 사업을 핵심 성장 동력으로 추진 중이다.",
+      "summary_long": "SK텔레콤은 지난해 USIM 유출 사고로 인한 일회성 비용과 가입자 이탈에서 회복하며 올해 2분기 전년 대비 영업이익 67% 성장을 달성했다. 회사의 주요 성장 동력인 AI 데이터센터 사업 매출이 1년간 92.5% 증가하는 등 빠른 성장 추세를 보이고 있다. SKT는 올해 SK하이퍼에 3300억원을 투자할 계획이며, AI DC 추가 구축은 시장 수요와 외부자금 확보 상황을 고려하여 단계적으로 진행할 예정이다. 이는 통신사들이 전통 통신 사업에서 벗어나 AI·데이터센터 등 고부가가치 사업으로 포트폴리오를 전환하는 업계 추세를 반영하고 있다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-08-06",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422898",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "1927e865fece",
+      "title": "DB증권 \"SKT, AIDC 사업 개발 주도\"…목표가 상향",
+      "summary": "DB증권이 SK텔레콤의 AI데이터센터(AIDC) 사업 주도 역할을 평가하며 목표주가를 11만원에서 12만5천원으로 상향했다. SKT는 7천500억원을 출자해 SK하이퍼를 설립하고 내년부터 울산 AIDC를 개설하며 2035년까지 15GW급 센터 구축을 계획 중이다.",
+      "summary_long": "DB증권 신은정 연구원은 SK텔레콤이 향후 AI데이터센터 사업의 핵심 주도자가 될 것으로 판단하고 투자의견을 제시했다. SKT는 AI데이터센터 확장을 위해 7천500억원 규모의 자본금으로 SK하이퍼라는 새로운 회사를 설립하며, 부지와 수전 확보에 나선다. 고객 유치와 데이터센터 사업 개발의 주도권을 확보하되, 필요한 추가 자금은 고객 확보 이후 재무적투자자 유치 등을 통해 조달할 계획이다. 사업 일정으로는 내년부터 울산 AIDC와 AI팩토리를 순차적으로 개설하며, 2029년부터는 5GW, 2035년부터 15GW급의 대규모 AI데이터센터 구축을 목표로 하고 있다. 이는 통신사의 인프라 사업 다각화 전략과 AI 산업 육성 차원의 의미 있는 투자로 평가된다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-08-06",
+      "source_url": "https://www.yna.co.kr/view/AKR20260806023400008",
+      "source_name": "연합뉴스 경제 최신기사"
+    },
+    {
+      "id": "321182c228f3",
+      "title": "SK텔레콤의 AI 데이터센터 사업, 92.5% 수익 성장으로 탄력",
+      "summary": "SK텔레콤이 Q2 2026년 AI 데이터센터 부문 수익을 전년 동기 대비 92.5% 증가한 9,570만 달러로 기록했다. 회사는 신규 인프라 자회사 SK Hyper를 통해 15GW 규모의 AI 데이터센터 구축을 추진 중이며, AI 인프라 수요가 구조적 성장 단계에 있다고 평가했다.",
+      "summary_long": "SK텔레콤은 2026년 2분기에 AI 데이터센터 사업 수익이 9,570만 달러(한화 1,362억원)로 전년 동기 대비 92.5% 증가했다고 발표했다. 통합 수익은 전년 동기 대비 제자리걸음을 보였지만, 순이익은 450% 이상 급증하여 3억 2,700만 달러를 기록했다. 모바일 서비스 수익은 고객 신뢰 회복 노력에도 불구하고 2% 감소했으나, AI 데이터센터 부문은 전체 매출에서 작은 비중에도 불구하고 SK텔레콤의 장기 전략에 중추적 역할을 맡고 있다. 회사는 신설한 인프라 자회사 SK Hyper를 통해 15GW 규모의 AI 데이터센터 구축 계획을 추진 중이며, 추론 인프라, 공공 부문, 엔터프라이즈 AI 활용이 확대되면서 AI 인프라 수요가 구조적으로 성장하고 있다고 판단하고 있다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크",
+        "서비스정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-06",
+      "source_url": "https://www.fierce-network.com/cloud/sk-telecoms-ai-data-center-bet-gains-traction-925-revenue-growth",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "745666140964",
+      "title": "SK Telecom, AI 데이터센터 사업 성장으로 2분기 영업이익 67% 급증",
+      "summary": "SK Telecom의 2026년 2분기 영업이익이 전년 대비 67.3% 증가한 3억 9,731만 달러를 기록했으며, 이는 AI 데이터센터 사업의 모멘텀 확대에 따른 결과다. 통신사의 수익성 개선이 핵심 성장 동력으로 이동한 현황을 시사한다.",
+      "summary_long": "SK Telecom이 2026년 2분기에 영업이익 기준으로 전년 동기 대비 67.3% 증가한 3억 9,731만 달러의 실적을 달성했다. 이러한 실적 성장의 주요 배경은 AI 데이터센터 사업이 본격적인 성장 궤도에 진입했기 때문이다. 전통적인 통신사업 중심에서 벗어나 신사업 영역으로의 포트폴리오 다각화가 실질적인 수익 증대로 이어지고 있음을 보여준다. 이는 국내 이동통신사들이 포화된 통신 시장에서 수익성을 확보하기 위해 추진 중인 AI, 클라우드, 데이터센터 등 신사업 전략의 효과성을 입증하는 사례다. 향후 국내 이통사 업계 경쟁 구도는 전통 통신서비스 외에 이러한 신규 고부가가치 사업 영역에서의 역량 강화로 심화될 것으로 예상된다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-06",
+      "source_url": "https://www.lightreading.com/finance/sk-telecom-q2-profits-soar-67-on-aidc-business-growth",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "dbe7484f7468",
+      "title": "AI 데이터센터 급성장에 앤트로픽 지분가치 상승…\"SKT 34% 더 오를 것\"",
+      "summary": "AI 데이터센터 수요 증가에 따라 SK텔레콤이 보유한 생성형 AI 기업 앤트로픽의 지분가치가 상승하면서 SKT 주가가 34% 추가 상승할 수 있다는 분석이 나왔다. SKT가 보유한 앤트로픽 지분이 약 4조원대로 평가되는 것으로 보인다.",
+      "summary_long": "SK텔레콤이 보유한 생성형 인공지능 기업 앤트로픽의 지분가치가 AI 데이터센터 시장의 급성장으로 인해 상승하고 있다. 월간 14% 반등하여 9만3000원선을 회복한 SKT 주가가 현재 수준에서 34% 추가 상승할 가능성이 있다는 보고서가 발표되었다. SKT가 보유한 앤트로픽 지분은 약 4조원에 달하는 것으로 평가되고 있으며, 이는 SKT의 미래 수익성 개선 요인으로 작용할 수 있다. 글로벌 AI 시장의 확대와 데이터센터 인프라 수요 증가가 배경이 되고 있다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-08-06",
+      "source_url": "https://www.mk.co.kr/news/stock/12118767",
+      "source_name": "매일경제 : 헤드라인"
+    },
+    {
+      "id": "2598187aa074",
+      "title": "SKT, AI데이터센터 2029년 5GW 확보 목표...재무 악화·공급 과잉 우려 불식",
+      "summary": "SK텔레콤이 2026년 2분기 실적 발표에서 AI 데이터센터 사업을 전략적으로 추진하며 2029년 5기가와트 확보를 목표로 설정했다. 회사는 투자 재원과 사업성이 충분하며 재무 구조 악화와 공급 과잉 우려는 없다는 입장을 표명했다.",
+      "summary_long": "SK텔레콤이 5일 2026년 2분기 실적을 발표하며 AI 데이터센터 사업을 중점 추진하겠다고 밝혔다. 회사는 2029년까지 5기가와트 규모의 AI 데이터센터 전력 확보를 핵심 목표로 설정하고 있으며, 이는 'AIDC 선수요 후구축' 전략의 일환으로 충분한 수요 확보 후 인프라를 구축한다는 의미이다. SK텔레콤은 이러한 대규모 투자를 감당할 충분한 재무 여력이 있으며, 산업 내 공급 과잉 우려에 대해서도 문제없다고 평가했다. 이는 작년 2분기 유심 정보 유출 사고에서의 회복을 진행하면서도 미래 성장동력 확보에 역량을 집중하겠다는 전략 의지를 보여준다. 통신사의 AI 데이터센터 사업 진출은 5G 이후 새로운 수익 기반 구축이라는 산업 차원의 전환점을 의미한다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-08-06",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=154033",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "a8ba18933d80",
       "title": "'통신 미아' 막을 알뜰폰 M&A···제도 정비 다음은 '실효성'",
@@ -5055,119 +5176,6 @@
       "date": "2026-06-30",
       "source_url": "https://www.fierce-network.com/wireless/verizon-emerges-biggest-winner-aws-3-auction",
       "source_name": "Fierce Network"
-    },
-    {
-      "id": "975ddf19a19f",
-      "title": "로켓랩, 아이리듐을 80억 달러에 인수",
-      "summary": "로켓랩이 아이리듐 커뮤니케이션즈를 80억 달러(약 10조 원대)에 인수하며, 발사체 및 위성 제조 역량과 아이리듐의 글로벌 위성 네트워크, L대역 스펙트럼을 통합한다. 이는 위성통신 산업의 주요 M&A로 향후 저궤도 위성 통신 서비스 경쟁 구도에 영향을 미칠 것으로 예상된다.",
-      "tags": [
-        "기술·네트워크",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/wireless/rocket-lab-acquires-iridium-8b-deal",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "df405bb04f3e",
-      "title": "Vistabeam, gaiia 워크플로우로 운영 자동화",
-      "summary": "미국 Mountain West 지역 ISP인 Vistabeam이 gaiia 워크플로우를 통해 가입자 이벤트 관련 네트워크 운영을 자동화하여 1년 내 97,000개 이상의 워크플로우를 98.5% 성공률로 구축했다. 이는 통신사의 운영 효율화와 자동화 기술 활용을 통한 비용 절감 및 서비스 품질 향상의 실사례를 보여준다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/sponsored/how-vistabeam-automated-its-operations-gaiia-workflows",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "a1c33aa6e990",
-      "title": "T-Mobile, 기존 요금제 고객에게 5G 기반 신규 요금제로 전환 안내",
-      "summary": "T-Mobile이 기존 요금제 사용 고객들을 신규 요금제로 전환하고 있으며, 일부 고객의 요금이 인상될 수 있다. 해외 통신사의 레거시 요금제 정리 및 신기술 기반 요금제 전환 전략으로, 국내 통신사의 요금제 현대화 정책 벤치마킹 가치가 있다.",
-      "tags": [
-        "요금제",
-        "리텐션",
-        "통신사동향",
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "T-Mobile",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/wireless/t-mobile-says-older-plan-customers-need-5g-refresh",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "04d5a61c4ab1",
-      "title": "SpaceX, 미국에서 Starlink 모바일 사업 확대 계획",
-      "summary": "Elon Musk의 SpaceX가 Starlink를 통한 모바일 서비스 확대를 추진 중이다. 위성통신 기반의 모바일 사업 진출은 기존 이동통신사들의 경쟁 구도를 재편할 가능성이 있으며, 국내 통신산업의 미래 기술 동향 및 경쟁 전략 수립에 참고 가치가 높다.",
-      "tags": [
-        "시장경쟁",
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/wireless/spacex-plans-bigger-starlink-mobile-push-us-report",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "a0f5de499ed1",
-      "title": "멀티벤더 네트워크에서의 변화 관리 과제",
-      "summary": "멀티벤더 네트워크 환경에서의 변화 관리가 점점 복잡해지고 있으며, 안정성과 통제력을 유지하기 위해 거버넌스가 필수적이 되고 있다. 이는 통신사들의 네트워크 운영 전략과 조직 구조 개선의 중요성을 시사한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/sponsored/why-blue-planet-rethinking-configuration-governance",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "7bd671340b64",
-      "title": "마이크로소프트의 네트워크 AI 대규모 적용 방식",
-      "summary": "마이크로소프트가 통신 네트워크 운영의 일상적 업무에 AI를 적용하여 팀의 확장성과 작업 실행 방식을 혁신하고 있다. AI 기반 네트워크 운영의 실질적 도입을 위한 기회와 요구사항을 제시하며, 통신사의 디지털 전환과 운영 효율화의 중요한 사례를 보여준다.",
-      "tags": [
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/sponsored/how-microsoft-applying-network-ai-scale",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "cc81bf7c52f2",
-      "title": "자율 네트워크에서 지능형 통신사로 – 통신산업의 다음 진화",
-      "summary": "AI 기술이 통신사들을 네트워크 자동화를 넘어 비즈니스 인텔리전스 시대로 진화시키고 있다. Wipro는 전 세계 통신사들과의 협력을 통해 실시간 학습, 의사결정, 성장이 가능한 지능형 적응 조직으로의 산업 변혁을 설명하고 있으며, 이는 통신사의 운영 효율성과 경쟁력 강화의 핵심 전략이 될 것으로 예상된다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.rcrwireless.com/20260625/automation/autonomous-networks-wipro",
-      "source_name": "RCR Wireless"
     }
   ]
 }
