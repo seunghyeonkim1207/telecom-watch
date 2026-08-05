@@ -1,6 +1,147 @@
 {
-  "updated": "2026-08-04T09:06:35.637134+09:00",
+  "updated": "2026-08-05T09:00:59.859686+09:00",
   "articles": [
+    {
+      "id": "a8ba18933d80",
+      "title": "'통신 미아' 막을 알뜰폰 M&A···제도 정비 다음은 '실효성'",
+      "summary": "정부의 '알뜰폰 2.0 도약 정책'은 부실 사업자 퇴출과 알뜰폰 시장 체질 개선에 중점을 두고 있다. 기사는 단순 퇴출을 넘어 영세 사업자의 무책임한 셧다운으로 인한 소비자 피해 방지가 핵심 과제임을 지적한다.",
+      "summary_long": "정부가 발표한 알뜰폰 2.0 도약 정책의 핵심은 부실 알뜰폰 사업자의 방만한 운영을 막고 시장의 신뢰성을 회복하는 데 있다. 기자는 단순한 사업자 퇴출 조치를 넘어, 문제 있는 영세 사업자가 갑작스럽게 셧다운할 경우 발생할 수 있는 소비자 피해에 주목한다. 이 과정에서 가입자들이 '통신 미아'로 전락하거나 번호이동 중 불편을 겪을 수 있다는 우려가 제기되고 있다. M&A를 통한 사업자 정리가 해결책으로 언급되고 있으며, 제도 정비 이후 실제 실효성 확보가 관건이 될 것으로 보인다. 알뜰폰에 대한 '싼 게 비지떡'이라는 부정적 인식을 개선하기 위해서는 소비자 보호 장치와 운영 투명성이 함께 강화되어야 한다.",
+      "tags": [
+        "규제·정책",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "알뜰폰",
+      "importance": 4,
+      "date": "2026-08-05",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422864",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "b46f74ee6b48",
+      "title": "SKT 과장광고 판결-下] 경쟁사 LTE랑 비교하고 SKT가 5G 속도 1등?",
+      "summary": "SK텔레콤, KT, LG유플러스 등 통신3사가 공정거래위원회의 5G 과장광고 관련 과징금 처분에 불복해 제기한 행정소송에서 법원이 통신3사의 '5G 과장광고'를 전부 인정했다. SK텔레콤은 일부 승소 판결을 받았으나, 통신업계에 적잖은 파장이 예상된다.",
+      "summary_long": "SK텔레콤을 포함한 통신3사(SK텔레콤, KT, LG유플러스)가 공정거래위원회의 5G 과장광고 관련 과징금 처분을 불복하여 제기한 행정소송에 대해 법원이 소 제기 3년여 만에 판단을 내렸다. 법원은 통신3사의 '5G 과장광고'를 전부 인정하여 과장광고 행위의 위법성을 확인했다. 특히 SK텔레콤은 공정위가 과징금을 잘못 산정했다는 점에서 '과징금 처분 결정 취소'라는 일부 승소 판결을 받았으나, 여전히 과장광고 자체는 인정된 상태다. 향후 대법원에서 양측이 한차례 더 공방을 주고받을 것으로 예상되며, 통신업계에 적잖은 파장이 예상된다.",
+      "tags": [
+        "규제·정책",
+        "통신사동향",
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 4,
+      "date": "2026-08-05",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422859",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "85c340c71bbc",
+      "title": "T-Mobile, '무료' 신규 요금제 2.0 출시... 무엇이 핵심인가?",
+      "summary": "T-Mobile이 새로운 Experience와 Essentials 2.0 요금제를 출시했으며, 초기 기기 비용을 0원으로 제공하는 EIP Flex 36 월부금 옵션을 도입했다. 24개월에서 36개월로 연장된 기기금융은 고객 유지 기간을 늘리기 위한 통신사의 경쟁 전략이다.",
+      "summary_long": "T-Mobile은 기존 Experience Beyond, Experience More, Essentials 요금제의 2.0 버전을 발표했다. 핵심은 새로운 EIP Flex 36 옵션으로, 초기 단말기 비용을 0원에 제공하면서 36개월의 장기 분할납부 방식을 도입한 것이다. 기존 24개월 기기금융에서 36개월로 연장함으로써 계약 잠금 기간을 늘려 고객 이탈을 방지하려는 전략이다. T-Mobile은 이를 '무료(Nothing)' 요금제로 마케팅하며, 통신사 변경의 초기 비용 장벽을 제거하는 방식으로 수급자 확보를 노리고 있다. 분석가들은 이러한 기기금융 기간 연장이 장기 고객 확보 전략임을 지적했다.",
+      "tags": [
+        "요금제",
+        "단말기·유통",
+        "리텐션",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-08-05",
+      "source_url": "https://www.fierce-network.com/wireless/t-mobile-launches-nothing-so-whats-big-deal",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "fb83f926b32e",
+      "title": "Cellnex, AI·5G·디지털 주권이 유럽의 다음 인프라 사이클 주도할 것으로 전망",
+      "summary": "Cellnex는 유럽이 5G 도입 사이클 중반에 있으며 서유럽의 모바일 연결 중 약 50%가 5G 지원 기기라고 밝혔다. AI, 5G, 디지털 주권이 유럽 통신 인프라의 다음 성장 동력이 될 것으로 예상된다.",
+      "summary_long": "유럽 주요 통신 인프라 제공업체인 Cellnex는 현재 유럽 시장의 5G 도입이 중반 단계에 진입했다고 평가했다. 서유럽 지역의 모바일 기기 중 약 절반이 이미 5G 지원 단말기로 대체되고 있는 상황이다. Cellnex는 향후 유럽 통신 인프라 발전의 핵심 요소로 AI 기술 적용, 지속적인 5G 고도화, 그리고 유럽의 디지털 주권 강화를 꼽았다. 이러한 요소들이 통신사와 인프라 제공업체의 투자와 네트워크 구축 전략을 이끌 것으로 전망하고 있으며, 이는 국내 통신산업의 기술 트렌드 및 인프라 투자 방향 수립에도 참고할 수 있는 글로벌 동향이다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-05",
+      "source_url": "https://www.rcrwireless.com/20260804/5g/cellnex-ai-5g-europe",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "7acc118b3ad5",
+      "title": "유로바이트: 에릭sson, 한국의 AI-RAN 이니셔티브에 참여 모집",
+      "summary": "에릭손이 한국의 AI 기반 RAN(Radio Access Network) 이니셔티브에 참여하도록 모집되었다. 동시에 FCC가 디시의 5G 네트워크 구축에 참여한 외부 업체들을 위해 AT&T와 스페이스X의 스펙트럼 매각과 연계된 24억 달러 규모의 신탁기금을 확정했으며, 이는 5G 네트워크 투자 및 기술 동향과 관련된 주요 규제 사항이다.",
+      "summary_long": "에릭손이 한국의 AI 기반 RAN(Radio Access Network) 이니셔티브에 참여하도록 선정되면서 통신 기술의 고도화가 진행되고 있다. 한편 미국 FCC는 에코스타의 스펙트럼 판매와 연계된 24억 달러 규모의 신탁기금이 디시의 5G 네트워크 구축에 실제로 참여한 외부 업체들과 파트너사들을 위한 것임을 명확히 했다. 이는 신탁기금이 에코스타 자회사의 대출금 상환용이 아니라 순수한 네트워크 인프라 투자로 사용될 것을 의미한다. 기술 측면에서 AI와 RAN의 결합은 무선 접근 네트워크의 효율성을 높이는 차세대 기술로 평가받고 있으며, 국내 통신사들도 5G 인프라 고도화 전략 수립 시 참고할 가치가 있다. 이러한 규제 확인과 기술 도입은 글로벌 통신산업의 진화 방향을 보여주는 사례이다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 3,
+      "date": "2026-08-05",
+      "source_url": "https://www.lightreading.com/ai-machine-learning/eurobites-ericsson-recruited-for-south-korea-s-ai-ran-initiative",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "11cd2aa55a83",
+      "title": "유로바이트: 키이우스타르 2분기 호조",
+      "summary": "유럽·중동·아프리카 지역 통신업계 뉴스에서 키이우스타르가 2분기 실적 호조를 보였고, 라이즈 파이버가 토크토크의 12만 고객을 인수했으며, EU AI법 시행과 MTN의 가나 사업 확대가 주요 화제다.",
+      "summary_long": "유럽·중동·아프리카 지역 통신사들의 최근 동향을 다루는 기사에서 여러 주요 사건들이 보도되었다. 우크라이나의 키이우스타르는 2분기에 긍정적인 사업 성과를 기록했으며, 영국의 라이즈 파이버는 토크토크로부터 12만 고객을 인수하면서 사업 확장을 추진하고 있다. 한편 유럽연합의 인공지능법이 본격 시행되기 시작했으며, 아프리카의 MTN은 가나 시장에서 강력한 성장세를 보이고 있다. 또한 에릭슨은 새로운 경영진 체제 아래 보다 효율적인 '품질 기반 수요' 접근방식을 통해 장기간의 손실에서 벗어나기 위한 보나지 회생 계획을 추진 중이다. 이러한 사례들은 통신사업자들이 직면한 시장 경쟁 심화와 규제 변화에 대응하는 산업의 동향을 보여준다.",
+      "tags": [
+        "통신사동향",
+        "시장경쟁",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-05",
+      "source_url": "https://www.lightreading.com/operations/eurobites-kyivstar-shines-in-q2",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "513fdb95f9ae",
+      "title": "중국 차이나타워와 화웨이, 터널 이동통신 커버리지 개선을 위한 TunnelStar 공동 출시",
+      "summary": "중국 차이나타워와 화웨이가 8월 4일 터널 전용 신제품 TunnelStar를 출시했다. 중국의 철도 터널이 2만 5,000km를 초과하는 상황에서 터널 내 신호 커버리지 개선과 5G-A 기술 요구사항 충족을 위한 혁신적 솔루션으로, 콤팩트한 크기와 낮은 비용으로 통신사의 네트워크 품질 향상을 도모한다.",
+      "summary_long": "중국 차이나타워와 화웨이 테크놀로지는 8월 4일 중국 차이나타워 산업공원에서 터널 환경 최적화를 위한 신제품 TunnelStar를 공식 발표했다. 현재 중국의 운영 중인 지하철 노선 길이가 1만km를 초과하고 철도 터널이 2만 5,000km를 넘어서는 상황 속에서, 터널 구간의 제한된 설치 공간과 복잡한 현장 시공 조건이 오랫동안 업계 과제로 지적되어 왔다. 5G-A로의 통신망 고도화에 따라 주파수 대역폭이 확대되고 AI, 라이브 스트리밍 등 상향 통신 수요가 증가하면서 터널 내 상향 신호 커버리지 개선에 대한 기술적 요구가 높아졌다. 이에 양사는 터널 내 전파 전파 특성을 분석하여 콤팩트한 크기, 낮은 비용, 우수한 사용자 경험을 갖춘 TunnelStar를 공동 개발했으며, 이는 통신사의 네트워크 품질 개선과 브랜드 가치 향상에 새로운 동력을 제공할 것으로 기대된다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-05",
+      "source_url": "https://totaltele.com/china-tower-and-huawei-jointly-launch-tunnelstar-to-upgrade-tunnel-mobile-network-coverage/",
+      "source_name": "Total Telecom"
+    },
+    {
+      "id": "19e7570aa19a",
+      "title": "AI가 네트워크 계획의 규칙을 바꾸고 있다 - Telstra·Teneo 임원진 경고",
+      "summary": "AI 워크로드는 단순한 네트워크 트래픽이 아니라 통신사의 용량 계획, 구축, 판매 방식 전체를 재검토하도록 강제하고 있다. Telstra와 Teneo 인프라 리더들은 대부분 통신사가 여전히 AI 이전 전략으로 운영 중이며, 특히 에이전트AI는 데이터센터 간 트래픽 패턴 변화와 지연 보장을 요구해 상호연결 재협상을 초래한다고 지적했다.",
+      "summary_long": "Telstra Digital Infrastructure 엔지니어링 헤드 Andrew Hankins와 Teneo 선임 상무 Sam Evans는 대부분의 통신사가 AI 시대의 변화하는 트래픽 패턴에 대응하지 못하고 있다고 경고했다. 현재 비디오가 네트워크 수요를 지배하지만, AI로 인한 '구조적 변화'가 일어나고 있으며 특정 데이터센터 간 트래픽 피크가 급증하고 지연에 대한 내성이 매우 낮아지고 있다. Telstra의 사례에서 호주 클라우드 사업자에서 미국 네트워크로 흘러가는 수백 기가비트 규모의 지속적 AI 트래픽이 기존 상호연결 계획을 완전히 뒤바꿀 정도의 영향을 미쳤다. 특히 에이전트AI는 훈련 단계와 달리 지속적이고 보장된 지연을 요구하기 때문에 향후 인프라 제공자들의 비즈니스 모델을 인프라 판매에서 보장된 성과 판매로 변모시킬 것으로 예상된다. Telstra가 가장 우려하는 사항은 핵심 네트워크 용량보다 타 통신사와의 상호연결 용량 및 상업 조건 재협상이며, 이는 AI 트래픽이 훈련에서 추론 단계로 이동하면서 엣지 쪽으로 확산될 것으로 전망되고 있다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-05",
+      "source_url": "https://capacityglobal.com/news/ai-is-rewriting-the-rules-of-network-planning-warn-telstra-and-teneo-executives/",
+      "source_name": "Capacity"
+    },
     {
       "id": "ddaabe72739d",
       "title": "SKT, 가민·샥즈 제휴 스마트기기 출시…1000만 러너 공략",
@@ -5027,134 +5168,6 @@
       "date": "2026-06-30",
       "source_url": "https://www.rcrwireless.com/20260625/automation/autonomous-networks-wipro",
       "source_name": "RCR Wireless"
-    },
-    {
-      "id": "27bb2589a04d",
-      "title": "5G 배포를 위한 실제 네트워크 에뮬레이션의 중요성",
-      "summary": "Apposite Technologies의 시스템 엔지니어는 5G 배포 성공을 위해 실제 네트워크 에뮬레이션이 필수적이라고 강조했다. 변수 조건 하에서의 성능 테스트를 통해 운영사의 위험을 감소시키고 안정적인 프로덕션 출시를 보장할 수 있다.",
-      "tags": [
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.rcrwireless.com/20260625/opinion/real-world-network-emulation-5g-apposite",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "544af582ab1e",
-      "title": "자동화 네트워크가 균등하게 성숙하지 않는 이유",
-      "summary": "통신사 자동화 네트워크는 기술보다 데이터 품질, 통합 준비도, 거버넌스 기반에 따라 진전 속도가 결정되며, 대부분의 통신사가 자동화 수준 1~2 단계에 머물러 있다. 자동화 네트워크 구축 시 기술 투자보다 조직 역량과 데이터 관리체계 강화가 우선되어야 함을 시사한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.rcrwireless.com/20260625/opinion/autonomous-networks-maturity-avenga",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "e25bd6772b35",
-      "title": "AI 기반 6G는 네트워크-컴퓨팅 자원의 통합 오케스트레이션 필요, 중국통신 주장",
-      "summary": "중국통신의 최고 기술책임자는 AI 기반 6G 구현을 위해 네트워킹과 컴퓨팅 자원을 통합 관리하는 근본적인 아키텍처 전환이 필수적이라고 주장했다. 이는 6G 네트워크 기술 진화 방향을 보여주는 주요 기술 트렌드로, 국내 통신사의 차세대 네트워크 투자 전략 수립에 벤치마킹 가치가 있다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.rcrwireless.com/20260625/network-infrastructure/ai-6g-china",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "b2456f2410fb",
-      "title": "Verizon, Ericsson에 Samsung 수준의 개방성 요구",
-      "summary": "Verizon이 자사 네트워크의 거의 절반에 Samsung의 가상 RAN을 배포한 가운데, CTO Yago Tenorio는 Ericsson도 곧 같은 수준의 개방성을 갖추기를 기대하고 있다. 이는 통신사들이 네트워크 장비 공급업체의 개방형 구조를 강력히 요구하는 글로벌 추세를 보여준다.",
-      "tags": [
-        "기술·네트워크",
-        "시장경쟁",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.lightreading.com/5g/verizon-ups-pressure-on-ericsson-to-be-open-like-samsung",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "d1c23c5e22c4",
-      "title": "Comcast, NBCU와 Sky 분사해 독립 상장사로 분리",
-      "summary": "Comcast가 케이블/기술사업과 미디어사업을 두 개의 독립적인 상장사로 분할할 계획을 발표했다. 분사 후 Mike Cavanagh가 NBCU CEO로, 전 CFO Michael Angelakis가 Comcast CEO로 취임할 예정이다. 이는 대형 통신미디어 기업의 사업 포트폴리오 재편 전략으로 국내 통신사들의 사업 다각화 및 자산 관리 방식에 참고 가치가 있다.",
-      "tags": [
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.lightreading.com/cable-technology/comcast-to-spin-out-nbcu-and-sky",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "4d2e192ad95f",
-      "title": "SpaceX, AT&T, T-Mobile, Verizon, EchoStar, AWS-3 경매 낙찰자로 선정",
-      "summary": "미국 AWS-3 스펙트럼 경매에서 Verizon, AT&T, T-Mobile 등 주요 통신사와 SpaceX, EchoStar가 낙찰자로 결정되었다. Verizon이 최고 입찰자로 주요 시장에서 대역폭을 확보하며, 이는 미국 통신시장의 경쟁 구도와 5G 네트워크 투자 전략을 반영한다.",
-      "tags": [
-        "기술·네트워크",
-        "시장경쟁",
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.lightreading.com/wireless/spacex-at-t-t-mobile-verizon-echostar-among-aws-3-auction-winners",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "9923410221e6",
-      "title": "SK Telecom, 미국 AI 분야에 4억8천만 달러 투자",
-      "summary": "SK Telecom이 SK Hynix 미국 자회사에 4억8천만 달러를 투자하며 AI 산업 진출을 강화하고 있다. 이미 Anthropic에 25억 달러를 보유 중이며, 통신사의 AI 기술 기반 신사업 전략 추진이 두드러진다.",
-      "tags": [
-        "통신사동향",
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.lightreading.com/ai-machine-learning/sk-telecom-to-invest-480m-in-us-ai",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "d18c47d7153f",
-      "title": "GSMA, 중국타워 신규 회원 승인으로 AI 기반 모바일 인프라 고도화 추진",
-      "summary": "세계 최대 통신 타워 회사인 중국타워가 GSMA에 신규 회원으로 가입했다. 중국타워는 지난해 중국 전역의 560만 기지국과 210만 타워 사이트를 지능형 엣지 컴퓨팅 허브로 업그레이드하며 AI 기반 모바일 인프라 고도화를 선도하고 있다. 이는 통신사의 네트워크 고도화와 스마트 인프라 투자 전략의 글로벌 동향을 보여주는 사례다.",
-      "tags": [
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.gsma.com/newsroom/press-release/gsma-welcomes-china-tower-to-advance-ai-ready-mobile-infrastructure/",
-      "source_name": "NewsroomNewsroom - Article Feed"
     }
   ]
 }
