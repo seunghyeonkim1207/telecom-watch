@@ -1,6 +1,75 @@
 {
-  "updated": "2026-08-07T10:43:00.733642+09:00",
+  "updated": "2026-08-08T08:37:43.930655+09:00",
   "articles": [
+    {
+      "id": "dd9d0388a3d5",
+      "title": "2026년 북미 통신시장, AI 생태계 지원으로 경제성장 전망 - 모닝스타",
+      "summary": "모닝스타는 지정학적 갈등과 공급망 제약에도 불구하고 북미 통신시장이 2026년 저개도(저단일 숫자)의 경제성장을 달성할 것으로 전망했다. AI 및 클라우드 중심 인프라 투자가 지속되는 통신사들의 네트워크 투자가 성장을 견인할 것으로 예상된다.",
+      "summary_long": "모닝스타의 보고서에 따르면 호르무즈 해협 분쟁과 지정학적·경제적 도전에도 불구하고 북미 통신 산업은 2026년 하반기 저개도의 경제성장이 가능할 것으로 분석했다. 미국과 캐나다 양국에서 긍정적인 저개도 경제성장이 예상되며, 통신사업자들이 AI 및 클라우드 중심의 인프라에 지속적으로 투자할 수 있는 수준의 금리 환경이 유지될 것으로 예측했다. AI 생태계 지원은 통신사들에게 중요한 사업 기회로 평가되고 있으며, 이러한 기술 투자는 시장 성장의 주요 동력이 될 전망이다. 보고서는 글로벌 공급망 제약에도 불구하고 통신산업의 회복력이 있음을 시사하고 있다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-08",
+      "source_url": "https://www.fierce-network.com/broadband/economic-growth-still-cards-2026-north-american-telecom-market-morningstar",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "817a15be2d46",
+      "title": "에릭슨, SK텔레콤 주도 AI-RAN 파일럿 사업 글로벌 기술 파트너로 선정",
+      "summary": "에릭슨이 SK텔레콤의 AI-RAN(인공지능 기반 무선접속네트워크) 파일럿 사업에서 유일한 글로벌 기술 파트너로 지정됐다. 이는 한국 정부의 'AI 하이웨이' 계획 하에 KG모빌리티에 AI-RAN을 배포하는 사업으로, 국내 통신사의 차세대 네트워크 기술 고도화 전략을 보여주는 사례다.",
+      "summary_long": "에릭슨이 SK텔레콤 주도의 AI-RAN 파일럿 사업에서 유일한 글로벌 기술 파트너로 선정됐다. 이 사업은 한국 정부의 'AI 하이웨이' 계획의 일환으로, 자동차 업체인 KG모빌리티를 대상으로 인공지능 기반 무선접속네트워크 기술을 배포하고 검증하는 것이 목표다. AI-RAN 기술은 머신러닝과 데이터 분석을 활용해 네트워크 성능을 최적화하고 에너지 효율을 개선할 수 있는 차세대 기술로 평가받고 있다. SK텔레콤은 이번 파일럿을 통해 국내 통신망의 지능형 고도화를 추진하고 있으며, 이는 5G 이후 6G 시대를 대비한 기술 선점 전략으로 볼 수 있다. 정부의 AI 정책과 통신사의 네트워크 투자가 결합된 사업으로, 향후 국내 통신 산업의 기술 경쟁력 강화에 영향을 미칠 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-08",
+      "source_url": "https://www.rcrwireless.com/20260807/ai/ericsson-sk-telecom-ai-ran-pilot",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "15b0ce77ce6d",
+      "title": "유텔sat, 5G NTN 기술으로 '미국 거대 기업'에 대항",
+      "summary": "유텔sat CEO는 EU의 확대된 주권 위성 프로젝트에서 5G NTN 기술을 강조하며 Starlink, Amazon Leo 등과의 경쟁에 나서고 있다. AT&T는 에릭슨과 협력해 EchoStar로부터 인수한 600MHz 스펙트럼에 듀얼밴드 라디오를 배포할 예정이다.",
+      "summary_long": "유럽의 주요 위성통신 기업인 유텔sat은 5G NTN(Non-Terrestrial Network) 기술을 활용한 EU의 확대 주권 위성 프로젝트를 추진하고 있으며, 이를 통해 Starlink와 Amazon Leo 같은 미국 거대 기업들과의 경쟁에 대응하고자 한다. 한편 미국의 AT&T는 에릭슨과의 협력을 통해 EchoStar로부터 인수한 600MHz 스펙트럼 대역에서 '업링크 강화' 기술을 탑재한 듀얼밴드 라디오를 배포할 계획이다. 이는 기존 스펙트럼의 활용도를 높이고 통신 커버리지를 개선하려는 전략으로 보인다. 이러한 움직임은 위성통신과 지상파 네트워크 기술 분야에서 글로벌 경쟁이 심화되고 있음을 보여준다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 3,
+      "date": "2026-08-08",
+      "source_url": "https://www.lightreading.com/satellite/eutelsat-hails-5g-ntn-to-take-on-american-giants",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "2ef5ffb2be96",
+      "title": "인도 에어텔, FWA에서 광섬유로 사업 전략 전환",
+      "summary": "인도 통신사 에어텔이 칩셋 비용 상승으로 FWA(고정무선접속) 경제성이 악화되자 광섬유 중심으로 전략을 전환하고 있다. 성장률보다 가입자 품질을 우선시하는 정책 변화로, 해외 통신사의 네트워크 투자 전략 변화를 보여준다.",
+      "summary_long": "인도의 주요 통신사 에어텔이 FWA 기반 사업에서 광섬유 기반으로 사업 전략을 전환하고 있다. 변화의 배경은 FWA 관련 칩셋 비용의 지속적인 상승으로 이 기술의 경제적 타당성이 감소했기 때문이다. 에어텔은 Q1 2027 실적 발표에서 향후 가입자 수의 빠른 성장보다는 서비스 품질 개선을 우선순위에 두겠다는 입장을 밝혔다. 이러한 전략 변화는 기술 비용 구조의 변화가 통신사의 설비투자 방향을 크게 좌우할 수 있음을 시사한다. 국내 통신사들도 FWA와 광섬유 등 접속 기술별 경제성을 면밀히 검토하며 네트워크 투자 계획을 수립할 필요가 있다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-08",
+      "source_url": "https://www.lightreading.com/fixed-wireless-access/india-s-airtel-shifts-fwa-strategy-away-from-subscriber-growth",
+      "source_name": "lightreading"
+    },
     {
       "id": "a4f24a34265b",
       "title": "LG헬로비전 헬로모바일, 교보문고 제휴 요금제 출시…전자책 구독 혜택",
@@ -5128,70 +5197,6 @@
       "date": "2026-06-30",
       "source_url": "https://www.etnews.com/20260630000375",
       "source_name": "속보 - 이티뉴스"
-    },
-    {
-      "id": "3bb583e7c0a8",
-      "title": "이통3사 정보보호 투자 22% 증가…SKT 증가폭 가장 커",
-      "summary": "이동통신 3사(SKT, KT, LG U+)가 지난해 정보보호 투자를 전년 대비 22% 늘리고 보안 전담 인력도 확대한 것으로 나타났다. 이는 통신사들이 고객 정보보호 강화에 적극 투자하는 추세를 보여주며, 특히 SKT의 증가폭이 가장 컸다.",
-      "tags": [
-        "통신사동향",
-        "규제·정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.yna.co.kr/view/AKR20260630165900017",
-      "source_name": "연합뉴스 산업 최신기사"
-    },
-    {
-      "id": "a48b5b2ec364",
-      "title": "차이나타워, '디지털'·'지능형' 기지국으로 전환 추진",
-      "summary": "차이나타워가 약 620만 개의 기지국 사이트를 구축했으며, 이 중 326만 개가 5G 사이트라고 MWC 상하이에서 발표했다. 기지국의 디지털화와 지능화 전환을 가속화할 계획으로, 향후 네트워크 고도화 및 운영 효율성 개선이 핵심 전략이다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.rcrwireless.com/20260630/5g/china-tower-digital",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "f783722967da",
-      "title": "[ET시론] 데이터 주권, 올바른 질문을 던져야 한다",
-      "summary": "적기조례 사례처럼 기술 변화에 뒤떨어진 규제가 산업 주도권 상실을 초래할 수 있다는 역사적 교훈을 제시하며, 데이터 주권 논쟁에서 단순한 규제 강화보다는 신중한 정책 접근의 필요성을 강조하고 있다. 개인정보보호위원회의 대주주 변경 관련 정책이 국내 통신산업 경쟁력에 미칠 영향을 다루고 있다.",
-      "tags": [
-        "규제·정책",
-        "통신사동향"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "방통위",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.etnews.com/20260630000189",
-      "source_name": "속보 - 이티뉴스"
-    },
-    {
-      "id": "002656ac83e5",
-      "title": "대통령도 폭발한 '홍명보호' 참사 ... 25년 스폰서 KT의 월드컵 손절",
-      "summary": "KT가 2001년부터 25년간 후원해온 한국 축구 국가대표팀과의 스폰서십을 중단하고 관련 광고물을 철수하기로 결정했다. 이는 8년 만의 조별리그 탈락이라는 월드컵 참사로 촉발된 대기업의 냉혹한 브랜드 이미지 보호 결단으로, 통신업계의 위기 관리 전략 사례를 보여준다.",
-      "tags": [
-        "통신사동향",
-        "서비스정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "KT",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422096",
-      "source_name": "시사저널e - 전체기사"
     }
   ]
 }
