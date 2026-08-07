@@ -1,6 +1,252 @@
 {
-  "updated": "2026-08-06T08:57:55.408853+09:00",
+  "updated": "2026-08-07T10:43:00.733642+09:00",
   "articles": [
+    {
+      "id": "a4f24a34265b",
+      "title": "LG헬로비전 헬로모바일, 교보문고 제휴 요금제 출시…전자책 구독 혜택",
+      "summary": "LG헬로비전의 헬로모바일이 교보문고와 제휴하여 월 9900원 상당의 전자책 구독 혜택을 포함한 알뜰폰 요금제 6종을 출시했다. 유심 및 휴대폰 번들 상품으로 구성되며, 고객에게 24개월간 'sam무제한' 구독권과 e교환권을 제공한다.",
+      "summary_long": "LG헬로비전은 교보문고와의 제휴를 통해 새로운 알뜰폰 요금제를 선보였다. 이 요금제는 월 9900원 상당의 교보문고 혜택을 포함하며, 가입자는 24개월 동안 교보문고의 'sam무제한' 전자책 구독 서비스와 월 1000원 상당의 e교환권을 받을 수 있다. sam무제한을 통해 전자책, 오디오북, 동영상, 학술논문 등 80만여 종의 콘텐츠를 이용할 수 있다. 요금제는 유심 상품 3종(월 8800원~3만4290원)과 휴대폰 번들 상품 3종(월 2만6200원~5만6300원)으로 구성되어 있으며, 모두 LTE 데이터 무제한으로 설계되었다. 김예현 모바일사업담당은 자기계발과 독서를 즐기는 고객층을 겨냥한 제휴라고 설명했으며, 회사는 향후 생활밀착형 제휴를 계속 확대할 계획이다.",
+      "tags": [
+        "요금제",
+        "결합상품",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "알뜰폰",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.etnews.com/20260807000100",
+      "source_name": "속보 - 이티뉴스"
+    },
+    {
+      "id": "e657c36a13e8",
+      "title": "매출 줄었지만 영업익 역대 최대 찍은 홍범식號 LG유플러스",
+      "summary": "LG유플러스가 2분기 분기 기준 최대 영업이익을 기록했으나 단말 판매 부진으로 매출은 전년 대비 4% 감소했다. AI 데이터센터 사업 성장과 비용감축 노력이 영업이익 증대를 견인했으며, 회사는 AI DC 사업을 중심으로 연초 서비스수익 2% 성장 목표 달성이 가능하다고 전망했다.",
+      "summary_long": "LG유플러스는 2분기에 분기 기준 최대 영업이익을 달성하면서 비용 효율성을 강화했다. 그러나 단말 판매 부진으로 인해 전체 매출은 1년 새 약 4% 감소했으며, 회사는 하반기 본업인 무선사업 매출도 전년 대비 감소세를 예상하고 있다. 이러한 매출 부진에도 불구하고 인공지능 데이터센터 사업의 빠른 성장세와 영업비용 감소 노력이 결합되면서 영업이익 극대화를 이루었다. LG유플러스는 신규 AI 데이터센터의 수익성이 기존 시설보다 개선될 것으로 강조하며, 이를 바탕으로 연초에 제시한 별도기준 서비스수익 2% 성장이라는 연간 목표 달성이 가능할 것으로 판단했다. 이는 전통적 통신사업의 포화 속에서 고부가가치 사업으로의 다각화가 실적 개선의 핵심 요소임을 보여준다.",
+      "tags": [
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "LG U+",
+      "importance": 4,
+      "date": "2026-08-07",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422911",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "4dbfae97427a",
+      "title": "LG헬로비전 헬로모바일, 교보문고와 제휴한 요금제 출시",
+      "summary": "LG헬로비전 헬로모바일이 교보문고와 제휴하여 전자책 구독 서비스와 도서 구매 혜택을 결합한 '교보문고 유심·휴대폰 요금제' 6종을 출시했다. 데이터 무제한 LTE 요금제 가입 고객에게 24개월간 전자책 구독 서비스와 월 1천원권의 e교환권을 제공하며, 알뜰폰 업계가 생활밀착형 제휴 요금제로 차별화 전략을 강화하고 있다.",
+      "summary_long": "알뜰폰 업계가 고객 확보를 위해 생활밀착형 제휴 요금제 확대에 나서고 있는 가운데, LG헬로비전 헬로모바일이 교보문고와의 전략적 제휴를 통해 새로운 결합상품을 선보였다. 이 요금제는 데이터 무제한 LTE 서비스 가입 고객을 대상으로 24개월간 전자책 구독 서비스인 'sam 무제한' 이용권과 매월 1천원의 교보문고 e교환권을 제공한다. 통신과 독서라는 생활 필수 서비스를 결합함으로써 고객에게 추가 가치를 제공하는 라이프스타일 기반 제휴 모델을 구현하고 있다. 이는 기존 알뜰폰의 저가 중심 전략에서 벗어나 다양한 생활서비스 결합을 통한 차별화 전략으로의 전환을 보여주며, 향후 알뜰폰 업계의 경쟁력 강화 방향을 시사한다.",
+      "tags": [
+        "요금제",
+        "결합상품",
+        "서비스정책",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "알뜰폰",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.yna.co.kr/view/AKR20260807047700017",
+      "source_name": "연합뉴스 산업 최신기사"
+    },
+    {
+      "id": "9efb9de70832",
+      "title": "AT&T, 에릭슨과 600MHz 라디오 공급 계약 체결",
+      "summary": "AT&T가 에코스타로부터 인수한 600MHz 스펙트럼 배포를 위해 에릭슨을 600MHz 듀얼밴드 라디오 공급업체로 선정했다. 이번 선정을 통해 AT&T는 저대역에서 업링크 강화 기술인 8RX를 처음으로 배포할 수 있게 되어 향후 AI 및 커넥티드 디바이스 수요에 대응할 수 있다.",
+      "summary_long": "AT&T는 경쟁 입찰 과정을 거쳐 에릭슨을 600MHz 듀얼밴드 라디오의 공급업체로 최종 선정했다고 밝혔다. 에릭슨이 선택된 것은 AT&T가 수 년 전 오픈 RAN 네트워크 구축을 에릭슨에 맡긴 것과 무관하지 않다. 이번 공급 계약을 통해 AT&T는 에코스타로부터 인수한 600MHz 스펙트럼을 활용하여 저대역에서 업링크 향상 기술인 8RX를 처음으로 대규모 배포할 수 있게 된다. AT&T는 이번 배포가 현재와 미래의 일상적인 애플리케이션, 커넥티드 디바이스, AI 기반 도구로부터의 증가하는 수요에 네트워크가 대비할 수 있도록 준비할 것이라고 설명했다. 이는 미국 주요 통신사들의 스펙트럼 확보 및 네트워크 현대화 경쟁이 계속되고 있음을 보여주는 사례다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.fierce-network.com/wireless/att-taps-ericsson-600-mhz-radios",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "9a6e04045788",
+      "title": "NTN 진전 중 - 진화하는 표준, 확장되는 서비스",
+      "summary": "비지상파 네트워크(NTN)가 5G 및 향후 6G 서비스 영역을 지상 한계 이상으로 확장하고 있으며, 통신 등급의 신뢰성 달성을 목표로 하고 있다. 3GPP 표준 로드맵과 수렴형 5G NTN의 시장 기회, AI 기반 오케스트레이션을 통한 효율성과 QoS 개선이 주요 과제다.",
+      "summary_long": "본 보고서는 지상파 네트워크의 한계를 넘어 위성 등 비지상파 네트워크(NTN)를 통해 5G 및 6G 서비스 영역을 확장하는 산업 동향을 분석한다. NTN 기술의 성능 기준이 높아지면서 통신 등급 수준의 신뢰성 달성이 필수 요구사항으로 부상했다. 3GPP 표준 진화 방향과 수렴형 5G NTN의 시장 기회를 살펴보며, 특히 AI 기반의 지능형 오케스트레이션이 NTN의 효율성, 복원력, 서비스 품질 향상에 어떤 역할을 할 것인지 제시한다. 이는 통신사들의 차세대 네트워크 투자 전략 수립에 중요한 참고자료가 될 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://pages.rcrtech.com/report-ntn-in-motion",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "8f2c0b5ba5f8",
+      "title": "화요일 통신산업 일지 | ISAC에 대해 더 알아보기 – 전쟁터와 운동장에서의 적용",
+      "summary": "통신산업 뉴스레터에서 Wi-Fi, LoRaWAN, 5G 순위 등 정기적인 업계 업데이트와 통신 관련 M&A 소식을 다룬다. ISAC(Information Sharing and Analysis Center) 관련 주요 기사를 중심으로 다양한 통신 기술 및 산업 동향을 분석한다.",
+      "summary_long": "해당 기사는 통신산업의 주요 뉴스를 정리한 뉴스레터 형식으로, Wi-Fi와 LoRaWAN 같은 무선 기술부터 5G 관련 순위 변동, 그리고 통신업계의 인수·합병 동향 등을 포괄적으로 다룬다. 특히 ISAC(정보공유분석센터)을 중심으로 한 기사가 주요 콘텐츠이며, 이는 전쟁터와 운동장이라는 두 가지 맥락에서 ISAC의 역할과 적용 사례를 설명하는 것으로 보인다. 통신 기술의 저비용화 추세도 언급되고 있어 산업 경쟁 환경 변화를 반영하고 있다. 정기적인 업데이트 형식으로 진행되는 만큼 통신산업의 전반적인 동향 파악에 유용한 참고 자료이다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.rcrwireless.com/20260805/5g/telco-diary-isac-battlefields-sportsfields",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "172de334b27e",
+      "title": "Intelligent RAN Forum 2026",
+      "summary": "5G-Advanced와 6G로 진화하는 이동네트워크 환경에서 무선접근망(RAN)이 하드웨어 중심의 전통 아키텍처에서 지능형 RAN 패러다임으로 전환되고 있다. 2026년 포럼은 이러한 RAN 기술 혁신 방향을 논의하는 업계 행사다.",
+      "summary_long": "모바일 네트워크가 5G-Advanced와 6G로 진화함에 따라 무선접근망(RAN) 영역에서 근본적인 변화가 진행 중이다. 전통적인 하드웨어 중심의 아키텍처에서 지능형 RAN으로의 패러다임 전환이 일어나고 있으며, 이는 통신 인프라의 효율성과 기능성을 획기적으로 향상시킬 것으로 예상된다. 2026년 개최되는 Intelligent RAN Forum은 이러한 RAN 기술 혁신과 향후 발전 방향을 논의하기 위한 주요 업계 행사다. 통신사와 장비업체 등 관련 산업 종사자들이 참석하여 6G 시대의 네트워크 인프라 전략을 공유할 것으로 보인다. 이러한 기술 동향은 국내 통신사들의 장기적 네트워크 투자 계획 수립에 중요한 참고자료가 될 수 있다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.openranforum.com/page/5532136/register-now",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "ba3763fabca8",
+      "title": "NTN 통합 포럼 2026",
+      "summary": "NTN(Non-Terrestrial Network)이 개념 검증 단계에서 상용화로 전환되면서 비즈니스 모델, 스펙트럼, 단말기 준비 상태, 네트워크 아키텍처, 상호운용성 등 업계가 해결해야 할 핵심 과제들이 대두되고 있다. 본 포럼은 위성통신 기반 직접 수신 서비스의 상용화를 앞둔 통신산업의 준비도를 점검하는 자리가 될 것으로 예상된다.",
+      "summary_long": "NTN(Non-Terrestrial Network) 기술이 증명 단계를 벗어나 실제 상용 서비스로 진화하는 과정에서 산업 전반이 직면한 다양한 도전과제를 다루는 NTN Integration Forum 2026이 개최된다. 이 포럼은 위성통신과 지상 네트워크 통합에 필요한 비즈니스 모델 수립, 스펙트럼 할당, 5G 단말기의 NTN 지원 준비도, 네트워크 아키텍처 표준화, 제조사 간 상호운용성 확보, 시험 방법론, 서비스 품질 보증 등 기술적·정책적·상업적 이슈를 총망라한다. 특히 직접 수신(Direct-to-Device) 서비스 구현 가능성이 핵심 논의 주제가 될 것으로 보인다. 금·은 등급의 스폰서와 여러 미디어 파트너가 참여하여 국제적 규모의 컨퍼런스로 진행될 예정이며, 통신산업이 위성 기반 커버리지 확대를 통해 IoT와 비상통신 분야에서 차세대 성장동력을 확보할 수 있을지가 관심사다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.ntn-forum.com/page/6117264/register-now",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "12ebeb68d8ee",
+      "title": "FCC, D2D 위성통신용 비면허 스펙트럼 규칙 제정 착수",
+      "summary": "FCC가 비면허 무선기기의 위성 직접통신(D2D) 활성화를 위한 규칙 제정 절차를 개시했다. SpaceX의 위성 기반 모바일 네트워크 사업이 추진되는 가운데, 관련 스펙트럼 정책이 본격화되고 있다.",
+      "summary_long": "미국 FCC가 비면허 무선기기들의 위성과의 직접통신을 가능하게 하는 새로운 규제 방안을 모색하기 위해 공식 규칙 제정 절차를 승인했다. 이는 SpaceX가 추진 중인 위성 기반 지상 이동통신 네트워크 서비스와 EchoStar 스펙트럼 활용 계획을 배경으로 한다. 다만 업계 분석가들은 SpaceX의 기존 통신사를 대체하려는 사업 계획에 대해 회의적인 평가를 내리고 있다. 이번 조치는 위성통신과 지상 이동통신의 융합이 규제 차원에서 본격화됨을 의미하며, 향후 스펙트럼 정책과 비면허 대역 활용 방식에 영향을 미칠 전망이다.",
+      "tags": [
+        "규제·정책",
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-07",
+      "source_url": "https://www.lightreading.com/satellite/fcc-opens-proceeding-on-unlicensed-spectrum-for-d2d",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "ce9dfd2d865e",
+      "title": "AT&T, 에릭슨과 협력해 600MHz 스펙트럼으로 커버리지 및 업링크 강화",
+      "summary": "AT&T가 EchoStar로부터 새로 인수한 600MHz 대역을 활용해 에릭슨의 이중대역 라디오 기술을 배포한다. 이 기술은 업링크 성능 향상에 중점을 두고 있으며, 통신사의 스펙트럼 효율성 극대화 전략을 보여준다.",
+      "summary_long": "AT&T는 최근 인수한 600MHz 스펙트럼을 활용하기 위해 에릭슨의 듀얼밴드 라디오 솔루션을 도입할 계획이다. 이 기술은 특히 업링크 성능을 강화하도록 설계되어, 사용자 경험 개선과 네트워크 용량 확대에 기여할 것으로 예상된다. 기사는 또한 스페이스X가 위성 통신과 지상 소형 기지국을 결합해 미국 통신사 시장에 진입하려는 시도가 업계 분석가들로부터 회의적 평가를 받고 있음을 언급하고 있다. 이는 기존 통신사의 스펙트럼 활용 투자가 경쟁 격화 속에서도 지속될 것임을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.lightreading.com/5g/at-t-puts-600mhz-to-work-with-ericsson-for-coverage-and-uplink",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "82f738633cc6",
+      "title": "호주 규제당국, 국내 로밍 재검토 추진",
+      "summary": "호주 규제기관 ACCC가 농촌 지역 이동통신 서비스에 대한 재검토를 실시하며, 이를 통해 통신사들이 경쟁사에 네트워크를 개방하도록 강제할 가능성이 있다.",
+      "summary_long": "호주의 경쟁·소비자위원회(ACCC)가 농촌 지역 이동통신 시장에 대한 규제 검토를 추진하고 있다. 이 검토의 핵심은 국내 로밍(Domestic Roaming) 제도와 관련된 것으로, 지역 통신사들이 네트워크 인프라를 경쟁사에 개방하도록 규제할 가능성을 검토하는 것이다. 이는 농촌 지역의 통신 경쟁 활성화와 서비스 수준 개선을 목표로 하는 규제 정책이다. 호주의 이러한 정책 방향은 통신 인프라 공동 이용과 경쟁 촉진을 통한 시장 정상화 방안으로 평가되며, 국내 통신 규제 정책의 벤치마킹 가치가 있다.",
+      "tags": [
+        "규제·정책",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.lightreading.com/regulatory-politics/australian-regulator-to-take-another-look-at-domestic-roaming",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "5bb88df14cfc",
+      "title": "프라이빗 모바일 네트워크, 2030년까지 연 58% 성장 전망",
+      "summary": "STL Partners에 따르면 프라이빗 모바일 네트워크 시장이 2025년 23억 달러에서 2030년 220억 달러로 성장할 것으로 예상되며, 연평균 58%의 고성장률을 기록할 전망이다. 이는 기업과 산업 부문의 맞춤형 네트워크 수요 증가를 반영한다.",
+      "summary_long": "글로벌 통신 컨설팅 회사 STL Partners의 최신 분석에 따르면 프라이빗 모바일 네트워크 시장이 빠른 성장 궤도에 진입할 것으로 전망된다. 현재 2025년 233억 달러 규모의 시장이 2030년까지 220억 달러로 확대되며 연 58%의 강력한 성장률을 기록할 것으로 예측된다. 이러한 성장은 제조업, 물류, 에너지 등 다양한 산업 분야에서 자체 통신 인프라 구축 수요가 증가하고 있음을 의미한다. 또한 기사는 스페이스X의 위성 기반 지상 모바일 네트워크 구축 계획에 대해 분석가들의 회의적 평가를 언급하며, 민간 네트워크 시장에서의 경쟁이 본격화될 것임을 시사한다. 이는 국내 통신사들도 기업 및 산업 맞춤형 네트워크 서비스 발굴의 중요성을 인식해야 함을 보여준다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://www.lightreading.com/private-networks/private-mobile-networks-will-see-steady-growth-stl-partners",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "fa15cf9e7fe1",
+      "title": "영국 MVNO 시장 급성장, 핀테크 기업들의 모바일 시장 진입으로 2031년까지 51% 연결 증가 예상",
+      "summary": "영국 MVNO 시장이 2026년부터 2031년까지 51% 성장하여 시장점유율이 23%에서 30% 이상으로 확대될 것으로 예측된다. 핀테크 기업들이 eSIM을 통해 모바일 연결을 직접 제공하면서 2031년까지 300만 명 이상의 고객을 확보할 것으로 전망되며, MVNO 서비스 수익은 24억 파운드에서 45억 파운드로 거의 두 배 증가할 것으로 예상된다.",
+      "summary_long": "영국의 MVNO(이동통신 가상운영자) 시장이 급속도로 성장하고 있다. FDM CCS Insight의 최신 보고서에 따르면 2026년부터 2031년까지 MVNO 연결 수가 51% 증가하여 전체 모바일 시장(M2M 제외)에서의 점유율이 현재 약 23%에서 30% 이상으로 상승할 것으로 예측된다. 동일 기간 MVNO 서비스 수익은 2025년 24억 파운드에서 2031년 45억 파운드 이상으로 거의 두 배로 증가할 전망이다. 특히 핀테크 기업들이 Gigs 및 1Global 같은 제공자들을 통해 eSIM으로 고객 앱을 통한 모바일 연결을 직접 제공하는 새로운 사업 모델을 구축하고 있으며, 이들은 2031년까지 영국 MVNO 시장의 11%를 차지하는 300만 명 이상의 고객을 확보할 것으로 예상된다. 이는 이동통신사들에게 도매 수익 증대라는 이점이 있지만 동시에 소매 시장에서의 경쟁 심화로 인해 자체 고객 성장이 저해될 가능성이 있다. 보고서는 MVNO의 시장 확대가 영구적이지 않을 것으로 지적하며, 통신사들이 계약 재협상을 더욱 엄격하게 접근하면서 성장세가 둔화될 것으로 예상하고 있다.",
+      "tags": [
+        "시장경쟁",
+        "규제·정책",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-07",
+      "source_url": "https://capacityglobal.com/news/uk-mvno-connections-set-to-surge/",
+      "source_name": "Capacity"
+    },
+    {
+      "id": "d5e61c494eea",
+      "title": "SpaceX, Starlink Mobile로 AT&T·T-Mobile·Verizon 제치겠다 선언",
+      "summary": "SpaceX는 EchoStar에서 인수한 스펙트럼을 활용해 지상 기반 Starlink Mobile 서비스를 구축할 계획이다. SpaceX 회장은 연 600억 달러대 시장의 주요 고객 확보 가능성을 시사하며, 위성과 소형 기지국 결합으로 커버리지 격차를 제거한 더 나은 서비스를 제공할 수 있다고 주장했다.",
+      "summary_long": "SpaceX는 새로운 통신 경쟁자로 진출하기 위해 EchoStar에서 인수한 스펙트럼의 지상 구성 요소를 활용하여 자체 이동통신 서비스를 구축할 계획을 발표했다. SpaceX 회장 Gwynne Shotwell은 최근 실적 발표에서 위성 용량과 지상 기반 인프라의 결합으로 미국 주요 3개사(AT&T, Verizon, T-Mobile)가 연간 창출하는 약 600억 달러 시장에서 상당한 고객을 확보할 수 있을 것으로 예상했다. SpaceX는 기존의 대규모 기지탑 대신 전역에 분산된 소형 기지국을 구축할 계획이며, 이를 통해 위성과 지상 네트워크를 결합한 '진정한' 이동통신 서비스를 제공하겠다고 강조했다. 주요 강점으로는 위성 활용으로 커버리지 데드존을 제거할 수 있다는 점을 제시했다. 이는 기존 통신사의 수익 구조에 도전할 수 있는 비즈니스 모델로 평가되며, 미국 통신 시장의 경쟁 구도에 변화를 줄 수 있는 신규 진입자의 등장을 의미한다.",
+      "tags": [
+        "시장경쟁",
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T, Verizon, T-Mobile",
+      "importance": 4,
+      "date": "2026-08-07",
+      "source_url": "https://arstechnica.com/tech-policy/2026/08/spacex-claims-starlink-mobile-will-be-better-than-att-t-mobile-and-verizon/",
+      "source_name": "Policy - Ars Technica"
+    },
     {
       "id": "9295184947f8",
       "title": "머스크 \"스타링크가 전세계 인터넷 과반 제공\"…통신까지 삼킨다",
@@ -4946,236 +5192,6 @@
       "date": "2026-06-30",
       "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422096",
       "source_name": "시사저널e - 전체기사"
-    },
-    {
-      "id": "89c51e701061",
-      "title": "M&A 추적기 - Verizon, BT, Iridium, Rocket Lab 및 Comcast",
-      "summary": "통신 및 기술산업의 급변하는 인수합병(M&A) 동향을 추적하는 기사로, Verizon 등 주요 통신사의 전략적 인수합병 활동을 다룬다. 통신산업의 경쟁 구도 변화와 사업 다각화 추세를 파악할 수 있는 자료다.",
-      "tags": [
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/broadband/2026-ma-tracker",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "4242f4ff4c22",
-      "title": "휴대폰 개통 시 안면인증 거쳐야... 모바일 신분증·초본으로 대체 가능",
-      "summary": "휴대폰 개통 절차에 안면인증이 의무화되는 가운데, 모바일 신분증과 초본으로 대체 가능한 옵션이 제공된다. 이는 본인확인 강화와 사용자 편의성을 동시에 추구하는 통신업계의 서비스 정책 변화로, 향후 개통 프로세스 표준화에 영향을 미칠 것으로 예상된다.",
-      "tags": [
-        "안면인증",
-        "이용약관",
-        "서비스정책",
-        "규제·정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.chosun.com/economy/tech_it/2026/06/30/4MYCZHYUJVEQTLCSKQXQZIRFIM/",
-      "source_name": "조선일보"
-    },
-    {
-      "id": "9b1f5e6393b6",
-      "title": "기본권 침해·제도 운영 논란에도 '안면인증' 정식 도입… 개보위·인권위는 우려, 과기정통부는 '마이웨이'",
-      "summary": "정부가 대포폰과 보이스피싱 범죄 방지를 위해 내달 6일부터 휴대전화 개통 시 안면인증을 정식 도입한다. 개인정보보호위원회와 인권위의 기본권 침해 우려에도 불구하고 과기정통부가 추진 중이며, 외국인 명의 개통 제외로 실효성 논란이 제기되고 있다.",
-      "tags": [
-        "안면인증",
-        "규제·정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "과기정통부",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.chosun.com/economy/tech_it/2026/06/30/MJSDSY3EGQ3WGOLCHA3DQZLBMQ/",
-      "source_name": "조선일보"
-    },
-    {
-      "id": "189bd6f63bbf",
-      "title": "[대한민국 3대 메가프로젝트] 정부-SK·GS·네이버, AI 데이터센터 지역별 구축 박차",
-      "summary": "정부가 SK, GS, 네이버 등과 함께 수도권 이외 지역에 권역별 AI 데이터센터(AIDC)를 구축하는 '3대 메가프로젝트'를 추진 중이다. 2029년까지 총 8.4GW 규모의 AIDC 조성을 목표로 하고 있으며, 이는 통신사의 데이터센터 투자 확대 및 AI 인프라 경쟁 심화를 의미한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향",
-        "규제·정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.etnews.com/20260629000384",
-      "source_name": "오늘의 인기기사 - 이티뉴스"
-    },
-    {
-      "id": "c303e849bcb6",
-      "title": "휴대폰 안면인증 6일 시행…모바일신분증 대체로 혼란 최소화",
-      "summary": "과학기술정보통신부는 7월 6일부터 이동통신 3사와 알뜰폰 전 채널에 휴대폰 부정사용 방지를 위한 안면인증 제도를 단계적으로 시행한다. 대포폰 악용을 원천 차단하기 위해 개통 시 본인확인을 강화하며, 시범 과정에서의 인식률 논란을 해소하기 위해 대체수단을 다양화할 예정이다.",
-      "tags": [
-        "안면인증",
-        "규제·정책",
-        "서비스정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "과기정통부",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.etnews.com/20260630000322",
-      "source_name": "오늘의뉴스 - 이티뉴스"
-    },
-    {
-      "id": "90e779596531",
-      "title": "Jio가 인도의 스타링크 대항마를 만들 수 있을까?",
-      "summary": "인도 최대 통신사 릴라이언스 지오가 저궤도(LEO) 위성통신 인프라 개발을 추진 중이며, 이는 스타링크, 유텔샛 원웹, 아마존 프로젝트 레오 등 글로벌 위성통신 사업자들과의 경쟁 구도를 형성할 것으로 예상된다. 위성통신은 차세대 초고속 인터넷 인프라로 국내 이동통신사들의 벤치마킹 대상이 될 수 있다.",
-      "tags": [
-        "기술·네트워크",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/wireless/can-jio-build-indias-answer-starlink",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "7088404b83d5",
-      "title": "AI 기반 그린 & 복원력: 탄소중립 및 신뢰성 높은 네트워크 아키텍처의 새로운 청사진",
-      "summary": "화웨이가 디지털 변환 월드 2026에서 AI 기술을 활용한 탄소중립 네트워크 아키텍처를 발표했다. 본 기술은 네트워크 에너지 효율 극대화와 시스템 안정성 강화에 초점을 맞춘 것으로, 통신사의 친환경 전략 및 기술 혁신 방향을 제시한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://totaltele.com/ai-driven-green-resilience-new-blueprint-for-zero-carbon-and-reliable-network-architecture/",
-      "source_name": "Total Telecom"
-    },
-    {
-      "id": "d086eff72f7c",
-      "title": "오래된 통신 가입 방식 깼다…LGU+, 고객 경험 바꾼 '올인원'",
-      "summary": "LG유플러스가 모바일·인터넷·결합 가입 절차를 하나로 통합한 '올인원' 상품을 출시했다. 7월부터 시행한 '심플리 2.0'의 핵심 상품으로 월 9만원 이상 모바일 요금제 이용 시 별도 결합 신청 없이 혜택을 받을 수 있어 가입 절차 단순화와 고객 편의성을 대폭 개선했다.",
-      "tags": [
-        "요금제",
-        "결합상품",
-        "통신사동향",
-        "서비스정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "LG U+",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.etnews.com/20260630000318",
-      "source_name": "오늘의뉴스 - 이티뉴스"
-    },
-    {
-      "id": "c82c5e5a2fa1",
-      "title": "과기정통부, 6일부터 휴대폰 안면인증 단계적 시행…신분증·초본 등 대체인증 허용",
-      "summary": "정부가 휴대전화 개통시 안면인증 제도를 6일부터 단계적으로 시행한다. 실패시 신분증·초본 등으로 조건부 개통을 허용하며, 10월까지 법적·시스템 정비를 완료할 예정이다. 명의도용 등 휴대전화 부정사용 방지가 주목적이며, 통신산업 신원확인 절차의 중요한 정책 변화다.",
-      "tags": [
-        "안면인증",
-        "규제·정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "과기정통부",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.etnews.com/20260630000056",
-      "source_name": "오늘의뉴스 - 이티뉴스"
-    },
-    {
-      "id": "e4bf2ce3387b",
-      "title": "애플, 국내에서만 아이폰 가격 인상 '신중 모드'…9월이 인상 분수령",
-      "summary": "애플이 맥북·아이패드 등 주요 제품 가격을 대폭 인상했으나 아이폰은 제외했다. 국내 휴대폰 시장의 경쟁상황을 고려한 판단으로, 이동통신사와 유통업계는 9월을 제품 가격조정의 분수령으로 예상하고 있다.",
-      "tags": [
-        "단말기·유통",
-        "시장경쟁"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.etnews.com/20260628000067",
-      "source_name": "오늘의 인기기사 - 이티뉴스"
-    },
-    {
-      "id": "c4a1bb6a74b3",
-      "title": "대표팀 후원사 KT도 월드컵 마케팅 중단···포스터 제거 지침 내려",
-      "summary": "축구 국가대표팀 공식 후원사인 KT가 2026 북중미 월드컵 관련 마케팅을 중단하고 전국 영업점의 월드컵 관련 포스터 및 시각홍보물을 제거하도록 지시했다. 국가대표팀의 32강 진출 실패로 월드컵과의 거리두기에 나선 것으로 풀이되며, 통신사의 스포츠 마케팅 전략 조정을 보여주는 사례다.",
-      "tags": [
-        "통신사동향",
-        "서비스정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "KT",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422073",
-      "source_name": "시사저널e - 전체기사"
-    },
-    {
-      "id": "c36477dc5416",
-      "title": "고고팩토리, 시니어 안전 케어 돕는 '안심실버폰' 선보여",
-      "summary": "알뜰폰 및 IT 솔루션 전문 기업 고고팩토리가 시니어 계층의 배회, 금융사기, 고독사 위험을 통합 관리하는 '안심실버폰'을 출시했다. 실시간 위치 정보, 휴대폰 사용 패턴, 금융 위험 신호를 종합 분석하여 평소 생활 패턴과 비교한 이상 징후를 감지하는 서비스로, 알뜰폰 시장의 사회적 책임 강화 사례이다.",
-      "tags": [
-        "서비스정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "알뜰폰",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.itbiznews.com/news/articleView.html?idxno=217826",
-      "source_name": "IT비즈뉴스 - 전체기사"
-    },
-    {
-      "id": "62c03ea3eb9a",
-      "title": "스페이스X, 차터 커뮤니케이션과 모바일 서비스 제휴 논의 중",
-      "summary": "일론 머스크의 스페이스X가 미국 케이블통신사 차터 커뮤니케이션과 소비자 모바일폰 서비스 제휴에 대해 임원진 차원의 협상을 진행 중인 것으로 보도되었다. 위성통신 기업의 이동통신 시장 진출 움직임으로, 향후 통신 산업의 경쟁 구도와 결합상품 전략에 영향을 미칠 수 있는 사항이다.",
-      "tags": [
-        "시장경쟁",
-        "통신사동향",
-        "결합상품"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/wireless/now-spacex-talking-charter-about-mobile-offer-report",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "f877d1f5077e",
-      "title": "AWS-3 경매에서 베라이즌이 최대 낙찰자로 선정",
-      "summary": "FCC가 실시한 113차 경매(AWS-3 대역)를 완료하고 낙찰자를 발표했으며, 베라이즌이 최대 낙찰자로 선정되었다. 이는 미국 무선통신 시장의 주파수 확보를 통한 통신사 간 경쟁 심화를 의미하며, 국내 통신사의 주파수 전략 수립 시 참고 가치가 있다.",
-      "tags": [
-        "기술·네트워크",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 3,
-      "date": "2026-06-30",
-      "source_url": "https://www.fierce-network.com/wireless/verizon-emerges-biggest-winner-aws-3-auction",
-      "source_name": "Fierce Network"
     }
   ]
 }
