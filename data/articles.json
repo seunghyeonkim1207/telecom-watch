@@ -1,6 +1,77 @@
 {
-  "updated": "2026-08-09T08:24:57.022606+09:00",
+  "updated": "2026-08-10T08:27:35.465747+09:00",
   "articles": [
+    {
+      "id": "0a0af8a0739e",
+      "title": "통신사, '9월 개강' 앞두고 유학생 확보 총력…순증 경쟁 새 격전지",
+      "summary": "SK텔레콤, KT, LG유플러스가 9월 개강을 앞두고 외국인 유학생 고객 확보에 집중하고 있다. 유학생은 신규 회선 개통으로 직접적인 순증에 반영되어 기존 번호이동보다 중요성이 높아지고 있으며, 2025년 외국인 유학생이 25만여 명으로 21.3% 증가했다.",
+      "summary_long": "통신사들이 9월 대학 개강을 대비해 외국인 유학생 확보 전략을 강화하고 있다. SK텔레콤, KT, LG유플러스는 해외 대학·유학원 및 국내 대학·기숙사와 협력하여 입국 전부터 통신상품을 안내하고 입국 직후 유심 개통까지 연결하는 구조를 구축했다. KT는 몽골 현지 금융사와 제휴해 사전신청을 받고 있으며, LG유플러스는 전문매장 16곳 지정과 다국어 서비스 제공, SK텔레콤은 선납형 서비스와 다국어 상담을 제공 중이다. 통신사들은 선불 중심의 유학생 수요를 후불 요금제로 전환하는 데 주력하고 있는데, 이는 후불 고객의 회선 유지기간이 길고 단말·결합상품·부가서비스 이용 가능성이 크기 때문이다. 교육부에 따르면 2025년 국내 외국인 유학생은 25만 3,434명으로 전년 대비 21.3% 증가했으며, 정부는 2027년까지 30만 명 유치를 추진하고 있다. 업계 관계자는 '내국인 시장은 보조금 경쟁에 그치지만 외국인 유학생은 입국 때마다 신규 수요 발생'이라며 해외 현지 모집과 제휴를 통한 선점 경쟁이 더욱 치열해질 것으로 예측했다.",
+      "tags": [
+        "통신사동향",
+        "서비스정책",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT, KT, LG U+",
+      "importance": 3,
+      "date": "2026-08-10",
+      "source_url": "https://www.etnews.com/20260807000217",
+      "source_name": "오늘의뉴스 - 이티뉴스"
+    },
+    {
+      "id": "a5e7a4589734",
+      "title": "통신사 AI데이터센터 경쟁, 운영 기술이 승부처...냉각·연결·전력효율 집중",
+      "summary": "SK텔레콤, KT, LG유플러스 등 통신 3사가 AI데이터센터(DC) 경쟁을 운영 역량 단계로 확대하고 있다. 센터 규모 확대에 따른 냉각 효율, 전력 공급, 네트워크 연결 능력이 핵심 경쟁 요소로 부각되고 있으며, 각사는 자체 기술 역량을 결집해 차별화 전략을 추진 중이다.",
+      "summary_long": "통신 3사의 AI데이터센터 기술 경쟁이 단순 규모 확대에서 실제 운영 효율성 경쟁으로 전환되고 있다. SK텔레콤은 SK하이퍼 자회사를 출범시키고 2030년까지 7500억원을 출자해 5GW 규모 AI DC를 구축한 후 2035년 15GW까지 확대할 계획이다. 울산 AI DC를 첫 프로젝트로 삼아 AWS와 협력하고, SK하이닉스 반도체와 SK브로드밴드 네트워크 역량을 활용하는 한편, Arm과 리벨리온과의 협력으로 CPU와 AI 추론용 가속기를 탑재한 서버 솔루션을 개발 중이다. KT는 전국 통신망과 데이터센터 운영 기술을 바탕으로 인프라 연결에 초점을 맞추고 있다. 향후 AI DC 시장에서는 냉각·전력·네트워크 연결 효율이 기술 차별화의 핵심 요소로 작용할 것으로 예상된다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT, KT, LG U+",
+      "importance": 4,
+      "date": "2026-08-10",
+      "source_url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=690997",
+      "source_name": "디지털투데이 (DigitalToday) - 전체기사"
+    },
+    {
+      "id": "2337dd2df1b1",
+      "title": "LGU+·브로드컴, 와이파이8 기반 '홈 네트워크 자동 복구' 기술 검증",
+      "summary": "LG유플러스가 브로드컴과 함께 와이파이8 플랫폼 기반의 AI 자동 복구 기술 검증에 성공했다. 공유기에서 엣지AI를 활용해 네트워크 상태를 자동으로 분석·최적화하며, 사용자가 품질 저하를 감지하기 전에 이상 징후를 감지해 대응한다.",
+      "summary_long": "LG유플러스는 브로드컴과 협력하여 와이파이8 기반의 지능형 홈 네트워크 자동 복구 기술 검증을 성공적으로 완료했다. 핵심은 클라우드 서버에 의존하지 않고 가정용 공유기 내에서 AI가 직접 네트워크 상태를 분석하고 최적화하는 엣지AI 기술이다. 이러한 기술은 사용자가 인터넷 품질 저하를 체감하기 전에 AI가 선제적으로 이상 징후를 감지하고 자동으로 대응하는 것을 가능하게 한다. 이 실증은 통신사가 고객 만족도를 높이기 위해 네트워크 관리의 자동화와 지능화를 진행하고 있음을 보여준다. 향후 이러한 기술이 상용화되면 홈 네트워크의 신뢰성 강화와 고객 경험 개선으로 이어질 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "LG U+",
+      "importance": 4,
+      "date": "2026-08-10",
+      "source_url": "https://www.itbiznews.com/news/articleView.html?idxno=221355",
+      "source_name": "IT비즈뉴스 - 전체기사"
+    },
+    {
+      "id": "616b14f09b4f",
+      "title": "SKT, 10년 이상 장기고객 초청 행사 '테이블 데이' 성료",
+      "summary": "SK텔레콤이 서울 비스타 워커힐에서 10년 이상 장기고객 400명을 초청해 'T 장기고객 프로그램 테이블 데이' 행사를 개최했다. 이는 장기고객에게 특별한 미식경험을 제공하는 고객 관계관리 전략으로, 고객 충성도 강화를 위한 리텐션 정책의 일환이다.",
+      "summary_long": "SK텔레콤은 장기간 서비스를 이용해온 고객들에 대한 감사와 신뢰를 표현하기 위해 특별 초청 행사를 개최했다. 8일 서울 강남권 고급 호텔에서 진행된 이번 행사에는 10년 이상 고객과 동반인 총 400명이 참석했으며, 음식을 매개로 한 감정적 유대감 형성을 목표로 기획되었다. 정재헌 CEO는 통신을 통한 사람 간의 연결에서 나아가 고객 경험 전반에서의 신뢰와 만족을 강조했으며, 향후 서비스 품질 개선을 통해 고객 신뢰에 보답하겠다는 의지를 표현했다. 이는 이동통신 시장에서 기존 고객의 이탈을 방지하고 장기적 관계를 유지하는 리텐션 전략의 구체적 사례로, 통신사들이 요금 경쟁을 넘어 고객 경험과 만족도를 높이려는 산업 추세를 보여준다.",
+      "tags": [
+        "리텐션",
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT",
+      "importance": 3,
+      "date": "2026-08-10",
+      "source_url": "https://www.itbiznews.com/news/articleView.html?idxno=221341",
+      "source_name": "IT비즈뉴스 - 전체기사"
+    },
     {
       "id": "b0e72e828897",
       "title": "중국 통신사, 'AI 토큰'으로 분기 2조원 수익…한국도 사업화 단계 진입",
@@ -5139,73 +5210,6 @@
       "date": "2026-07-01",
       "source_url": "https://www.lightreading.com/5g/fcc-sets-vote-on-rules-to-auction-160mhz-of-upper-c-band-spectrum",
       "source_name": "lightreading"
-    },
-    {
-      "id": "bbc8b5797216",
-      "title": "베라이즌·아르카디안, 외국산 라우터 금지 면제 획득; NTCA·ACA·USTelecom도 신청",
-      "summary": "FCC가 베라이즌과 아르카디안에 외국산 라우터 판매 금지에 대한 임시 면제를 승인했다. 통신 규제 강화 추세 속에서 NTCA, ACA, USTelecom, Askey 등도 동일한 면제를 요청하고 있으며, 이는 장비 조달 규제의 비즈니스 영향을 보여주는 사례다.",
-      "tags": [
-        "규제·정책",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 3,
-      "date": "2026-07-01",
-      "source_url": "https://www.lightreading.com/broadband/verizon-arcadyan-net-router-waivers-ntca-aca-ustelecom-also-want-one",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "5bffdec77461",
-      "title": "AT&T '빌드-어-플랜'에 홈 브로드밴드 옵션 추가",
-      "summary": "AT&T가 무선 중심의 '빌드-어-플랜' 서비스에 광섬유(Fiber)와 고정무선(FWA) 홈 브로드밴드 서비스를 번들링할 수 있도록 확대했다. 이는 이동통신사가 고정 브로드밴드를 결합상품으로 제공하는 통합 전략으로, 국내 통신사의 결합상품 경쟁력 벤치마킹에 참고할 가치가 있다.",
-      "tags": [
-        "결합상품",
-        "서비스정책",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "AT&T",
-      "importance": 3,
-      "date": "2026-07-01",
-      "source_url": "https://www.lightreading.com/broadband/at-t-build-a-plan-adds-home-broadband-options",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "45a645cc78d2",
-      "title": "한국, 2035년까지 대규모 18.4GW AI 데이터센터 구축 계획",
-      "summary": "한국이 SK그룹, GS그룹, 네이버와 협력하여 10년간 약 650억 달러를 투자해 18.4GW 규모의 AI 데이터센터를 2단계로 구축할 계획이다. 이는 국내 통신·인터넷 인프라의 경쟁력 강화와 AI 산업 육성을 위한 국가적 전략 프로젝트로, 향후 통신사의 네트워크 투자 및 데이터센터 사업 확대에 영향을 미칠 것으로 예상된다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향",
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-07-01",
-      "source_url": "https://www.lightreading.com/data-centers/south-korea-plans-massive-18-4gw-ai-data-center-buildout-by-2035",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "e26d4b85269c",
-      "title": "Dish, 파산 신청했지만 사업 중단 아님",
-      "summary": "Dish TV와 Sling TV를 운영하는 Dish가 Chapter 11 파산을 신청했으나 사업은 계속 운영한다. AT&T와의 230억 달러 규모 5G 스펙트럼 판매가 지연되면서 무선사업 축소 계획을 진행 중이다. 해외 주요 통신사의 경영위기 사례로 국내 통신시장 동향 참고 가치가 있다.",
-      "tags": [
-        "통신사동향",
-        "시장경쟁",
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "AT&T",
-      "importance": 3,
-      "date": "2026-07-01",
-      "source_url": "https://www.theverge.com/tech/959894/dish-chapter-11-bankruptcy",
-      "source_name": "The Verge"
     }
   ]
 }
