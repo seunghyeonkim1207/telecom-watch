@@ -1,6 +1,132 @@
 {
-  "updated": "2026-08-11T08:32:00.306032+09:00",
+  "updated": "2026-08-12T08:42:55.136960+09:00",
   "articles": [
+    {
+      "id": "ba1d9b7f4118",
+      "title": "보조금 경쟁 예상과 달리···단통법 폐지 1년, 통신 시장 경쟁 활성화 미흡",
+      "summary": "이동통신 단말장치 유통구조 개선법(단통법) 폐지 1년 후 당초 기대했던 보조금 경쟁과 통신비 인하 효과가 미미한 것으로 나타났다. 보조금이 고가 요금제에만 쏠리고 번호이동 시장도 침체를 벗어나지 못하면서 정책의 실효성 의문이 제기되고 있다.",
+      "summary_long": "이재명 정부가 가계통신비 절감과 시장 경쟁 활성화를 목표로 추진한 단통법 폐지가 1년을 맞이했으나, 정책 의도와는 달리 실제 통신 시장에서는 기대했던 변화가 나타나지 않고 있다. 보조금 규제 완화를 통해 유통점 간 경쟁을 유도하고 통신비를 낮추겠다는 초심은 현실에서 구현되지 않았으며, 오히려 지원금이 고가 요금제에 편중되는 현상이 발생하고 있다. 한국통신사업자연합회의 이동통신 번호이동 현황 집계에 따르면 단통법 폐지 후 1년간 번호이동 시장은 침체 상태를 지속하고 있어 소비자의 통신사 이탈이 활발하지 않은 것으로 파악된다. 이는 규제 완화만으로는 실질적인 시장 경쟁이 촉진되지 않으며, 통신사들의 마케팅 관행과 구조적 문제가 여전히 존재함을 시사한다.",
+      "tags": [
+        "단말기·유통",
+        "규제·정책",
+        "시장경쟁",
+        "요금제"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "방통위",
+      "importance": 4,
+      "date": "2026-08-12",
+      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=423009",
+      "source_name": "시사저널e - 전체기사"
+    },
+    {
+      "id": "523a949cec27",
+      "title": "AI가 구식 콘텐츠를 되살리고 있다 - 통신사 고객 이탈에 미치는 영향",
+      "summary": "AI 챗봇이 통신사의 오래되고 부정확한 콘텐츠를 재활용하면서 고객 만족도를 저하시키고 이탈을 유발하고 있다. 스토리블록의 조사에 따르면 부실·불명확·구식 콘텐츠로 인해 매년 약 5.86%의 수익이 부정적 영향을 받는 것으로 나타났다.",
+      "summary_long": "AI 기술의 발전으로 통신사들이 관리하지 못한 낡은 웹 콘텐츠가 AI 검색 결과로 재차 노출되면서 고객 경험을 악화시키는 문제가 대두되고 있다. 과거에는 구글 검색에서 제외되면 자동으로 사라지던 구식 정보가 AI 챗봇을 통해 되살아나고 있는 것이다. 콘텐츠 관리 소프트웨어 제공업체 스토리블록이 10억 달러 이상의 대규모 기업 임원 550명을 대상으로 실시한 조사 결과, 불완전하거나 불명확하거나 오래된 콘텐츠로 인해 연간 수익의 5.86%가 부정적인 영향을 받는 것으로 나타났다. 통신사의 경우 고객 지원 채팅봇의 잘못된 응답이 오히려 지원 비용 절감 효과를 상쇄하고 고객 이탈로 이어질 수 있다는 점에서 콘텐츠 정제가 시급한 과제로 지적되고 있다. 이는 고객 서비스 품질이 리텐션과 직결되는 통신업계에서 특히 중요한 이슈이다.",
+      "tags": [
+        "리텐션",
+        "서비스정책",
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-12",
+      "source_url": "https://www.fierce-network.com/cloud/ai-feeding-old-rotten-content-heres-why-matters-telco-churn",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "d22e07209848",
+      "title": "T-모바일, 8억 MHz 대역 스펙트럼 포트폴리오를 그레인 매니지먼트에 매각 완료",
+      "summary": "T-모바일이 그레인 매니지먼트에 800 MHz 스펙트럼 포트폴리오를 29억 달러와 600 MHz 스펙트럼 라이선스로 교환하는 거래를 완료했다. FCC는 2026년 7월 1일 이 거래를 승인했으며, 그레인은 이를 유틸리티, 주요 인프라 운영사, 지역통신사 등에 마케팅할 계획이다.",
+      "summary_long": "T-모바일은 2026년 8월 11일 그레인 매니지먼트와의 스펙트럼 거래 완료를 발표했다. 거래 내용은 T-모바일의 800 MHz 스펙트럼 포트폴리오를 29억 달러의 현금과 그레인이 보유한 600 MHz 스펙트럼 라이선스 전량으로 교환하는 것이다. 연방통신위원회(FCC)는 2026년 7월 1일 이 거래를 승인했다. 그레인 매니지먼트는 이 800 MHz 스펙트럼을 유틸리티 기업, 주요 인프라 산업 운영자, 지역 및 소규모 통신사, 기타 엔터프라이즈 고객들을 대상으로 마케팅할 예정이다. 이 거래는 양사의 스펙트럼 포트폴리오 최적화 전략을 반영하며, 미국 무선통신 시장의 주파수 재편 흐름을 보여주는 사례다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-08-12",
+      "source_url": "https://www.fierce-network.com/newswire/t-mobile-completes-sale-800-mhz-spectrum-portfolio-grain-management",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "aecb4596e2b7",
+      "title": "버라이존 네트워크 장애, 통신망 안정성 다시 주목",
+      "summary": "버라이존이 주말 이틀에 걸쳐 두 건의 네트워크 장애를 경험했다. 토요일 미국 일부 지역에서 음성 서비스가 중단됐고, 일요일 남캘리포니아에서는 반달리즘으로 인한 광섬유 절단으로 모바일 및 인터넷 서비스가 영향을 받았다.",
+      "summary_long": "미국 주요 통신사인 버라이존이 주말 이틀 동안 두 차례의 서비스 장애를 겪으며 네트워크 안정성이 재조명되고 있다. 토요일 발생한 첫 번째 장애는 미국 일부 지역의 음성 서비스에 영향을 미쳤으며, 회사는 태평양 표준시 오후 4시경 문제를 해결했다고 발표했으나 원인은 명시하지 않았다. 버라이존은 영향받은 고객 수나 장애 원인에 대한 구체적인 정보를 제공하지 않았고, 여전히 문제를 겪는 고객들에게 기기 재시작을 권고했다. 일요일에는 남캘리포니아 지역에서 반달리즘으로 인해 여러 광섬유 케이블이 절단되어 모바일 및 인터넷 고객들의 서비스가 중단되는 사태가 발생했다. 이번 연속적인 장애는 대규모 통신사의 네트워크 인프라 보호와 서비스 복원력의 중요성을 부각시킨다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-08-12",
+      "source_url": "https://www.fierce-network.com/wireless/verizon-outages-put-network-back-focus",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "b6a37ebd6598",
+      "title": "T-Mobile, Grain과 스펙트럼 스와프 완료",
+      "summary": "T-Mobile이 Grain Management와 스펙트럼 거래를 완료했으며, 29억 달러 현금과 600MHz 스펙트럼 라이선스를 획득했다. 동시에 T-Mobile은 올해 4,500명 이상의 인원감축을 단행하며 사업 재편을 추진 중이다.",
+      "summary_long": "T-Mobile US는 Grain Management와의 스펙트럼 포트폴리오 교환을 완료했다. 이 거래에서 T-Mobile은 800MHz 스펙트럼 자산을 양도하는 대신 29억 달러의 현금과 Grain이 보유한 모든 600MHz 스펙트럼 라이선스를 확보했다. 이는 T-Mobile의 스펙트럼 포트폴리오를 최적화하기 위한 전략적 조치로 평가된다. 한편 T-Mobile은 올해 4,500명 이상의 인원을 감축하는 대규모 구조조정을 진행 중이며, 이는 모회사 Deutsche Telekom이 공개한 통계에 따르면 올해 전체 직원 수 기준 약 7% 규모의 감소를 의미한다. 이러한 일련의 조치들은 T-Mobile의 사업 변혁 과정을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-08-12",
+      "source_url": "https://www.lightreading.com/5g/t-mobile-grain-complete-spectrum-swap",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "806a1b7129ad",
+      "title": "KDDI와의 로밍 계약 종료로 라쿠텐, 4G·5G 네트워크 비용 급증",
+      "summary": "일본 라쿠텐이 KDDI와의 로밍 협력 종료로 네트워크 커버리지 공백을 자체 구축해야 하면서 통신망 투자 비용이 급증하고 있다. 이는 신규 진입 통신사가 인프라 자립화 과정에서 겪는 비용 부담 문제를 보여주는 사례다.",
+      "summary_long": "일본의 신규 통신사 라쿠텐이 기존 협력사 KDDI와의 로밍 계약 종료에 따라 상당한 비용 압박에 직면했다. KDDI의 로밍 서비스 중단으로 라쿠텐은 4G, 5G 네트워크의 커버리지 공백을 자체 기지국 구축을 통해 메워야 하는 상황이다. 이는 신규 진입 통신사가 기존 대형 통신사의 인프라에 의존하다가 자립화를 추진할 때 감당해야 하는 상당한 자본 투자 부담을 의미한다. 동시에 기사에서는 T-Mobile US의 구조조정 사례도 다루고 있으며, 이는 글로벌 통신산업의 경쟁 심화와 비용 효율화 압박을 반영한다. 라쿠텐의 사례는 네트워크 인프라 투자의 중요성과 신규 사업자의 경제성 문제를 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-12",
+      "source_url": "https://www.lightreading.com/open-ran/rakuten-faces-surge-in-4g-5g-costs-as-kddi-cuts-it-off",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "2b6d8a93ac8c",
+      "title": "통신업계, AI 정책 지원을 명분으로 광섬유 배포 확대 추진",
+      "summary": "미국 통신업체들이 AI 기술 발전을 근거로 광섬유 배포 가속화를 위한 정책 지원을 요구하고 있으며, T-Mobile US는 올해 직원 4,500명 이상을 감원했다. 스타링크의 광섬유 수준 신뢰도도 업계의 관심사가 되고 있다.",
+      "summary_long": "미국 통신 리더들이 국가의 AI 경쟁력 강화를 이유로 광섬유 인프라 배포 촉진 정책을 적극 주장하고 있다. 이는 통신사들이 정책 지원의 당위성을 강화하는 전략으로 보인다. 한편 T-Mobile US는 조직 구조 조정의 일환으로 4,500명 이상의 직원을 감원했으며, 모회사인 독일텔레콤이 공개한 데이터에 따르면 T-Mobile의 올해 인원이 전년 대비 7% 이상 감소한 것으로 나타났다. 또한 스타링크의 광섬유 수준의 신뢰도가 기존 통신사들의 경쟁 지형에 영향을 미치고 있어 시장 변화가 가속화되는 중이다. 이러한 동향은 통신 인프라 정책과 시장 경쟁 구조 재편을 시사한다.",
+      "tags": [
+        "규제·정책",
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 4,
+      "date": "2026-08-12",
+      "source_url": "https://www.lightreading.com/fttx/fiber-industry-eyes-ai-as-force-for-favorable-policies",
+      "source_name": "lightreading"
+    },
     {
       "id": "b47de95183e9",
       "title": "'모두의 AI' 컨소시엄 영입 경쟁 불붙어",
@@ -5112,117 +5238,6 @@
       "date": "2026-07-02",
       "source_url": "https://www.rcrwireless.com/20260701/5g/huawei-5g-a-ai-2",
       "source_name": "RCR Wireless"
-    },
-    {
-      "id": "1987f2b8ba74",
-      "title": "미국 국방부, 에릭슨·노키아 기술의 경쟁 기술인 6G 솔루션 지원",
-      "summary": "미국 국방부가 OTFS 파형 기술의 선도기업인 Cohere Technologies와 정부 계약을 체결했다. 이는 6G 통신 기술 개발에서 기존 통신장비 업체들의 기술에 대한 경쟁 기술을 육성하는 동향으로, 향후 국내 6G 기술 개발 및 통신장비 생태계 구성에 참고할 만하다.",
-      "tags": [
-        "기술·네트워크",
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-02",
-      "source_url": "https://www.lightreading.com/6g/us-defense-dept-backs-6g-rival-to-tech-used-by-ericsson-and-nokia",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "b4473704108e",
-      "title": "EchoStar, Dish Wireless 자산 매각 입찰에서 스토킹 호스 입찰자로 지정",
-      "summary": "EchoStar가 Dish Wireless의 자산 대부분을 매각하기 위한 스토킹 호스 입찰자로 선정되었다. 8월 10일이 더 나은 입찰을 제시할 수 있는 마감일이며, 이후 경매가 진행될 예정이다. 이는 무선통신 시장의 자산 재편과 경쟁 구도 변화를 시사한다.",
-      "tags": [
-        "시장경쟁",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-02",
-      "source_url": "https://www.lightreading.com/5g/echostar-tagged-as-stalking-horse-for-dish-wireless-assets",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "23f5dd2286f5",
-      "title": "Microsoft와 Lightstorm 컨소시엄, 인도-동남아 해저케이블 구축",
-      "summary": "Microsoft와 싱가포르 기반 통신 스타트업 Lightstorm이 주도하는 컨소시엄이 인도, 말레이시아, 싱가포르를 연결하는 새로운 해저케이블 구축을 계획하고 있다. 이는 아시아 지역의 디지털 인프라 강화와 국제 통신 연결성 확대를 의미하는 전략적 투자이다.",
-      "tags": [
-        "기술·네트워크"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-02",
-      "source_url": "https://capacityglobal.com/news/microsoft-lightstorm-subsea-cable/",
-      "source_name": "Capacity"
-    },
-    {
-      "id": "fc23c50a9c32",
-      "title": "컴캐스트의 분할이 피콕의 성패를 좌우할 수 있다",
-      "summary": "컴캐스트가 NBCUniversal, 피콕, Sky를 통신사업부와 분리하면서 피콕이 독립적으로 스트리밍 시장에서 경쟁해야 한다. 과거 모기업의 자금 지원 없이 자체 경쟁력만으로 생존해야 하는 상황으로, 글로벌 미디어 및 통신 산업의 구조 재편이 진행 중이다.",
-      "tags": [
-        "시장경쟁",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-02",
-      "source_url": "https://www.theverge.com/streaming/960235/comcast-breakup-peacock-streaming",
-      "source_name": "The Verge"
-    },
-    {
-      "id": "7529844da8f8",
-      "title": "[카드뉴스] 2030년 보안의 판이 뒤집힌다.. KT가 지금 '양자암호'에 올인하는 이유",
-      "summary": "KT가 양자컴퓨터 시대에 대비하여 양자암호통신 기술을 준비 중이다. 현재의 복잡한 암호 체계가 양자컴퓨터에 의해 무력화될 수 있는 만큼, 2030년 이후를 대비한 차세대 보안 기술 확보가 이동통신사의 핵심 전략이 되고 있다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "KT",
-      "importance": 4,
-      "date": "2026-07-02",
-      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153085",
-      "source_name": "테크M - 전체기사"
-    },
-    {
-      "id": "49f123fd55f5",
-      "title": "노키아 \"통신도 AI도 GPU 장비 하나로...AI-RAN 패러다임 전환\"",
-      "summary": "노키아가 엔비디아 블랙웰 GPU를 장착한 통신·AI 통합 서버를 공개하며 AI-RAN 본격 상용화에 나섰다. 단일 서버로 통신 및 AI 서비스를 동시 제공하고 투자비와 운용비를 동등 수준으로 맞춰 통신사의 네트워크 운영 효율성을 크게 향상시킬 수 있을 것으로 예상된다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-07-02",
-      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153083",
-      "source_name": "테크M - 전체기사"
-    },
-    {
-      "id": "451628828920",
-      "title": "'2026 ICT 넥스트 어워즈' 개최…AI·디지털 혁신 9개사에 부총리 표창",
-      "summary": "과학기술정보통신부와 한국방송통신전파진흥원이 ICT 기금사업 우수기업 50곳을 선정하는 '2026 ICT 넥스트 어워즈'를 개최했다. AI·디지털 혁신 분야 9개사가 부총리 표창을 수상하며, 정보통신기술 분야의 유망기업들의 성과를 격려하고 산업 전반에 성공 사례를 공유했다.",
-      "tags": [
-        "규제·정책",
-        "기술·네트워크"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "과기정통부",
-      "importance": 3,
-      "date": "2026-07-01",
-      "source_url": "https://www.etnews.com/20260701000418",
-      "source_name": "오늘의뉴스 - 이티뉴스"
     }
   ]
 }
