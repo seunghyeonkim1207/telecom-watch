@@ -1,6 +1,91 @@
 {
-  "updated": "2026-08-14T08:37:55.402076+09:00",
+  "updated": "2026-08-15T08:18:03.127105+09:00",
   "articles": [
+    {
+      "id": "e72ac253f612",
+      "title": "광섬유 보호 및 용량의 진화",
+      "summary": "통신 운영자들의 빠른 광섬유 기반시설 구축 수요에 대응하기 위해 CommScope이 고밀도 스플라이스 트레이 설계와 향상된 스토리지 솔루션을 개발했다. 이는 설치 효율성을 높이면서도 공간 요구 사항을 줄이는 차세대 광섬유 폐쇄장치 기술의 진화를 보여준다.",
+      "summary_long": "브로드밴드 네트워크의 지속적인 확장으로 운영자들은 신뢰성과 성능을 유지하면서도 광섬유 기반시설을 신속하게 배포하라는 압박을 받고 있다. CommScope의 제품 관리 담당자 Motaz Abulibeh는 광섬유 스플라이스 폐쇄장치가 입증된 보호 기능, 설치 효율성, 유연성의 조합을 통해 운영자들이 신뢰할 수 있고 확장 가능한 네트워크를 더 빠르게 구축하도록 지원한다고 설명했다. CommScope은 광섬유 폐쇄장치의 세 가지 핵심 기능인 저장, 정리, 보호를 발전시키는 데 집중하고 있으며, 최근 향상된 스토리지 바스켓 솔루션과 고밀도 스플라이스 트레이 설계를 개발했다. 이러한 기술 혁신은 용량을 증대시키면서도 공간 효율성을 개선하며, AI 등 신기술이 견인하는 저지연 고용량 광섬유 기반시설 수요에 대응하기 위한 미래 혁신의 기반이 될 것으로 예상된다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-15",
+      "source_url": "https://www.fierce-network.com/sponsored/evolution-fiber-protection-and-capacity",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "8fdebdc8d130",
+      "title": "5G SA의 진정한 가치는 무엇인가? 네트워크 슬라이싱이 아니라 스펙트럼 효율성",
+      "summary": "Signals Research Group의 마이크 텔란더 회장이 Verizon의 5G NSA와 5G SA를 실제로 테스트한 결과, 5G SA의 스펙트럼 효율성이 NSA 대비 2.2배 높다는 것을 입증했다. 기존에 주목받던 네트워크 슬라이싱보다 스펙트럼 효율성 향상이 5G SA 전환의 실질적인 가치임을 시사한다.",
+      "summary_long": "통신 시장 조사업체인 Signals Research Group의 마이크 텔란더 회장은 Verizon의 5G 독립형(SA)과 비독립형(NSA) 네트워크를 미네소타주 세인트폴 시내에서 직접 테스트하였다. 테스트 결과 5G SA 스마트폰의 스펙트럼 효율성은 5G NSA 스마트폰 대비 2.2배 더 높은 것으로 나타났다. 기존에 5G SA의 주요 장점으로 홍보되어 온 네트워크 슬라이싱 기능에 비해, 실제 운영 환경에서의 스펙트럼 효율성 향상이 더욱 중요한 이점임을 실증적으로 보여주고 있다. NSA에서 SA로의 전환은 기술적으로 단순하지 않지만, 이번 연구 결과는 전환의 타당성을 강력하게 뒷받침한다. 이는 향후 국내 통신사들의 5G SA 투자 방향과 네트워크 고도화 전략 수립에 참고할 만한 가치 있는 사례이다.",
+      "tags": [
+        "기술·네트워크"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-08-15",
+      "source_url": "https://www.fierce-network.com/wireless/whats-so-great-about-5g-sa-hint-its-not-network-slicing",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "4ac4187abf01",
+      "title": "Telstra, 5G와 디지털 인프라 확대로 AI 기반 성장 추진",
+      "summary": "호주 통신사 Telstra의 CEO 비키 브래디가 투자자 컨퍼런스에서 네트워크 밀도 증대와 5G 독립형(SA) 롤아웃 가속화 계획을 발표했다. 이는 AI 기반 사업 확장을 위한 인프라 고도화 전략의 일환이다.",
+      "summary_long": "호주의 주요 통신사인 Telstra는 AI 기반 성장 전략을 추진하기 위해 네트워크 인프라 강화에 나선다. CEO 비키 브래디는 투자자 대상 컨퍼런스에서 회사가 네트워크 밀도를 늘리고 5G 독립형 기술의 배포 속도를 가속화할 계획임을 밝혔다. 이는 차세대 AI 서비스 제공을 위한 디지털 기반 인프라 현대화 전략으로 해석된다. 호주 통신산업에서 주도적 지위를 유지하기 위한 차별화된 기술 투자 전략을 보여주는 사례다. 국내 통신사들의 5G SA 전환 시점과 AI 서비스 전략 수립에 있어 벤치마킹 가치가 있는 동향이다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-15",
+      "source_url": "https://www.rcrwireless.com/20260814/5g/telstra-ai-5g-digital",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "ba699e67af44",
+      "title": "영국, 휴양지역 농촌 공유 네트워크 확충",
+      "summary": "영국이 휴양지역의 농촌 지역에 공유 네트워크를 확충하는 정책을 추진 중이다. 미국에서는 베ライ즌의 5G 네트워크를 활용한 드론 탐지 서비스가 내년 출시될 예정이다.",
+      "summary_long": "영국 정부가 관광 수요가 높은 휴양지역의 농촌 지역에 공유 네트워크 인프라 확충 정책을 추진하고 있다. 이는 관광지 방문객들의 통신 접근성을 높이고 농촌 지역의 디지털 격차를 해소하기 위한 전략이다. 한편 EMEA 지역 뉴스로는 e&에서 5G 네트워크에서 RedCap 기술 테스트를 진행 중이며, 디지가 매출을 인상하고 보다폰-쓰리가 이동 중 생산성 향상을 요청하고 있다. 북미 지역에서는 록히드마틴이 베라이즌의 5G 네트워크와 엔비디아, ODC, 키사이트 및 자회사 애스트리스 AI의 기술을 활용해 내년 드론 탐지 서비스 출시를 준비 중이다. 이러한 동향은 5G 네트워크의 산업용 응용 확대와 농촌 지역 통신 인프라 확충이 향후 주요 정책 과제임을 보여준다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-08-15",
+      "source_url": "https://www.lightreading.com/2g-3g-4g/eurobites-uk-boosts-shared-rural-network-in-holiday-hotspots",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "f8bfafe11fb6",
+      "title": "'전자책·외국인·AI'...통신업계, 이동통신 틈새 공략 '확대'",
+      "summary": "통신사와 알뜰폰 업계가 틈새시장 공략을 강화하고 있다. LG헬로비전이 교보문고와 협력해 전자책 서비스와 LTE를 결합한 요금제를 출시했으며, 통신업계는 다양한 소비자 수요를 충족시키기 위해 차별화된 결합상품 개발에 나서고 있다.",
+      "summary_long": "이동통신 시장의 포화에 따라 통신사와 알뜰폰 사업자들이 기존 이동통신 고객층 밖의 틈새시장을 공략하는 전략을 확대하고 있다. LG헬로비전은 교보문고 전자책 서비스 '샘'과 LTE 통신을 결합한 요금제를 선보였으며, 이를 통해 교보문고 전자책 무제한 이용권과 온라인 e교환권 같은 부가가치를 24개월간 제공한다. 이러한 움직임은 단순한 이동통신 요금제를 넘어 소비자의 구체적인 라이프스타일 니즈에 맞춘 결합상품 전략으로, 고객 확보와 이탈 방지에 전략적으로 활용되고 있다. 통신업계가 본연의 경쟁력 강화에 나서면서 전자책·외국인·AI 등 다양한 분야와의 제휴를 통한 차별화 경쟁이 심화될 것으로 예상된다.",
+      "tags": [
+        "요금제",
+        "결합상품",
+        "서비스정책",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "알뜰폰",
+      "importance": 3,
+      "date": "2026-08-15",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=154335",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "aa5e43205945",
       "title": "KT, 2년 만에 MVNO 회선 1위 탈환…현대차 수주 효과",
@@ -5159,94 +5244,6 @@
       "date": "2026-07-03",
       "source_url": "https://www.lightreading.com/regulatory-politics/fcc-s-proposed-upper-c-band-rules-sidestep-spacex-s-request",
       "source_name": "lightreading"
-    },
-    {
-      "id": "dfdd5aff0281",
-      "title": "T-Mobile, Grain 스펙트럼 교환 거래 FCC 승인",
-      "summary": "미국 FCC가 T-Mobile과 Grain Management 간의 스펙트럼 교환 거래를 승인했다. T-Mobile이 800MHz 라이선스를 양도하고 29억 달러와 600MHz 라이선스를 획득하는 내용으로, 통신사의 주파수 재구성을 통한 네트워크 최적화 사례를 보여준다.",
-      "summary_long": "미국 FCC가 T-Mobile과 Grain Management 간의 스펙트럼 교환 거래를 공식 승인했다. 이번 거래는 T-Mobile이 보유한 800MHz 주파수 라이선스를 Grain Management에 양도하는 대신 29억 달러의 현금과 600MHz 대역 라이선스를 획득하는 구조다. 이는 이동통신사들이 5G 확대 및 네트워크 고도화를 위해 주파수 자산을 전략적으로 재배치하는 추세를 반영한다. 스펙트럼 교환을 통해 T-Mobile은 고주파 대역 확보로 5G 서비스 강화를 도모할 수 있으며, 규제당국의 승인 절차도 완료됨에 따라 거래 체결이 임박한 상황이다.",
-      "tags": [
-        "기술·네트워크",
-        "규제·정책",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "T-Mobile",
-      "importance": 3,
-      "date": "2026-07-03",
-      "source_url": "https://www.lightreading.com/regulatory-politics/t-mobile-grain-win-fcc-approval-for-spectrum-swap",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "605761cdbddc",
-      "title": "DNB, U Mobile의 공식 철수 속에 5G 용량 확대",
-      "summary": "말레이시아의 DNB가 3.3GHz~3.4GHz 대역에서 추가 100MHz의 5G 스펙트럼을 활성화해 네트워크 용량을 2배 확대했다. 이는 회사의 성장 다음 단계로의 진입을 의미한다.",
-      "summary_long": "말레이시아 통신사 DNB가 5G 네트워크 확충에 나섰다. 3.3GHz~3.4GHz 대역에서 100MHz의 추가 5G 스펙트럼을 확보해 기존 네트워크 용량을 2배로 늘렸으며, 이를 통해 차기 성장 단계에 진입하려는 전략으로 보인다. 기사 본문에서는 Dish Wireless 자산 매각 경쟁입찰 관련 내용도 언급되고 있으나, 주요 뉴스 초점은 DNB의 스펙트럼 확대 사항에 있다. 해당 조치는 말레이시아 통신 시장의 5G 확충 추세를 보여주는 사례로, 국내 통신사들의 스펙트럼 활용 및 네트워크 투자 전략 수립 시 참고할 수 있는 해외 벤치마킹 자료이다.",
-      "tags": [
-        "기술·네트워크",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-03",
-      "source_url": "https://www.lightreading.com/5g/dnb-expands-5g-capacity-as-u-mobile-officially-pulls-out",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "094abab9ca04",
-      "title": "Dish, Chapter 11 신청 - Dish Wireless 자산 매각 추진",
-      "summary": "Dish DBS가 사전준비된 구조조정 계획에 따라 자발적으로 Chapter 11을 신청했다. 위성TV와 Sling TV 서비스는 계속 운영되며, EchoStar가 Dish Wireless 자산 매각의 선정찰자로 지정되어 8월 10일 경매 마감일을 앞두고 있다.",
-      "summary_long": "미국의 위성방송 및 무선통신 사업자인 Dish DBS가 자발적으로 Chapter 11 파산 신청을 진행 중이다. 이는 사전에 준비된 구조조정 계획의 일환으로 진행되는 것으로, Dish의 핵심 서비스인 위성 TV와 스트리밍 서비스인 Sling TV는 이 과정에서도 정상 운영될 예정이다. Dish Wireless 자산 매각 과정에서 EchoStar가 선정찰자로 선택되었으며, 더 나은 입찰자를 찾기 위해 8월 10일을 마감일로 설정하고 이후 경매를 진행할 예정이다. 이는 5G 네트워크 구축에 막대한 투자를 한 Dish Wireless의 사업 재편 움직임을 보여주는 사례로, 통신업계의 경쟁 구도 변화를 시사한다.",
-      "tags": [
-        "통신사동향",
-        "기술·네트워크",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-07-03",
-      "source_url": "https://www.lightreading.com/finance/dish-turns-to-chapter-11",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "1f3edd2307f4",
-      "title": "지능형 운영의 새로운 시대로, 화웨이·TM포럼·12개 통신사가 '지능형 운영 화이트페이퍼 4.0' 공개",
-      "summary": "화웨이가 TM포럼과 전 세계 12개 통신사와 함께 지능형 운영 화이트페이퍼 4.0을 발표했다. 이 백서는 에이전트 운영(Agentic Operations)을 중심으로 AI 기반 네트워크 운영 아키텍처와 데이터 거버넌스 프레임워크를 제시하며, 에이전트 자동화를 통해 검사·장애 처리 등의 대규모 작업을 자동화하고 운영 인력의 생산성을 향상시킬 수 있음을 시사한다.",
-      "summary_long": "화웨이는 2026년 6월 코펜하겐에서 열린 DTW Ignite 2026 행사에서 TM포럼과 12개 글로벌 통신사와 협력하여 '지능형 운영 화이트페이퍼 4.0'을 공개했다. 이는 2023년 첫 발표 이후 네 번째 버전이며, 네트워크 중심에서 서비스 중심을 거쳐 가치 중심으로 진화하는 운영 변환 경로를 따르고 있다. 백서 4.0은 디지털 트윈 네트워크(DTN)와 도메인별 특화 모델(EDNS 2.0)을 활용한 AI 기반 지능형 운영 아키텍처를 제안하며, '하이브리드 팀 + 에이전트 프로세스'라는 새로운 운영 패러다임을 정의한다. 데이터 거버넌스, 프로세스 재설계, 조직 변혁을 포함한 '3단계 6단계' 방법론과 '식별-분석-최적화-유지' 4단계 데이터 거버넌스 프레임워크를 제시한다. 실제 운영사 사례에서 AI 에이전트의 원홉 종료율이 80% 이상으로 달성되어 네트워크와 서비스 품질이 동시에 향상되었으며, 이는 통신업계의 운영 자동화 및 인력 최적화 추세를 시사한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-03",
-      "source_url": "https://totaltele.com/deepening-the-transformation-process-ushering-in-a-new-era-of-intelligent-operations/",
-      "source_name": "Total Telecom"
-    },
-    {
-      "id": "5d36df7740ce",
-      "title": "Comarch User Group 2026: 에이전틱 AI와 컴포저블 아키텍처로 2% 성장 함정 극복",
-      "summary": "유럽 통신시장의 저성장(2~3%) 시대를 맞아 통신사업자들이 AI와 네트워크 자동화 도입을 가속화하고 있다. 에이전틱 AI 기술 도입으로 NOC 비용 30~40% 절감과 장애 복구 시간 10~20% 단축이 가능하나, 고급 AI 활용을 위한 데이터 스트리밍 기술 보유 사업자는 6%에 불과한 상황이다.",
-      "summary_long": "Comarch User Group 2026 행사에서 유럽 통신시장의 저성장 현상(2029년까지 2~3% 성장률)과 산업 재편 방향이 논의되었다. 통신사업자들은 전통적 이동통신 서비스 중심에서 벗어나 미션 크리티컬 네트워크, 위성 인프라, 대규모 IoT 등 생태계 확장을 추진 중이다. 네트워크 장애의 40%가 인적 오류로 인한 만큼, 기존 자동화에서 에이전틱 AI 기반 자율 의사결정 시스템으로 전환하면 NOC 비용을 30~40% 절감하고 평균 장애 복구 시간을 10~20% 단축할 수 있다. 다만 고급 AI 모델 활용에 필요한 데이터 스트리밍 역량을 갖춘 사업자가 6%에 불과해 기술 준비 수준이 과제다. Comarch CEO는 글로벌 경제 경쟁에서 생존하려면 CSP들이 운영 모델을 근본적으로 재검토해야 한다고 강조했다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-03",
-      "source_url": "https://totaltele.com/comarch-user-group-2026-navigating-the-2-growth-trap-with-agentic-ai-and-composable-architecture/",
-      "source_name": "Total Telecom"
     }
   ]
 }
