@@ -1,6 +1,76 @@
 {
-  "updated": "2026-08-15T08:18:03.127105+09:00",
+  "updated": "2026-08-16T08:23:41.980496+09:00",
   "articles": [
+    {
+      "id": "16cc738a0e3d",
+      "title": "개인정보 걱정이 통신사 충성도 흔들었다…결합상품은 '방어막'",
+      "summary": "지난해 이동통신사 개인정보 유출 사고 이후 온라인 프라이버시 침해를 걱정하는 사용자들이 통신사를 이탈한 것으로 나타났다. 개인정보 보호 수준이 통신사 선택에 유의미한 영향을 미치는 만큼 통신사들의 적극적인 개인정보 보호 대책이 필요하다.",
+      "summary_long": "최근 연구에 따르면 2023년 이동통신사 개인정보 유출 사고 이후 온라인 프라이버시 침해에 대한 우려가 높은 사용자들이 실제로 기존 통신사에서 다른 사업자로 전환했다는 사실이 확인되었다. 동일한 분석을 개인정보 유출 사고가 없었던 2024년 데이터로 수행했을 때는 프라이버시 걱정이 통신사 이동과 무관하게 나타나, 실제 사고 발생이 이용자 이탈에 직접적인 영향을 미쳤음을 입증했다. 연구진은 개인정보 보호에 대한 이용자 인식이 이전보다 크게 높아졌으며, 통신사의 보안 수준이 가입자 선택에 중요한 결정 요소가 되었다고 지적했다. 아울러 통신사들이 개인정보 보호를 위한 실질적 대책 수립과 지속적 시행을 통해 유사 사건의 재발을 방지해야 한다고 제언했다.",
+      "tags": [
+        "통신사동향",
+        "규제·정책",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-16",
+      "source_url": "https://www.yna.co.kr/view/AKR20260814100300017",
+      "source_name": "연합뉴스 산업 최신기사"
+    },
+    {
+      "id": "289c3ea591db",
+      "title": "록히드마틴, 베라이존 5G 네트워크를 드론 추적 시스템으로 활용",
+      "summary": "록히드마틴이 베라이존과 엔비디아 등과 협력하여 마이애미에서 5G 무선망을 이용한 드론 추적 시스템을 성공적으로 시연했다. 이는 기존 5G 무선 장비를 수정 없이 활용한 것으로, 5G 기술의 실제 활용 영역을 확대하는 사례다.",
+      "summary_long": "록히드마틴은 베라이존, 엔비디아와 함께 키사이트 테크놀로지스, ODC, 아스트리스 AI 등의 기업들과 협력하여 5G 네트워크 기반 드론 추적 기술을 개발했다. 마이애미에서 진행된 시연에서 기존의 수정되지 않은 5G 라디오 장비만을 이용하여 드론을 추적하는 데 성공했다. 이는 통신사의 기존 5G 인프라를 전혀 손상시키지 않으면서도 국방 및 보안 분야의 새로운 활용 사례를 제시한 것이다. 5G 네트워크의 고속, 저지연 특성이 실시간 위협 감지에 활용될 수 있음을 보여주는 사례로, 향후 통신 인프라를 다목적으로 활용하는 기술 개발의 방향성을 제시한다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-08-16",
+      "source_url": "https://rcrwireless.com/20260814/ai/lockheeds-netsense-verizon-drones",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "fb20ea5c4653",
+      "title": "에이전틱 네트워크 — T-Mobile US의 AI 이니셔티브와 고객 성과 연계",
+      "summary": "T-Mobile US의 Ankur Kapoor 경영진이 AI 기반 자동화를 통한 고객경험(CX) 개선 전략을 제시했다. 실제 사용자 데이터 수집을 통해 AI를 활용한 자동화를 고객 성과와 연계하는 것이 핵심이다.",
+      "summary_long": "T-Mobile US는 AI 기반 자동화가 고객경험 향상의 핵심이라는 입장을 밝혔다. Ankur Kapoor EVP는 실제 환경에서 실제 사람들이 하는 일을 지속적으로 모니터링하며 데이터를 수집하는 것이 중요하다고 강조했다. 통신산업은 AI 기반 자동화 도입 시 기술적 효율성뿐 아니라 실제 고객 성과와의 연계를 최우선으로 고려해야 한다는 점을 시사한다. 이는 단순한 비용절감 차원의 자동화에서 벗어나 고객 만족도 향상으로 귀결되어야 함을 의미한다.",
+      "tags": [
+        "기술·네트워크",
+        "서비스정책",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-08-16",
+      "source_url": "https://rcrwireless.com/20260814/ai-infrastructure/agentic-network-t-mobile-us-ai",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "666ad9cf5a45",
+      "title": "Lockheed Martin, Verizon 5G를 활용한 드론 탐지 서비스 준비",
+      "summary": "Lockheed Martin이 Verizon의 5G 네트워크를 이용해 내년 드론 탐지 서비스 출시를 준비 중이다. Nvidia, ODC, Keysight 및 자회사 Astris AI의 기술을 활용하여 5G 기반 방위산업 응용 서비스를 구축하고 있다.",
+      "summary_long": "Lockheed Martin은 Verizon의 5G 네트워크 인프라를 기반으로 드론 탐지 서비스를 내년 중 출시할 계획이다. 이 서비스는 Nvidia의 AI 기술, ODC의 소프트웨어, Keysight의 네트워크 솔루션, 그리고 Lockheed Martin 자회사인 Astris AI의 전문 기술을 통합하여 개발되고 있다. 5G의 저지연성과 고속 데이터 처리 능력을 활용한 실시간 드론 탐지 및 대응 시스템으로, 국방 및 보안 분야에서 5G 기술의 실제 활용 사례를 보여준다. 이는 통신사가 제공하는 네트워크 인프라가 단순 데이터 전송을 넘어 고부가가치 방위·보안 응용 서비스의 기반이 됨을 시사한다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-08-16",
+      "source_url": "https://www.lightreading.com/5g/lockheed-martin-preps-drone-detection-service-via-verizon-5g",
+      "source_name": "lightreading"
+    },
     {
       "id": "e72ac253f612",
       "title": "광섬유 보호 및 용량의 진화",
@@ -5175,75 +5245,6 @@
       "date": "2026-07-03",
       "source_url": "https://www.yna.co.kr/view/AKR20260703112952017",
       "source_name": "연합뉴스 산업 최신기사"
-    },
-    {
-      "id": "fb25d736b27a",
-      "title": "통신사들의 AI 비용 대란이 올까? AWS 통신 담당자의 의견",
-      "summary": "AWS의 Jan Hofmeyr 부사장은 통신사들이 범용 대형언어모델(LLM)을 네트워크 솔루션으로 착각하면 높은 비용 부담에 직면할 수 있다고 경고했다. 네트워크 특화 AI 레이어 없이는 토큰 효율성 문제로 인해 실질적 운영 가치를 얻기 어려울 것이라고 지적했다.",
-      "summary_long": "AWS의 통신 담당 임원 Jan Hofmeyr는 통신업계가 AI 도입에 적극적이지만, 범용 LLM을 만능 해결책으로 여기면 비용 손실을 초래할 수 있다고 경고했다. 문제는 단순한 토큰 볼륨이 아니라 토큰 효율성에 있으며, LLM은 텍스트·이미지·영상 처리용으로 설계되었으나 네트워크는 프로토콜, 원격 측정, 컨텍스트 레이어라는 고유의 언어를 사용한다는 점을 지적했다. 네트워크 특화 레이어 없이는 통신사들이 정확성, 효율성, 운영 가치 측면에서 부족한 AI 아웃풋에 과도한 비용을 지출할 위험이 있다. Hofmeyr는 데이터 사일로를 해소하고 네트워크 인식 컨텍스트 모델 위에 AI 에이전트를 구축하는 것이 해결책이라고 제시했다. 이는 통신사들이 AI 도입 시 범용 솔루션이 아닌 통신네트워크 최적화 기술에 투자해야 함을 시사한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-03",
-      "source_url": "https://www.fierce-network.com/wireless/will-there-be-ai-cost-reckoning-telcos-heres-what-aws-telco-chief-thinks",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "2b05ea0cd554",
-      "title": "인도샛, AI Grid 비전 공개…5G 현대화를 통한 전국 AI 준비 네트워크 구축",
-      "summary": "인도네시아 통신사 인도샛이 중앙집중식 AI Factory와 분산형 AI 컴퓨팅을 결합한 'AI Grid' 전략을 발표했다. 이는 5G 인프라 현대화와 함께 전국민이 이용할 수 있는 AI 애플리케이션 생태계 구축을 목표로 한다.",
-      "summary_long": "인도네시아의 주요 통신사인 인도샛이 5G 인프라 현대화를 바탕으로 한 'AI Grid' 비전을 공개했다. 이 전략은 중앙에 집중된 AI Factory와 사용자 인근에 배치된 분산형 AI 컴퓨팅을 결합하는 방식으로 설계되어 있다. 이를 통해 인도네시아 전역에서 다양한 AI 애플리케이션을 활용할 수 있는 환경 구축을 목표하고 있다. 해당 전략은 5G 네트워크 현대화와 AI 기술 통합을 통해 통신사의 경쟁력을 강화하려는 움직임을 보여준다. 국내 통신사들도 5G 기반 AI 서비스 인프라 구축의 필요성을 검토할 가치가 있다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-03",
-      "source_url": "https://www.rcrwireless.com/20260702/5g/indosat-ai-5g-network",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "525d632d5e3d",
-      "title": "수요일 | 통신사 AI 에이전트와 주요 동향 (편집 일기)",
-      "summary": "통신산업에서 AI 에이전트 도입이 거버넌스, 제어된 자율성, 인간 감시에 대한 초점을 강화하고 있으며, 프라이빗 5G와 산업용 AI 분야의 모멘텀이 계속 구축되고 있는 추세를 다룬다.",
-      "summary_long": "이 기사는 통신산업 내 AI 에이전트 기술 도입이 핵심 관리 과제로 부각되고 있음을 다룬다. AI 에이전트의 자율성을 적절히 통제하면서도 효율성을 확보하기 위한 거버넌스 프레임워크와 인간 감시 체계의 중요성이 강조되고 있다. 동시에 프라이빗 5G 네트워크와 산업용 AI 활용에 대한 관심이 높아지면서 새로운 비즈니스 기회가 형성되고 있다. 이러한 기술 동향은 통신사들의 네트워크 투자 전략과 차세대 서비스 개발 방향을 결정하는 중요한 요소가 될 것으로 예상된다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-03",
-      "source_url": "https://www.rcrwireless.com/20260702/network-infrastructure/telco-agents-smash-hits",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "49adfbbe874e",
-      "title": "FCC의 상향 C-밴드 규정안, SpaceX의 요청 외면",
-      "summary": "FCC가 상향 C-밴드에 대한 규정안을 발표했으며, SpaceX가 요청한 '고급 위성 운영' 스펙트럼 할당을 연기했다. 배포 기한과 인센티브 규모에 대한 구체적인 내용도 포함되어 있으며, 동시에 Dish Wireless 자산 매각 관련 EchoStar가 선매입찰자로 선정되었다.",
-      "summary_long": "FCC(미 연방통신위원회)가 상향 C-밴드에 관한 새로운 규정안을 제시했다. 핵심은 SpaceX가 추진하던 '고급 위성 운영'을 위한 스펙트럼 할당 요청을 유보한 것이다. 이 결정은 위성통신 사업자들의 스펙트럼 확보 전략에 영향을 미칠 것으로 보인다. 한편 기사에서는 Dish Wireless 자산 매각 과정도 다루고 있으며, EchoStar가 선매입찰자로 결정되었고 8월 10일까지 더 나은 입찰가를 모색하기로 했다. 이러한 정책 변화와 시장 재편은 미국 통신산업의 스펙트럼 정책과 기업 인수합병 동향을 보여주는 사례다.",
-      "tags": [
-        "규제·정책",
-        "기술·네트워크",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-07-03",
-      "source_url": "https://www.lightreading.com/regulatory-politics/fcc-s-proposed-upper-c-band-rules-sidestep-spacex-s-request",
-      "source_name": "lightreading"
     }
   ]
 }
