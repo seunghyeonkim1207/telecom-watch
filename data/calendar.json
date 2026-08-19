@@ -254,5 +254,13 @@
     "country": "국내",
     "imp": "mid",
     "source": "auto"
+  },
+  {
+    "date": "2028-01-01",
+    "title": "NTT Docomo, Starlink Mobile 음성통화 및 고속 인터넷 서비스 시작",
+    "org": "NTT Docomo",
+    "country": "국내",
+    "imp": "mid",
+    "source": "auto"
   }
 ]
