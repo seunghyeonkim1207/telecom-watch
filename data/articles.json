@@ -1,6 +1,131 @@
 {
-  "updated": "2026-08-24T08:17:22.552892+09:00",
+  "updated": "2026-08-25T08:26:35.572701+09:00",
   "articles": [
+    {
+      "id": "3d76996b1ca9",
+      "title": "베라이즌, 제미나이 통합으로 구글 클라우드 관계 심화",
+      "summary": "베라이즌이 구글 클라우드와 협력하여 제미나이 엔터프라이즈를 조직 전반에 도입하고 있다. 고객 서비스 자동화, 네트워크 문제 해결, 마케팅 워크플로우 개선 등 AI 기반 운영효율화를 추진 중이다.",
+      "summary_long": "베라이즌은 구글 클라우드와의 기존 협력 관계를 확대하여 제미나이 엔터프라이즈를 전사적으로 도입하는 AI 혁신 프로젝트를 진행 중이다. 이 협력은 고객 경험 개선, 네트워크 이상 예측 및 해결, 마케팅 자동화 등 세 가지 주요 영역을 포괄한다. 고객 서비스 부문에서는 제미나이를 활용한 자동 문제 해결 시스템을 구축하고, 네트워크 운영팀은 구글 클라우드의 데이터 플랫폼으로 네트워크 이상을 사전 예측한다. 마케팅 부서는 자동화된 콘텐츠 생성과 캠페인 오케스트레이션 플랫폼을 도입하며, 조직 전역에서 에이전트 오케스트레이션과 직원 생산성 향상에 제미나이 엔터프라이즈를 활용한다. 이번 협력은 통신사의 AI 기반 운영 효율화와 고객 경험 개선이 경쟁력의 핵심으로 대두되고 있음을 보여준다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크",
+        "서비스정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "Verizon",
+      "importance": 3,
+      "date": "2026-08-25",
+      "source_url": "https://www.fierce-network.com/wireless/verizon-cozies-google-cloud-even-more-gemini-integration",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "39e679f3f176",
+      "title": "T-Mobile의 월가 스타 지위가 재조정되다",
+      "summary": "월가 분석가 Wolfe Research가 T-Mobile 주식을 '아웃퍼폼'에서 '동등성과'로 하향조정했다. AT&T와 Verizon의 공격적인 엔트리급 요금제 강화와 Comcast·Charter의 모바일 서비스 확대, Starlink의 위성 확장이 T-Mobile의 시장 우위를 위협하고 있다.",
+      "summary_long": "Wolfe Research의 피터 수피노 분석가는 T-Mobile의 주가 등급을 '아웃퍼폼'에서 '동등성과'로 하향조정했다. 이는 T-Mobile이 전통적으로 지배해온 엔트리급 요금제 시장에서 AT&T와 Verizon이 보다 경쟁력 있는 요금제를 제시하고 있으며, Comcast와 Charter Communications이 강화된 이동통신 서비스를 출시하는 등 경쟁 압력이 심화되고 있음을 반영한다. 또한 Starlink의 V3 위성 확장은 T-Mobile의 주력 사업인 고정 무선 접속(FWA) 성장을 제약할 가능성이 있다. 다만 월가의 모든 분석가가 비관적이지는 않으며, 일부는 T-Mobile의 무선 고객 증가세와 이탈률 개선을 긍정적 신호로 평가하고 있다. 이는 미국 통신시장의 포화 단계에서 경쟁 심화로 인한 가격 인하 압박이 심화되고 있음을 시사한다.",
+      "tags": [
+        "시장경쟁",
+        "통신사동향",
+        "서비스정책",
+        "요금제"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "T-Mobile",
+      "importance": 3,
+      "date": "2026-08-25",
+      "source_url": "https://www.fierce-network.com/wireless/t-mobiles-rock-star-status-gets-wall-street-remix",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "cad5d76ebb38",
+      "title": "NGMN: 에이전틱 AI, 통신망 운영 전에 안전장치 필요",
+      "summary": "차세대이동통신연맹(NGMN)은 에이전틱 AI가 통신사의 자동화된 레벨 4 자율 네트워크 구현을 돕을 수 있지만, 신원 인증, 거버넌스, 상호운용성, 보안, 비용 통제 등의 사전 과제 해결이 필수적이라고 주장했다. AI의 실제 네트워크 적용을 위해서는 개념증명(PoC) 단계보다 훨씬 엄격한 통제 체계가 요구된다.",
+      "summary_long": "NGMN 연맹이 발표한 최신 보고서에 따르면 에이전틱 AI는 장애 관리, 서비스 보증, 무선접속네트워크(RAN) 최적화 등 통신사의 주요 운영 업무 자동화에 활용될 수 있다. 다만 실제 운영 네트워크에 적용하려면 개념증명 단계보다 훨씬 강화된 제어 메커니즘이 필수적이다. 특히 다중 AI 에이전트가 상호작용하는 환경에서 각 에이전트의 신원 파악, 감사 추적성, 최소 권한 원칙 준수, 운영 이력의 투명성이 매우 중요한 과제로 지목되었다. 보고서는 상호운용성 위험이 기본적인 로밍 기능보다 서비스 보증 영역에서 더 두드러질 수 있음을 경고했다. AI는 신뢰 기반의 레벨 4 자율 이동통신망으로 나아가는 신뢰할 수 있는 경로 창출의 핵심 기술이 될 것이나, 이를 실현하려면 아키텍처, 표준, 보안, 운영, 거버넌스 전반에 걸친 대대적인 변화가 필요하다.",
+      "tags": [
+        "기술·네트워크",
+        "규제·정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 4,
+      "date": "2026-08-25",
+      "source_url": "https://www.fierce-network.com/cloud/ngmn-agentic-ai-needs-guardrails-it-can-run-telco-networks",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "eb765f4ac32e",
+      "title": "Omdia, 중국 제외 지역에서 RAN 성장 전망 - 글로벌 시장 약세 속에서도",
+      "summary": "Omdia의 RAN 리드 분석가 Rémy Pascal은 글로벌 통신장비 시장의 약세에도 불구하고 중국을 제외한 지역에서 RAN(무선접속네트워크) 성장이 지속될 것으로 예측했다. 지역별 성장 기여도와 시장 동향에 대한 분석을 제시했다.",
+      "summary_long": "Omdia의 모바일 인프라 및 RAN 리드 분석가인 Rémy Pascal은 RCR Wireless News와의 인터뷰에서 전 지구적 통신장비 시장이 약세를 보이는 가운데 중국 외 지역에서의 RAN 부문 성장 전망을 제시했다. 기사는 2024년 상반기 주요 지역별 성장 기여도를 분석하고 있으며, 이는 통신 인프라 투자가 지역별로 편차를 보이고 있음을 시사한다. RAN은 5G 네트워크 구축의 핵심 요소로서, 이러한 지역별 성장 불균형은 향후 통신 인프라 투자 전략 수립에 중요한 참고자료가 될 수 있다. 특히 중국 시장의 포화와 과잉 투자로 인한 부진 속에서도 다른 지역의 5G 고도화 및 확대 투자가 계속되고 있음을 보여준다.",
+      "tags": [
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-25",
+      "source_url": "https://rcrwireless.com/20260819/5g/omdia-ran-china",
+      "source_name": "RCR Wireless"
+    },
+    {
+      "id": "3db4e7a45389",
+      "title": "유로바이트: 스위스 통신사들 RAN 공유로 협력",
+      "summary": "스위스 통신사들이 RAN(무선접속망) 공유를 추진하고 있으며, 동시에 MTN은 상반기 서비스 수익과 가입자 증가, Cell C는 5G 개통, Telefónica는 위성 방어 계약을 체결했다. SpaceX와 Amazon 등 위성통신 기업들이 스마트폰 직접 연결 가능한 위성 스펙트럼 확보를 위한 M&A 활동을 벌이고 있다.",
+      "summary_long": "스위스 통신사들이 무선접속망(RAN) 공유를 통해 협력 체계를 강화하고 있다. 유럽 중동 아프리카 지역의 통신 동향을 보면 MTN이 상반기 서비스 수익과 가입자 수를 모두 증가시켰으며, Cell C는 5G 네트워크를 가동했다. Telefónica는 위성 방어 관련 계약을 체결하며 신규 사업 영역을 개척하고 있다. 한편 SpaceX, Amazon, Rocket Lab 등 위성통신 기업들은 스마트폰과 직접 통신 가능한 모바일 위성 스펙트럼을 확보하기 위한 인수합병 활동을 적극 전개 중이다. 특히 SpaceX의 EchoStar 스펙트럼 인수 이후 위성-지상 직접통신(D2D) 기술 확보가 업계의 주요 전략으로 부상하고 있다.",
+      "tags": [
+        "기술·네트워크",
+        "통신사동향",
+        "시장경쟁"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-25",
+      "source_url": "https://www.lightreading.com/wireless/eurobites-swiss-telcos-get-cozy-with-ran-sharing",
+      "source_name": "lightreading"
+    },
+    {
+      "id": "a1a9129708fe",
+      "title": "남아프리카 이동통신사, 제로레이팅 의무 이행 기한 임박",
+      "summary": "남아프리카 ICASA는 MTN, Vodacom, Cell C 등 주요 이동통신사에 2027년 1월 15일까지 공익 기관(PBO)의 디지털 콘텐츠를 데이터 비용 없이 제공하는 제로레이팅을 구현할 의무를 부과했다. 이는 2022년 스펙트럼 경매 입찰 조건으로 책정된 규제 정책이며, 남아프리카의 높은 데이터 요금과 접근성 불평등 해소를 위한 조치다.",
+      "summary_long": "남아프리카의 독립통신청(ICASA)이 국내 주요 이동통신사인 MTN, Vodacom, Cell C에 공익 기관의 디지털 콘텐츠를 무료로 제공하는 제로레이팅 구현을 2027년 1월 15일까지 완료하도록 요구했다. 이 의무는 2022년 진행된 멀티억 달러 규모 스펙트럼 경매 시 낙찰 조건으로 포함되었으며, 입찰사들은 이미 수익 손실을 가격에 반영했다. 다만 ICASA는 아직 이행 여부에 대한 구체적인 감시 방안을 제시하지 않았다. 남아프리카는 높은 데이터 요금으로 인해 저소득층의 인터넷 접근성이 제한되어 있는 만큼, 제로레이팅은 교육, 의료, 고용 정보 접근의 디지털 격차를 줄이는 수단으로 평가된다. DG Murray Trust CEO는 제로레이팅이 신생아 영양 정보, 교육 훈련, 일자리 연계 등 사회경제적 변화를 촉발할 수 있다고 강조했다.",
+      "tags": [
+        "규제·정책",
+        "통신사동향",
+        "서비스정책"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "",
+      "importance": 3,
+      "date": "2026-08-25",
+      "source_url": "https://totaltele.com/deadline-looms-for-mobile-network-operators-to-implement-their-zero-rating-obligations/",
+      "source_name": "Total Telecom"
+    },
+    {
+      "id": "8ae482c0bcf2",
+      "title": "KT, 통합시스템 재정비...AI 내재화 '넥스트 IT' 추진",
+      "summary": "KT가 박윤영 대표 주도로 전사 IT 현대화 프로젝트 '넥스트 IT'를 추진한다. 플랫폼·인프라·업무 환경 전반을 AI 네이티브 기반의 차세대 IT 체계로 단계적 전환하며, 안정적 운영과 정보보호를 기본으로 삼는다.",
+      "summary_long": "KT는 24일 기존의 '카이로스-X' 전략을 대체하는 '넥스트 IT' 전략을 수립하고 전사 IT 현대화 방안을 확정했다. 새로운 전략은 인공지능을 내재화한 차세대 IT 체계 구축을 핵심으로 하며, 플랫폼, 인프라, 업무 환경 전반에 걸쳐 포괄적으로 추진된다. 박윤영 현 대표는 이전 대표 시절의 계획과 달리 AI와 자동화를 중심으로 한 혁신적인 IT 현대화를 강조하고 있다. 단계적 전환을 통해 안정적인 시스템 운영과 정보보호 기본 원칙을 유지하면서도 차세대 기술을 도입할 예정이다. 이는 KT가 디지털 전환 시대에 AI 기술을 핵심 경쟁력으로 삼으려는 경영 전략의 일환으로 볼 수 있다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 3,
+      "date": "2026-08-25",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=154563",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "2f760ce91cb7",
       "title": "KT, '모두의 AI'에 국산 AI 기술 집결…풀스택 전략 추진",
@@ -5127,129 +5252,6 @@
       "date": "2026-07-11",
       "source_url": "https://www.fierce-network.com/wireless/verizon-puts-5g-drivers-seat-bmw-deal",
       "source_name": "Fierce Network"
-    },
-    {
-      "id": "98f6e7b355f2",
-      "title": "의견: 기계 속의 유령 — 세계가 2G를 버리지 못하는 이유",
-      "summary": "전 세계의 핵심 인프라가 35년 된 2G 네트워크에 여전히 의존하고 있으며, 독일 철도의 2시간 전면 마비 사건은 정기 유지보수 오류로 인한 2G 라디오 결함에서 비롯되었다. 이는 AI 혁명이 오래된 셀룰러 네트워크 위에 구축되어 있으며 한 번의 유지보수 실수가 시스템 전체 장애를 초래할 수 있음을 시사한다.",
-      "summary_long": "기사는 현대의 스마트 머신들이 여전히 35년 전의 2G 셀룰러 네트워크에 의존하고 있다는 모순을 지적한다. 2026년 6월 23일 독일 철도청(Deutsche Bahn)의 전국 네트워크가 2시간 동안 완전히 마비된 사건은 사이버 공격이나 고의적 파괴가 아닌 2G 라디오와 관련된 정기 유지보수 중 발생한 단순 오류에서 비롯되었다. 저자는 AI 혁명이 빠르게 발전하는 반면 유럽 규제는 느린 속도로 진행되고 있으며, 이러한 시간 차이가 위험을 초래할 수 있다고 주장한다. 기사는 세계의 가장 똑똑한 기계들이 가장 오래된 네트워크 기술에 의존하는 현실을 비판하며, 시스템 전체 장애 직전에 있을 수 있음을 경고한다.",
-      "tags": [
-        "기술·네트워크",
-        "규제·정책"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-11",
-      "source_url": "https://www.fierce-network.com/wireless/opinion-ghost-machines-why-world-cant-quit-2g",
-      "source_name": "Fierce Network"
-    },
-    {
-      "id": "b137c940c70a",
-      "title": "보다폰의 최대 주주로 떠오르는 프랑스 통신기업가 닐, e& 지분 59억 달러에 인수",
-      "summary": "프랑스 통신 기업가 자비에 닐이 e&로부터 보다폰 지분을 59억 달러에 인수하여 최대 주주가 될 예정이다. 이번 거래는 유럽 통신업계의 구조 재편을 의미하며 대형 통신사 간의 주도권 변화를 시사한다.",
-      "summary_long": "프랑스의 유명 통신 기업가 자비에 닐이 중동의 통신 그룹 e&로부터 영국 통신사 보다폰의 지분을 59억 달러에 인수하기로 합의했다. 이 거래를 통해 닐은 보다폰의 최대 주주 위치에 오르게 되며, 이는 유럽 통신업계에서 주요 기업들의 지분 구조 변화와 경영진 교체를 예고하고 있다. 닐은 프랑스 통신업계에서 혁신적인 경영으로 알려진 인물로, 이번 인수를 통해 국제 통신 시장에서의 영향력을 확대하려는 의도로 풀이된다. 이러한 대규모 M&A는 유럽 통신 시장의 경쟁 구도가 재편되고 있음을 보여주며, 글로벌 통신사들 간의 경쟁이 심화되고 있는 현실을 반영한다. 국내 통신사들에게는 국제 시장에서의 주도권 경쟁 구도 변화와 대형 인수합병을 통한 사업 전략 수립의 필요성을 시사한다.",
-      "tags": [
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-11",
-      "source_url": "https://www.rcrwireless.com/20260710/carriers/vodafone-euro-telco-reset-e-iliad",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "7ebcba05a7e5",
-      "title": "유로바이츠: Tele2, 리투아니아에서 5G 스펙트럼 획득",
-      "summary": "리투아니아의 Tele2가 5G 스펙트럼을 확보했으며, 동시에 유럽 지역에서 Telefónica와 Amper의 스페인 공항 통신 업그레이드, Deutsche Telekom과 Ericsson의 항만 네트워크 협력 등이 진행 중이다. 영국의 Vodafone-Three 합병 후에도 5G 서비스 품질이 유럽 최저 수준에 머물러 있다.",
-      "summary_long": "리투아니아의 통신사 Tele2가 5G 스펙트럼을 획득하며 중부 유럽의 5G 인프라 확충이 진행되고 있다. 동시에 스페인의 Telefónica와 Amper는 주요 공항의 통신 서비스를 개선하고 있으며, Deutsche Telekom과 Ericsson은 항만 네트워크 구축에서 기술 협력을 강화하고 있다. 한편 영국에서 진행된 Vodafone과 Three의 합병이 5G 서비스 품질 개선을 목표로 했음에도 불구하고, 최신 Opensignal 분석에 따르면 영국의 5G 네트워크 경험이 유럽에서 가장 낮은 수준으로 평가되고 있다. 이는 단순한 스펙트럼 획득만으로는 충분하지 않으며, 실제 네트워크 품질 개선과 운영 효율성이 중요함을 시사한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-11",
-      "source_url": "https://www.lightreading.com/5g/eurobites-tele2-bags-5g-spectrum-in-lithuania",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "2f76d2a35e5c",
-      "title": "Verizon의 5G 네트워크, BMW 텔레매틱스 서비스 지원",
-      "summary": "Verizon Business가 KDDI와 협력하여 BMW의 미국 신차에 5G 텔레매틱스 연결성을 제공하는 계약을 체결했다. 이는 5G 네트워크의 자동차 산업 활용 확대를 보여주는 사례로, 통신사의 엔터프라이즈 사업 영역 확대 전략을 시사한다.",
-      "summary_long": "Verizon Business가 KDDI와의 국제 파트너십을 통해 BMW 신차 모델에 5G 기반 텔레매틱스 연결성 서비스를 제공하는 거래를 성사시켰다. 이 협력은 미국 시장에서 추진되며, 5G 네트워크의 실제 산업 적용 사례를 확대하는 것으로 평가된다. 자동차 제조사와의 통신 인프라 계약은 통신사의 엔터프라이즈 비즈니스 포트폴리오 강화를 의미하며, 특히 저지연·고속 연결이 필요한 차량용 서비스 분야에서의 경쟁력을 입증한다. 통신업계에서 5G의 소비자 서비스 중심에서 벗어나 B2B 산업 응용으로의 전환 추세를 반영하는 전략적 성과이다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 3,
-      "date": "2026-07-11",
-      "source_url": "https://www.lightreading.com/5g/verizon-s-5g-network-drives-telematics-for-bmw",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "65e1cf5d6a67",
-      "title": "유로바이트: Nokia, NestAI와 전장 통신 협력",
-      "summary": "Nokia가 NestAI와 협력하여 전장용 통신 솔루션을 개발하고 있으며, 동시에 유럽 통신업계에서 Telefónica와 Thales의 IoT eSIM 출시, euNetworks의 파리-밀라노 직선 구간 개설, 독일의 5G 성장세 등이 진행 중이다. 특히 영국은 Vodafone과 Three의 합병 1년 후에도 유럽에서 가장 낮은 5G 네트워크 품질을 유지하고 있다.",
-      "summary_long": "Nokia가 NestAI와의 협력을 통해 전장용 통신 기술을 개발하고 있으며, 이는 군사용 통신 인프라 구축의 새로운 방향을 제시하고 있다. 유럽 통신시장에서는 Telefónica와 Thales가 IoT 분야의 eSIM 기반 서비스를 출시했고, euNetworks는 주요 도시 간 직선 통신망을 확대하고 있다. 독일에서는 5G 보급이 가파르게 증가하고 있으나, 영국은 Vodafone과 Three의 2023년 합병 후 1년이 경과했음에도 불구하고 Opensignal 조사 결과 유럽 내 가장 낮은 5G 네트워크 품질을 기록하고 있다. 이는 대규모 인수합병이 반드시 서비스 품질 개선으로 이어지지 않을 수 있음을 시사한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향",
-        "시장경쟁"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-11",
-      "source_url": "https://www.lightreading.com/ai-machine-learning/eurobites-nokia-joins-forces-with-nestai-for-battlefield-comms",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "9d7c7d25ebee",
-      "title": "KT, '세계최초 5G' 주도한 삼성맨 최성호 영입···KT SAT CTO 맡아",
-      "summary": "KT SAT이 세계최초 5G 상용화를 주도한 삼성전자 출신 최성호를 신임 CTO 전무로 영입했다. 최 신임 총괄은 과기정통부 산하 ITTP에서 6G와 위성통신 등 국가 R&D를 총괄한 이동·위성통신 분야 전문가로, 총 7,500억원 규모의 6G 및 LEO 기술개발 사업을 기획한 경력을 보유하고 있다.",
-      "summary_long": "KT 그룹의 위성통신 전문 자회사 KT SAT이 통신 분야 핵심 전문가를 영입해 기술 경쟁력 강화에 나섰다. 최성호 신임 CTO 전무는 삼성전자에서 세계최초 5G 상용화를 주도한 경력과 과학기술정보통신부 산하 정보통신기획평가원(ITTP)에서 6G 및 저궤도 위성통신(LEO) 등 미래 통신기술 개발을 총괄한 경력을 가지고 있다. 특히 그는 총 7,500억원 규모의 6G와 LEO 기술개발 예비타당성 사업을 직접 기획했으며, 이동·위성통신 분야의 국가 연구개발 전략을 수립한 전문가다. 이번 영입은 KT가 5G 이후 6G 시대로의 전환과 위성통신 기술 확보를 강전략적으로 추진하려는 의지를 보여주는 것으로, 통신업계의 미래 기술 개발 경쟁이 심화되고 있음을 시사한다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "KT",
-      "importance": 4,
-      "date": "2026-07-10",
-      "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422328",
-      "source_name": "시사저널e - 전체기사"
-    },
-    {
-      "id": "e00641a92289",
-      "title": "KT, 'AX 플랫폼 기업' 기지개...AI 기술·모델·인프라 확장 '본격화'",
-      "summary": "KT가 박윤영 대표 취임 100일을 기점으로 AI 전환 플랫폼 기업 전략을 본격화하고 있다. 2030년까지 AX 분야에 총 6조원을 투자하기로 결정했으며, 이 중 AI 데이터센터 5조원, 해저케이블 1조원을 배분할 계획이다.",
-      "summary_long": "KT는 박윤영 신임 대표의 취임 100일을 계기로 AI 전환 플랫폼 기업으로의 전략적 방향을 확정하고 본격적인 실행에 나섰다. 6일 공식적으로 AX(AI eXperience) 플랫폼 기업을 회사의 지향점으로 확정한 KT는 2030년까지 총 6조원 규모의 대규모 투자 계획을 발표했다. 투자 배분은 AI 데이터센터 구축에 5조원, 글로벌 통신 인프라인 해저케이블 구축에 1조원을 할당하기로 결정했다. 박윤영 대표는 통신사의 본질인 '연결'을 강화하면서 동시에 AX를 통해 새로운 성장동력을 창출하겠다는 의지를 표현했다. 10일 발표된 개인과 기업 고객 대상 AI 접점 확대 계획은 이러한 전략 방향의 구체적 실행 초기 단계로 평가된다. 통신사가 전통적 통신 서비스를 넘어 AI 인프라와 플랫폼 사업으로 사업 영역을 확대하려는 국내 이동통신산업의 구조 변화를 보여주는 사례다.",
-      "tags": [
-        "통신사동향",
-        "기술·네트워크",
-        "서비스정책"
-      ],
-      "region": "domestic",
-      "country": "domestic",
-      "carrier": "KT",
-      "importance": 4,
-      "date": "2026-07-10",
-      "source_url": "https://www.techm.kr/news/articleView.html?idxno=153272",
-      "source_name": "테크M - 전체기사"
     }
   ]
 }
