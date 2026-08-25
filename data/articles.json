@@ -1,6 +1,24 @@
 {
-  "updated": "2026-08-25T08:26:35.572701+09:00",
+  "updated": "2026-08-26T08:28:41.087887+09:00",
   "articles": [
+    {
+      "id": "1573716bc759",
+      "title": "KT, '모두의 AI'로 반전 노린다",
+      "summary": "KT가 정부 AI 파운데이션 모델 프로젝트(독파모)에서 탈락한 후 '모두의 AI' 사업으로 재도전한다. 업스테이지, 리벨리온, 모티프 등 국산 AI 기업들과 연합을 구성해 서비스 구현과 운영 역량으로 승부하겠다는 전략이다.",
+      "summary_long": "KT는 지난해 정부가 추진한 독파모 프로젝트의 첫 정예팀 선정 단계에서 탈락했다. 당시 15개 컨소시엄 중 5개만 선정되었고, 이후 평가에서도 3개 팀만 통과했으며 KT는 패자부활전에 참여하지 않았다. KT는 자체 모델 '믿:음'을 보유하고 있었지만 모델 기술력 경쟁에서 밀렸다. 이번 '모두의 AI' 사업은 국민 누구나 이용 가능한 범용 AI 챇봇과 공공 AI 에이전트 구현에 초점을 두고 있어, 단순한 모델 경쟁이 아닌 여러 모델을 연결하고 안정적으로 운영하는 능력이 중요하다. KT는 모델부터 인프라, 서비스까지 국내 AI 기업들을 폭넓게 끌어들여 자신의 통신·클라우드·B2C 운영 경험을 바탕으로 서비스 경쟁에서 반전을 노린다.",
+      "tags": [
+        "통신사동향",
+        "기술·네트워크",
+        "시장경쟁"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "KT",
+      "importance": 3,
+      "date": "2026-08-26",
+      "source_url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=695196",
+      "source_name": "디지털투데이 (DigitalToday) - 전체기사"
+    },
     {
       "id": "3d76996b1ca9",
       "title": "베라이즌, 제미나이 통합으로 구글 클라우드 관계 심화",
@@ -5234,24 +5252,6 @@
       "date": "2026-07-11",
       "source_url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422330",
       "source_name": "시사저널e - 전체기사"
-    },
-    {
-      "id": "78923b5ef09a",
-      "title": "베라이즌, BMW와의 거래로 5G 커넥티드카 시장 공략",
-      "summary": "베라이즌이 BMW 그룹과의 5G 연결성 공급 계약을 체결하며 AT&T가 지배해온 미국 커넥티드카 시장에 본격 진출했다. BMW, 미니 등 BMW 그룹의 모든 신차에 5G/LTE 연결성을 제공하며 스탠드얼론 5G 네트워크의 자동차 산업 적용을 확대하고 있다.",
-      "summary_long": "베라이즌이 BMW 그룹과의 5G 연결성 공급 계약을 체결하며 미국 커넥티드카 시장에서 AT&T의 오랜 독점 지위에 도전하고 있다. 계약에 따라 베라이즌은 미국에서 판매되는 모든 신규 BMW, 미니 및 BMW 그룹 차량에 5G 및 LTE 연결성을 제공하게 된다. KDDI America가 플랫폼을 제공해 BMW가 베라이즌 네트워크를 통한 연결성과 데이터 흐름을 관리할 수 있도록 지원한다. 베라이즌은 이미 폭스바겐 그룹과의 거래로 아우디 등 여러 브랜드에 연결성을 공급 중이며, BMW 거래는 이러한 확장 추세를 계속하는 것이다. 베라이즌 임원은 5G가 커넥티드카 실현의 핵심 가속화 요소임을 강조했다.",
-      "tags": [
-        "기술·네트워크",
-        "시장경쟁",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "Verizon",
-      "importance": 3,
-      "date": "2026-07-11",
-      "source_url": "https://www.fierce-network.com/wireless/verizon-puts-5g-drivers-seat-bmw-deal",
-      "source_name": "Fierce Network"
     }
   ]
 }
