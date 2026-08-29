@@ -1,6 +1,61 @@
 {
-  "updated": "2026-08-28T15:30:15.806245+09:00",
+  "updated": "2026-08-29T13:00:47.838767+09:00",
   "articles": [
+    {
+      "id": "d23e546b7141",
+      "title": "'5000만 국민 AI' 맡은 통신3사…대규모 인프라 역량 부각",
+      "summary": "정부 AI 서비스 '모두의 AI' 사업자로 SK텔레콤, KT, LG유플러스가 포함된 3개 컨소시엠이 최종 선정됐다. 5000만 국민을 대상으로 안정적 AI 서비스를 제공해야 하는 특성상 GPU·서버·네트워크 등 기반시설을 보유한 통신 3사의 인프라 운영 역량이 사업자 선정의 핵심 기준으로 작용했다.",
+      "summary_long": "과학기술정보통신부는 전 국민 대상 정부 AI 서비스 '모두의 AI' 사업자로 SK텔레콤 주관 컨소시엄, KT 주관 컨소시엄, 그리고 카카오 컨소시엄(LG유플러스 참여)을 최종 선정했다. 총 6개 컨소시엄이 참여한 공모에서 이스트소프트, 제논, 엠케이디 컨소시엄은 탈락했다. 평가는 서면평가와 발표평가를 통해 진행됐으며, 발표평가 배점에서 서비스 편의성·이용자 확보 50점, 서비스 품질·안정성 30점, 국내 AI 생태계 기여 20점을 각각 배정했다. 업계 관계자들은 대규모 GPU 자원을 안정적으로 운영하고 데이터센터와 네트워크를 함께 관리할 수 있는 통신사의 인프라 운영 경험이 결정적 역할을 했다고 평가했다. 선정된 컨소시엄들은 기존 접점을 활용해 서비스를 확대할 계획으로, SKT는 앱·웹뿐 아니라 전화·문자로도 AI 접근을 가능하게 하며, 카카오 컨소시엄은 카카오톡과 전화 기반 서비스를 제공할 예정이다.",
+      "tags": [
+        "통신사동향",
+        "규제·정책",
+        "기술·네트워크",
+        "서비스정책"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT, KT, LG U+, 과기정통부",
+      "importance": 4,
+      "date": "2026-08-29",
+      "source_url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=696483",
+      "source_name": "디지털투데이 (DigitalToday) - 전체기사"
+    },
+    {
+      "id": "7853651d37ce",
+      "title": "Consumer Cellular, Big 3의 앱 중심 전략과 대조되는 오프라인 매장 강화 전략",
+      "summary": "미국의 소형 이동통신사 Consumer Cellular가 시니어 고객층을 겨냥해 오프라인 매장 확대에 집중하고 있다. 대형 3사(AT&T, Verizon, T-Mobile)가 디지털 앱 기반 서비스로 고객을 유도하는 것과 대조적인 전략으로, 4년 전부터 자체 소매점 운영을 시작했다.",
+      "summary_long": "Consumer Cellular는 시니어 시장을 타겟으로 오프라인 매장 전략을 강화하고 있으며, 이는 Big 3 통신사들이 추진 중인 앱 기반 디지털화 전략과 명확히 다른 포지셀링이다. Target과의 유통 파트너십 종료 후 약 4년 전부터 자체 소매점 운영을 시작한 Consumer Cellular의 CEO Ed Evans는 고객들이 매장 방문 시 앱 다운로드를 강요받는 현황을 비판하며, 특히 75세 이상의 고령층이 이러한 디지털 중심 접근으로 인해 불편함을 겪고 있다고 지적했다. Consumer Cellular의 신규 고객 유입 경로는 Verizon이 가장 크고, 그 다음이 AT&T, T-Mobile 순인 것으로 나타났다. 이는 고령층 고객 획득에 있어 인간 중심의 오프라인 서비스가 디지털 전환 시대에도 특정 고객층에게는 중요한 차별화 요소임을 보여준다.",
+      "tags": [
+        "시장경쟁",
+        "서비스정책",
+        "통신사동향"
+      ],
+      "region": "overseas",
+      "country": "us",
+      "carrier": "AT&T, Verizon, T-Mobile",
+      "importance": 3,
+      "date": "2026-08-29",
+      "source_url": "https://www.fierce-network.com/wireless/consumer-cellular-bets-big-stores-big-3-push-apps",
+      "source_name": "Fierce Network"
+    },
+    {
+      "id": "ef78174a2cad",
+      "title": "카톡·전화·포털에 전 국민 'AI 비서' 심는다...카카오·SKT·KT '모두의 AI' 출격",
+      "summary": "정부의 '1인 1 AI 에이전트' 구상인 '모두의 AI' 사업에 카카오, SK텔레콤, KT가 선정되었다. 카카오톡, 전화·문자, 포털 등 국민 친화적 서비스에 AI를 통합하여 정보 검색을 넘어 예약·신청 등 일상 업무 대행을 제공할 계획이다.",
+      "summary_long": "정부가 추진하는 '모두의 AI' 사업은 전 국민이 AI 비서를 보유하도록 하는 '1인 1 AI 에이전트' 구상의 일환으로, 카카오, SK텔레콤, KT 등 주요 통신 및 플랫폼 기업이 사업자로 선정되었다. 각 선정사는 기존의 강력한 대국민 서비스 기반을 활용하여 AI 에이전트를 구축할 예정이다. 구체적으로 카카오톡, 전화·문자, 포털 등 국민이 일상적으로 사용하는 서비스에 AI 기술을 접목하게 된다. 이를 통해 단순한 정보 검색과 답변 제공을 넘어 예약, 신청 등 실제 업무 처리까지 자동화할 수 있을 것으로 기대된다. 이는 통신사들의 플랫폼 경쟁력 강화와 고객 접점 확대 전략의 일환으로, 국내 통신산업의 AI 기반 서비스 경쟁 심화를 예고한다.",
+      "tags": [
+        "통신사동향",
+        "서비스정책",
+        "기술·네트워크"
+      ],
+      "region": "domestic",
+      "country": "domestic",
+      "carrier": "SKT, KT",
+      "importance": 4,
+      "date": "2026-08-29",
+      "source_url": "https://www.techm.kr/news/articleView.html?idxno=154731",
+      "source_name": "테크M - 전체기사"
+    },
     {
       "id": "fca8c9c5da45",
       "title": "모두의 AI, SK텔레콤·카카오·KT 선정…2대 1 경쟁 돌파",
@@ -5202,57 +5257,6 @@
       "date": "2026-07-15",
       "source_url": "https://www.fierce-network.com/wireless/t-mobiles-5g-plan-refresh-triggers-customer-backlash",
       "source_name": "Fierce Network"
-    },
-    {
-      "id": "eb301b1e090e",
-      "title": "Orange, AI 에이전트 수보다 AI 결과물 우선시 강조",
-      "summary": "Orange는 5G 보안, 클라우드 운영, RAN 에너지 최적화 등 여러 영역에서 에이전트 AI를 적용 중이며, AI 도입 시 에이전트 개수보다는 실질적인 비즈니스 성과 창출에 집중해야 한다는 입장을 제시했다.",
-      "summary_long": "유럽 주요 통신사 Orange는 운영 효율화를 위해 에이전트형 AI를 5G 보안 운영, 텔코 클라우드 운영, RAN 에너지 최적화, 라이프사이클 관리, 인시던트 관리 등 다양한 영역에 도입하고 있다. 특히 Orange는 AI 기술 도입 시 에이전트 시스템의 개수를 늘리는 것보다는 실제 비즈니스 성과와 운영상 이점 창출에 우선순위를 두어야 한다는 입장을 강조했다. 이는 통신사들이 AI 투자의 실효성을 높이고 ROI 극대화에 집중해야 함을 시사한다. 국내 통신사들도 네트워크 운영 자동화와 에너지 효율화 등에 AI 도입을 추진 중인 만큼, Orange의 사례는 성과 중심의 전략 수립에 참고할 만한 가치가 있다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-15",
-      "source_url": "https://www.rcrwireless.com/20260714/carriers/agentic-ai-orange-says",
-      "source_name": "RCR Wireless"
-    },
-    {
-      "id": "6adad6cdeb99",
-      "title": "SK텔레콤, 한국 AI-RAN 파일럿 프로젝트 주도",
-      "summary": "SK텔레콤이 AI 기반 무선접근네트워크(AI-RAN) 활용 사례를 테스트하는 2년 규모의 한국 정부 프로젝트를 주도하게 됐다. 이는 물리 AI 기술 실증을 통해 6G 시대 대비 역량을 강화하는 전략적 움직임이다.",
-      "summary_long": "SK텔레콤이 한국에서 AI-RAN 기술의 실제 활용 사례를 검증하는 2년짜리 국가 프로젝트의 리더로 선정됐다. 이 프로젝트는 물리 AI 기술을 무선네트워크에 적용하는 것을 목표로 하며, 향후 6G 시대의 경쟁력 확보를 위한 선제적 투자로 평가된다. AI-RAN 기술은 기존 네트워크의 효율성을 높이고 최적화된 서비스 제공을 가능하게 하는 차세대 기술이다. 이를 통해 SK텔레콤은 국내 통신사 중 선도적으로 미래 네트워크 기술 개발에 참여하게 되며, 향후 상용화 시 기술 경쟁력 확보 측면에서 유리한 위치를 점하게 될 것으로 예상된다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 4,
-      "date": "2026-07-15",
-      "source_url": "https://www.lightreading.com/ai-machine-learning/sk-telecom-to-run-south-korean-ai-ran-pilot",
-      "source_name": "lightreading"
-    },
-    {
-      "id": "9928334fe33f",
-      "title": "노키아와 대만모바일, AI 기반 5G 네트워크 구축 협력",
-      "summary": "노키아가 대만모바일과 5G 확대 계약을 체결하고 AirScale 포트폴리오와 AI 소프트웨어를 공급해 기존 네트워크를 업그레이드한다. 네트워크 지능화, 인프라 용량, 에너지 관리, 복원력 등 4개 영역에서 AI 기반 솔루션을 배포해 5G-Advanced 시대를 대비한다.",
-      "summary_long": "노키아는 2026년 7월 14일 대만모바일과 AI 기반 5G 네트워크 전환을 위한 5G 확대 계약을 체결했다. 노키아는 차세대 베이스밴드 및 무선 장비로 구성된 AirScale 포트폴리오와 AI 기반 소프트웨어를 공급한다. 배포 범위는 네트워크 지능화(예측 분석 및 자동화 소프트웨어), 인프라 용량 강화, AI 기반 에너지 관리, 자가 복구 및 트래픽 제어를 통한 복원력 강화 등 4개 영역을 포함한다. 대만모바일은 이 파트너십을 통해 지속가능한 네트워크를 구축하고 새로운 성장 기회를 포착할 수 있을 것으로 기대하고 있다. 노키아 측은 이 협력이 5G-Advanced 이상의 기반을 마련할 것으로 평가하고 있다.",
-      "tags": [
-        "기술·네트워크",
-        "통신사동향"
-      ],
-      "region": "overseas",
-      "country": "us",
-      "carrier": "",
-      "importance": 3,
-      "date": "2026-07-15",
-      "source_url": "https://capacityglobal.com/news/nokia-extends-5g-deal-with-taiwan-mobile/",
-      "source_name": "Capacity"
     }
   ]
 }
