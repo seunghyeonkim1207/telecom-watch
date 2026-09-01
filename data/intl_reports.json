@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-09-01",
+    "source_id": "kcc-competitive",
+    "org": "방통위",
+    "name": "방송시장 경쟁상황 평가",
+    "latest": "2024년도 평가 (2025.3.26 공표)",
+    "report": "<cite index=\"17-6\">2024년도 방송시장 경쟁상황 평가 결과가 2025년 3월 26일 발표되었다.</cite> <cite index=\"17-4,17-5\">방송-OTT 경쟁 심화, OTT 영향력 증가, 국내 제작 수요 위축, 방송광고 시장 대폭 하락이 주요 결과이다.</cite> <cite index=\"17-2\">광고 대행사 등은 방송광고 대신 OTT를 선택할 확률(60.9%)이 높으며 앞으로 방송광고 비중은 계속 줄어들 것으로 전망된다.</cite> 통신사 관점에서 방송-통신 융합 서비스의 경쟁력 강화 및 유료방송 사업 포트폴리오 재검토가 필요하다.",
+    "url": "https://www.kmcc.go.kr/user.do?boardId=1113&cp=1&ctx=ALL&dc=K05030000&page=A05030000&searchKey=TITLE&searchVal=%EB%B0%A9%EC%86%A1%EC%8B%9C%EC%9E%A5%EA%B2%BD%EC%9F%81%EC%83%81%ED%99%A9%ED%8F%89%EA%B0%80"
+  },
+  {
     "date": "2026-08-28",
     "source_id": "kostat-hh",
     "org": "통계청",
