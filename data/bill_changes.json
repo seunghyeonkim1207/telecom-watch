@@ -1,5 +1,95 @@
 [
   {
+    "bill_id": "PRC_W2W6T0T9R1S4Q1P0P4X0X5W2X0V7T1",
+    "bill_name": "전기통신사업법 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-09-17",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_K2K6I0H9H0P8Q1O7P1N4M2M5U7V4T0",
+    "bill_name": "통신비밀보호법 일부개정법률안",
+    "field": "PROC_DT",
+    "label": "본회의 의결",
+    "old": "",
+    "new": "2026-09-17",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_K2K6I0H9H0P8Q1O7P1N4M2M5U7V4T0",
+    "bill_name": "통신비밀보호법 일부개정법률안",
+    "field": "PROC_RESULT",
+    "label": "처리 결과",
+    "old": "",
+    "new": "수정가결",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_L2J6K0I9J0H8P1Q7O5O0N3O8M3U0U7",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "LAW_PROC_DT",
+    "label": "법사위",
+    "old": "",
+    "new": "2026-09-16",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_L2J6K0I9J0H8P1Q7O5O0N3O8M3U0U7",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "PROC_DT",
+    "label": "본회의 의결",
+    "old": "",
+    "new": "2026-09-17",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_L2J6K0I9J0H8P1Q7O5O0N3O8M3U0U7",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "PROC_RESULT",
+    "label": "처리 결과",
+    "old": "",
+    "new": "수정가결",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_M2L6J0J9H1J1Q1R6P1O6O4M4N4V2V0",
+    "bill_name": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법 일부개정법률안",
+    "field": "PROC_DT",
+    "label": "본회의 의결",
+    "old": "",
+    "new": "2026-09-17",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_M2L6J0J9H1J1Q1R6P1O6O4M4N4V2V0",
+    "bill_name": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법 일부개정법률안",
+    "field": "PROC_RESULT",
+    "label": "처리 결과",
+    "old": "",
+    "new": "대안반영폐기",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_X2Y6G0E8F0D7C1C7Y1X7X1W0V0V8D5",
+    "bill_name": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법 일부개정법률안",
+    "field": "PROC_DT",
+    "label": "본회의 의결",
+    "old": "",
+    "new": "2026-09-17",
+    "detected": "2026-09-18"
+  },
+  {
+    "bill_id": "PRC_X2Y6G0E8F0D7C1C7Y1X7X1W0V0V8D5",
+    "bill_name": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법 일부개정법률안",
+    "field": "PROC_RESULT",
+    "label": "처리 결과",
+    "old": "",
+    "new": "대안반영폐기",
+    "detected": "2026-09-18"
+  },
+  {
     "bill_id": "PRC_M2L6J0J9H1J1Q1R6P1O6O4M4N4V2V0",
     "bill_name": "전기통신금융사기 피해 방지 및 피해금 환급에 관한 특별법 일부개정법률안",
     "field": "COMMITTEE_DT",
