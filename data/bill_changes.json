@@ -1,5 +1,14 @@
 [
   {
+    "bill_id": "PRC_41EEED926CCA4C5BB5DB11203108FC",
+    "bill_name": "전기통신사업법 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-11-17",
+    "detected": "2026-11-18"
+  },
+  {
     "bill_id": "PRC_D0E2EE0A4C16480BBB3F2110FCB2CD",
     "bill_name": "전기통신 이용 다중피해사기범죄의 예방 및 처벌 등에 관한 특별법안",
     "field": "COMMITTEE_DT",
