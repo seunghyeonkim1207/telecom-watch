@@ -1,5 +1,23 @@
 [
   {
+    "bill_id": "PRC_5B0345257F27486C9F48F2D794DE0B",
+    "bill_name": "전기통신사업법 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-11-23",
+    "detected": "2026-11-24"
+  },
+  {
+    "bill_id": "PRC_4810C3DCF4D946E985E77CFED78E2D",
+    "bill_name": "방송통신발전 기본법 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-11-23",
+    "detected": "2026-11-24"
+  },
+  {
     "bill_id": "PRC_41EEED926CCA4C5BB5DB11203108FC",
     "bill_name": "전기통신사업법 일부개정법률안",
     "field": "COMMITTEE_DT",
