@@ -1,5 +1,32 @@
 [
   {
+    "bill_id": "PRC_K2J6H0H8F2H5O1P2N4L3M2L5L9H4F5",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-11-26",
+    "detected": "2026-11-27"
+  },
+  {
+    "bill_id": "PRC_4BACFC98096F426CB11D62C0FD91E0",
+    "bill_name": "정보통신망 이용촉진 및 정보보호 등에 관한 법률 일부개정법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-11-26",
+    "detected": "2026-11-27"
+  },
+  {
+    "bill_id": "PRC_4A2FBA992C224934B7D2BEC82D25B0",
+    "bill_name": "전남광주통합특별시 설치에 따른 지방행정체제 개편 반영을 위한 과학기술정보통신부 소관 6개 법률의 일부개정에 관한 법률안",
+    "field": "COMMITTEE_DT",
+    "label": "위원회 의결",
+    "old": "",
+    "new": "2026-11-26",
+    "detected": "2026-11-27"
+  },
+  {
     "bill_id": "PRC_B520105C819445A7866C6DEDAB674F",
     "bill_name": "전남광주통합특별시 설치에 따른 지방행정체제 개편 반영을 위한 과학기술정보통신부 소관 8개 법률의 일부개정에 관한 법률안",
     "field": "COMMITTEE_DT",
